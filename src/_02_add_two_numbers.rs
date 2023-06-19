@@ -45,8 +45,8 @@ pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> 
         return special_dispose(l1);
     }
 
-    let v1 = l1.clone().unwrap().val;
-    let v2 = l2.clone().unwrap().val;
+    let v1 = l1.as_ref().unwrap().val;
+    let v2 = l2.as_ref().unwrap().val;
     let sum = v1 + v2;
     if sum > 9 {
         let carry = sum / 10;
@@ -56,9 +56,9 @@ pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> 
         if l1u.next.is_none() {
             l1u.next = Some(Box::new(ListNode::new(0)))
         }
-        l1u.next.unwrap().val += carry;
+        l1u.next.as_mut().unwrap().val += carry;
         let mut l = ListNode::new(va);
-        l.next = add_two_numbers(l1.unwrap().next, l2.unwrap().next);
+        l.next = add_two_numbers(l1u.next, l2.unwrap().next);
         return Some(Box::new(l));
     };
 
