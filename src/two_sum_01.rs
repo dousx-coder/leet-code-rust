@@ -10,16 +10,15 @@ pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
     }
     vec![]
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    /// 测试函数
     #[test]
     fn test1() {
         // nums = [3,3], target = 6
         let result = two_sum(vec![3, 3], 6);
-        assert_eq!(result[0], 0);
-        assert_eq!(result[1], 1);
+        assert_eq!(result, vec![0, 1]);
     }
 }
