@@ -38,31 +38,33 @@ pub fn special_dispose(list_node: Option<Box<ListNode>>) -> Option<Box<ListNode>
 }
 
 pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-    // if l1.is_none() {
-    //     return special_dispose(l2);
-    // }
-    // if l2.is_none() {
-    //     return special_dispose(l1);
-    // }
-    // let v1 = l1.clone().unwrap().val;
-    // let v2 = l2.clone().unwrap().val;
-    // let sum = v1 + v2;
-    // if sum > 9 {
-    //     let carry = sum / 10;
-    //     let va = sum % 10;
-    //     if l1.unwrap().next.is_none() {
-    //         l1.unwrap().next = Some(Box::new(ListNode::new(0)))
-    //     }
-    //     l1.unwrap().next.unwrap().val += carry;
-    //     let mut l = ListNode::new(va);
-    //     l.next = add_two_numbers(l1.unwrap().next, l2.unwrap().next);
-    //     return Some(Box::new(l));
-    // };
-    //
-    // let mut l = ListNode::new(sum);
-    // l.next = add_two_numbers(l1.unwrap().next, l2.unwrap().next);
-    // return Some(Box::new(l));
-    None
+    if l1.is_none() {
+        return special_dispose(l2);
+    }
+    if l2.is_none() {
+        return special_dispose(l1);
+    }
+
+    let v1 = l1.clone().unwrap().val;
+    let v2 = l2.clone().unwrap().val;
+    let sum = v1 + v2;
+    if sum > 9 {
+        let carry = sum / 10;
+        let va = sum % 10;
+        // todo Compile passed 这里clone不对 进位没加上
+        let mut l1u = l1.clone().unwrap();
+        if l1u.next.is_none() {
+            l1u.next = Some(Box::new(ListNode::new(0)))
+        }
+        l1u.next.unwrap().val += carry;
+        let mut l = ListNode::new(va);
+        l.next = add_two_numbers(l1.unwrap().next, l2.unwrap().next);
+        return Some(Box::new(l));
+    };
+
+    let mut l = ListNode::new(sum);
+    l.next = add_two_numbers(l1.unwrap().next, l2.unwrap().next);
+    return Some(Box::new(l));
 }
 
 
@@ -74,19 +76,21 @@ mod tests {
     fn test1() {
         let mut l1_0 = Some(Box::new(ListNode::new(2)));
         let mut l1_1 = Some(Box::new(ListNode::new(4)));
-        let mut l1_2 = Some(Box::new(ListNode::new(4)));
-        l1_0.clone().unwrap().next = l1_1.clone();
-        l1_1.clone().unwrap().next = l1_2.clone();
-
-
+        let mut l1_2 = Some(Box::new(ListNode::new(3)));
+        let l1u = l1_0.as_mut().unwrap();
+        l1u.next = l1_1;
+        l1u.next.as_mut().unwrap().next = l1_2;
+        println!("{:?}", l1u);
         let mut l2_0 = Some(Box::new(ListNode::new(5)));
         let mut l2_1 = Some(Box::new(ListNode::new(6)));
-        let mut l2_2 = Some(Box::new(ListNode::new(7)));
-        l2_0.clone().unwrap().next = l2_1.clone();
-        l2_1.clone().unwrap().next = l2_2.clone();
+        let l2_2 = Some(Box::new(ListNode::new(4)));
 
+        let l2u = l2_0.as_mut().unwrap();
+        l2u.next = l2_1;
+        l2u.next.as_mut().unwrap().next = l2_2;
+        println!("{:?}", l2u);
 
-        let _result = add_two_numbers(l1_0, l2_0);
-        println!()
+        let _result = add_two_numbers(Some(l1u.clone()), Some(l2u.clone()));
+        println!("{:?}", _result);
     }
 }
