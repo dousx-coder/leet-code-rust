@@ -51,7 +51,6 @@ pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> 
     if sum > 9 {
         let carry = sum / 10;
         let va = sum % 10;
-        // todo Compile passed 这里clone不对 进位没加上
         let mut l1u = l1.clone().unwrap();
         if l1u.next.is_none() {
             l1u.next = Some(Box::new(ListNode::new(0)))
