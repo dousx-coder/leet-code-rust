@@ -1,5 +1,4 @@
-use std::ptr::null;
-
+#[warn(unused_imports)]
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {
     pub val: i32,

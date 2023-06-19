@@ -1,4 +1,3 @@
-
-mod two_sum_01;
-mod add_two_numbers_02;
+mod _01_two_sum;
+mod _02_add_two_numbers;
 
