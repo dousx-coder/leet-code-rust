@@ -16,7 +16,7 @@ impl ListNode {
 }
 
 struct Solution {}
-
+// #[allow(dead_code)]
 impl Solution {
     pub fn special_dispose(list_node: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         if list_node.is_none() {
