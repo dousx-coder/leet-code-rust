@@ -78,25 +78,47 @@ impl Solution {
 mod tests {
     use super::*;
 
+    ///打印链表节点
+    fn print_list(list_head: &mut Option<Box<ListNode>>) -> Vec<i32> {
+        if list_head.is_none() {
+            return vec![];
+        }
+        let mut result: Vec<i32> = vec![];
+        let mut l1r = list_head.as_ref();
+        while l1r.is_some() {
+            let mut var = l1r.unwrap().val;
+            print!("{} ", var);
+            result.append(&mut vec![var]);
+
+            l1r = l1r.unwrap().next.as_ref();
+        };
+        println!();
+        result
+    }
+
     #[test]
     fn test1() {
         let mut l1_0 = Some(Box::new(ListNode::new(2)));
-        let l1_1 = Some(Box::new(ListNode::new(4)));
-        let l1_2 = Some(Box::new(ListNode::new(3)));
-        let l1u = l1_0.as_mut().unwrap();
-        l1u.next = l1_1;
-        l1u.next.as_mut().unwrap().next = l1_2;
-        println!("{:?}", l1u);
-        let mut l2_0 = Some(Box::new(ListNode::new(5)));
-        let l2_1 = Some(Box::new(ListNode::new(6)));
-        let l2_2 = Some(Box::new(ListNode::new(4)));
+        let mut l1_1 = Some(Box::new(ListNode::new(4)));
+        let mut l1_2 = Some(Box::new(ListNode::new(3)));
 
-        let l2u = l2_0.as_mut().unwrap();
-        l2u.next = l2_1;
-        l2u.next.as_mut().unwrap().next = l2_2;
-        println!("{:?}", l2u);
-        let _result = Solution::add_two_numbers(Some(l1u.clone()), Some(l2u.clone()));
-        println!("{:?}", _result);
+        l1_1.as_mut().unwrap().next = l1_2;
+        l1_0.as_mut().unwrap().next = l1_1;
+        print_list(&mut l1_0);
+
+
+        let mut l2_0 = Some(Box::new(ListNode::new(5)));
+        let mut l2_1 = Some(Box::new(ListNode::new(6)));
+        let mut l2_2 = Some(Box::new(ListNode::new(4)));
+
+        l2_1.as_mut().unwrap().next = l2_2;
+        l2_0.as_mut().unwrap().next = l2_1;
+        print_list(&mut l2_0);
+
+
+        let mut _result = Solution::add_two_numbers(l1_0, l2_0);
+        let r = print_list(&mut _result);
+        assert_eq!(vec![7, 0, 8], r)
     }
 
 
@@ -115,21 +137,20 @@ mod tests {
         l1_2.as_mut().unwrap().next = l1_3;
         l1_1.as_mut().unwrap().next = l1_2;
         l1_0.as_mut().unwrap().next = l1_1;
-        println!("{:?}", l1_0);
+        print_list(&mut l1_0);
 
 
         let mut l2_0 = Some(Box::new(ListNode::new(9)));
         let mut l2_1 = Some(Box::new(ListNode::new(9)));
         let mut l2_2 = Some(Box::new(ListNode::new(9)));
         let mut l2_3 = Some(Box::new(ListNode::new(9)));
-
         l2_2.as_mut().unwrap().next = l2_3;
         l2_1.as_mut().unwrap().next = l2_2;
         l2_0.as_mut().unwrap().next = l2_1;
-        println!("{:?}", l2_0);
+        print_list(&mut l2_0);
 
-
-        let _result = Solution::add_two_numbers(l1_0, l2_0);
-        println!("{:?}", _result);
+        let mut _result = Solution::add_two_numbers(l1_0, l2_0);
+        let r = print_list(&mut _result);
+        assert_eq!(vec![8, 9, 9, 9, 0, 0, 0, 1], r)
     }
 }
