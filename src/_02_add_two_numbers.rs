@@ -23,10 +23,12 @@ impl Solution {
         if list_node.is_none() {
             return list_node;
         }
-        let mut next = list_node.clone().unwrap().next;
+        let mut head = list_node;
+        // let mut next = &head.as_mut().unwrap().next;
+        let mut next = &mut head.as_mut().unwrap().next;
         let mut carry = 0;
         while next.is_some() {
-            let mut nun = next.clone().unwrap();
+            let mut nun = next.as_mut().unwrap();
             let val = nun.val + carry;
             nun.val = val % 10;
             carry = val / 10;
@@ -37,12 +39,12 @@ impl Solution {
                 // 9 9 9 9
                 nun.next = Option::from(Box::new(ListNode::new(carry)));
                 // 这里不应该返回list_node 因为数据已经被修改了 这里应该返回新的头结点
-                return list_node;
+                return head;
             } else {
-                next = nun.next;
+                next = &mut nun.as_mut().next;
             }
         }
-        return list_node;
+        return head;
     }
 
     pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
