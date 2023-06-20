@@ -80,14 +80,14 @@ mod tests {
     #[test]
     fn test1() {
         let mut l1_0 = Some(Box::new(ListNode::new(2)));
-        let mut l1_1 = Some(Box::new(ListNode::new(4)));
-        let mut l1_2 = Some(Box::new(ListNode::new(3)));
+        let l1_1 = Some(Box::new(ListNode::new(4)));
+        let l1_2 = Some(Box::new(ListNode::new(3)));
         let l1u = l1_0.as_mut().unwrap();
         l1u.next = l1_1;
         l1u.next.as_mut().unwrap().next = l1_2;
         println!("{:?}", l1u);
         let mut l2_0 = Some(Box::new(ListNode::new(5)));
-        let mut l2_1 = Some(Box::new(ListNode::new(6)));
+        let l2_1 = Some(Box::new(ListNode::new(6)));
         let l2_2 = Some(Box::new(ListNode::new(4)));
 
         let l2u = l2_0.as_mut().unwrap();
@@ -97,5 +97,4 @@ mod tests {
         let _result = Solution::add_two_numbers(Some(l1u.clone()), Some(l2u.clone()));
         println!("{:?}", _result);
     }
-
 }
