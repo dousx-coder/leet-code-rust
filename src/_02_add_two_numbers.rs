@@ -16,6 +16,7 @@ impl ListNode {
 }
 
 struct Solution {}
+
 // #[allow(dead_code)]
 impl Solution {
     pub fn special_dispose(list_node: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
@@ -95,6 +96,40 @@ mod tests {
         l2u.next.as_mut().unwrap().next = l2_2;
         println!("{:?}", l2u);
         let _result = Solution::add_two_numbers(Some(l1u.clone()), Some(l2u.clone()));
+        println!("{:?}", _result);
+    }
+
+
+    #[test]
+    fn test2() {
+        let mut l1_0 = Some(Box::new(ListNode::new(9)));
+        let mut l1_1 = Some(Box::new(ListNode::new(9)));
+        let mut l1_2 = Some(Box::new(ListNode::new(9)));
+        let mut l1_3 = Some(Box::new(ListNode::new(9)));
+        let mut l1_4 = Some(Box::new(ListNode::new(9)));
+        let mut l1_5 = Some(Box::new(ListNode::new(9)));
+        let mut l1_6 = Some(Box::new(ListNode::new(9)));
+        l1_5.as_mut().unwrap().next = l1_6;
+        l1_4.as_mut().unwrap().next = l1_5;
+        l1_3.as_mut().unwrap().next = l1_4;
+        l1_2.as_mut().unwrap().next = l1_3;
+        l1_1.as_mut().unwrap().next = l1_2;
+        l1_0.as_mut().unwrap().next = l1_1;
+        println!("{:?}", l1_0);
+
+
+        let mut l2_0 = Some(Box::new(ListNode::new(9)));
+        let mut l2_1 = Some(Box::new(ListNode::new(9)));
+        let mut l2_2 = Some(Box::new(ListNode::new(9)));
+        let mut l2_3 = Some(Box::new(ListNode::new(9)));
+
+        l2_2.as_mut().unwrap().next = l2_3;
+        l2_1.as_mut().unwrap().next = l2_2;
+        l2_0.as_mut().unwrap().next = l2_1;
+        println!("{:?}", l2_0);
+
+
+        let _result = Solution::add_two_numbers(l1_0, l2_0);
         println!("{:?}", _result);
     }
 }
