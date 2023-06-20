@@ -24,8 +24,7 @@ impl Solution {
             return list_node;
         }
         let mut head = list_node;
-        // let mut next = &head.as_mut().unwrap().next;
-        let mut next = &mut head.as_mut().unwrap().next;
+        let mut next = &mut head;
         let mut carry = 0;
         while next.is_some() {
             let mut nun = next.as_mut().unwrap();
@@ -33,10 +32,6 @@ impl Solution {
             nun.val = val % 10;
             carry = val / 10;
             if carry != 0 && nun.next.is_none() {
-                let n = Box::new(ListNode::new(carry));
-                // todo! 待处理
-                // 9 9 9 9 9 9 9
-                // 9 9 9 9
                 nun.next = Option::from(Box::new(ListNode::new(carry)));
                 // 这里不应该返回list_node 因为数据已经被修改了 这里应该返回新的头结点
                 return head;
