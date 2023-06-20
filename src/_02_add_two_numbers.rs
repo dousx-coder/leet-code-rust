@@ -35,7 +35,8 @@ impl Solution {
                 // todo! 待处理
                 // 9 9 9 9 9 9 9
                 // 9 9 9 9
-                nun.next = Option::from(n.clone());
+                nun.next = Option::from(Box::new(ListNode::new(carry)));
+                // 这里不应该返回list_node 因为数据已经被修改了 这里应该返回新的头结点
                 return list_node;
             } else {
                 next = nun.next;
