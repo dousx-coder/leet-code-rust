@@ -114,43 +114,58 @@ mod tests {
         return head_node;
     }
 
+    /// 测试
+    /// <br/>
+    /// [`v1`] 链表1
+    /// <br/>
+    /// [`v2`] 链表2
+    /// <br/>
+    /// [`v3`] 预期结果
+    ///
+    ///
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let v1 = vec![2, 4, 3];
+    /// let v2 = vec![5, 6, 4];
+    /// let v3 = vec![7, 0, 8];
+    /// _add_test(v1, v2, v3);
+    /// `````
+    fn _add_test(v1: Vec<i32>, v2: Vec<i32>, v3: Vec<i32>) {
+        let mut l1 = build_list(v1);
+        print_list_and_to_vec(&mut l1);
+
+        let mut l2 = build_list(v2);
+        print_list_and_to_vec(&mut l2);
+
+        let mut _result = Solution::add_two_numbers(l1, l2);
+        let vec = print_list_and_to_vec(&mut _result);
+
+        assert_eq!(v3, vec)
+    }
 
     #[test]
     fn test1() {
-        let mut l1_0 = build_list(vec![2, 4, 3]);
-        print_list_and_to_vec(&mut l1_0);
-
-        let mut l2_0 = build_list(vec![5, 6, 4]);
-        print_list_and_to_vec(&mut l2_0);
-
-        let mut _result = Solution::add_two_numbers(l1_0, l2_0);
-        let r = print_list_and_to_vec(&mut _result);
-        assert_eq!(vec![7, 0, 8], r)
+        let v1 = vec![2, 4, 3];
+        let v2 = vec![5, 6, 4];
+        let v3 = vec![7, 0, 8];
+        _add_test(v1, v2, v3);
     }
 
     #[test]
     fn test2() {
-        let mut l1_0 = build_list(vec![9, 9, 9, 9, 9, 9, 9]);
-        print_list_and_to_vec(&mut l1_0);
-
-        let mut l2_0 = build_list(vec![9, 9, 9, 9]);
-        print_list_and_to_vec(&mut l2_0);
-
-        let mut _result = Solution::add_two_numbers(l1_0, l2_0);
-        let r = print_list_and_to_vec(&mut _result);
-        assert_eq!(vec![8, 9, 9, 9, 0, 0, 0, 1], r)
+        let v1 = vec![9, 9, 9, 9, 9, 9, 9];
+        let v2 = vec![9, 9, 9, 9];
+        let v3 = vec![8, 9, 9, 9, 0, 0, 0, 1];
+        _add_test(v1, v2, v3);
     }
 
     #[test]
     fn test3() {
-        let mut l1_0 = build_list(vec![9, 1]);
-        print_list_and_to_vec(&mut l1_0);
-
-        let mut l2_0 = build_list(vec![1, 2, 3]);
-        print_list_and_to_vec(&mut l2_0);
-
-        let mut _result = Solution::add_two_numbers(l1_0, l2_0);
-        let r = print_list_and_to_vec(&mut _result);
-        assert_eq!(vec![0, 4, 3], r)
+        let v1 = vec![9, 1];
+        let v2 = vec![1, 2, 3];
+        let v3 = vec![0, 4, 3];
+        _add_test(v1, v2, v3);
     }
 }
