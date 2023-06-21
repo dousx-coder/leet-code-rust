@@ -54,6 +54,12 @@ impl Solution {
         let v1 = l1_unwrap.val;
         let v2 = l2_unwrap.val;
         let sum = v1 + v2;
+        if sum < 10 {
+            //  提前判断下 如果不提前判断 leetcode上 内存占用会高一点
+            let mut new_node = ListNode::new(sum);
+            new_node.next = Solution::add_two_numbers(l1_unwrap.next, l2_unwrap.next);
+            return Some(Box::new(new_node));
+        };
         let carry = sum / 10;
         let val = sum % 10;
         if carry != 0 {
