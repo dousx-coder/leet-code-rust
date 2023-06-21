@@ -56,7 +56,7 @@ impl Solution {
         if sum > 9 {
             let carry = sum / 10;
             let val = sum % 10;
-            let mut box_node = l1.clone().unwrap();
+            let mut box_node = l1.unwrap();
             if box_node.next.is_none() {
                 box_node.next = Some(Box::new(ListNode::new(0)))
             }
