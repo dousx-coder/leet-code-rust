@@ -94,25 +94,32 @@ mod tests {
         result
     }
 
+    /// 构建链表
+    fn build_list(mut num_list: Vec<i32>) -> Option<Box<ListNode>> {
+        let mut head_node = None;
+        //  数组翻转一下 用头插法构建
+        // todo!(抽空研究下尾插)
+        num_list.reverse();
+        for num in num_list {
+            let mut list_node = Some(Box::new(ListNode::new(num)));
+            if head_node == None {
+                head_node = list_node;
+            } else {
+                list_node.as_mut().unwrap().next = head_node;
+                head_node = list_node;
+            }
+        }
+        return head_node;
+    }
+
+
     #[test]
     fn test1() {
-        let mut l1_0 = Some(Box::new(ListNode::new(2)));
-        let mut l1_1 = Some(Box::new(ListNode::new(4)));
-        let l1_2 = Some(Box::new(ListNode::new(3)));
-
-        l1_1.as_mut().unwrap().next = l1_2;
-        l1_0.as_mut().unwrap().next = l1_1;
+        let mut l1_0 = build_list(vec![2, 4, 3]);
         print_list(&mut l1_0);
 
-
-        let mut l2_0 = Some(Box::new(ListNode::new(5)));
-        let mut l2_1 = Some(Box::new(ListNode::new(6)));
-        let l2_2 = Some(Box::new(ListNode::new(4)));
-
-        l2_1.as_mut().unwrap().next = l2_2;
-        l2_0.as_mut().unwrap().next = l2_1;
+        let mut l2_0 = build_list(vec![5, 6, 4]);
         print_list(&mut l2_0);
-
 
         let mut _result = Solution::add_two_numbers(l1_0, l2_0);
         let r = print_list(&mut _result);
@@ -122,29 +129,10 @@ mod tests {
 
     #[test]
     fn test2() {
-        let mut l1_0 = Some(Box::new(ListNode::new(9)));
-        let mut l1_1 = Some(Box::new(ListNode::new(9)));
-        let mut l1_2 = Some(Box::new(ListNode::new(9)));
-        let mut l1_3 = Some(Box::new(ListNode::new(9)));
-        let mut l1_4 = Some(Box::new(ListNode::new(9)));
-        let mut l1_5 = Some(Box::new(ListNode::new(9)));
-        let l1_6 = Some(Box::new(ListNode::new(9)));
-        l1_5.as_mut().unwrap().next = l1_6;
-        l1_4.as_mut().unwrap().next = l1_5;
-        l1_3.as_mut().unwrap().next = l1_4;
-        l1_2.as_mut().unwrap().next = l1_3;
-        l1_1.as_mut().unwrap().next = l1_2;
-        l1_0.as_mut().unwrap().next = l1_1;
+        let mut l1_0 = build_list(vec![9, 9, 9, 9, 9, 9, 9]);
         print_list(&mut l1_0);
 
-
-        let mut l2_0 = Some(Box::new(ListNode::new(9)));
-        let mut l2_1 = Some(Box::new(ListNode::new(9)));
-        let mut l2_2 = Some(Box::new(ListNode::new(9)));
-        let l2_3 = Some(Box::new(ListNode::new(9)));
-        l2_2.as_mut().unwrap().next = l2_3;
-        l2_1.as_mut().unwrap().next = l2_2;
-        l2_0.as_mut().unwrap().next = l2_1;
+        let mut l2_0 = build_list(vec![9, 9, 9, 9]);
         print_list(&mut l2_0);
 
         let mut _result = Solution::add_two_numbers(l1_0, l2_0);
