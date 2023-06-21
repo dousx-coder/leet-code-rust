@@ -84,7 +84,7 @@ mod tests {
         let mut result: Vec<i32> = vec![];
         let mut l1r = list_head.as_ref();
         while l1r.is_some() {
-            let mut var = l1r.unwrap().val;
+            let var = l1r.unwrap().val;
             print!("{} ", var);
             result.append(&mut vec![var]);
 
@@ -98,7 +98,7 @@ mod tests {
     fn test1() {
         let mut l1_0 = Some(Box::new(ListNode::new(2)));
         let mut l1_1 = Some(Box::new(ListNode::new(4)));
-        let mut l1_2 = Some(Box::new(ListNode::new(3)));
+        let l1_2 = Some(Box::new(ListNode::new(3)));
 
         l1_1.as_mut().unwrap().next = l1_2;
         l1_0.as_mut().unwrap().next = l1_1;
@@ -107,7 +107,7 @@ mod tests {
 
         let mut l2_0 = Some(Box::new(ListNode::new(5)));
         let mut l2_1 = Some(Box::new(ListNode::new(6)));
-        let mut l2_2 = Some(Box::new(ListNode::new(4)));
+        let l2_2 = Some(Box::new(ListNode::new(4)));
 
         l2_1.as_mut().unwrap().next = l2_2;
         l2_0.as_mut().unwrap().next = l2_1;
@@ -128,7 +128,7 @@ mod tests {
         let mut l1_3 = Some(Box::new(ListNode::new(9)));
         let mut l1_4 = Some(Box::new(ListNode::new(9)));
         let mut l1_5 = Some(Box::new(ListNode::new(9)));
-        let mut l1_6 = Some(Box::new(ListNode::new(9)));
+        let l1_6 = Some(Box::new(ListNode::new(9)));
         l1_5.as_mut().unwrap().next = l1_6;
         l1_4.as_mut().unwrap().next = l1_5;
         l1_3.as_mut().unwrap().next = l1_4;
@@ -141,7 +141,7 @@ mod tests {
         let mut l2_0 = Some(Box::new(ListNode::new(9)));
         let mut l2_1 = Some(Box::new(ListNode::new(9)));
         let mut l2_2 = Some(Box::new(ListNode::new(9)));
-        let mut l2_3 = Some(Box::new(ListNode::new(9)));
+        let l2_3 = Some(Box::new(ListNode::new(9)));
         l2_2.as_mut().unwrap().next = l2_3;
         l2_1.as_mut().unwrap().next = l2_2;
         l2_0.as_mut().unwrap().next = l2_1;
