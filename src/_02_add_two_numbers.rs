@@ -49,26 +49,22 @@ impl Solution {
         if l2.is_none() {
             return Solution::special_dispose(l1);
         }
-
-        let v1 = l1.as_ref().unwrap().val;
-        let v2 = l2.as_ref().unwrap().val;
+        let mut l1_unwrap = l1.unwrap();
+        let l2_unwrap = l2.unwrap();
+        let v1 = l1_unwrap.val;
+        let v2 = l2_unwrap.val;
         let sum = v1 + v2;
-        if sum > 9 {
-            let carry = sum / 10;
-            let val = sum % 10;
-            let mut box_node = l1.unwrap();
-            if box_node.next.is_none() {
-                box_node.next = Some(Box::new(ListNode::new(0)))
+        let carry = sum / 10;
+        let val = sum % 10;
+        if carry != 0 {
+            if l1_unwrap.next.is_none() {
+                l1_unwrap.next = Some(Box::new(ListNode::new(0)))
             }
-            box_node.next.as_mut().unwrap().val += carry;
-            let mut l = ListNode::new(val);
-            l.next = Solution::add_two_numbers(box_node.next, l2.unwrap().next);
-            return Some(Box::new(l));
+            l1_unwrap.next.as_mut().unwrap().val += carry;
         };
-
-        let mut l = ListNode::new(sum);
-        l.next = Solution::add_two_numbers(l1.unwrap().next, l2.unwrap().next);
-        return Some(Box::new(l));
+        let mut new_node = ListNode::new(val);
+        new_node.next = Solution::add_two_numbers(l1_unwrap.next, l2_unwrap.next);
+        return Some(Box::new(new_node));
     }
 }
 
