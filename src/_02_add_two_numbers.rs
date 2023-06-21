@@ -76,22 +76,22 @@ impl Solution {
 mod tests {
     use super::*;
 
-    ///打印链表节点
-    fn print_list(list_head: &mut Option<Box<ListNode>>) -> Vec<i32> {
+    ///打印链表节点 并将链表转换为 [`Vec`]返回
+    fn print_list_and_to_vec(list_head: &mut Option<Box<ListNode>>) -> Vec<i32> {
         if list_head.is_none() {
             return vec![];
         }
-        let mut result: Vec<i32> = vec![];
+        let mut vec_result: Vec<i32> = vec![];
         let mut l1r = list_head.as_ref();
         while l1r.is_some() {
             let var = l1r.unwrap().val;
             print!("{} ", var);
-            result.append(&mut vec![var]);
+            vec_result.append(&mut vec![var]);
 
             l1r = l1r.unwrap().next.as_ref();
         };
         println!();
-        result
+        vec_result
     }
 
     /// 构建链表
@@ -116,27 +116,39 @@ mod tests {
     #[test]
     fn test1() {
         let mut l1_0 = build_list(vec![2, 4, 3]);
-        print_list(&mut l1_0);
+        print_list_and_to_vec(&mut l1_0);
 
         let mut l2_0 = build_list(vec![5, 6, 4]);
-        print_list(&mut l2_0);
+        print_list_and_to_vec(&mut l2_0);
 
         let mut _result = Solution::add_two_numbers(l1_0, l2_0);
-        let r = print_list(&mut _result);
+        let r = print_list_and_to_vec(&mut _result);
         assert_eq!(vec![7, 0, 8], r)
     }
-
 
     #[test]
     fn test2() {
         let mut l1_0 = build_list(vec![9, 9, 9, 9, 9, 9, 9]);
-        print_list(&mut l1_0);
+        print_list_and_to_vec(&mut l1_0);
 
         let mut l2_0 = build_list(vec![9, 9, 9, 9]);
-        print_list(&mut l2_0);
+        print_list_and_to_vec(&mut l2_0);
 
         let mut _result = Solution::add_two_numbers(l1_0, l2_0);
-        let r = print_list(&mut _result);
+        let r = print_list_and_to_vec(&mut _result);
         assert_eq!(vec![8, 9, 9, 9, 0, 0, 0, 1], r)
+    }
+
+    #[test]
+    fn test3() {
+        let mut l1_0 = build_list(vec![9, 1]);
+        print_list_and_to_vec(&mut l1_0);
+
+        let mut l2_0 = build_list(vec![1, 2, 3]);
+        print_list_and_to_vec(&mut l2_0);
+
+        let mut _result = Solution::add_two_numbers(l1_0, l2_0);
+        let r = print_list_and_to_vec(&mut _result);
+        assert_eq!(vec![0, 4, 3], r)
     }
 }
