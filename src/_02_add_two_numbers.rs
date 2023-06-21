@@ -23,23 +23,23 @@ impl Solution {
         if list_node.is_none() {
             return list_node;
         }
-        let mut head = list_node;
-        let mut next = &mut head;
+        let mut head_node = list_node;
+        let mut next_node = &mut head_node;
         let mut carry = 0;
-        while next.is_some() {
-            let mut nun = next.as_mut().unwrap();
-            let val = nun.val + carry;
-            nun.val = val % 10;
+        while next_node.is_some() {
+            let mut temp_node = next_node.as_mut().unwrap();
+            let val = temp_node.val + carry;
+            temp_node.val = val % 10;
             carry = val / 10;
-            if carry != 0 && nun.next.is_none() {
-                nun.next = Option::from(Box::new(ListNode::new(carry)));
+            if carry != 0 && temp_node.next.is_none() {
+                temp_node.next = Option::from(Box::new(ListNode::new(carry)));
                 // 这里不应该返回list_node 因为数据已经被修改了 这里应该返回新的头结点
-                return head;
+                return head_node;
             } else {
-                next = &mut nun.as_mut().next;
+                next_node = &mut temp_node.as_mut().next;
             }
         }
-        return head;
+        return head_node;
     }
 
     pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
@@ -55,14 +55,14 @@ impl Solution {
         let sum = v1 + v2;
         if sum > 9 {
             let carry = sum / 10;
-            let va = sum % 10;
-            let mut l1u = l1.clone().unwrap();
-            if l1u.next.is_none() {
-                l1u.next = Some(Box::new(ListNode::new(0)))
+            let val = sum % 10;
+            let mut box_node = l1.clone().unwrap();
+            if box_node.next.is_none() {
+                box_node.next = Some(Box::new(ListNode::new(0)))
             }
-            l1u.next.as_mut().unwrap().val += carry;
-            let mut l = ListNode::new(va);
-            l.next = Solution::add_two_numbers(l1u.next, l2.unwrap().next);
+            box_node.next.as_mut().unwrap().val += carry;
+            let mut l = ListNode::new(val);
+            l.next = Solution::add_two_numbers(box_node.next, l2.unwrap().next);
             return Some(Box::new(l));
         };
 
