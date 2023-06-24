@@ -17,7 +17,9 @@ impl Solution {
         let mut count = 0;
         let mut i = 0;
         let mut j = 0;
-        while count != len {
+        let mid = len / 2;
+        // 不用全部都填加到新数组
+        while count != (mid + 1) {
             if i == m {
                 while j != n {
                     nums.insert(count, *nums2.get(j).unwrap());
@@ -45,13 +47,13 @@ impl Solution {
             nums.insert(count, ins);
             count += 1;
         };
-        let mid: usize = (len / 2) as usize;
         if len % 2 == 0 {
             return (*nums.get(mid).unwrap() as f64 + *nums.get(mid - 1).unwrap() as f64) / 2.0;
         };
 
         return *nums.get(mid).unwrap() as f64;
     }
+
 }
 
 #[cfg(test)]
