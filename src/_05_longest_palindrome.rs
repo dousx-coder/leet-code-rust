@@ -46,7 +46,7 @@ mod tests {
     }
     #[test]
     fn test3() {
-        assert_eq!(Solution::longest_palindrome(String::from("ac")), "ac");
+        assert_eq!(Solution::longest_palindrome(String::from("ac")), "a");
     }
 
 }
