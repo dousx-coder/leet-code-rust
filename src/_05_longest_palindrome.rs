@@ -17,7 +17,7 @@ impl Solution {
                 if sl == sr && (r - l <= 2 || dp[l + 1][r - 1]) {
                     dp[l][r] = true;
                     let new_len = r - l + 1;
-                    if (new_len > max_len) {
+                    if new_len > max_len {
                         max_len = new_len;
                         max_start = l;
                         max_end = r;
@@ -44,9 +44,9 @@ mod tests {
     fn test2() {
         assert_eq!(Solution::longest_palindrome(String::from("aaaa")), "aaaa");
     }
+
     #[test]
     fn test3() {
         assert_eq!(Solution::longest_palindrome(String::from("ac")), "a");
     }
-
 }
