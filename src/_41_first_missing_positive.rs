@@ -11,10 +11,10 @@ impl Solution {
         for it in nums {
             if it >= 0 {
                 positive_num_set.insert(it);
-                if (it < min) {
+                if it < min {
                     min = it
                 }
-                if (it > max) {
+                if it > max {
                     max = it
                 }
             }
