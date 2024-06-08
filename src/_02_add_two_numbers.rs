@@ -27,7 +27,7 @@ impl Solution {
         let mut next_node = &mut head_node;
         let mut carry = 0;
         while next_node.is_some() {
-            let mut temp_node = next_node.as_mut().unwrap();
+            let temp_node = next_node.as_mut().unwrap();
             let val = temp_node.val + carry;
             temp_node.val = val % 10;
             carry = val / 10;
