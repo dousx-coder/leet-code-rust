@@ -1,4 +1,3 @@
-
 struct Solution {}
 
 impl Solution {
@@ -35,7 +34,7 @@ impl Solution {
                 };
                 break;
             };
-            let mut ins = 0;
+            let ins: i32;
             if nums1.get(i) < nums2.get(j) {
                 ins = *nums1.get(i).unwrap();
                 i += 1;
@@ -52,7 +51,6 @@ impl Solution {
 
         return *nums.get(mid).unwrap() as f64;
     }
-
 }
 
 #[cfg(test)]
