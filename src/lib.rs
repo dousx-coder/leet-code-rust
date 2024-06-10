@@ -7,3 +7,4 @@ mod _09_is_palindrome;
 mod _28_str;
 mod _37_solve_sudoku;
 mod _41_first_missing_positive;
+mod _202_is_happy;
