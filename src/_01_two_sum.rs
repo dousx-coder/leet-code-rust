@@ -1,10 +1,11 @@
 use std::collections::HashMap;
 
-
+#[allow(dead_code)]
 struct Solution {}
 
-// #[allow(dead_code)]
+#[allow(dead_code)]
 impl Solution {
+
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
         let mut map = HashMap::new();
         for (i, num) in nums.into_iter().enumerate() {

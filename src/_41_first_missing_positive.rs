@@ -1,8 +1,12 @@
 use std::collections::HashSet;
+
 /**
  * https://leetcode.cn/problems/first-missing-positive/
  */
+#[allow(dead_code)]
 struct Solution {}
+
+#[allow(dead_code)]
 impl Solution {
     pub fn first_missing_positive(nums: Vec<i32>) -> i32 {
         let mut positive_num_set: HashSet<i32> = HashSet::new();

@@ -1,5 +1,7 @@
+#[allow(dead_code)]
 struct Solution {}
 
+#[allow(dead_code)]
 impl Solution {
     fn prefix_table(pattern: &Vec<u8>) -> Vec<i32> {
         let n = pattern.len();
@@ -29,6 +31,7 @@ impl Solution {
         prefix_table[0] = -1;
         return prefix_table;
     }
+
     pub fn str_str(haystack: String, needle: String) -> i32 {
         let text = haystack.as_bytes().to_vec();
         let pattern = needle.as_bytes().to_vec();

@@ -6,6 +6,7 @@ pub struct ListNode {
 }
 
 impl ListNode {
+    #[allow(dead_code)]
     #[inline]
     fn new(val: i32) -> Self {
         ListNode {
@@ -15,9 +16,10 @@ impl ListNode {
     }
 }
 
+#[allow(dead_code)]
 struct Solution {}
 
-// #[allow(dead_code)]
+#[allow(dead_code)]
 impl Solution {
     pub fn special_dispose(list_node: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         if list_node.is_none() {
