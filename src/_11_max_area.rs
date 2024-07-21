@@ -19,10 +19,10 @@ impl Solution {
             let right_v = height.get(right).unwrap();
             let temp_area = if left_v < right_v {
                 left += 1;
-                (left_v * width) as i32
+                left_v * width
             } else {
                 right -= 1;
-                (right_v * width) as i32
+                right_v * width
             };
             if temp_area > area {
                 area = temp_area;
