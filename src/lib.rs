@@ -4,6 +4,7 @@ mod _03_length_of_longest_substring;
 mod _04_find_median_sorted_arrays;
 mod _05_longest_palindrome;
 mod _09_is_palindrome;
+mod _11_max_area;
 mod _202_is_happy;
 mod _28_str;
 mod _37_solve_sudoku;
