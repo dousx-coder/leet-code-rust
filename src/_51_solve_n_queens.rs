@@ -81,14 +81,13 @@ mod tests {
     #[test]
     fn t1() {
         let vr = Solution::solve_n_queens(8);
-        let len = vr.len();
-
-        for ele in vr {
-            for ele in ele {
-                println!("{}", ele);
+        for answer in &vr {
+            for row in answer {
+                println!("{}", row);
             }
             println!();
         }
+        let len = vr.len();
         println!("{}", len);
         assert_eq!(len, 92);
     }
