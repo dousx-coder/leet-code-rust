@@ -9,4 +9,5 @@ mod _202_is_happy;
 mod _28_str;
 mod _37_solve_sudoku;
 mod _41_first_missing_positive;
+mod _51_solve_n_queens;
 mod _887_super_egg_drop;
