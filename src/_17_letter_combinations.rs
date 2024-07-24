@@ -1,8 +1,8 @@
 ///
 /// 17. 电话号码的字母组合
-/// 
+///
 /// https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
-/// 
+///
 #[allow(dead_code)]
 struct Solution {}
 
@@ -41,13 +41,11 @@ impl Solution {
         match char_indices.nth(index).map(|(_, c)| c) {
             Some(c) => match map.get(&c) {
                 Some(v) => {
-                    v.iter()
-                        .map(|&it| {
-                            let s = pre.to_string() + it;
-                            let sp = &s;
-                            Solution::append(index + 1, digits, map, sp, result)
-                        })
-                        .count();
+                    v.iter().for_each(|&it| {
+                        let s = pre.to_string() + it;
+                        let sp = &s;
+                        Solution::append(index + 1, digits, map, sp, result)
+                    });
                 }
                 None => {}
             },
