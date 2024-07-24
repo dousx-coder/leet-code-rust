@@ -8,6 +8,7 @@ mod _11_max_area;
 mod _189_rotate;
 mod _202_is_happy;
 mod _28_str;
+mod _35_search_insert;
 mod _37_solve_sudoku;
 mod _41_first_missing_positive;
 mod _51_solve_n_queens;
