@@ -5,6 +5,7 @@ mod _04_find_median_sorted_arrays;
 mod _05_longest_palindrome;
 mod _09_is_palindrome;
 mod _11_max_area;
+mod _17_letter_combinations;
 mod _189_rotate;
 mod _202_is_happy;
 mod _28_str;
