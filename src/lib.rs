@@ -8,6 +8,7 @@ mod _11_max_area;
 mod _17_letter_combinations;
 mod _189_rotate;
 mod _202_is_happy;
+mod _27_remove_element;
 mod _28_str;
 mod _35_search_insert;
 mod _37_solve_sudoku;
