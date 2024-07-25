@@ -6,7 +6,7 @@
 #[allow(dead_code)]
 struct Solution {}
 
-use std::collections::HashMap;
+use std::collections::{btree_map::Values, HashMap};
 #[allow(dead_code)]
 impl Solution {
     pub fn letter_combinations(digits: String) -> Vec<String> {
@@ -39,16 +39,15 @@ impl Solution {
         }
         let mut char_indices = digits.char_indices();
         match char_indices.nth(index).map(|(_, c)| c) {
-            Some(c) => match map.get(&c) {
-                Some(v) => {
-                    v.iter().for_each(|&it| {
-                        let s = pre.to_string() + it;
-                        let sp = &s;
-                        Solution::append(index + 1, digits, map, sp, result)
-                    });
-                }
-                None => {}
-            },
+            Some(c) => {
+                let option_v = map.get(&c);
+                let ref_str_vec = option_v.unwrap();
+                ref_str_vec.iter().for_each(|&it| {
+                    let s = pre.to_string() + it;
+                    let sp = &s;
+                    Solution::append(index + 1, digits, map, sp, result)
+                });
+            }
             None => {}
         }
     }
