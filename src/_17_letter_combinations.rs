@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 ///
 /// 17. 电话号码的字母组合
 ///
@@ -6,7 +8,6 @@
 #[allow(dead_code)]
 struct Solution {}
 
-use std::collections::{btree_map::Values, HashMap};
 #[allow(dead_code)]
 impl Solution {
     pub fn letter_combinations(digits: String) -> Vec<String> {
@@ -56,6 +57,7 @@ impl Solution {
 #[cfg(test)]
 mod test {
     use super::*;
+
     #[test]
     fn t1() {
         let r = Solution::letter_combinations(String::from("23"));
