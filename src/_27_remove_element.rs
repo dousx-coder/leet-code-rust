@@ -1,8 +1,8 @@
 ///
 /// 27.remove_element
-/// 
+///
 /// https://leetcode.cn/problems/remove-element/
-/// 
+///
 #[allow(dead_code)]
 struct Solution {}
 
