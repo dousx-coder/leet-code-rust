@@ -1,8 +1,8 @@
 ///
 /// 18 remove_nth_from_end
-/// 
+///
 /// https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/
-/// 
+///
 // Definition for singly-linked list.
 #[derive(PartialEq, Eq, Clone, Debug)]
 struct ListNode {
@@ -22,21 +22,24 @@ struct Solution {}
 #[allow(dead_code)]
 impl Solution {
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
-        let mut dummy = Some(Box::new(ListNode { val: 0, next: head }));
-        let mut len = 0;
-        let mut cur = dummy.as_ref();
-        while let Some(_) = cur {
-            len += 1;
-            cur = cur.unwrap().next.as_ref();
+        let mut dummy = Box::new(ListNode { val: 0, next: head });
+
+        unsafe {
+            let mut slow = &mut dummy as *mut Box<ListNode>;
+            let mut fast = &mut dummy as *mut Box<ListNode>;
+            // move fast n forward
+            for _ in 0..n {
+                fast = (*fast).next.as_mut().unwrap();
+            }
+
+            while (*fast).next.is_some() {
+                fast = (*fast).next.as_mut().unwrap();
+                slow = (*slow).next.as_mut().unwrap();
+            }
+            (*slow).next = (*slow).next.take().unwrap().next;
         }
-        let len = len - n - 1;
-        let mut cur = dummy.as_mut();
-        for _ in 0..len {
-            cur = cur.unwrap().next.as_mut();
-        }
-        let next = cur.as_mut().unwrap().next.as_mut();
-        cur.unwrap().next = next.unwrap().next.take();
-        dummy.unwrap().next
+
+        dummy.next
     }
 }
 #[allow(dead_code)]
