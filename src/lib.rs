@@ -7,6 +7,7 @@ mod _09_is_palindrome;
 mod _11_max_area;
 mod _17_letter_combinations;
 mod _189_rotate;
+mod _18_remove_nth_from_end;
 mod _202_is_happy;
 mod _27_remove_element;
 mod _28_str;
