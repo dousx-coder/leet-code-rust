@@ -13,5 +13,6 @@ mod _28_str;
 mod _35_search_insert;
 mod _37_solve_sudoku;
 mod _41_first_missing_positive;
+mod _46_permute;
 mod _51_solve_n_queens;
 mod _887_super_egg_drop;
