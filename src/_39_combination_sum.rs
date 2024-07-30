@@ -3,7 +3,7 @@
 ///
 /// https://leetcode.cn/problems/combination-sum/description/
 ///
-use std::collections::HashSet;
+use std::collections::BTreeSet;
 
 #[allow(dead_code)]
 struct Solution {}
@@ -11,20 +11,18 @@ struct Solution {}
 #[allow(dead_code)]
 impl Solution {
     pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
-        let mut can = candidates.clone();
-        can.sort();
-        let mut result: Vec<Vec<i32>> = Vec::new();
+        let mut candidates_copy = candidates.clone();
+        candidates_copy.sort();
         let mut list: Vec<i32> = Vec::new();
-        let mut set: HashSet<String> = HashSet::new();
-        Solution::backtracking(&can, target, &mut result, &mut list, &mut set, target);
-        result
+        let mut result_set: BTreeSet<Vec<i32>> = BTreeSet::new();
+        Solution::backtracking(&candidates_copy, target, &mut list, &mut result_set, target);
+        result_set.into_iter().collect()
     }
     fn backtracking(
-        can: &Vec<i32>,
+        candidates: &Vec<i32>,
         target: i32,
-        result: &mut Vec<Vec<i32>>,
         current_list: &mut Vec<i32>,
-        mutable_set: &mut HashSet<String>,
+        mutable_set: &mut BTreeSet<Vec<i32>>,
         original_target: i32,
     ) -> bool {
         if target < 0 {
@@ -33,26 +31,19 @@ impl Solution {
         return if target == 0 {
             if !current_list.is_empty() && current_list.iter().sum::<i32>() == original_target {
                 current_list.sort();
-                let str = current_list
-                    .iter()
-                    .map(|i| i.to_string())
-                    .collect::<String>();
-                if mutable_set.insert(str) {
-                    let vec = current_list.clone();
-                    result.push(vec);
-                }
+                let vec = current_list.clone();
+                mutable_set.insert(vec);
             }
             true
         } else {
-            can.iter().for_each(|ca| {
+            candidates.iter().for_each(|ca| {
                 let sub = target - ca;
                 if sub >= 0 {
                     current_list.push(ca.clone());
                     let mut copy = current_list.clone();
                     if !Solution::backtracking(
-                        can,
+                        candidates,
                         sub,
-                        result,
                         &mut copy,
                         mutable_set,
                         original_target,
@@ -69,6 +60,7 @@ impl Solution {
 #[cfg(test)]
 mod test {
     use super::*;
+
     #[test]
     fn t1() {
         let solution = Solution::combination_sum(vec![2, 3, 6, 7], 7);
