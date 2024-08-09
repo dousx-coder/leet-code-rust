@@ -1,9 +1,7 @@
 use std::collections::HashMap;
 
-#[allow(dead_code)]
 struct Solution {}
 
-#[allow(dead_code)]
 impl Solution {
     /// 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
     /// 思路滑动窗口
@@ -31,11 +29,9 @@ impl Solution {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
-
 
     #[test]
     fn test1() {
@@ -44,17 +40,26 @@ mod tests {
 
     #[test]
     fn test2() {
-        assert_eq!(Solution::length_of_longest_substring(String::from("abcabcbb")), 3);
+        assert_eq!(
+            Solution::length_of_longest_substring(String::from("abcabcbb")),
+            3
+        );
     }
 
     #[test]
     fn test3() {
-        assert_eq!(Solution::length_of_longest_substring(String::from("bbbbb")), 1);
+        assert_eq!(
+            Solution::length_of_longest_substring(String::from("bbbbb")),
+            1
+        );
     }
 
     #[test]
     fn test4() {
-        assert_eq!(Solution::length_of_longest_substring(String::from("pwwkew")), 3);
+        assert_eq!(
+            Solution::length_of_longest_substring(String::from("pwwkew")),
+            3
+        );
     }
 
     #[test]

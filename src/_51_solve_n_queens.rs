@@ -3,9 +3,9 @@
 ///
 ///  https://leetcode.cn/problems/n-queens/description/
 ///
-#[allow(dead_code)]
+
 struct Solution {}
-#[allow(dead_code)]
+
 impl Solution {
     pub fn solve_n_queens(n: i32) -> Vec<Vec<String>> {
         if n == 1 {

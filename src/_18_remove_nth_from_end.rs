@@ -9,17 +9,16 @@ struct ListNode {
     pub val: i32,
     pub next: Option<Box<ListNode>>,
 }
-#[allow(dead_code)]
+
 impl ListNode {
     #[inline]
     fn new(val: i32) -> Self {
         ListNode { next: None, val }
     }
 }
-#[allow(dead_code)]
+
 struct Solution {}
 
-#[allow(dead_code)]
 impl Solution {
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
         let mut dummy = Box::new(ListNode { val: 0, next: head });
@@ -42,7 +41,7 @@ impl Solution {
         dummy.next
     }
 }
-#[allow(dead_code)]
+
 fn build_list(list: &Vec<i32>) -> Option<Box<ListNode>> {
     let len = list.len();
     if len <= 0 {

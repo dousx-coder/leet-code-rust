@@ -1,7 +1,5 @@
-#[allow(dead_code)]
 struct Solution {}
 
-#[allow(dead_code)]
 impl Solution {
     pub fn is_palindrome(x: i32) -> bool {
         let str = x.to_string();
@@ -44,4 +42,3 @@ mod tests {
         assert_eq!(true, Solution::is_palindrome(1441));
     }
 }
-

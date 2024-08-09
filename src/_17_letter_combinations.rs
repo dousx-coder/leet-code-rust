@@ -5,10 +5,9 @@ use std::collections::HashMap;
 ///
 /// https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
 ///
-#[allow(dead_code)]
+
 struct Solution {}
 
-#[allow(dead_code)]
 impl Solution {
     pub fn letter_combinations(digits: String) -> Vec<String> {
         if "" == digits {

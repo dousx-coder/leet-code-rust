@@ -3,10 +3,9 @@
 ///
 /// https://leetcode.cn/problems/rotate-array/description/
 ///
-#[allow(dead_code)]
+
 struct Solution {}
 
-#[allow(dead_code)]
 impl Solution {
     pub fn rotate(nums: &mut Vec<i32>, k: i32) {
         let len = nums.len() as i32;

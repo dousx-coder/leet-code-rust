@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 struct Solution {}
 
 ///
@@ -7,7 +6,6 @@ struct Solution {}
 /// https://leetcode.cn/problems/container-with-most-water/description/
 ///
 
-#[allow(dead_code)]
 impl Solution {
     pub fn max_area(height: Vec<i32>) -> i32 {
         let mut left = 0;

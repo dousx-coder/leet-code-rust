@@ -1,9 +1,7 @@
 use std::collections::HashSet;
 
-#[allow(dead_code)]
 struct Solution {}
 
-#[allow(dead_code)]
 impl Solution {
     pub fn is_happy(n: i32) -> bool {
         let mut set = HashSet::new();

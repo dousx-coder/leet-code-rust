@@ -6,10 +6,9 @@ use std::collections::HashMap;
 /// https://leetcode.cn/problems/super-egg-drop/description/
 ///
 ///
-#[allow(dead_code)]
+
 struct Solution {}
 
-#[allow(dead_code)]
 impl Solution {
     pub fn super_egg_drop(k: i32, n: i32) -> i32 {
         let mut memo = HashMap::new();

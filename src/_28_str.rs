@@ -1,7 +1,5 @@
-#[allow(dead_code)]
 struct Solution {}
 
-#[allow(dead_code)]
 impl Solution {
     fn prefix_table(pattern: &Vec<u8>) -> Vec<i32> {
         let n = pattern.len();
@@ -27,7 +25,7 @@ impl Solution {
         while index > 0 {
             prefix_table[index] = prefix_table[index - 1];
             index -= 1;
-        };
+        }
         prefix_table[0] = -1;
         return prefix_table;
     }
@@ -55,7 +53,7 @@ impl Solution {
                     j = prefix_table[j] as usize;
                 }
             }
-        };
+        }
         return -1;
     }
 }
@@ -66,16 +64,25 @@ mod tests {
 
     #[test]
     fn test0() {
-        Solution::str_str(String::from("ABABABCABAACCABDABABCABAACC"), String::from("ABABCABAA"));
+        Solution::str_str(
+            String::from("ABABABCABAACCABDABABCABAACC"),
+            String::from("ABABCABAA"),
+        );
     }
 
     #[test]
     fn test1() {
-        assert_eq!(Solution::str_str(String::from("sadbutsad"), String::from("sad")), 0);
+        assert_eq!(
+            Solution::str_str(String::from("sadbutsad"), String::from("sad")),
+            0
+        );
     }
 
     #[test]
     fn test2() {
-        assert_eq!(Solution::str_str(String::from("leetcode"), String::from("leeto")), -1);
+        assert_eq!(
+            Solution::str_str(String::from("leetcode"), String::from("leeto")),
+            -1
+        );
     }
 }

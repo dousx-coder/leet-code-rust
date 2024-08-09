@@ -6,20 +6,14 @@ pub struct ListNode {
 }
 
 impl ListNode {
-    #[allow(dead_code)]
     #[inline]
     fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
+        ListNode { next: None, val }
     }
 }
 
-#[allow(dead_code)]
 struct Solution {}
 
-#[allow(dead_code)]
 impl Solution {
     pub fn special_dispose(list_node: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         if list_node.is_none() {
@@ -44,7 +38,10 @@ impl Solution {
         return head_node;
     }
 
-    pub fn add_two_numbers(l1: Option<Box<ListNode>>, l2: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+    pub fn add_two_numbers(
+        l1: Option<Box<ListNode>>,
+        l2: Option<Box<ListNode>>,
+    ) -> Option<Box<ListNode>> {
         if l1.is_none() {
             return Solution::special_dispose(l2);
         }
@@ -93,7 +90,7 @@ mod tests {
             vec_result.append(&mut vec![var]);
 
             l1r = l1r.unwrap().next.as_ref();
-        };
+        }
         println!();
         vec_result
     }

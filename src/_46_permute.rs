@@ -3,10 +3,9 @@
 ///
 /// https://leetcode.cn/problems/permutations/description/
 ///
-#[allow(dead_code)]
+
 struct Solution {}
 
-#[allow(dead_code)]
 impl Solution {
     pub fn permute(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut result: Vec<Vec<i32>> = Vec::new();

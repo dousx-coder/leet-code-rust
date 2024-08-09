@@ -1,7 +1,5 @@
-#[allow(dead_code)]
 struct Solution {}
 
-#[allow(dead_code)]
 impl Solution {
     pub fn longest_palindrome(s: String) -> String {
         if s.is_empty() || s.len() <= 1 {
@@ -31,11 +29,9 @@ impl Solution {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
-
 
     #[test]
     fn test1() {

@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 struct Msg {
     rows: [u16; 9],
     cols: [u16; 9],
@@ -6,10 +5,8 @@ struct Msg {
     ok: bool,
 }
 
-#[allow(dead_code)]
 struct Solution {}
 
-#[allow(dead_code)]
 impl Msg {
     fn new() -> Self {
         Self {
@@ -37,7 +34,6 @@ impl Msg {
     }
 }
 
-#[allow(dead_code)]
 impl Solution {
     pub fn solve_sudoku(board: &mut Vec<Vec<char>>) {
         fn dfs(spaces: &[(usize, usize)], msg: &mut Msg, board: &mut Vec<Vec<char>>) {
