@@ -35,7 +35,7 @@ impl Solution {
                 next_node = &mut temp_node.as_mut().next;
             }
         }
-        return head_node;
+        head_node
     }
 
     pub fn add_two_numbers(
@@ -69,7 +69,7 @@ impl Solution {
         };
         let mut new_node = ListNode::new(val);
         new_node.next = Solution::add_two_numbers(l1_unwrap.next, l2_unwrap.next);
-        return Some(Box::new(new_node));
+        Some(Box::new(new_node))
     }
 }
 
