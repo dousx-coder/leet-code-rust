@@ -9,17 +9,14 @@ struct ListNode {
 impl ListNode {
     #[inline]
     fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
+        ListNode { next: None, val }
     }
 }
 struct Solution {}
 
-use std::collections::BinaryHeap;
-use std::cmp::Reverse;
 use std::cmp::Ordering;
+use std::cmp::Reverse;
+use std::collections::BinaryHeap;
 
 impl Ord for ListNode {
     fn cmp(&self, other: &Self) -> Ordering {
@@ -47,7 +44,9 @@ impl Solution {
         for first in lists.into_iter() {
             let mut current = first;
             while let Some(mut node) = current {
-                // 将 `node.next` 的所有权安全取出，并使其变为 `None`
+                // 将 `node.next` 的所有权安全取出，并使其变为 `None`,等价下面两行
+                // current = node.next;
+                // node.next = None;
                 current = node.next.take();
                 // current = node.next;// 这种写法编译失败: 部分所有权取出 导致无法继续使用node
                 min_heap.push(node);
@@ -76,16 +75,12 @@ fn gen_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
     let mut dummy = ListNode { val: 0, next: None };
     let mut tail = &mut dummy;
     for x in vec {
-        let node = ListNode {
-            val: x,
-            next: None,
-        };
+        let node = ListNode { val: x, next: None };
         tail.next = Some(Box::new(node));
         tail = tail.next.as_mut()?
     }
     dummy.next
 }
-
 
 #[cfg(test)]
 mod test {
@@ -106,10 +101,7 @@ mod test {
                 next: Some(Box::new(ListNode::new(20))),
             })),
         };
-        let vec = vec![
-            Some(Box::new(list1)),
-            Some(Box::new(list2))
-        ];
+        let vec = vec![Some(Box::new(list1)), Some(Box::new(list2))];
         let result = Solution::merge_k_lists(vec);
         let mut actual = vec![];
         let mut expect = vec![3, 4, 7, 12, 16, 20];
@@ -121,13 +113,9 @@ mod test {
         assert_eq!(actual, expect)
     }
 
-
     #[test]
     fn t2() {
-        let vec = vec![
-            gen_list(vec![1, 5, 10]),
-            gen_list(vec![2, 3, 4, 7, 8]),
-        ];
+        let vec = vec![gen_list(vec![1, 5, 10]), gen_list(vec![2, 3, 4, 7, 8])];
         let result = Solution::merge_k_lists(vec);
         let mut actual = vec![];
         let mut expect = vec![1, 2, 3, 4, 5, 7, 8, 10];
