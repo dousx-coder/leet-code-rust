@@ -27,7 +27,7 @@ impl Solution {
             index -= 1;
         }
         prefix_table[0] = -1;
-        return prefix_table;
+        prefix_table
     }
 
     pub fn str_str(haystack: String, needle: String) -> i32 {
@@ -54,7 +54,7 @@ impl Solution {
                 }
             }
         }
-        return -1;
+        -1
     }
 }
 

@@ -26,7 +26,7 @@ impl Solution {
         if target < 0 {
             return false;
         }
-        return if target == 0 {
+        if target == 0 {
             if !current_list.is_empty() && current_list.iter().sum::<i32>() == original_target {
                 current_list.sort();
                 let vec = current_list.clone();
@@ -51,7 +51,7 @@ impl Solution {
                 }
             });
             false
-        };
+        }
     }
 }
 

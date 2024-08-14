@@ -25,7 +25,7 @@ impl Solution {
                 }
             }
         }
-        return String::from(&s[max_start..(max_end + 1)]);
+        String::from(&s[max_start..(max_end + 1)])
     }
 }
 

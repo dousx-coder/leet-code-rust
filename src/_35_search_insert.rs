@@ -16,13 +16,13 @@ impl Solution {
         }
         let middle_index = (left + right) / 2;
         let middle_value = nums[middle_index];
-        return if middle_value == target {
+        if middle_value == target {
             middle_index as i32
         } else if middle_value > target {
             Solution::dichotomy(left, middle_index, nums, target)
         } else {
             Solution::dichotomy(middle_index + 1, right, nums, target)
-        };
+        }
     }
 }
 #[cfg(test)]

@@ -49,7 +49,7 @@ impl Solution {
             return (*nums.get(mid).unwrap() as f64 + *nums.get(mid - 1).unwrap() as f64) / 2.0;
         };
 
-        return *nums.get(mid).unwrap() as f64;
+        *nums.get(mid).unwrap() as f64
     }
 }
 

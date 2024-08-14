@@ -14,7 +14,7 @@ impl Solution {
             }
             index += 1;
         }
-        return true;
+        true
     }
 }
 

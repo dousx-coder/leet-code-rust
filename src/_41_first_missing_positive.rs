@@ -31,7 +31,7 @@ impl Solution {
                 return number;
             }
         }
-        return max + 1;
+        max + 1
     }
 }
 

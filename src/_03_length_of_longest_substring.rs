@@ -25,7 +25,7 @@ impl Solution {
                 ans = temp;
             };
         }
-        return ans;
+        ans
     }
 }
 

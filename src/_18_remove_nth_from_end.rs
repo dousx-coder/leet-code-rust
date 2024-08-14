@@ -28,14 +28,14 @@ impl Solution {
             let mut fast = &mut dummy as *mut Box<ListNode>;
             // move fast n forward
             for _ in 0..n {
-                fast = (*fast).next.as_mut().unwrap();
+                fast = (*fast).next.as_mut()?;
             }
 
             while (*fast).next.is_some() {
-                fast = (*fast).next.as_mut().unwrap();
-                slow = (*slow).next.as_mut().unwrap();
+                fast = (*fast).next.as_mut()?;
+                slow = (*slow).next.as_mut()?;
             }
-            (*slow).next = (*slow).next.take().unwrap().next;
+            (*slow).next = (*slow).next.take()?.next;
         }
 
         dummy.next
