@@ -23,7 +23,7 @@ impl Solution {
         let mut next_node = &mut head_node;
         let mut carry = 0;
         while next_node.is_some() {
-            let temp_node = next_node.as_mut().unwrap();
+            let temp_node = next_node.as_mut()?;
             let val = temp_node.val + carry;
             temp_node.val = val % 10;
             carry = val / 10;
@@ -48,8 +48,8 @@ impl Solution {
         if l2.is_none() {
             return Solution::special_dispose(l1);
         }
-        let mut l1_unwrap = l1.unwrap();
-        let l2_unwrap = l2.unwrap();
+        let mut l1_unwrap = l1?;
+        let l2_unwrap = l2?;
         let v1 = l1_unwrap.val;
         let v2 = l2_unwrap.val;
         let sum = v1 + v2;
@@ -65,7 +65,7 @@ impl Solution {
             if l1_unwrap.next.is_none() {
                 l1_unwrap.next = Some(Box::new(ListNode::new(0)))
             }
-            l1_unwrap.next.as_mut().unwrap().val += carry;
+            l1_unwrap.next.as_mut()?.val += carry;
         };
         let mut new_node = ListNode::new(val);
         new_node.next = Solution::add_two_numbers(l1_unwrap.next, l2_unwrap.next);
@@ -106,11 +106,11 @@ mod tests {
             if head_node == None {
                 head_node = list_node;
             } else {
-                list_node.as_mut().unwrap().next = head_node;
+                list_node.as_mut()?.next = head_node;
                 head_node = list_node;
             }
         }
-        return head_node;
+        head_node
     }
 
     /// 测试
