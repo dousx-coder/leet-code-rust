@@ -69,6 +69,24 @@ impl Solution {
         dummy.next
     }
 }
+///
+/// [`Vec<i32>`]转[`Option<Box<ListNode>>`]链表
+///
+fn gen_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
+    let mut dummy = ListNode { val: 0, next: None };
+    let mut tail = &mut dummy;
+    for x in vec {
+        let node = ListNode {
+            val: x,
+            next: None,
+        };
+        tail.next = Some(Box::new(node));
+        tail = tail.next.as_mut()?
+    }
+    dummy.next
+}
+
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -95,6 +113,24 @@ mod test {
         let result = Solution::merge_k_lists(vec);
         let mut actual = vec![];
         let mut expect = vec![3, 4, 7, 12, 16, 20];
+        let mut current = &result;
+        while let Some(node) = current {
+            actual.push(node.val);
+            current = &node.next;
+        }
+        assert_eq!(actual, expect)
+    }
+
+
+    #[test]
+    fn t2() {
+        let vec = vec![
+            gen_list(vec![1, 5, 10]),
+            gen_list(vec![2, 3, 4, 7, 8]),
+        ];
+        let result = Solution::merge_k_lists(vec);
+        let mut actual = vec![];
+        let mut expect = vec![1, 2, 3, 4, 5, 7, 8, 10];
         let mut current = &result;
         while let Some(node) = current {
             actual.push(node.val);
