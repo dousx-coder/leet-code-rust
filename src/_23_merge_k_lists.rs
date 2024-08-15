@@ -81,7 +81,18 @@ fn gen_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
     }
     dummy.next
 }
-
+///
+///[`Option<Box<ListNode>>`]链表转 [`Vec<i32>`]方便结果比对
+///
+fn list_node_to_vec(head: Option<Box<ListNode>>) -> Vec<i32> {
+    let mut x = &head;
+    let mut result = vec![];
+    while let Some(node) = x {
+        result.push(node.val);
+        x = &node.next;
+    }
+    result
+}
 #[cfg(test)]
 mod test {
     use super::*;
@@ -117,13 +128,8 @@ mod test {
     fn t2() {
         let vec = vec![gen_list(vec![1, 5, 10]), gen_list(vec![2, 3, 4, 7, 8])];
         let result = Solution::merge_k_lists(vec);
-        let mut actual = vec![];
         let mut expect = vec![1, 2, 3, 4, 5, 7, 8, 10];
-        let mut current = &result;
-        while let Some(node) = current {
-            actual.push(node.val);
-            current = &node.next;
-        }
+        let actual = list_node_to_vec(result);
         assert_eq!(actual, expect)
     }
 }
