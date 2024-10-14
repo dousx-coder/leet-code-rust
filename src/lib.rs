@@ -26,3 +26,4 @@ mod _51_solve_n_queens;
 mod _887_super_egg_drop;
 mod _23_merge_k_lists;
 mod _229_majority_element;
+mod _26_remove_duplicates;
