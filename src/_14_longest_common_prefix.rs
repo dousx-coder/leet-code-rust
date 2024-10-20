@@ -11,7 +11,7 @@ impl Solution {
         for str in strs {
             while !str.starts_with(&prefix) {
                 // 删除最后一个字符
-                prefix.remove(prefix.len() - 1);
+                prefix.pop();
             }
         }
         prefix
