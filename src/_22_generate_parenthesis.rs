@@ -11,7 +11,7 @@ impl Solution {
         if left < n {
             let s = &format!("{append}(");
             Self::dfs(n, left + 1, right, s, result);
-        };
+        }
         if right < n && right + 1 <= left {
             let s = &format!("{append})");
             Solution::dfs(n, left, right + 1, s, result);
