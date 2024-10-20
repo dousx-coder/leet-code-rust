@@ -4,34 +4,40 @@ struct Solution;
 /// https://leetcode.cn/problems/valid-parentheses/description/
 impl Solution {
     pub fn is_valid(s: String) -> bool {
-        let mut vec = Vec::new();
-        let a = ('(', ')');
-        let b = ('{', '}');
-        let c = ('[', ']');
+        let pairs = vec![('(', ')'), ('{', '}'), ('[', ']')];
+        let mut stack_vec = Vec::new();
         for x in s.chars() {
-            if x == a.0 || x == b.0 || x == c.0 {
-                vec.push(x);
-            } else {
-                if vec.len() == 0 {
-                    return false;
-                }
-                let last = vec[vec.len() - 1];
-                if x == a.1 && last == a.0 {
-                    vec.pop();
-                    continue;
-                }
-                if x == b.1 && last == b.0 {
-                    vec.pop();
-                    continue;
-                }
-                if x == c.1 && last == c.0 {
-                    vec.pop();
-                    continue;
-                }
+            let is_push = pairs.iter()
+                .any(|pair| {
+                    if pair.0 == x {
+                        stack_vec.push(x);
+                        return true;
+                    }
+                    false
+                });
+
+            if is_push {
+                continue;
+            }
+            if stack_vec.is_empty() {
                 return false;
             }
+            let last = stack_vec[stack_vec.len() - 1];
+            let is_pop = pairs.iter()
+                .any(|pair| {
+                    if x == pair.1 && last == pair.0 {
+                        stack_vec.pop();
+                        return true;
+                    }
+                    false
+                });
+
+            if is_pop {
+                continue;
+            }
+            return false;
         }
-        vec.is_empty()
+        stack_vec.is_empty()
     }
 }
 #[cfg(test)]
