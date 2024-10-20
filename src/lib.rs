@@ -30,3 +30,4 @@ mod _26_remove_duplicates;
 mod _18_four_sum;
 mod _14_longest_common_prefix;
 mod _20_is_valid;
+mod _22_generate_parenthesis;
