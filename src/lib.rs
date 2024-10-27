@@ -33,3 +33,4 @@ mod _20_is_valid;
 mod _22_generate_parenthesis;
 mod _13_roman_to_int;
 mod _105_build_tree;
+mod _106_build_tree;
