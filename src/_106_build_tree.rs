@@ -38,6 +38,8 @@ impl Solution {
     /// 第五步：切割后序数组，切成后序左数组和后序右数组
     ///
     /// 第六步：递归处理左区间和右区间
+    ///
+    /// 采用左闭右开 ，可以减少 rust 类型溢出判断
     fn build(
         inorder: &Vec<i32>,
         postorder: &Vec<i32>,
@@ -62,31 +64,28 @@ impl Solution {
         }
 
         // 切割中序数组
-        // 左中序区间，左闭右开[left_inorder_begin, left_inorder_end)
-        let left_inorder_begin = in_begin;
-        let left_inorder_end = delimiter_index;
-        // 右中序区间，左闭右开[right_inorder_begin, right_inorder_end)
-        let right_inorder_begin = delimiter_index + 1;
-        let right_inorder_end = in_end;
+        // 左中序区间，左闭右开[left_in_begin, left_in_end)
+        let left_in_begin = in_begin;
+        let left_in_end = delimiter_index;
+        // 右中序区间，左闭右开[right_in_begin, right_in_end)
+        let right_in_begin = delimiter_index + 1;
+        let right_in_end = in_end;
 
         // 切割后序数组
-        // 左后序区间，左闭右开[left_postorder_begin, left_postorder_end)
-        let left_postorder_begin = post_begin;
+        // 左后序区间，左闭右开[left_post_begin, left_post_end)
+        let left_post_begin = post_begin;
         // 终止位置是 需要加上 中序区间的大小size
-        let left_postorder_end = post_begin + delimiter_index - in_begin;
-        // 右后序区间，左闭右开[right_postorder_begin, right_postorder_end)
-        let right_postorder_begin = post_begin + (delimiter_index - in_begin);
+        let left_post_end = post_begin + delimiter_index - in_begin;
+        // 右后序区间，左闭右开[right_post_begin, right_post_end)
+        let right_post_begin = post_begin + (delimiter_index - in_begin);
+        // 排除最后一个元素，已经作为节点了
+        let right_post_end = post_end - 1;
         root_node.left = Solution::build(inorder, postorder,
-                                         left_postorder_begin, left_postorder_end,
-                                         left_inorder_begin, left_inorder_end);
-        root_node.right = if post_end > 1 {
-            // 排除最后一个元素，已经作为节点了
-            let right_postorder_end = post_end - 1;
-            Solution::build(inorder, postorder,
-                            right_postorder_begin, right_postorder_end,
-                            right_inorder_begin, right_inorder_end)
-        } else { None };
-
+                                         left_post_begin, left_post_end,
+                                         left_in_begin, left_in_end);
+        root_node.right = Solution::build(inorder, postorder,
+                                          right_post_begin, right_post_end,
+                                          right_in_begin, right_in_end);
         Some(Rc::new(RefCell::new(root_node)))
     }
 }
