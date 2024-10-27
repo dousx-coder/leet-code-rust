@@ -41,48 +41,47 @@ impl Solution {
     fn build(
         inorder: &Vec<i32>,
         postorder: &Vec<i32>,
-        post_left: usize,
-        post_right: usize,
-        in_left: usize,
-        in_right: usize,
-    ) -> Option<Rc<RefCell<TreeNode>>> {
-        if post_left == post_right {
+        post_begin: usize,
+        post_end: usize,
+        in_begin: usize,
+        in_end: usize) -> Option<Rc<RefCell<TreeNode>>> {
+        if post_begin == post_end {
             return None;
         }
         // 取后序数组最后一个元素作为节点元素。
-        let root_node_value = postorder[post_right - 1];
+        let root_node_value = postorder[post_end - 1];
         let mut root_node = TreeNode::new(root_node_value);
 
-        if post_right - post_left == 1 {
+        if post_end - post_begin == 1 {
             return Some(Rc::new(RefCell::new(root_node)));
         }
 
-        let mut delimiter_index = in_left;
-        while delimiter_index <= in_right && root_node_value != inorder[delimiter_index] {
+        let mut delimiter_index = in_begin;
+        while delimiter_index <= in_end && root_node_value != inorder[delimiter_index] {
             delimiter_index += 1;
         }
 
         // 切割中序数组
         // 左中序区间，左闭右开[left_inorder_begin, left_inorder_end)
-        let left_inorder_begin = in_left;
+        let left_inorder_begin = in_begin;
         let left_inorder_end = delimiter_index;
         // 右中序区间，左闭右开[right_inorder_begin, right_inorder_end)
         let right_inorder_begin = delimiter_index + 1;
-        let right_inorder_end = in_right;
+        let right_inorder_end = in_end;
 
         // 切割后序数组
         // 左后序区间，左闭右开[left_postorder_begin, left_postorder_end)
-        let left_postorder_begin = post_left;
+        let left_postorder_begin = post_begin;
         // 终止位置是 需要加上 中序区间的大小size
-        let left_postorder_end = post_left + delimiter_index - in_left;
+        let left_postorder_end = post_begin + delimiter_index - in_begin;
         // 右后序区间，左闭右开[right_postorder_begin, right_postorder_end)
-        let right_postorder_begin = post_left + (delimiter_index - in_left);
+        let right_postorder_begin = post_begin + (delimiter_index - in_begin);
         root_node.left = Solution::build(inorder, postorder,
                                          left_postorder_begin, left_postorder_end,
                                          left_inorder_begin, left_inorder_end);
-        root_node.right = if post_right > 1 {
+        root_node.right = if post_end > 1 {
             // 排除最后一个元素，已经作为节点了
-            let right_postorder_end = post_right - 1;
+            let right_postorder_end = post_end - 1;
             Solution::build(inorder, postorder,
                             right_postorder_begin, right_postorder_end,
                             right_inorder_begin, right_inorder_end)
