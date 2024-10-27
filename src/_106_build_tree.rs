@@ -93,21 +93,21 @@ impl Solution {
 mod tests {
     use std::path::Prefix;
     use super::*;
-    fn tree_to_vec(ergodic_type: usize, vec: &mut Vec<i32>, node: &Option<Rc<RefCell<TreeNode>>>) {
+    fn tree_push_vec(ergodic_type: usize, node: &Option<Rc<RefCell<TreeNode>>>, vec: &mut Vec<i32>) {
         match node {
             Some(node) => {
                 if ergodic_type == 1 {
                     vec.push(node.borrow().val);
-                    tree_to_vec(ergodic_type, vec, &node.borrow().left);
-                    tree_to_vec(ergodic_type, vec, &node.borrow().right);
+                    tree_push_vec(ergodic_type, &node.borrow().left, vec);
+                    tree_push_vec(ergodic_type, &node.borrow().right, vec);
                 } else if ergodic_type == 2 {
-                    tree_to_vec(ergodic_type, vec, &node.borrow().left);
+                    tree_push_vec(ergodic_type, &node.borrow().left, vec);
                     vec.push(node.borrow().val);
 
-                    tree_to_vec(ergodic_type, vec, &node.borrow().right);
+                    tree_push_vec(ergodic_type, &node.borrow().right, vec);
                 } else {
-                    tree_to_vec(ergodic_type, vec, &node.borrow().left);
-                    tree_to_vec(ergodic_type, vec, &node.borrow().right);
+                    tree_push_vec(ergodic_type, &node.borrow().left, vec);
+                    tree_push_vec(ergodic_type, &node.borrow().right, vec);
                     vec.push(node.borrow().val);
                 }
             }
@@ -122,18 +122,18 @@ mod tests {
         let tree_root = Solution::build_tree(inorder.clone(), postorder.clone());
         {
             let mut pre_result = vec![];
-            tree_to_vec(1, &mut pre_result, &tree_root);
+            tree_to_vec(1, &tree_root, &mut pre_result);
             println!("{:?}", pre_result);
         }
         {
             let mut in_result = vec![];
-            tree_to_vec(2, &mut in_result, &tree_root);
+            tree_to_vec(2, &tree_root, &mut in_result);
             println!("{:?}", in_result);
             assert_eq!(in_result, inorder);
         }
         {
             let mut post_result = vec![];
-            tree_to_vec(3, &mut post_result, &tree_root);
+            tree_to_vec(3, &tree_root, &mut post_result);
             assert_eq!(post_result, postorder);
             println!("{:?}", post_result);
         }
