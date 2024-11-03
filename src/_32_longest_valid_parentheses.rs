@@ -1,70 +1,31 @@
 use std::cmp::max;
+
 ///
 /// https://leetcode.cn/problems/longest-valid-parentheses/description/
 struct Solution;
 impl Solution {
-    pub fn is_valid(s: &str) -> bool {
-        let pairs = vec![('(', ')'), ('{', '}'), ('[', ']')];
-        let mut stack_vec = Vec::new();
-        for x in s.chars() {
-            let is_push = pairs.iter()
-                .any(|pair| {
-                    if pair.0 == x {
-                        stack_vec.push(x);
-                        return true;
-                    }
-                    false
-                });
-
-            if is_push {
-                continue;
-            }
-            if stack_vec.is_empty() {
-                return false;
-            }
-            let last = stack_vec[stack_vec.len() - 1];
-            let is_pop = pairs.iter()
-                .any(|pair| {
-                    if x == pair.1 && last == pair.0 {
-                        stack_vec.pop();
-                        return true;
-                    }
-                    false
-                });
-
-            if is_pop {
-                continue;
-            }
-            return false;
-        }
-        stack_vec.is_empty()
-    }
-
-    pub fn recursion(parenthesis: &str, left: usize, right: usize) -> i32 {
-        if left >= right {
-            return 0;
-        }
-        let len = parenthesis.len();
-        if len == 0 {
-            return 0;
-        }
-        let pairs = ('(', ')');
-        let slice = &parenthesis[left..=right];
-        if slice.len() % 2 == 0 {
-            if Solution::is_valid(slice) {
-                return slice.len() as i32;
-            }
-        };
-        let a = Solution::recursion(parenthesis, left + 1, right);
-        let b = Solution::recursion(parenthesis, left, right - 1);
-        max(a, b)
-    }
     pub fn longest_valid_parentheses(s: String) -> i32 {
         let len = s.len();
         if len == 0 {
             return 0;
         }
-        Solution::recursion(&s, 0, len - 1)
+        let mut stack = vec![-1];
+        let mut max_len = 0;
+        // 使用栈记录每一个未匹配的括号索引，当遇到匹配的括号时，计算它与最近未匹配括号之间的距离，即为有效括号的长度。
+        for (i, ch) in s.chars().enumerate() {
+            let index = i as i32;
+            if ch == '(' {
+                stack.push(index);
+            } else {
+                stack.pop();
+                if let Some(&last) = stack.last() {
+                    max_len = max(max_len, index - last);
+                } else {
+                    stack.push(index);
+                }
+            }
+        }
+        max_len
     }
 }
 
@@ -91,6 +52,6 @@ mod tests {
     fn t4() {
         //  超时
         let r = Solution::longest_valid_parentheses(String::from(")(()(()(((())(((((()()))((((()()(()()())())())()))()()()())(())()()(((()))))()((()))(((())()((()()())((())))(())))())((()())()()((()((())))))((()(((((()((()))(()()(())))((()))()))())"));
-        // println!("{r}")
+        assert_eq!(r, 132);
     }
 }
