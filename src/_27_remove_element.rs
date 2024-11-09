@@ -11,35 +11,9 @@ impl Solution {
         if nums.len() == 0 {
             return 0;
         }
-        let mut swap_index = nums.len() - 1;
-        for i in 0..=swap_index {
-            if i >= nums.len() {
-                return nums.len() as i32;
-            };
-            if i == swap_index || i == nums.len() - 1 {
-                return if nums[i] == val {
-                    nums.remove(i);
-                    i
-                } else {
-                    i + 1
-                } as i32;
-            }
-            if nums[i] == val {
-                while nums[i] == val {
-                    if swap_index <= 0 {
-                        nums.remove(0);
-                        return 0;
-                    }
-                    nums.swap(i, swap_index);
-                    nums.remove(swap_index);
-                    if i >= swap_index {
-                        return swap_index as i32;
-                    }
-                    swap_index -= 1;
-                }
-            }
-        }
-        swap_index as i32
+        nums.retain(|&x| x != val);
+        nums.len() as i32
+
     }
 }
 #[cfg(test)]
@@ -50,7 +24,7 @@ mod test {
         let mut p = vec![1, 3, 4, 2];
         let r = Solution::remove_element(&mut p, 3);
         assert_eq!(3, r);
-        assert_eq!(vec![1, 2, 4], p)
+        assert_eq!(vec![1, 4, 2], p)
     }
     #[test]
     fn t2() {
