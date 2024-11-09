@@ -11,9 +11,17 @@ impl Solution {
         if nums.len() == 0 {
             return 0;
         }
-        nums.retain(|&x| x != val);
-        nums.len() as i32
-
+        // 快慢指针
+        let mut fast = 0;
+        let mut slow = 0;
+        while fast < nums.len() {
+            if nums[fast] != val {
+                nums[slow] = nums[fast];
+                slow += 1;
+            }
+            fast += 1;
+        }
+        slow as i32
     }
 }
 #[cfg(test)]
@@ -24,21 +32,22 @@ mod test {
         let mut p = vec![1, 3, 4, 2];
         let r = Solution::remove_element(&mut p, 3);
         assert_eq!(3, r);
-        assert_eq!(vec![1, 4, 2], p)
+
+        assert_eq!(vec![1, 4, 2], &p[0..3])
     }
     #[test]
     fn t2() {
         let mut p = vec![3, 2, 2, 3];
         let r = Solution::remove_element(&mut p, 3);
         assert_eq!(2, r);
-        assert_eq!(vec![2, 2], p)
+        println!("{:?}", p);
+        assert_eq!(vec![2, 2], &p[0..2])
     }
     #[test]
     fn t3() {
         let mut p = vec![3, 3];
         let r = Solution::remove_element(&mut p, 3);
         assert_eq!(0, r);
-        assert_eq!(0, p.len());
     }
 
     #[test]
@@ -46,6 +55,6 @@ mod test {
         let mut p = vec![4, 5];
         let r = Solution::remove_element(&mut p, 4);
         assert_eq!(1, r);
-        assert_eq!(vec![5], p);
+        assert_eq!(vec![5], &p[0..1]);
     }
 }
