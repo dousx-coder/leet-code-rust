@@ -36,3 +36,4 @@ mod _105_build_tree;
 mod _106_build_tree;
 mod _32_longest_valid_parentheses;
 mod _42_trap;
+mod _977_sorted_squares;
