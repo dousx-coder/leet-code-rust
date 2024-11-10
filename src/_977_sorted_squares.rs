@@ -9,19 +9,22 @@ impl Solution {
         let mut left = 0;
         let mut right = len - 1;
         let mut result = vec![-1; len];
-        let mut count = 0;
+        let mut write_index = len - 1;
         while left <= right {
             if nums[left].abs() > nums[right].abs() {
-                result[len - count - 1] = nums[left].pow(2);
+                result[write_index] = nums[left].pow(2);
                 left += 1;
             } else {
-                result[len - count - 1] = nums[right].pow(2);
+                result[write_index] = nums[right].pow(2);
                 if right <= 0 {
                     break;
                 }
                 right -= 1;
             }
-            count += 1;
+            if write_index == 0 {
+                break;
+            }
+            write_index -= 1;
         }
         result
     }
