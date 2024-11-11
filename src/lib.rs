@@ -38,3 +38,4 @@ mod _32_longest_valid_parentheses;
 mod _42_trap;
 mod _977_sorted_squares;
 mod _209_min_sub_array_len;
+mod _59_generate_matrix;
