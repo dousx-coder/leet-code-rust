@@ -23,6 +23,7 @@ impl Solution {
         let mut curr = &mut dummy;
         while let Some(ref mut node) = curr.as_mut()?.next {
             if node.val == val {
+                // take() 会将 node.next 的值移出
                 curr.as_mut()?.next = node.next.take();
                 break;
             }
