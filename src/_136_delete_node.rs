@@ -25,7 +25,6 @@ impl Solution {
             if node.val == val {
                 // take() 会将 node.next 的值移出
                 curr.as_mut()?.next = node.next.take();
-                break;
             }
             curr = &mut curr.as_mut()?.next;
         }
@@ -57,15 +56,21 @@ mod tests {
                     val: 3,
                     next: Some(Box::new(ListNode {
                         val: 4,
-                        next: None,
+                        next: Some(Box::new(ListNode {
+                            val: 2,
+                            next: Some(Box::new(ListNode {
+                                val: 5,
+                                next: None,
+                            })),
+                        })),
                     })),
                 })),
             })),
         }));
-        let result = Solution::delete_node(head, 2);
+        let mut result = Solution::delete_node(head, 2);
         // println!("{:#?}", option);
         let vec = convert_vec(result);
         println!("{:?}", vec);
-        assert_eq!(vec, vec![1, 3, 4]);
+        assert_eq!(vec, vec![1, 3, 4, 5]);
     }
 }
