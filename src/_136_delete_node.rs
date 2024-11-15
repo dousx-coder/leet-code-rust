@@ -36,18 +36,18 @@ mod tests {
     use super::*;
     ///
     /// 链表转[Vec]
-    fn convert_vec(head: &mut Option<Box<ListNode>>) -> Vec<i32> {
-        let mut dummy = Some(Box::new(ListNode { val: 0, next: head.clone() }));
+    fn convert_vec(head: &Option<Box<ListNode>>) -> Vec<i32> {
         let mut vec = vec![];
-        let mut curr = &mut dummy;
-        while let Some(ref mut node) = curr.as_mut().unwrap().next {
+        let mut curr = head;
+        while let Some(node) = curr {
             vec.push(node.val);
-            curr = &mut curr.as_mut().unwrap().next;
+            curr = &node.next;
         }
         vec
     }
+
     ///
-    /// [Vec]转链表
+    /// [Vec]转链表,返回头节点
     fn convert_linked_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
         if vec.len() == 0 {
             return None;
@@ -58,13 +58,13 @@ mod tests {
             curr.next = Some(Box::new(ListNode::new(x)));
             curr = curr.next.as_mut().unwrap();
         }
-        Some(dummy)
+        dummy.next
     }
 
     #[test]
     fn t1() {
-        let mut dummy = convert_linked_list(vec![1, 2, 3, 4, 5]);
-        let mut result = Solution::delete_node(dummy.unwrap().next, 2);
+        let mut head = convert_linked_list(vec![1, 2, 3, 4, 5]);
+        let mut result = Solution::delete_node(head, 2);
         let vec = convert_vec(&mut result);
         println!("{:?}", vec);
         assert_eq!(vec, vec![1, 3, 4, 5]);
