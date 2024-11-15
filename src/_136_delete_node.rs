@@ -36,6 +36,17 @@ impl Solution {
 mod tests {
     use super::*;
 
+    fn convert_vec(head: Option<Box<ListNode>>) -> Vec<i32> {
+        let mut dummy = Some(Box::new(ListNode { val: 0, next: head }));
+        let mut vec = vec![];
+        let mut curr = &mut dummy;
+        while let Some(ref mut node) = curr.as_mut().unwrap().next {
+            vec.push(node.val);
+            curr = &mut curr.as_mut().unwrap().next;
+        }
+        vec
+    }
+
     #[test]
     fn t1() {
         let head = Some(Box::new(ListNode {
@@ -51,7 +62,10 @@ mod tests {
                 })),
             })),
         }));
-        let option = Solution::delete_node(head, 2);
-        println!("{:#?}", option);
+        let result = Solution::delete_node(head, 2);
+        // println!("{:#?}", option);
+        let vec = convert_vec(result);
+        println!("{:?}", vec);
+        assert_eq!(vec, vec![1, 3, 4]);
     }
 }
