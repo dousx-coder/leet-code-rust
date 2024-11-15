@@ -34,9 +34,10 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    fn convert_vec(head: Option<Box<ListNode>>) -> Vec<i32> {
-        let mut dummy = Some(Box::new(ListNode { val: 0, next: head }));
+    ///
+    /// 链表转[Vec]
+    fn convert_vec(head: &mut Option<Box<ListNode>>) -> Vec<i32> {
+        let mut dummy = Some(Box::new(ListNode { val: 0, next: head.clone() }));
         let mut vec = vec![];
         let mut curr = &mut dummy;
         while let Some(ref mut node) = curr.as_mut().unwrap().next {
@@ -45,31 +46,26 @@ mod tests {
         }
         vec
     }
+    ///
+    /// [Vec]转链表
+    fn convert_linked_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
+        if vec.len() == 0 {
+            return None;
+        }
+        let mut dummy = Box::new(ListNode::new(-1));
+        let mut curr = &mut dummy;
+        for x in vec {
+            curr.next = Some(Box::new(ListNode::new(x)));
+            curr = curr.next.as_mut().unwrap();
+        }
+        Some(dummy)
+    }
 
     #[test]
     fn t1() {
-        let head = Some(Box::new(ListNode {
-            val: 1,
-            next: Some(Box::new(ListNode {
-                val: 2,
-                next: Some(Box::new(ListNode {
-                    val: 3,
-                    next: Some(Box::new(ListNode {
-                        val: 4,
-                        next: Some(Box::new(ListNode {
-                            val: 2,
-                            next: Some(Box::new(ListNode {
-                                val: 5,
-                                next: None,
-                            })),
-                        })),
-                    })),
-                })),
-            })),
-        }));
-        let mut result = Solution::delete_node(head, 2);
-        // println!("{:#?}", option);
-        let vec = convert_vec(result);
+        let mut dummy = convert_linked_list(vec![1, 2, 3, 4, 5]);
+        let mut result = Solution::delete_node(dummy.unwrap().next, 2);
+        let vec = convert_vec(&mut result);
         println!("{:?}", vec);
         assert_eq!(vec, vec![1, 3, 4, 5]);
     }
