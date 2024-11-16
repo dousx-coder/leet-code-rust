@@ -79,6 +79,19 @@ impl MyLinkedList {
         }
         self.len -= 1;
     }
+    fn print(&self) {
+        if self.len <= 0 {
+            return;
+        }
+        let mut current = &self.dummy.as_ref().unwrap().next;
+
+        while current.is_some() {
+            let x = current.as_ref().unwrap();
+            print!("{} ", x.val);
+            current = &x.next
+        }
+        println!();
+    }
 }
 
 
@@ -91,14 +104,14 @@ mod tests {
         let value: i32 = list.get(0);
         let value: i32 = list.get(1);
         list.add_at_head(1);
-        println!("{:?}", list);
+        list.print();
         list.add_at_tail(3);
+        list.print();
         let ret_1: i32 = list.get(2);
         let ret_1: i32 = list.get(3);
-        println!("{:?}", list);
         list.add_at_index(1, 2);
-        println!("{:?}", list);
+        list.print();
         list.delete_at_index(1);
-        println!("{:?}", list);
+        list.print();
     }
 }
