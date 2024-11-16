@@ -53,13 +53,15 @@ impl MyLinkedList {
         }
         let mut current = &mut self.dummy;
         for _ in 0..index {
-            current = &mut current.as_mut().unwrap().next;
+            let x = current.as_mut().unwrap();
+            current = &mut (x.next);
         }
+        let x = current.as_mut().unwrap();
         let new_node = Some(Box::new(ListNode {
             val,
-            next: current.as_mut().unwrap().next.take(),
+            next: x.next.take(),
         }));
-        current.as_mut().unwrap().next = new_node;
+        x.next = new_node;
         self.len += 1;
     }
 
