@@ -83,12 +83,18 @@ impl MyLinkedList {
         if self.len <= 0 {
             return;
         }
-        let mut current = &self.dummy.as_ref().unwrap().next;
+        let mut current = if let Some(node) = self.dummy.as_ref() {
+            &node.next
+        } else {
+            &None
+        };
 
         while current.is_some() {
-            let x = current.as_ref().unwrap();
-            print!("{} ", x.val);
-            current = &x.next
+            let option = current.as_ref();
+            if let Some(x) = option {
+                print!("{} ", x.val);
+                current = &x.next
+            }
         }
         println!();
     }
