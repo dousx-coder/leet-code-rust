@@ -43,3 +43,4 @@ mod _54_spiral_order;
 mod _136_delete_node;
 mod _707_design_linked_list;
 mod _24_reverse_list;
+mod _24_swap_pairs;
