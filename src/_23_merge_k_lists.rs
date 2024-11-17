@@ -1,22 +1,11 @@
 /// https://leetcode.cn/problems/merge-k-sorted-lists/
-// Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug)]
-struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
 
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode { next: None, val }
-    }
-}
 struct Solution {}
 
 use std::cmp::Ordering;
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
+use crate::common::list_node::ListNode;
 
 impl Ord for ListNode {
     fn cmp(&self, other: &Self) -> Ordering {

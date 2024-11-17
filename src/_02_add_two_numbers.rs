@@ -1,16 +1,5 @@
-#[warn(unused_imports)]
-#[derive(PartialEq, Eq, Clone, Debug)]
-pub struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode { next: None, val }
-    }
-}
+use crate::common::list_node::ListNode;
+use crate::common::util::*;
 
 struct Solution {}
 
@@ -77,41 +66,6 @@ impl Solution {
 mod tests {
     use super::*;
 
-    ///打印链表节点 并将链表转换为 [`Vec`]返回
-    fn print_list_and_to_vec(list_head: &mut Option<Box<ListNode>>) -> Vec<i32> {
-        if list_head.is_none() {
-            return vec![];
-        }
-        let mut vec_result: Vec<i32> = vec![];
-        let mut l1r = list_head.as_ref();
-        while l1r.is_some() {
-            let var = l1r.unwrap().val;
-            print!("{} ", var);
-            vec_result.append(&mut vec![var]);
-
-            l1r = l1r.unwrap().next.as_ref();
-        }
-        println!();
-        vec_result
-    }
-
-    /// 构建链表
-    fn build_list(mut num_list: Vec<i32>) -> Option<Box<ListNode>> {
-        let mut head_node = None;
-        //  数组翻转一下 用头插法构建
-        // todo!(抽空研究下尾插)
-        num_list.reverse();
-        for num in num_list {
-            let mut list_node = Some(Box::new(ListNode::new(num)));
-            if head_node == None {
-                head_node = list_node;
-            } else {
-                list_node.as_mut()?.next = head_node;
-                head_node = list_node;
-            }
-        }
-        head_node
-    }
 
     /// 测试
     /// <br/>
@@ -132,14 +86,12 @@ mod tests {
     /// _add_test(v1, v2, v3);
     /// `````
     fn _add_test(v1: Vec<i32>, v2: Vec<i32>, v3: Vec<i32>) {
-        let mut l1 = build_list(v1);
-        print_list_and_to_vec(&mut l1);
+        let mut l1 = convert_linked_list(&v1, false);
 
-        let mut l2 = build_list(v2);
-        print_list_and_to_vec(&mut l2);
+        let mut l2 = convert_linked_list(&v2, false);
 
         let mut _result = Solution::add_two_numbers(l1, l2);
-        let vec = print_list_and_to_vec(&mut _result);
+        let vec = convert_vec(&_result);
 
         assert_eq!(v3, vec)
     }

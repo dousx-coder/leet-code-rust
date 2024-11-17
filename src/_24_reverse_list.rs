@@ -1,23 +1,9 @@
+use crate::common::list_node::ListNode;
+use crate::common::util::*;
 ///
 /// https://leetcode.cn/problems/UHnkqh/description/
 ///
 struct Solution;
-// Definition for singly-linked list.
-#[derive(PartialEq, Eq, Clone, Debug)]
-struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
-    }
-}
 
 impl Solution {
     pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
@@ -41,25 +27,10 @@ impl Solution {
 mod tests {
     use super::*;
 
-    ///
-    /// [Vec]转链表,返回头节点
-    fn convert_linked_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
-        if vec.len() == 0 {
-            return None;
-        }
-        let mut dummy = Box::new(ListNode::new(0));
-        let mut current = &mut dummy;
-        for x in vec {
-            current.next = Some(Box::new(ListNode::new(x)));
-            current = current.next.as_mut().unwrap();
-        }
-        dummy.next
-    }
-
 
     #[test]
     fn t1() {
-        let head = convert_linked_list(vec![1, 2, 3, 4, 5]);
+        let head = convert_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut result = Solution::reverse_list(head);
         while let Some(node) = result {
             print!("{:?} ", node.val);

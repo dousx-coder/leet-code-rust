@@ -1,20 +1,7 @@
+use crate::common::list_node::ListNode;
+
 struct Solution;
 
-#[derive(PartialEq, Eq, Clone, Debug)]
-struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
-
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
-    }
-}
 
 impl Solution {
     pub fn swap_pairs(mut head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
@@ -44,27 +31,16 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
+    use crate::common::util::convert_linked_list;
     use super::*;
 
 
     #[test]
     fn t1() {
-        let mut head = Some(Box::new(ListNode {
-            val: 1,
-            next: Some(Box::new(ListNode {
-                val: 2,
-                next: Some(Box::new(ListNode {
-                    val: 3,
-                    next: Some(Box::new(ListNode {
-                        val: 4,
-                        next: Some(Box::new(ListNode::new(5))),
-                    })),
-                })),
-            })),
-        }));
-
+        let dummy = convert_linked_list(&vec![1, 2, 3, 4, 5], true);
+        let mut head = dummy.unwrap().next;
         let mut result = Solution::swap_pairs(head);
-        while let Some (mut node) = result {
+        while let Some(mut node) = result {
             print!("{:?}  ", node.val);
             result = node.next;
         }

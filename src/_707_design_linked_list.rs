@@ -1,23 +1,11 @@
+use crate::common::list_node::ListNode;
+
 #[derive(PartialEq, Eq, Clone, Debug)]
 struct MyLinkedList {
     dummy: Option<Box<ListNode>>,
     len: i32,
 }
-#[derive(PartialEq, Eq, Clone, Debug)]
-struct ListNode {
-    pub val: i32,
-    pub next: Option<Box<ListNode>>,
-}
 
-impl ListNode {
-    #[inline]
-    fn new(val: i32) -> Self {
-        ListNode {
-            next: None,
-            val,
-        }
-    }
-}
 
 /**
  * `&self` means the method takes an immutable reference.
