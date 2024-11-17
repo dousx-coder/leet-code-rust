@@ -22,8 +22,8 @@ impl Solution {
         let mut curr = &mut dummy;
 
         while let Some(ref mut node) = curr {
-            // 检查是否有两个节点可以交换
-            if let Some(mut first) = node.next.take() {
+            // 检查是否有两个节点可以交换 take_if检查是否有second存在
+            if let Some(mut first) = node.next.take_if(|v| { v.next.is_some() }) {
                 if let Some(mut second) = first.next.take() {
                     // 交换 first 和 second
                     first.next = second.next.take();
@@ -32,8 +32,6 @@ impl Solution {
                     // 更新 curr 到下一对
                     curr = &mut node.next.as_mut().unwrap().next;
                 } else {
-                    // 存在第一个节点，但是没有第二个节点，要把之前take取出的返回去
-                    node.next = Some(first);
                     break;
                 }
             } else {
@@ -65,7 +63,10 @@ mod tests {
             })),
         }));
 
-        let result = Solution::swap_pairs(head);
-        println!("{:#?}", result); // 输出交换后的链表
+        let mut result = Solution::swap_pairs(head);
+        while let Some (mut node) = result {
+            print!("{:?}  ", node.val);
+            result = node.next;
+        }
     }
 }
