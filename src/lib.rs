@@ -45,4 +45,5 @@ mod _707_design_linked_list;
 mod _24_reverse_list;
 mod _24_swap_pairs;
 mod common;
+mod _21_remove_nth_from_end;
 
