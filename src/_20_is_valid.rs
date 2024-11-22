@@ -7,14 +7,13 @@ impl Solution {
         let pairs = vec![('(', ')'), ('{', '}'), ('[', ']')];
         let mut stack_vec = Vec::new();
         for x in s.chars() {
-            let is_push = pairs.iter()
-                .any(|pair| {
-                    if pair.0 == x {
-                        stack_vec.push(x);
-                        return true;
-                    }
-                    false
-                });
+            let is_push = pairs.iter().any(|pair| {
+                if pair.0 == x {
+                    stack_vec.push(x);
+                    return true;
+                }
+                false
+            });
 
             if is_push {
                 continue;
@@ -23,14 +22,13 @@ impl Solution {
                 return false;
             }
             let last = stack_vec[stack_vec.len() - 1];
-            let is_pop = pairs.iter()
-                .any(|pair| {
-                    if x == pair.1 && last == pair.0 {
-                        stack_vec.pop();
-                        return true;
-                    }
-                    false
-                });
+            let is_pop = pairs.iter().any(|pair| {
+                if x == pair.1 && last == pair.0 {
+                    stack_vec.pop();
+                    return true;
+                }
+                false
+            });
 
             if is_pop {
                 continue;

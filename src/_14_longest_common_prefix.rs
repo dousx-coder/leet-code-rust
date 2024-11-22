@@ -23,12 +23,20 @@ mod tests {
     use super::*;
     #[test]
     fn t1() {
-        let result = Solution::longest_common_prefix(vec!["flower".to_string(), "flow".to_string(), "flight".to_string()]);
+        let result = Solution::longest_common_prefix(vec![
+            "flower".to_string(),
+            "flow".to_string(),
+            "flight".to_string(),
+        ]);
         assert_eq!(result, "fl".to_string());
     }
     #[test]
     fn t2() {
-        let result = Solution::longest_common_prefix(vec!["dog".to_string(), "racecar".to_string(), "car".to_string()]);
+        let result = Solution::longest_common_prefix(vec![
+            "dog".to_string(),
+            "racecar".to_string(),
+            "car".to_string(),
+        ]);
         assert_eq!(result, "".to_string());
     }
 }

@@ -73,8 +73,8 @@ impl Solution {
 }
 #[cfg(test)]
 mod tests {
-    use std::path::Prefix;
     use super::*;
+    use std::path::Prefix;
     fn tree_to_vec(ergodic_type: usize, vec: &mut Vec<i32>, node: &Option<Rc<RefCell<TreeNode>>>) {
         match node {
             Some(node) => {

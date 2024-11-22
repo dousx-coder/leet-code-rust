@@ -24,7 +24,6 @@ impl Solution {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -38,10 +37,15 @@ mod tests {
     fn t2() {
         let result = Solution::generate_parenthesis(3);
         println!("{:?}", result);
-        assert_eq!(result, vec!["((()))".to_string(),
-                                "(()())".to_string(),
-                                "(())()".to_string(),
-                                "()(())".to_string(),
-                                "()()()".to_string()]);
+        assert_eq!(
+            result,
+            vec![
+                "((()))".to_string(),
+                "(()())".to_string(),
+                "(())()".to_string(),
+                "()(())".to_string(),
+                "()()()".to_string()
+            ]
+        );
     }
 }

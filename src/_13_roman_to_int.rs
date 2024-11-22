@@ -37,7 +37,9 @@ impl Solution {
             500
         } else if ch == 'M' {
             1000
-        } else { 0 }
+        } else {
+            0
+        }
     }
 }
 #[cfg(test)]

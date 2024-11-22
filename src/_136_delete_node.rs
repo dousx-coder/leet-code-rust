@@ -22,7 +22,6 @@ impl Solution {
 mod tests {
     use super::*;
 
-
     #[test]
     fn t1() {
         let mut dummy = convert_linked_list(&vec![1, 2, 3, 4, 5], true);

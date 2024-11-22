@@ -46,7 +46,8 @@ impl Solution {
         post_begin: usize,
         post_end: usize,
         in_begin: usize,
-        in_end: usize) -> Option<Rc<RefCell<TreeNode>>> {
+        in_end: usize,
+    ) -> Option<Rc<RefCell<TreeNode>>> {
         if post_begin == post_end {
             return None;
         }
@@ -80,20 +81,34 @@ impl Solution {
         let right_post_begin = post_begin + (delimiter_index - in_begin);
         // 排除最后一个元素，已经作为节点了
         let right_post_end = post_end - 1;
-        root_node.left = Solution::build(inorder, postorder,
-                                         left_post_begin, left_post_end,
-                                         left_in_begin, left_in_end);
-        root_node.right = Solution::build(inorder, postorder,
-                                          right_post_begin, right_post_end,
-                                          right_in_begin, right_in_end);
+        root_node.left = Solution::build(
+            inorder,
+            postorder,
+            left_post_begin,
+            left_post_end,
+            left_in_begin,
+            left_in_end,
+        );
+        root_node.right = Solution::build(
+            inorder,
+            postorder,
+            right_post_begin,
+            right_post_end,
+            right_in_begin,
+            right_in_end,
+        );
         Some(Rc::new(RefCell::new(root_node)))
     }
 }
 #[cfg(test)]
 mod tests {
-    use std::path::Prefix;
     use super::*;
-    fn tree_push_vec(ergodic_type: usize, node: &Option<Rc<RefCell<TreeNode>>>, vec: &mut Vec<i32>) {
+    use std::path::Prefix;
+    fn tree_push_vec(
+        ergodic_type: usize,
+        node: &Option<Rc<RefCell<TreeNode>>>,
+        vec: &mut Vec<i32>,
+    ) {
         match node {
             Some(node) => {
                 if ergodic_type == 1 {

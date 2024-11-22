@@ -35,7 +35,12 @@ impl Solution {
                     for d in c + 1..len {
                         let four_sum = three_sum + sort_nums[d] as i64;
                         if four_sum == tar_64 {
-                            result.push(vec![sort_nums[a], sort_nums[b], sort_nums[c], sort_nums[d]]);
+                            result.push(vec![
+                                sort_nums[a],
+                                sort_nums[b],
+                                sort_nums[c],
+                                sort_nums[d],
+                            ]);
                             break;
                         }
                         if four_sum > tar_64 {
@@ -47,12 +52,14 @@ impl Solution {
         }
         result
     }
-    fn recursion(dept: usize,
-                 start: usize,
-                 index_vec: &mut Vec<usize>,
-                 sort_nums: &Vec<i32>,
-                 result: &mut Vec<Vec<i32>>,
-                 target: i64) {
+    fn recursion(
+        dept: usize,
+        start: usize,
+        index_vec: &mut Vec<usize>,
+        sort_nums: &Vec<i32>,
+        result: &mut Vec<Vec<i32>>,
+        target: i64,
+    ) {
         let mut use_nums = HashSet::new();
         for i in start..sort_nums.len() - dept {
             if dept == 0 {
@@ -110,14 +117,15 @@ mod tests {
     }
     #[test]
     fn t3() {
-        let result = Solution::four_sum(vec![-500, -498, -414, -406, -404,
-                                             -397, -395, -389, -349, -274, -253, -249, -238, -222,
-                                             -215, -201, -171, -159, -157, -156, -156, -110, -89,
-                                             -80, -76, -75, -70, -52, -9, -2, 1, 8, 40, 52, 58, 60,
-                                             98, 116, 143, 148, 151, 165, 165, 219, 236, 244, 259,
-                                             285, 292, 318, 319, 331, 337, 347, 360, 363, 365,
-                                             430, 443, 444, 470, 472],
-                                        6111);
+        let result = Solution::four_sum(
+            vec![
+                -500, -498, -414, -406, -404, -397, -395, -389, -349, -274, -253, -249, -238, -222,
+                -215, -201, -171, -159, -157, -156, -156, -110, -89, -80, -76, -75, -70, -52, -9,
+                -2, 1, 8, 40, 52, 58, 60, 98, 116, 143, 148, 151, 165, 165, 219, 236, 244, 259,
+                285, 292, 318, 319, 331, 337, 347, 360, 363, 365, 430, 443, 444, 470, 472,
+            ],
+            6111,
+        );
         println!("{:?}", result);
         assert!(result.is_empty());
     }

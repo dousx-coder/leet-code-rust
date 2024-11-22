@@ -31,11 +31,10 @@ impl Solution {
     }
 }
 
-
 #[cfg(test)]
 mod test {
-    use crate::common::util::convert_linked_list;
     use super::*;
+    use crate::common::util::convert_linked_list;
 
     #[test]
     fn t1() {

@@ -6,14 +6,16 @@ struct MyLinkedList {
     len: i32,
 }
 
-
 /**
  * `&self` means the method takes an immutable reference.
  * If you need a mutable reference, change it to `&mut self` instead.
  */
 impl MyLinkedList {
     fn new() -> Self {
-        MyLinkedList { dummy: Some(Box::new(ListNode::new(-1))), len: 0 }
+        MyLinkedList {
+            dummy: Some(Box::new(ListNode::new(-1))),
+            len: 0,
+        }
     }
 
     fn get(&self, index: i32) -> i32 {
@@ -87,7 +89,6 @@ impl MyLinkedList {
         println!();
     }
 }
-
 
 #[cfg(test)]
 mod tests {

@@ -2,10 +2,10 @@
 
 struct Solution {}
 
+use crate::common::list_node::ListNode;
 use std::cmp::Ordering;
 use std::cmp::Reverse;
 use std::collections::BinaryHeap;
-use crate::common::list_node::ListNode;
 
 impl Ord for ListNode {
     fn cmp(&self, other: &Self) -> Ordering {

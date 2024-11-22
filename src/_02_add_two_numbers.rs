@@ -66,7 +66,6 @@ impl Solution {
 mod tests {
     use super::*;
 
-
     /// 测试
     /// <br/>
     /// [`v1`] 链表1

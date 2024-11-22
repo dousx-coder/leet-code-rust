@@ -58,7 +58,6 @@ mod tests {
     use super::*;
     #[test]
     fn t1() {
-
         // 1 2 3
         // 8 9 4
         // 7 6 5
@@ -75,10 +74,15 @@ mod tests {
         // A 9 8 7
         let r = Solution::generate_matrix(4);
         println!("{:?}", r);
-        assert_eq!(r, vec![vec![1, 2, 3, 4],
-                           vec![12, 13, 14, 5],
-                           vec![11, 16, 15, 6],
-                           vec![10, 9, 8, 7]]);
+        assert_eq!(
+            r,
+            vec![
+                vec![1, 2, 3, 4],
+                vec![12, 13, 14, 5],
+                vec![11, 16, 15, 6],
+                vec![10, 9, 8, 7]
+            ]
+        );
     }
     #[test]
     fn t3() {
