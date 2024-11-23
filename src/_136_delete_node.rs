@@ -1,5 +1,5 @@
 use crate::common::list_node::ListNode;
-use crate::common::util::{convert_linked_list, convert_vec};
+use crate::common::util::{vec_to_linked_list, linked_list_to_vec};
 ///
 /// https://leetcode.cn/problems/shan-chu-lian-biao-de-jie-dian-lcof/description/
 struct Solution;
@@ -24,10 +24,10 @@ mod tests {
 
     #[test]
     fn t1() {
-        let mut dummy = convert_linked_list(&vec![1, 2, 3, 4, 5], true);
+        let mut dummy = vec_to_linked_list(&vec![1, 2, 3, 4, 5], true);
         let head = dummy.unwrap().next;
         let mut result = Solution::delete_node(head, 2);
-        let vec = convert_vec(&mut result);
+        let vec = linked_list_to_vec(&mut result);
         println!("{:?}", vec);
         assert_eq!(vec, vec![1, 3, 4, 5]);
     }

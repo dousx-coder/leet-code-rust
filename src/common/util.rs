@@ -1,9 +1,9 @@
 use crate::common::list_node::ListNode;
 
 ///
-/// 链表转[Vec]
+/// [`&Option<Box<ListNode>>`]链表转[Vec]
 ///
-pub fn convert_vec(head: &Option<Box<ListNode>>) -> Vec<i32> {
+pub fn linked_list_to_vec(head: &Option<Box<ListNode>>) -> Vec<i32> {
     let mut vec = vec![];
     let mut curr = head;
     while let Some(node) = curr {
@@ -14,9 +14,9 @@ pub fn convert_vec(head: &Option<Box<ListNode>>) -> Vec<i32> {
 }
 
 ///
-/// [Vec]转链表,返回虚拟头节点
+/// [`Vec<i32>`]转[`Option<Box<ListNode>>`]链表
 ///
-pub fn convert_linked_list(vec: &Vec<i32>, dummy_head: bool) -> Option<Box<ListNode>> {
+pub fn vec_to_linked_list(vec: &Vec<i32>, dummy_head: bool) -> Option<Box<ListNode>> {
     if vec.len() == 0 {
         return None;
     }

@@ -29,7 +29,7 @@ mod tests {
 
     #[test]
     fn t1() {
-        let head = convert_linked_list(&vec![1, 2, 3, 4, 5], false);
+        let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut result = Solution::reverse_list(head);
         while let Some(node) = result {
             print!("{:?} ", node.val);

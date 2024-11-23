@@ -85,12 +85,12 @@ mod tests {
     /// _add_test(v1, v2, v3);
     /// `````
     fn _add_test(v1: Vec<i32>, v2: Vec<i32>, v3: Vec<i32>) {
-        let mut l1 = convert_linked_list(&v1, false);
+        let mut l1 = vec_to_linked_list(&v1, false);
 
-        let mut l2 = convert_linked_list(&v2, false);
+        let mut l2 = vec_to_linked_list(&v2, false);
 
         let mut _result = Solution::add_two_numbers(l1, l2);
-        let vec = convert_vec(&_result);
+        let vec = linked_list_to_vec(&_result);
 
         assert_eq!(v3, vec)
     }

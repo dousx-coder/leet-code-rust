@@ -34,11 +34,11 @@ impl Solution {
 #[cfg(test)]
 mod test {
     use super::*;
-    use crate::common::util::convert_linked_list;
+    use crate::common::util::vec_to_linked_list;
 
     #[test]
     fn t1() {
-        let mut head = convert_linked_list(&vec![1, 2, 3, 4, 5], false);
+        let mut head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         println!("before");
         let mut hr = head.as_ref();
         while let Some(node) = hr {

@@ -31,11 +31,11 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::common::util::convert_linked_list;
+    use crate::common::util::vec_to_linked_list;
 
     #[test]
     fn t1() {
-        let dummy = convert_linked_list(&vec![1, 2, 3, 4, 5], true);
+        let dummy = vec_to_linked_list(&vec![1, 2, 3, 4, 5], true);
         let mut head = dummy.unwrap().next;
         let mut result = Solution::swap_pairs(head);
         while let Some(mut node) = result {

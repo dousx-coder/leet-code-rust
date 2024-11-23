@@ -3,8 +3,8 @@
 struct Solution {}
 
 use crate::common::list_node::ListNode;
+use crate::common::util::*;
 use std::cmp::Ordering;
-use std::cmp::Reverse;
 use std::collections::BinaryHeap;
 
 impl Ord for ListNode {
@@ -57,31 +57,7 @@ impl Solution {
         dummy.next
     }
 }
-///
-/// [`Vec<i32>`]转[`Option<Box<ListNode>>`]链表
-///
-fn gen_list(vec: Vec<i32>) -> Option<Box<ListNode>> {
-    let mut dummy = ListNode { val: 0, next: None };
-    let mut tail = &mut dummy;
-    for x in vec {
-        let node = ListNode { val: x, next: None };
-        tail.next = Some(Box::new(node));
-        tail = tail.next.as_mut()?
-    }
-    dummy.next
-}
-///
-///[`Option<Box<ListNode>>`]链表转 [`Vec<i32>`]方便结果比对
-///
-fn list_node_to_vec(head: Option<Box<ListNode>>) -> Vec<i32> {
-    let mut x = &head;
-    let mut result = vec![];
-    while let Some(node) = x {
-        result.push(node.val);
-        x = &node.next;
-    }
-    result
-}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -115,10 +91,12 @@ mod test {
 
     #[test]
     fn t2() {
-        let vec = vec![gen_list(vec![1, 5, 10]), gen_list(vec![2, 3, 4, 7, 8])];
+        let list1 = vec_to_linked_list(&vec![1, 5, 10], false);
+        let list2 = vec_to_linked_list(&vec![2, 3, 4, 7, 8], false);
+        let vec = vec![list1, list2];
         let result = Solution::merge_k_lists(vec);
         let mut expect = vec![1, 2, 3, 4, 5, 7, 8, 10];
-        let actual = list_node_to_vec(result);
+        let actual = linked_list_to_vec(&result);
         assert_eq!(actual, expect)
     }
 }

@@ -1,6 +1,6 @@
 use crate::common::list_node::ListNode;
-use crate::common::util::convert_linked_list;
-use crate::common::util::convert_vec;
+use crate::common::util::vec_to_linked_list;
+use crate::common::util::linked_list_to_vec;
 
 ///
 /// https://leetcode.cn/problems/SLwz0R/
@@ -39,43 +39,43 @@ mod tests {
 
     #[test]
     fn t1() {
-        let head = convert_linked_list(&vec![1, 2, 3, 4, 5], false);
+        let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut ans = Solution::remove_nth_from_end(head, 2);
-        let vec = convert_vec(&mut ans);
+        let vec = linked_list_to_vec(&mut ans);
         println!("{:?}", vec);
         assert_eq!(vec, vec![1, 2, 3, 5]);
     }
     #[test]
     fn t2() {
-        let head = convert_linked_list(&vec![1, 2, 3, 4, 5], false);
+        let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut ans = Solution::remove_nth_from_end(head, 0);
-        let vec = convert_vec(&mut ans);
+        let vec = linked_list_to_vec(&mut ans);
         println!("{:?}", vec);
         assert_eq!(vec, vec![1, 2, 3, 4, 5]);
     }
     #[test]
     fn t3() {
-        let head = convert_linked_list(&vec![1, 2, 3, 4, 5], false);
+        let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut ans = Solution::remove_nth_from_end(head, 1);
-        let vec = convert_vec(&mut ans);
+        let vec = linked_list_to_vec(&mut ans);
         println!("{:?}", vec);
         assert_eq!(vec, vec![1, 2, 3, 4]);
     }
 
     #[test]
     fn t4() {
-        let head = convert_linked_list(&vec![1, 2, 3, 4, 5], false);
+        let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut ans = Solution::remove_nth_from_end(head, 5);
-        let vec = convert_vec(&mut ans);
+        let vec = linked_list_to_vec(&mut ans);
         println!("{:?}", vec);
         assert_eq!(vec, vec![2, 3, 4, 5]);
     }
 
     #[test]
     fn t5() {
-        let head = convert_linked_list(&vec![1, 2, 3, 4, 5], false);
+        let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut ans = Solution::remove_nth_from_end(head, 6);
-        let vec = convert_vec(&mut ans);
+        let vec = linked_list_to_vec(&mut ans);
         println!("{:?}", vec);
         assert_eq!(vec, vec![1, 2, 3, 4, 5]);
     }
