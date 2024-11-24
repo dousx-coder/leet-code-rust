@@ -31,9 +31,17 @@ impl Solution {
                     // 去重
                     continue;
                 }
+                if target > 0 && nums[a] + nums[b] > target {
+                    // 剪枝
+                    continue;
+                }
                 for c in b + 1..len - 1 {
                     if c > b + 1 && nums[c] == nums[c - 1] {
                         // 去重
+                        continue;
+                    }
+                    if target > 0 && nums[a] + nums[b] + nums[c] > target {
+                        // 剪枝
                         continue;
                     }
                     let three_sum = nums[a] as i64 + nums[b] as i64 + nums[c] as i64;
