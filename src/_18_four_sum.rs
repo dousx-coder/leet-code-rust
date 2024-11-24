@@ -20,7 +20,7 @@ impl Solution {
         for a in 0..len - 3 {
             if target > 0 && nums[a] > target {
                 // 剪枝
-                continue;
+                break;
             }
             if a > 0 && nums[a] == nums[a - 1] {
                 // 去重
@@ -33,7 +33,7 @@ impl Solution {
                 }
                 if target > 0 && nums[a] + nums[b] > target {
                     // 剪枝
-                    continue;
+                    break;
                 }
                 for c in b + 1..len - 1 {
                     if c > b + 1 && nums[c] == nums[c - 1] {
@@ -42,7 +42,7 @@ impl Solution {
                     }
                     if target > 0 && nums[a] + nums[b] + nums[c] > target {
                         // 剪枝
-                        continue;
+                        break;
                     }
                     let three_sum = nums[a] as i64 + nums[b] as i64 + nums[c] as i64;
                     for d in c + 1..len {
