@@ -15,9 +15,11 @@ impl Solution {
         let target = target as i64;
         let mut result = HashSet::new();
         nums.sort();
+        // 提前进行类型转换，降低内存占用
+        let nums = nums.iter().map(|x| *x as i64).collect::<Vec<i64>>();
         // len -3 得到的结果可能不是usize
         for a in 0..len - 3 {
-            if target > 0 && nums[a] as i64 > target {
+            if target > 0 && nums[a] > target {
                 // 剪枝
                 break;
             }
@@ -25,14 +27,10 @@ impl Solution {
                 // 去重
                 continue;
             }
-            if nums[a] as i64 + nums[a + 1] as i64 + nums[a + 2] as i64 + nums[a + 3] as i64
-                > target
-            {
+            if nums[a] + nums[a + 1] + nums[a + 2] + nums[a + 3] > target {
                 break;
             }
-            if (nums[a] as i64 + nums[len - 1] as i64 + nums[len - 2] as i64 + nums[len - 3] as i64)
-                < target
-            {
+            if (nums[a] + nums[len - 1] + nums[len - 2] + nums[len - 3]) < target {
                 continue;
             }
             for b in a + 1..len - 2 {
@@ -40,18 +38,14 @@ impl Solution {
                     // 去重
                     continue;
                 }
-                if target > 0 && nums[a] as i64 + nums[b] as i64 > target {
+                if target > 0 && nums[a] + nums[b] > target {
                     // 剪枝
                     break;
                 }
-                if nums[a] as i64 + nums[b] as i64 + nums[b + 1] as i64 + nums[b + 2] as i64
-                    > target
-                {
+                if nums[a] + nums[b] + nums[b + 1] + nums[b + 2] > target {
                     break;
                 }
-                if (nums[a] as i64 + nums[b] as i64 + nums[len - 1] as i64 + nums[len - 2] as i64)
-                    < target
-                {
+                if (nums[a] + nums[b] + nums[len - 1] + nums[len - 2]) < target {
                     continue;
                 }
                 // 双指针 两数之和
@@ -59,7 +53,6 @@ impl Solution {
                 let mut right = len - 1;
                 while left < right {
                     let sum = nums[a] + nums[b] + nums[left] + nums[right];
-                    let sum = sum as i64;
                     if sum < target {
                         left += 1;
                         continue;
@@ -68,7 +61,12 @@ impl Solution {
                         right -= 1;
                         continue;
                     }
-                    result.insert(vec![nums[a], nums[b], nums[left], nums[right]]);
+                    result.insert(vec![
+                        nums[a] as i32,
+                        nums[b] as i32,
+                        nums[left] as i32,
+                        nums[right] as i32,
+                    ]);
                     while left < right && nums[left] == nums[left + 1] {
                         left += 1;
                     }
@@ -98,7 +96,7 @@ impl Solution {
                 let b = sort_nums[index_vec[2]];
                 let c = sort_nums[index_vec[1]];
                 let d = sort_nums[i];
-                let four_sum = a as i64 + b as i64 + c as i64 + d as i64;
+                let four_sum = a + b + c + d;
                 if four_sum == target {
                     result.push(vec![a, b, c, d]);
                     return;
@@ -123,7 +121,7 @@ impl Solution {
         }
         sort_nums.sort();
         let mut index_vec = vec![0; 4];
-        Self::recursion(3, 0, &mut index_vec, &sort_nums, &mut result, target as i64);
+        Self::recursion(3, 0, &mut index_vec, &sort_nums, &mut result, target);
         result
     }
 
