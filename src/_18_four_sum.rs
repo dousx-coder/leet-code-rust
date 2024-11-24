@@ -7,40 +7,44 @@ struct Solution;
 impl Solution {
     /// 循环解法
     fn loop_solution(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
-        let mut sort_nums = nums.clone();
+        let mut nums = nums;
         let len = nums.len();
-        let mut result = Vec::new();
         if len < 4 {
-            return result;
+            return vec![];
         }
-        sort_nums.sort();
-        let mut first = HashSet::new();
+        let mut result = HashSet::new();
+
+        nums.sort();
         let tar_64 = target as i64;
         // len -3 得到的结果可能不是usize
         for a in 0..len - 3 {
-            if !first.insert(sort_nums[a]) {
+            if target > 0 && nums[a] > target {
+                // 剪枝
                 continue;
             }
-            let mut second = HashSet::new();
+            if a > 0 && nums[a] == nums[a - 1] {
+                // 去重
+                continue;
+            }
             for b in a + 1..len - 2 {
-                if !second.insert(sort_nums[b]) {
+                if b > a + 1 && nums[b] == nums[b - 1] {
+                    // 去重
                     continue;
                 }
-                let mut third = HashSet::new();
                 for c in b + 1..len - 1 {
-                    if !third.insert(sort_nums[c]) {
+                    if c > b + 1 && nums[c] == nums[c - 1] {
+                        // 去重
                         continue;
                     }
-                    let three_sum = sort_nums[a] as i64 + sort_nums[b] as i64 + sort_nums[c] as i64;
+                    let three_sum = nums[a] as i64 + nums[b] as i64 + nums[c] as i64;
                     for d in c + 1..len {
-                        let four_sum = three_sum + sort_nums[d] as i64;
+                        if d > c + 1 && nums[d] == nums[d - 1] {
+                            // 去重
+                            continue;
+                        }
+                        let four_sum = three_sum + nums[d] as i64;
                         if four_sum == tar_64 {
-                            result.push(vec![
-                                sort_nums[a],
-                                sort_nums[b],
-                                sort_nums[c],
-                                sort_nums[d],
-                            ]);
+                            result.insert(vec![nums[a], nums[b], nums[c], nums[d]]);
                             break;
                         }
                         if four_sum > tar_64 {
@@ -50,7 +54,7 @@ impl Solution {
                 }
             }
         }
-        result
+        result.into_iter().collect()
     }
     fn recursion(
         dept: usize,
@@ -97,8 +101,8 @@ impl Solution {
     }
 
     pub fn four_sum(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
-        // Self::loop_solution(nums, target)
-        Self::recursion_solution(nums, target)
+        Self::loop_solution(nums, target)
+        // Self::recursion_solution(nums, target)
     }
 }
 
