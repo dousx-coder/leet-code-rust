@@ -12,13 +12,12 @@ impl Solution {
         if len < 4 {
             return vec![];
         }
+        let target = target as i64;
         let mut result = HashSet::new();
-
         nums.sort();
-        let tar_64 = target as i64;
         // len -3 得到的结果可能不是usize
         for a in 0..len - 3 {
-            if target > 0 && nums[a] > target {
+            if target > 0 && nums[a] as i64 > target {
                 // 剪枝
                 break;
             }
@@ -26,44 +25,64 @@ impl Solution {
                 // 去重
                 continue;
             }
+            if nums[a] as i64 + nums[a + 1] as i64 + nums[a + 2] as i64 + nums[a + 3] as i64
+                > target
+            {
+                break;
+            }
+            if (nums[a] as i64 + nums[len - 1] as i64 + nums[len - 2] as i64 + nums[len - 3] as i64)
+                < target
+            {
+                continue;
+            }
             for b in a + 1..len - 2 {
                 if b > a + 1 && nums[b] == nums[b - 1] {
                     // 去重
                     continue;
                 }
-                if target > 0 && nums[a] + nums[b] > target {
+                if target > 0 && nums[a] as i64 + nums[b] as i64 > target {
                     // 剪枝
                     break;
                 }
-                for c in b + 1..len - 1 {
-                    if c > b + 1 && nums[c] == nums[c - 1] {
-                        // 去重
+                if nums[a] as i64 + nums[b] as i64 + nums[b + 1] as i64 + nums[b + 2] as i64
+                    > target
+                {
+                    break;
+                }
+                if (nums[a] as i64 + nums[b] as i64 + nums[len - 1] as i64 + nums[len - 2] as i64)
+                    < target
+                {
+                    continue;
+                }
+                // 双指针 两数之和
+                let mut left = b + 1;
+                let mut right = len - 1;
+                while left < right {
+                    let sum = nums[a] + nums[b] + nums[left] + nums[right];
+                    let sum = sum as i64;
+                    if sum < target {
+                        left += 1;
                         continue;
                     }
-                    if target > 0 && nums[a] + nums[b] + nums[c] > target {
-                        // 剪枝
-                        break;
+                    if sum > target {
+                        right -= 1;
+                        continue;
                     }
-                    let three_sum = nums[a] as i64 + nums[b] as i64 + nums[c] as i64;
-                    for d in c + 1..len {
-                        if d > c + 1 && nums[d] == nums[d - 1] {
-                            // 去重
-                            continue;
-                        }
-                        let four_sum = three_sum + nums[d] as i64;
-                        if four_sum == tar_64 {
-                            result.insert(vec![nums[a], nums[b], nums[c], nums[d]]);
-                            break;
-                        }
-                        if four_sum > tar_64 {
-                            break;
-                        }
+                    result.insert(vec![nums[a], nums[b], nums[left], nums[right]]);
+                    while left < right && nums[left] == nums[left + 1] {
+                        left += 1;
                     }
+                    while left < right && nums[right] == nums[right - 1] {
+                        right -= 1;
+                    }
+                    left += 1;
+                    right -= 1;
                 }
             }
         }
         result.into_iter().collect()
     }
+
     fn recursion(
         dept: usize,
         start: usize,
@@ -140,5 +159,14 @@ mod tests {
         );
         println!("{:?}", result);
         assert!(result.is_empty());
+    }
+
+    #[test]
+    fn t4() {
+        let result = Solution::four_sum(
+            vec![0, 0, 0, 1000000000, 1000000000, 1000000000, 1000000000],
+            1000000000,
+        );
+        println!("{:?}", result);
     }
 }
