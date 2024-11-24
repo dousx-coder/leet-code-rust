@@ -134,19 +134,28 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn testing(nums: Vec<i32>, target: i32, expect: Vec<Vec<i32>>) {
+        let solution = Solution::four_sum(nums, target);
+        let ans: HashSet<Vec<i32>> = HashSet::from_iter(solution.into_iter());
+        assert_eq!(ans, HashSet::from_iter(expect.into_iter()));
+    }
+
     #[test]
     fn t1() {
-        let result = Solution::four_sum(vec![1, 0, -1, 0, -2, 2], 0);
-        println!("{:?}", result);
+        testing(
+            vec![1, 0, -1, 0, -2, 2],
+            0,
+            vec![vec![-2, -1, 1, 2], vec![-2, 0, 0, 2], vec![-1, 0, 0, 1]],
+        );
     }
     #[test]
     fn t2() {
-        let result = Solution::four_sum(vec![0], 0);
-        println!("{:?}", result);
+        testing(vec![0], 0, vec![]);
     }
     #[test]
     fn t3() {
-        let result = Solution::four_sum(
+        testing(
             vec![
                 -500, -498, -414, -406, -404, -397, -395, -389, -349, -274, -253, -249, -238, -222,
                 -215, -201, -171, -159, -157, -156, -156, -110, -89, -80, -76, -75, -70, -52, -9,
@@ -154,17 +163,25 @@ mod tests {
                 285, 292, 318, 319, 331, 337, 347, 360, 363, 365, 430, 443, 444, 470, 472,
             ],
             6111,
+            vec![],
         );
-        println!("{:?}", result);
-        assert!(result.is_empty());
     }
 
     #[test]
     fn t4() {
-        let result = Solution::four_sum(
+        testing(
             vec![0, 0, 0, 1000000000, 1000000000, 1000000000, 1000000000],
             1000000000,
+            vec![vec![0, 0, 0, 1000000000]],
         );
-        println!("{:?}", result);
+    }
+
+    #[test]
+    fn t5() {
+        testing(
+            vec![-5, 5, 4, -3, 0, 0, 4, -2],
+            4,
+            vec![vec![-3, -2, 4, 5], vec![-5, 0, 4, 5]],
+        );
     }
 }
