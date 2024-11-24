@@ -96,7 +96,7 @@ impl Solution {
                 let b = sort_nums[index_vec[2]];
                 let c = sort_nums[index_vec[1]];
                 let d = sort_nums[i];
-                let four_sum = a + b + c + d;
+                let four_sum = (a + b + c + d) as i64;
                 if four_sum == target {
                     result.push(vec![a, b, c, d]);
                     return;
@@ -121,7 +121,7 @@ impl Solution {
         }
         sort_nums.sort();
         let mut index_vec = vec![0; 4];
-        Self::recursion(3, 0, &mut index_vec, &sort_nums, &mut result, target);
+        Self::recursion(3, 0, &mut index_vec, &sort_nums, &mut result, target as i64);
         result
     }
 
