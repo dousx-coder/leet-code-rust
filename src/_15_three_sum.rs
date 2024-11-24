@@ -46,7 +46,8 @@ mod tests {
     use super::*;
     #[test]
     fn t1() {
-        let vec = Solution::three_sum(vec![-1, 0, 1, 2, -1, -4]);
-        println!("{:?}", vec);
+        let ans = Solution::three_sum(vec![-1, 0, 1, 2, -1, -4]);
+        println!("{:?}", ans);
+        assert_eq!(ans, vec![vec![-1, -1, 2], vec![-1, 0, 1]]);
     }
 }
