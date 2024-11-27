@@ -18,21 +18,22 @@ impl Solution {
                 let right = i + k;
                 let mut x = &mut vec[i..right];
                 Solution::swap(&mut x, 0, right - i);
-            } else {
-                if i + k > vec.len() {
-                    // 剩余的不到K
-                    let left = i;
-                    let right = s.len();
-                    let mut x = &mut vec[left..];
-                    Solution::swap(&mut x, left - i, right - i);
-                } else {
-                    let left = i;
-                    let right = i + k;
-                    let mut x = &mut vec[left..right];
-                    Solution::swap(&mut x, left - i, right - i);
-                    break;
-                }
+                continue;
             }
+            if i + k > vec.len() {
+                // 剩余的不到K
+                let left = i;
+                let right = s.len();
+                let mut x = &mut vec[left..];
+                Solution::swap(&mut x, left - i, right - i);
+                continue;
+            }
+            // 剩余部分超过K 不足2K
+            let left = i;
+            let right = i + k;
+            let mut x = &mut vec[left..right];
+            Solution::swap(&mut x, left - i, right - i);
+            break;
         }
         String::from_iter(vec.iter())
     }
@@ -45,6 +46,13 @@ mod tests {
         assert_eq!(
             Solution::reverse_str("abcdefg".to_string(), 2),
             "bacdfeg".to_string()
+        );
+    }
+    #[test]
+    fn t2() {
+        assert_eq!(
+            Solution::reverse_str("abcd".to_string(), 2),
+            "bacd".to_string()
         );
     }
 }
