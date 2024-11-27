@@ -1,7 +1,7 @@
 struct Solution;
 impl Solution {
-    fn swap(x: &mut [char], left: usize, right: usize) {
-        let (mut left, mut right) = (left, right - 1);
+    fn swap(x: &mut [char]) {
+        let (mut left, mut right) = (0, x.len() - 1);
         while left < right {
             x.swap(left, right);
             left += 1;
@@ -17,7 +17,7 @@ impl Solution {
             if i + _2k <= vec.len() {
                 let right = i + k;
                 let mut x = &mut vec[i..right];
-                Solution::swap(&mut x, 0, right - i);
+                Solution::swap(&mut x);
                 continue;
             }
             if i + k > vec.len() {
@@ -25,14 +25,14 @@ impl Solution {
                 let left = i;
                 let right = s.len();
                 let mut x = &mut vec[left..];
-                Solution::swap(&mut x, left - i, right - i);
+                Solution::swap(&mut x);
                 continue;
             }
             // 剩余部分超过K 不足2K
             let left = i;
             let right = i + k;
             let mut x = &mut vec[left..right];
-            Solution::swap(&mut x, left - i, right - i);
+            Solution::swap(&mut x);
             break;
         }
         String::from_iter(vec.iter())
