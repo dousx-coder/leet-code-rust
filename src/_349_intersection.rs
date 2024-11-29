@@ -28,6 +28,7 @@ mod tests {
     #[test]
     fn t2() {
         let ans = Solution::intersection(vec![1, 2, 3, 1], vec![3, 2]);
-        assert_eq!(ans, vec![2, 3]);
+        let ans: HashSet<_> = ans.into_iter().collect();
+        assert_eq!(ans, vec![2, 3].into_iter().collect());
     }
 }
