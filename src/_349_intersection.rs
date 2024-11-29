@@ -20,6 +20,7 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use maplit::{hashmap, hashset};
     #[test]
     fn t1() {
         let ans = Solution::intersection(vec![1, 2, 2, 1], vec![2, 2]);
@@ -29,6 +30,6 @@ mod tests {
     fn t2() {
         let ans = Solution::intersection(vec![1, 2, 3, 1], vec![3, 2]);
         let ans: HashSet<_> = ans.into_iter().collect();
-        assert_eq!(ans, vec![2, 3].into_iter().collect());
+        assert_eq!(ans, hashset![2, 3]);
     }
 }
