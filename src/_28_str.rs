@@ -6,6 +6,16 @@ struct Solution {}
 
 impl Solution {
     fn prefix_table(pattern: &Vec<u8>) -> Vec<i32> {
+        // 最长相等前后缀(单字符不存在最长相等前后缀)
+        // aab
+        // 前缀:a,aa (不包含最后一个字符)
+        // 后缀:b,ab (不包含第一个字符)
+        // 不存在最长相等的前后缀
+
+        // aaba
+        // 前缀: a,aa,aab
+        // 后缀: a,ba,aba
+        // 相同的前后缀为a，即最长相等前后缀是a
         let n = pattern.len();
         let mut prefix_table: Vec<i32> = vec![0; n];
         let mut i: usize = 1;
