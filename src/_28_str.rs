@@ -35,8 +35,11 @@ impl Solution {
                 }
             }
         }
+        // ABABCABAA的最长公共前缀数组，第i位表示[0..i]字符串对应的最长公共前后缀的长度
+        //  [0, 0, 1, 2, 0, 1, 2, 3, 1] 原最长公共前后缀长度
+        // [-1, 0, 0, 1, 2, 0, 1, 2, 3] 向右移动一位
+
         // 将prefix_table整体向右移动一位
-        // [0,1,0,2,0]===> [-1,0,1,0,2]
         let mut index = n - 1;
         while index > 0 {
             prefix_table[index] = prefix_table[index - 1];
