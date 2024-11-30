@@ -86,10 +86,11 @@ mod tests {
 
     #[test]
     fn test0() {
-        Solution::str_str(
+        let ans = Solution::str_str(
             String::from("ABABABCABAACCABDABABCABAACC"),
             String::from("ABABCABAA"),
         );
+        assert_eq!(ans, 2);
     }
 
     #[test]
