@@ -57,6 +57,14 @@ impl Solution {
         let prefix_table = Solution::prefix_table(&pattern);
         let mut i = 0;
         let mut j = 0;
+        // 说明
+        // haystack：ABFNABFNABCABAACCABDABABCABAACC
+        // needle：  ABFNABCABAA
+        // 第一次出现i和j指定的字符不相等时(i=6,j=6)
+        // h1： ABFNABF
+        // n1： ABFNABC
+        // 去掉h1和n1的最后一位字符,得到2个字符串,h2(ABFNAB) n2(ABFNAB)
+        //  需要比较h2的后缀 和n2的前缀,找到一个相同且长度最长的字串,此时便能重置j
         while i < m {
             if j == n - 1 && text[i] == pattern[j] {
                 return (i - j) as i32;
@@ -87,10 +95,10 @@ mod tests {
     #[test]
     fn test0() {
         let ans = Solution::str_str(
-            String::from("ABABABCABAACCABDABABCABAACC"),
-            String::from("ABABCABAA"),
+            String::from("ABFNABFNABCABAACCABDABABCABAACC"),
+            String::from("ABFNABCABAA"),
         );
-        assert_eq!(ans, 2);
+        assert_eq!(ans, 4);
     }
 
     #[test]
