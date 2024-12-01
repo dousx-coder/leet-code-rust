@@ -57,7 +57,7 @@ impl Solution {
         let prefix_table = Solution::prefix_table(&pattern);
         let mut i = 0;
         let mut j = 0;
-        // 说明
+        // 说明(KMP核心思想是在遇到不匹配的字符串时,最大化的利用已经匹配过的字符串)
         // haystack：ABFNABFNABCABAACCABDABABCABAACC
         // needle：  ABFNABCABAA
         // 第一次出现i和j指定的字符不相等时(i=6,j=6)
