@@ -1,3 +1,5 @@
+use std::ops::Add;
+
 ///
 /// `459. 重复的子字符串`
 ///
@@ -6,7 +8,7 @@
 ///
 struct Solution;
 impl Solution {
-    pub fn repeated_substring_pattern(s: String) -> bool {
+    fn violence_solution(s: String) -> bool {
         let len = s.len();
         if len == 0 {
             return false;
@@ -30,6 +32,24 @@ impl Solution {
             }
         }
         false
+    }
+    fn splice_solution(s: String) -> bool {
+        let len = s.len();
+        if len == 0 {
+            return false;
+        }
+        let x = &s;
+        //  如果s是由n个重复字串p，那么s=n*p (n>=2)
+        //  2s=2n*p >= 4p
+        // 去掉首位字符，然后查找s，如果包含，则说明s是由重复子串组成
+        let mut s = String::from(x).add(x);
+        s.remove(0);
+        s.remove(s.len() - 1);
+        s.find(x).is_some()
+    }
+
+    pub fn repeated_substring_pattern(s: String) -> bool {
+        Solution::splice_solution(s)
     }
 }
 #[cfg(test)]
