@@ -1,6 +1,6 @@
-///LCR 036. 逆波兰表达式求值
+/// `150. 逆波兰表达式求值`
 ///
-///https://leetcode.cn/problems/8Zf90G/
+/// https://leetcode.cn/problems/evaluate-reverse-polish-notation/
 ///
 struct Solution;
 impl Solution {
