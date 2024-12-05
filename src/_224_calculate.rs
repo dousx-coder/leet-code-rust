@@ -12,33 +12,33 @@ impl Solution {
     /// 求逆波兰式的值
     ///
     fn eval_rpn(rpn: Vec<String>) -> i32 {
-        let mut stack = Vec::new();
         let has_op = rpn
             .iter()
             .any(|it| it == "+" || it == "-" || it == "*" || it == "/");
         if !has_op {
             return rpn.join("").parse::<i32>().unwrap();
         }
+        let mut stack = Vec::new();
         for token in rpn {
-            let is_operator = token == "+" || token == "-" || token == "*" || token == "/";
-            if !is_operator || stack.is_empty() {
-                stack.push(token);
-                continue;
-            }
-            let num1 = stack.pop().unwrap().to_string().parse::<i32>().unwrap();
-            let num2 = stack.pop().unwrap().to_string().parse::<i32>().unwrap();
-            let ans = match token.as_str() {
-                "+" => num2 + num1,
-                "-" => num2 - num1,
-                "*" => num2 * num1,
-                "/" => num2 / num1,
-                _ => {
-                    panic!()
+            match token.as_str() {
+                "+" | "-" | "*" | "/" => {
+                    let num1 = stack.pop().unwrap();
+                    let num2 = stack.pop().unwrap();
+                    let ans = match token.as_str() {
+                        "+" => num2 + num1,
+                        "-" => num2 - num1,
+                        "*" => num2 * num1,
+                        "/" => num2 / num1,
+                        _ => unreachable!(),
+                    };
+                    stack.push(ans);
                 }
-            };
-            stack.push(ans.to_string());
+                _ => {
+                    stack.push(token.parse::<i32>().unwrap());
+                }
+            }
         }
-        stack.pop().unwrap().to_string().parse::<i32>().unwrap()
+        stack.pop().unwrap()
     }
     ///
     /// 运算符优先级
