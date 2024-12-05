@@ -73,7 +73,6 @@ mod tests {
         assert_eq!(ans, 1)
     }
 
-
     #[test]
     fn t5() {
         let vec = vec!["4"]

@@ -1,5 +1,5 @@
 use crate::common::list_node::ListNode;
-use crate::common::util::{vec_to_linked_list, linked_list_to_vec};
+use crate::common::util::{linked_list_to_vec, vec_to_linked_list};
 ///
 /// https://leetcode.cn/problems/shan-chu-lian-biao-de-jie-dian-lcof/description/
 struct Solution;
