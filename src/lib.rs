@@ -54,3 +54,4 @@ mod _344_reverse_string;
 mod _541_reverse_str;
 mod _459_repeated_substring_pattern;
 mod _1047_remove_duplicates;
+mod _36_eval_rpn;
