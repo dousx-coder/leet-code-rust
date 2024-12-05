@@ -28,9 +28,9 @@ impl Solution {
             let num1 = stack.pop().unwrap().to_string().parse::<i32>().unwrap();
             let num2 = stack.pop().unwrap().to_string().parse::<i32>().unwrap();
             let ans = match token.as_str() {
-                "+" => num1 + num2,
+                "+" => num2 + num1,
                 "-" => num2 - num1,
-                "*" => num1 * num2,
+                "*" => num2 * num1,
                 "/" => num2 / num1,
                 _ => {
                     panic!()
@@ -43,13 +43,11 @@ impl Solution {
     ///
     /// 运算符优先级
     ///
-    fn operator_precedence(option: &str) -> i32 {
-        match option {
-            "+" => 1,
-            "-" => 1,
-            "*" => 2,
-            "/" => 2,
-            _ => panic!(),
+    fn operator_precedence(op: &str) -> i32 {
+        match op {
+            "+" | "-" => 1,
+            "*" | "/" => 2,
+            _ => panic!("Invalid operator"),
         }
     }
     ///
