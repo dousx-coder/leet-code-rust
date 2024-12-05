@@ -65,13 +65,22 @@ mod tests {
 
     #[test]
     fn t4() {
-        let vec = vec![
-            "4", "3", "-",
-        ]
+        let vec = vec!["4", "3", "-"]
             .iter()
             .map(|s| s.to_string())
             .collect::<Vec<String>>();
         let ans = Solution::eval_rpn(vec);
         assert_eq!(ans, 1)
+    }
+
+
+    #[test]
+    fn t5() {
+        let vec = vec!["4"]
+            .iter()
+            .map(|s| s.to_string())
+            .collect::<Vec<String>>();
+        let ans = Solution::eval_rpn(vec);
+        assert_eq!(ans, 4)
     }
 }
