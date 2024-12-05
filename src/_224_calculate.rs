@@ -5,19 +5,14 @@ use std::collections::HashMap;
 ///
 /// https://leetcode.cn/problems/basic-calculator/
 ///
-
+///
 struct Solution;
+
 impl Solution {
     ///
     /// 求逆波兰式的值
     ///
     fn eval_rpn(rpn: Vec<String>) -> i32 {
-        let has_op = rpn
-            .iter()
-            .any(|it| it == "+" || it == "-" || it == "*" || it == "/");
-        if !has_op {
-            return rpn.join("").parse::<i32>().unwrap();
-        }
         let mut stack = Vec::new();
         for token in rpn {
             match token.as_str() {
@@ -54,64 +49,104 @@ impl Solution {
     /// 将中缀式转为后缀式(逆波兰式)
     ///
     fn conversion_rpn(s: String) -> Vec<String> {
-        let vec = s
-            .chars()
-            .into_iter()
-            .filter(|c| *c != ' ')
-            .map(|c| c.to_string())
-            .collect::<Vec<String>>();
-
-        // 后缀式(逆波兰式)
         let mut rpn_vec = Vec::new();
         // 运算符栈
         let mut operator_stack = Vec::new();
-        for curr_token in vec {
-            if curr_token == "(" {
-                operator_stack.push(curr_token);
-                continue;
-            }
-            if curr_token == ")" {
-                loop {
-                    //取出所有字符追加到逆波兰式中
-                    let top = operator_stack.pop().unwrap();
-                    if top == "(" {
-                        break;
-                    }
-                    rpn_vec.push(top);
-                }
-                continue;
-            }
-            if curr_token == "+" || curr_token == "-" || curr_token == "*" || curr_token == "/" {
-                if operator_stack.is_empty() {
-                    operator_stack.push(curr_token);
-                } else {
-                    let curr_precedence = Self::operator_precedence(&curr_token);
-                    loop {
-                        let top = operator_stack.pop().unwrap();
-                        if top == "(" || Self::operator_precedence(&top) < curr_precedence {
-                            operator_stack.push(top);
-                            operator_stack.push(curr_token);
-                            break;
-                        } else {
-                            rpn_vec.push(top);
-                        }
-                        if operator_stack.is_empty() {
-                            operator_stack.push(curr_token);
+        let tokens = Self::tokenize(&s);
+        for token in tokens {
+            match token.as_str() {
+                "(" => operator_stack.push(token),
+                ")" => {
+                    while let Some(top) = operator_stack.pop() {
+                        if top == "(" {
                             break;
                         }
+                        rpn_vec.push(top);
                     }
                 }
-                continue;
+                "+" | "-" | "*" | "/" => {
+                    while operator_stack.last().map_or(false, |top| {
+                        top != "("
+                            && Self::operator_precedence(top) >= Self::operator_precedence(&token)
+                    }) {
+                        rpn_vec.push(operator_stack.pop().unwrap());
+                    }
+                    operator_stack.push(token);
+                }
+                // 数字直接追加
+                _ => rpn_vec.push(token),
             }
-            // 数字 追加到逆波兰式
-            rpn_vec.push(curr_token);
         }
-        while !operator_stack.is_empty() {
-            rpn_vec.push(operator_stack.pop().unwrap());
+        while let Some(op) = operator_stack.pop() {
+            rpn_vec.push(op);
         }
         rpn_vec
     }
-
+    ///
+    /// 将字符串拆解成数字和符号
+    fn tokenize(s: &str) -> Vec<String> {
+        let mut tokens = Vec::new();
+        let mut num = String::new();
+        let mut chars = s.chars().peekable();
+        while let Some(&c) = chars.peek() {
+            match c {
+                ' ' => {
+                    chars.next();
+                }
+                '(' | ')' => {
+                    if !num.is_empty() {
+                        tokens.push(num.clone());
+                        num.clear();
+                    }
+                    tokens.push(c.to_string());
+                    chars.next();
+                }
+                '+' | '*' | '/' => {
+                    if !num.is_empty() {
+                        tokens.push(num.clone());
+                        num.clear();
+                    }
+                    tokens.push(c.to_string());
+                    chars.next();
+                }
+                '-' => {
+                    if !num.is_empty() {
+                        tokens.push(num.clone());
+                        num.clear();
+                        // 当前是减号
+                        tokens.push("-".to_string());
+                        chars.next();
+                    } else {
+                        // 检查是否是负号
+                        if tokens.is_empty()
+                            || matches!(
+                                tokens.last().unwrap().as_str(),
+                                "(" | "+" | "-" | "*" | "/"
+                            )
+                        {
+                            // 作为负数前缀
+                            num.push(c);
+                            chars.next();
+                        } else {
+                            tokens.push("-".to_string());
+                            chars.next();
+                        }
+                    }
+                }
+                _ if c.is_digit(10) => {
+                    num.push(c);
+                    chars.next();
+                }
+                _ => {
+                    panic!("Unexpected character");
+                }
+            }
+        }
+        if !num.is_empty() {
+            tokens.push(num);
+        }
+        tokens
+    }
     ///
     /// [`s`] 由数字、'+'、'-'、'('、')'、和 ' ' 组成
     ///
@@ -120,6 +155,7 @@ impl Solution {
         Self::eval_rpn(rpn)
     }
 }
+
 #[cfg(test)]
 mod tests {
 
@@ -147,5 +183,11 @@ mod tests {
         let ans = Solution::calculate(String::from("1-(     -2)"));
         println!("{}", ans);
         assert_eq!(ans, 3);
+    }
+
+    #[test]
+    fn t5() {
+        let ans = Solution::calculate(String::from("- (3 + (4 + 5))"));
+        assert_eq!(ans, -12);
     }
 }
