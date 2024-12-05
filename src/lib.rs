@@ -55,3 +55,4 @@ mod _707_design_linked_list;
 mod _887_super_egg_drop;
 mod _977_sorted_squares;
 mod common;
+mod _2413_smallest_even_multiple;
