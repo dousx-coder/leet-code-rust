@@ -45,8 +45,6 @@ impl Solution {
     ///
     fn operator_precedence(option: &str) -> i32 {
         match option {
-            "(" => 0,
-            ")" => 0,
             "+" => 1,
             "-" => 1,
             "*" => 2,
@@ -92,8 +90,7 @@ impl Solution {
                     let curr_precedence = Self::operator_precedence(&curr_token);
                     loop {
                         let top = operator_stack.pop().unwrap();
-                        let top_precedence = Self::operator_precedence(&top);
-                        if top_precedence < curr_precedence {
+                        if top == "(" || Self::operator_precedence(&top) < curr_precedence {
                             operator_stack.push(top);
                             operator_stack.push(curr_token);
                             break;
