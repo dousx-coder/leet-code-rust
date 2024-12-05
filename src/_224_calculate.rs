@@ -19,7 +19,6 @@ impl Solution {
         if !has_op {
             return rpn.join("").parse::<i32>().unwrap();
         }
-        println!("{:?}", rpn);
         for token in rpn {
             let is_operator = token == "+" || token == "-" || token == "*" || token == "/";
             if !is_operator || stack.is_empty() {
@@ -152,6 +151,6 @@ mod tests {
     fn t4() {
         let ans = Solution::calculate(String::from("1-(     -2)"));
         println!("{}", ans);
-        //assert_eq!(ans, 3);
+        assert_eq!(ans, 3);
     }
 }
