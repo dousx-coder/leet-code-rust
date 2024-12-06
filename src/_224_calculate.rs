@@ -166,7 +166,6 @@ impl Solution {
     ///
     pub fn calculate(s: String) -> i32 {
         let rpn = Self::conversion_rpn(s);
-        println!("{:?}", rpn);
         Self::eval_rpn(rpn)
     }
 }
