@@ -166,6 +166,7 @@ impl Solution {
     ///
     pub fn calculate(s: String) -> i32 {
         let rpn = Self::conversion_rpn(s);
+        println!("{:?}", rpn);
         Self::eval_rpn(rpn)
     }
 }
@@ -202,6 +203,11 @@ mod tests {
     #[test]
     fn t5() {
         let ans = Solution::calculate(String::from("- (3 + (4 + 5))"));
+        assert_eq!(ans, -12);
+    }
+    #[test]
+    fn t6() {
+        let ans = Solution::calculate(String::from("- (3 - (- (4 + 5) ) )"));
         assert_eq!(ans, -12);
     }
 }
