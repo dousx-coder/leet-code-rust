@@ -17,15 +17,29 @@ impl Solution {
         for token in rpn {
             match token.as_str() {
                 "+" | "-" | "*" | "/" => {
-                    let num1 = stack.pop().unwrap();
-                    let num2 = stack.pop().unwrap();
-                    let ans = match token.as_str() {
-                        "+" => num2 + num1,
-                        "-" => num2 - num1,
-                        "*" => num2 * num1,
-                        "/" => num2 / num1,
-                        _ => unreachable!(),
+                    if stack.is_empty() {
+                        panic!("Unexpected empty rpn");
+                    }
+                    let ans = if stack.len() == 1 {
+                        // 栈中只有一个值，说明应该是 负数写法
+                        let num = stack.pop().unwrap();
+                        match token.as_str() {
+                            "+" => 0 + num,
+                            "-" => 0 - num,
+                            _ => panic!("不支持的操作"),
+                        }
+                    } else {
+                        let num1 = stack.pop().unwrap();
+                        let num2 = stack.pop().unwrap();
+                        match token.as_str() {
+                            "+" => num2 + num1,
+                            "-" => num2 - num1,
+                            "*" => num2 * num1,
+                            "/" => num2 / num1,
+                            _ => unreachable!(),
+                        }
                     };
+
                     stack.push(ans);
                 }
                 _ => {
