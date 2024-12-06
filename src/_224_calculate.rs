@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 ///
 /// `224. 基本计算器`
 ///
@@ -62,11 +60,10 @@ impl Solution {
     ///
     /// 将中缀式转为后缀式(逆波兰式)
     ///
-    fn conversion_rpn(s: String) -> Vec<String> {
+    fn conversion_rpn(tokens: Vec<String>) -> Vec<String> {
         let mut rpn_vec = Vec::new();
         // 运算符栈
         let mut operator_stack = Vec::new();
-        let tokens = Self::tokenize(&s);
         for token in tokens {
             match token.as_str() {
                 "(" => operator_stack.push(token),
@@ -165,14 +162,14 @@ impl Solution {
     /// [`s`] 由数字、'+'、'-'、'('、')'、和 ' ' 组成
     ///
     pub fn calculate(s: String) -> i32 {
-        let rpn = Self::conversion_rpn(s);
+        let tokens = Self::tokenize(&s);
+        let rpn = Self::conversion_rpn(tokens);
         Self::eval_rpn(rpn)
     }
 }
 
 #[cfg(test)]
 mod tests {
-
     use super::*;
 
     #[test]
@@ -195,7 +192,6 @@ mod tests {
     #[test]
     fn t4() {
         let ans = Solution::calculate(String::from("1-(     -2)"));
-        println!("{}", ans);
         assert_eq!(ans, 3);
     }
 
