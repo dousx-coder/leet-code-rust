@@ -157,25 +157,31 @@ impl Solution {
             tokens.push(num);
         }
 
-        let mut res = Vec::new();
-        for x in 0..tokens.len() {
-            let token = &tokens[x];
+        tokens
+    }
+    ///
+    /// 补0
+    fn replenish_zero(tokens: Vec<String>) -> Vec<String> {
+        let mut vec = Vec::new();
+        for token in tokens.into_iter() {
             // 判断上一个符号是否为做括号，如果是则 改成0-
             // 例如 (-6-1) ==> (0-6-1)
             // 例如 (-(6+1)) ==> (0-(6+1))
-            if token == "-" && !res.is_empty() && (&res.last()).unwrap() == "(" {
-                res.push("0".to_string());
+            if token == "-" && !vec.is_empty() && vec.last().unwrap() == "(" {
+                vec.push("0".to_string());
             }
-            res.push(String::from(token));
+            vec.push(token);
         }
-        res
+        vec
     }
+
     ///
     /// [`s`] 由数字、'+'、'-'、'('、')'、和 ' ' 组成
     ///
     pub fn calculate(s: String) -> i32 {
         let tokens = Self::tokenize(&s);
-        let rpn = Self::conversion_rpn(tokens);
+        let replenish_zero = Self::replenish_zero(tokens);
+        let rpn = Self::conversion_rpn(replenish_zero);
         Self::eval_rpn(rpn)
     }
 }
