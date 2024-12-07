@@ -156,7 +156,19 @@ impl Solution {
         if !num.is_empty() {
             tokens.push(num);
         }
-        tokens
+
+        let mut res = Vec::new();
+        for x in 0..tokens.len() {
+            let token = &tokens[x];
+            // 判断上一个符号是否为做括号，如果是则 改成0-
+            // 例如 (-6-1) ==> (0-6-1)
+            // 例如 (-(6+1)) ==> (0-(6+1))
+            if token == "-" && !res.is_empty() && (&res.last()).unwrap() == "(" {
+                res.push("0".to_string());
+            }
+            res.push(String::from(token));
+        }
+        res
     }
     ///
     /// [`s`] 由数字、'+'、'-'、'('、')'、和 ' ' 组成
@@ -204,5 +216,11 @@ mod tests {
     fn t6() {
         let ans = Solution::calculate(String::from("- (3 - (- (4 + 5) ) )"));
         assert_eq!(ans, -12);
+    }
+
+    #[test]
+    fn t7() {
+        let ans = Solution::calculate(String::from("2-(5-6)"));
+        assert_eq!(ans, 3);
     }
 }
