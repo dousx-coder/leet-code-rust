@@ -1,29 +1,61 @@
-use std::collections::BinaryHeap;
 ///
 ///
 /// 239. 滑动窗口最大值
 ///
 /// https://leetcode.cn/problems/sliding-window-maximum/description/
 ///
+///
+///
+use std::collections::VecDeque;
+
 struct Solution;
+///
+/// 单调队列
+///
+struct CusMonotonicVecDeque {
+    que: VecDeque<i32>,
+}
+impl CusMonotonicVecDeque {
+    pub fn new() -> CusMonotonicVecDeque {
+        CusMonotonicVecDeque {
+            que: VecDeque::new(),
+        }
+    }
+    pub fn pop(&mut self, value: i32) {
+        if !self.que.is_empty() && value == *self.que.front().unwrap() {
+            self.que.pop_front();
+        }
+    }
+
+    pub fn push(&mut self, value: i32) {
+        while !self.que.is_empty() && value > *self.que.back().unwrap() {
+            self.que.pop_back();
+        }
+        self.que.push_back(value);
+    }
+    /// 查询当前队列里的最大值
+    pub fn front(&mut self) -> i32 {
+        *self.que.front().unwrap()
+    }
+}
 impl Solution {
     pub fn max_sliding_window(nums: Vec<i32>, k: i32) -> Vec<i32> {
         // 最大堆 超时
         let k = k as usize;
-        let mut result = vec![];
-        let mut i = 0;
-        loop {
-            let end = i + k;
-            if end > nums.len() {
-                break;
-            }
-            let start = i;
-            let mut heap = BinaryHeap::new();
-            for i in start..end {
-                heap.push(nums[i]);
-            }
-            result.push(heap.pop().unwrap());
-            i += 1;
+        let mut result = Vec::new();
+        let mut que = CusMonotonicVecDeque::new();
+        for i in 0..k {
+            // 先将前k的元素放进队列
+            que.push(nums[i]);
+        }
+        result.push(que.front());
+        for i in k..nums.len() {
+            // 滑动窗口移除最前面元素
+            que.pop(nums[i - k]);
+            // 滑动窗口前加入最后面的元素
+            que.push(nums[i]);
+            // 记录对应的最大值
+            result.push(que.front());
         }
         result
     }
