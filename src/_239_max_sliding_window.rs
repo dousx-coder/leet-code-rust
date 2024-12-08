@@ -16,26 +16,29 @@ struct CusMonotonicVecDeque {
     que: VecDeque<i32>,
 }
 impl CusMonotonicVecDeque {
-    pub fn new() -> CusMonotonicVecDeque {
+    fn new() -> CusMonotonicVecDeque {
         CusMonotonicVecDeque {
             que: VecDeque::new(),
         }
     }
-    pub fn pop(&mut self, value: i32) {
-        if !self.que.is_empty() && value == *self.que.front().unwrap() {
-            self.que.pop_front();
+    fn pop(&mut self, value: i32) {
+        let deque = &mut self.que;
+        if !deque.is_empty() && value == *deque.front().unwrap() {
+            deque.pop_front();
         }
     }
 
-    pub fn push(&mut self, value: i32) {
-        while !self.que.is_empty() && value > *self.que.back().unwrap() {
-            self.que.pop_back();
+    fn push(&mut self, value: i32) {
+        let deque = &mut self.que;
+        while !deque.is_empty() && value > *deque.back().unwrap() {
+            deque.pop_back();
         }
-        self.que.push_back(value);
+        deque.push_back(value);
     }
     /// 查询当前队列里的最大值
-    pub fn front(&mut self) -> i32 {
-        *self.que.front().unwrap()
+    fn front(&self) -> i32 {
+        let deque = &self.que;
+        *deque.front().unwrap()
     }
 }
 impl Solution {
