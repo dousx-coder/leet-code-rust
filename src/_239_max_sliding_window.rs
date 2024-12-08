@@ -21,13 +21,18 @@ impl CusMonotonicVecDeque {
             que: VecDeque::new(),
         }
     }
+    ///[`value`] 上个区间的起始值
+    ///
+    /// 当前队首元素等于上个元素区间起始值则弹出队首值(避免影响下次查找最大值)
     fn pop(&mut self, value: i32) {
         let deque = &mut self.que;
         if !deque.is_empty() && value == *deque.front().unwrap() {
             deque.pop_front();
         }
     }
-
+    /// 尝试将元素添加到双向队列队尾
+    ///
+    /// 如果push的元素value大于入口元素的数值，那么就将队列入口的元素弹出，直到push元素的数值小于等于队列入口元素的数值为止
     fn push(&mut self, value: i32) {
         let deque = &mut self.que;
         while !deque.is_empty() && value > *deque.back().unwrap() {
@@ -35,7 +40,7 @@ impl CusMonotonicVecDeque {
         }
         deque.push_back(value);
     }
-    /// 查询当前队列里的最大值
+    /// 获取队首元素值
     fn front(&self) -> i32 {
         let deque = &self.que;
         *deque.front().unwrap()
@@ -53,11 +58,11 @@ impl Solution {
         }
         result.push(que.front());
         for i in k..nums.len() {
-            // 滑动窗口移除最前面元素
+            // 尝试移除双向队列队首元素(即上次滑动窗口的起始值)
             que.pop(nums[i - k]);
-            // 滑动窗口前加入最后面的元素
+            // 尝试将当前元素尝试插入队尾
             que.push(nums[i]);
-            // 记录对应的最大值
+            // 队首元素为 当前区间最大值
             result.push(que.front());
         }
         result
