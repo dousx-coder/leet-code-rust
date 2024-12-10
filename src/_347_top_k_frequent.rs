@@ -21,20 +21,17 @@ impl Solution {
                 }
             }
         }
-        let mut heap = BinaryHeap::new();
+        // 小顶堆 当长度超过k的时候弹出，最后将
         let k = k as usize;
-        for x in count_map.into_iter() {
-            let count = x.1;
-            heap.push(count);
-        }
-        let mut result = vec![];
-        while let Some(count) = heap.pop() {
-            result.push(count.num);
-            if result.len() >= k {
-                return result;
+        let capacity = k + 1;
+        let mut min_heap = BinaryHeap::with_capacity(capacity);
+        for nc in count_map.values().into_iter() {
+            min_heap.push(Reverse(nc));
+            if min_heap.len() > k {
+                min_heap.pop();
             }
         }
-        panic!("{}", format!("k:{k} > nums.len():{len}"));
+        min_heap.iter().map(|e| e.0.num).collect()
     }
 }
 #[derive(Debug)]
