@@ -31,7 +31,7 @@ mod _229_majority_element;
 mod _22_generate_parenthesis;
 mod _23_merge_k_lists;
 mod _242_is_anagram;
-mod _24_reverse_list;
+mod LCR_024_reverse_list;
 mod _24_swap_pairs;
 mod _26_remove_duplicates;
 mod _27_remove_element;
