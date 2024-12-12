@@ -31,9 +31,7 @@ mod tests {
     fn t1() {
         let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut result = Solution::reverse_list(head);
-        while let Some(node) = result {
-            print!("{:?} ", node.val);
-            result = node.next;
-        }
+        let result_vec = linked_list_to_vec(&result);
+        assert_eq!(vec![5, 4, 3, 2, 1], result_vec);
     }
 }
