@@ -56,7 +56,7 @@ impl Solution {
 }
 #[cfg(test)]
 mod tests {
-    
+
     use super::*;
     use crate::common::util::{linked_list_to_vec, vec_to_linked_list};
 
