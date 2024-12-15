@@ -62,3 +62,4 @@ mod _347_top_k_frequent;
 mod _75_sort_colors;
 mod _25_reverse_k_group;
 mod _1721_swap_nodes;
+mod _52_total_n_queens;
