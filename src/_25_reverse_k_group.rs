@@ -12,7 +12,7 @@ use std::rc::Rc;
 ///
 struct Solution;
 impl Solution {
-
+    /// 从前往后反转
     pub fn reverse_k_group(mut head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
         if k <= 1 || head.is_none() {
             return head;
@@ -48,8 +48,8 @@ impl Solution {
                     // 继续处理下一个节点
                     curr = next;
                     if i == 0 {
-                        //let tail = Some(&mut prev);
                         // 将第一个节点作为反转链表的尾部
+                        // 从前往后反转，没办法保存上次的tail，只能clone一份，最后拼接，这样链表被改了
                         tail = prev.clone();
                     }
                 }
