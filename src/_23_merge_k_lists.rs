@@ -63,21 +63,9 @@ mod test {
     use super::*;
     #[test]
     fn t1() {
-        let list1 = ListNode {
-            val: 4,
-            next: Some(Box::new(ListNode {
-                val: 3,
-                next: Some(Box::new(ListNode::new(7))),
-            })),
-        };
-        let list2 = ListNode {
-            val: 16,
-            next: Some(Box::new(ListNode {
-                val: 12,
-                next: Some(Box::new(ListNode::new(20))),
-            })),
-        };
-        let vec = vec![Some(Box::new(list1)), Some(Box::new(list2))];
+        let list1 = vec_to_linked_list(&vec![4, 3, 7], false);
+        let list2 = vec_to_linked_list(&vec![16, 12, 20], false);
+        let vec = vec![list1, list2];
         let result = Solution::merge_k_lists(vec);
         let mut actual = vec![];
         let mut expect = vec![3, 4, 7, 12, 16, 20];
