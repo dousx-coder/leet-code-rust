@@ -1,4 +1,4 @@
-use crate::common::list_node::ListNode;
+use crate::common::linked_list::*;
 use std::cmp::{max, min};
 use std::mem::replace;
 ///
@@ -56,9 +56,7 @@ impl Solution {
 }
 #[cfg(test)]
 mod tests {
-
     use super::*;
-    use crate::common::util::{linked_list_to_vec, vec_to_linked_list};
 
     #[test]
     fn t1() {

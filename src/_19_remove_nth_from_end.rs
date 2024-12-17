@@ -1,4 +1,4 @@
-use crate::common::list_node::ListNode;
+use crate::common::linked_list::ListNode;
 
 ///
 /// 18 remove_nth_from_end
@@ -33,8 +33,8 @@ impl Solution {
 
 #[cfg(test)]
 mod test {
+    use crate::common::linked_list::vec_to_linked_list;
     use super::*;
-    use crate::common::util::vec_to_linked_list;
 
     #[test]
     fn t1() {

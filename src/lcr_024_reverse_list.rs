@@ -1,5 +1,4 @@
-use crate::common::list_node::ListNode;
-use crate::common::util::*;
+use crate::common::linked_list::*;
 ///
 /// https://leetcode.cn/problems/UHnkqh/description/
 ///

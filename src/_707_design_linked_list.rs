@@ -1,4 +1,4 @@
-use crate::common::list_node::ListNode;
+use crate::common::linked_list::ListNode;
 
 #[derive(PartialEq, Eq, Clone, Debug)]
 struct MyLinkedList {

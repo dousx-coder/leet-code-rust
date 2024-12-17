@@ -1,4 +1,4 @@
-use crate::common::tree_node::TreeNode;
+use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::cmp::max;
 use std::rc::Rc;

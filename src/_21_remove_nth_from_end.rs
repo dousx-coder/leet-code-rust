@@ -1,6 +1,4 @@
-use crate::common::list_node::ListNode;
-use crate::common::util::linked_list_to_vec;
-use crate::common::util::vec_to_linked_list;
+use crate::common::linked_list::*;
 
 ///
 /// https://leetcode.cn/problems/SLwz0R/

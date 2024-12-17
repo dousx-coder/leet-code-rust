@@ -2,8 +2,7 @@
 
 struct Solution {}
 
-use crate::common::list_node::ListNode;
-use crate::common::util::*;
+use crate::common::linked_list::*;
 use std::cmp::Ordering;
 use std::collections::BinaryHeap;
 

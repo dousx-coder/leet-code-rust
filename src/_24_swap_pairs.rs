@@ -1,4 +1,4 @@
-use crate::common::list_node::ListNode;
+use crate::common::linked_list::ListNode;
 ///
 /// `24 两两交换其中相邻的节点`
 ///
@@ -34,8 +34,9 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
+    use crate::common::linked_list::vec_to_linked_list;
     use super::*;
-    use crate::common::util::vec_to_linked_list;
+
 
     #[test]
     fn t1() {

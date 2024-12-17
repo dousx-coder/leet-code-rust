@@ -4,7 +4,7 @@
 struct Solution;
 use std::cell::RefCell;
 use std::rc::Rc;
-use crate::common::tree_node::TreeNode;
+use crate::common::binary_tree::TreeNode;
 
 impl Solution {
     pub fn build_tree(inorder: Vec<i32>, postorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
