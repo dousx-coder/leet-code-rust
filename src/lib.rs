@@ -63,3 +63,4 @@ mod _75_sort_colors;
 mod _25_reverse_k_group;
 mod _1721_swap_nodes;
 mod _52_total_n_queens;
+mod lcr_175_calculate_depth;
