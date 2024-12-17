@@ -67,13 +67,8 @@ mod test {
         let list2 = vec_to_linked_list(&vec![16, 12, 20], false);
         let vec = vec![list1, list2];
         let result = Solution::merge_k_lists(vec);
-        let mut actual = vec![];
+        let mut actual = linked_list_to_vec(&result);
         let mut expect = vec![3, 4, 7, 12, 16, 20];
-        let mut current = &result;
-        while let Some(node) = current {
-            actual.push(node.val);
-            current = &node.next;
-        }
         assert_eq!(actual, expect)
     }
 
