@@ -1,26 +1,11 @@
 ///
 /// https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/?envType=problem-list-v2&envId=hash-table
 // Definition for a binary tree node.
-#[derive(Debug, PartialEq, Eq)]
-pub struct TreeNode {
-    pub val: i32,
-    pub left: Option<Rc<RefCell<TreeNode>>>,
-    pub right: Option<Rc<RefCell<TreeNode>>>,
-}
-
-impl TreeNode {
-    #[inline]
-    pub fn new(val: i32) -> Self {
-        TreeNode {
-            val,
-            left: None,
-            right: None,
-        }
-    }
-}
 struct Solution;
 use std::cell::RefCell;
 use std::rc::Rc;
+use crate::common::tree_node::TreeNode;
+
 impl Solution {
     pub fn build_tree(inorder: Vec<i32>, postorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
         let n = inorder.len();
