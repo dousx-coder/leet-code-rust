@@ -33,6 +33,7 @@ impl TreeNode {
     ///
     /// # 示例
     /// ```
+    ///  use leet_code_rust::common::binary_tree::TreeNode;
     ///  let preorder = vec![3, 9, 20, 15, 7];
     ///  let inorder = vec![9, 3, 15, 20, 7];
     ///  let root = TreeNode::build_binary_tree(&preorder, &inorder);
