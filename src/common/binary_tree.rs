@@ -192,8 +192,14 @@ impl TreeNode {
 #[cfg(test)]
 mod tests {
     use super::*;
+
     #[test]
     fn t1() {
+        //   3
+        //  / \
+        // 9  20
+        //    / \
+        //   15  7
         let preorder = vec![3, 9, 20, 15, 7];
         let inorder = vec![9, 3, 15, 20, 7];
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
@@ -204,6 +210,11 @@ mod tests {
 
     #[test]
     fn t2() {
+        //   3
+        //  / \
+        // 9  20
+        //    / \
+        //   15  7
         let preorder = vec![3, 9, 20, 15, 7];
         let inorder = vec![9, 3, 15, 20, 7];
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
