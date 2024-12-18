@@ -17,9 +17,7 @@ impl TreeNode {
             right: None,
         }
     }
-}
 
-impl TreeNode {
     ///
     /// 根据前缀和中缀构建二叉树
     ///
@@ -63,7 +61,7 @@ impl TreeNode {
             return None;
         }
         // 从当前需要处理的 前序数组从获取，根结点值=> 前序数组左边界就是根结点值
-        let mut node = TreeNode::new(preorder[pre_left]);
+        let mut node = Self::new(preorder[pre_left]);
 
         // 从中序数组中，从左边界向右找，当前根节点在中序数组中的下标
         let mut in_root_idx = in_left;
