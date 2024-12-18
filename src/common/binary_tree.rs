@@ -93,4 +93,88 @@ impl TreeNode {
         };
         Some(Rc::new(RefCell::new(node)))
     }
+
+    /// 前序遍历二叉树(递归)
+    pub fn preorder_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        match root {
+            None => vec![],
+            Some(root) => {
+                let mut vec = vec![root.borrow().val];
+                let left = Self::preorder_recursive(&root.borrow().left);
+                if !left.is_empty() {
+                    for x in left {
+                        vec.push(x);
+                    }
+                }
+                let right = Self::preorder_recursive(&root.borrow().right);
+                if !right.is_empty() {
+                    for x in right {
+                        vec.push(x);
+                    }
+                }
+                vec
+            }
+        }
+    }
+    /// 中序遍历二叉树(递归)
+    pub fn inorder_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        match root {
+            None => vec![],
+            Some(root) => {
+                let mut vec = vec![];
+                let left = Self::inorder_recursive(&root.borrow().left);
+                if !left.is_empty() {
+                    for x in left {
+                        vec.push(x);
+                    }
+                }
+                vec.push(root.borrow().val);
+                let right = Self::inorder_recursive(&root.borrow().right);
+                if !right.is_empty() {
+                    for x in right {
+                        vec.push(x);
+                    }
+                }
+                vec
+            }
+        }
+    }
+
+    /// 后序遍历二叉树(递归)
+    pub fn postorder_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        match root {
+            None => vec![],
+            Some(root) => {
+                let mut vec = vec![];
+                let left = Self::postorder_recursive(&root.borrow().left);
+                if !left.is_empty() {
+                    for x in left {
+                        vec.push(x);
+                    }
+                }
+                let right = Self::postorder_recursive(&root.borrow().right);
+                if !right.is_empty() {
+                    for x in right {
+                        vec.push(x);
+                    }
+                }
+                vec.push(root.borrow().val);
+                vec
+            }
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn t1() {
+        let preorder = vec![3, 9, 20, 15, 7];
+        let inorder = vec![9, 3, 15, 20, 7];
+        let root = TreeNode::build_binary_tree(&preorder, &inorder);
+        assert_eq!(TreeNode::preorder_recursive(&root), preorder);
+        assert_eq!(TreeNode::inorder_recursive(&root), inorder);
+        assert_eq!(TreeNode::postorder_recursive(&root), vec![9, 15, 7, 20, 3]);
+    }
 }
