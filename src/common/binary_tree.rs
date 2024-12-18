@@ -172,28 +172,30 @@ impl TreeNode {
     ///  层次遍历(迭代)
     pub fn hierarchical_traversal(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut hierarchical_traversal = vec![];
-        let mut deque_child = VecDeque::new();
-        let mut deque = VecDeque::new();
-        deque.push_back(root.clone());
+        // 下一层
+        let mut next_hierarchical = VecDeque::new();
+        // 当前层
+        let mut curr_hierarchical = VecDeque::new();
+        curr_hierarchical.push_back(root.clone());
         loop {
-            match deque.pop_front() {
+            match curr_hierarchical.pop_front() {
                 Some(node) => match node {
                     Some(rc) => {
                         hierarchical_traversal.push(rc.borrow().val);
-                        deque_child.push_back(rc.borrow().left.clone());
-                        deque_child.push_back(rc.borrow().right.clone());
+                        next_hierarchical.push_back(rc.borrow().left.clone());
+                        next_hierarchical.push_back(rc.borrow().right.clone());
                     }
                     None => {}
                 },
                 None => {}
             }
-            if deque.is_empty() && !deque_child.is_empty() {
-                while let Some(rc) = deque_child.pop_front() {
-                    deque.push_back(rc);
+            if curr_hierarchical.is_empty() && !next_hierarchical.is_empty() {
+                while let Some(rc) = next_hierarchical.pop_front() {
+                    curr_hierarchical.push_back(rc);
                 }
                 continue;
             }
-            if deque.is_empty() && deque_child.is_empty() {
+            if curr_hierarchical.is_empty() && next_hierarchical.is_empty() {
                 break;
             }
         }
