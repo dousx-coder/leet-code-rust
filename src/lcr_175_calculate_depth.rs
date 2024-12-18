@@ -10,14 +10,16 @@ use std::rc::Rc;
 struct Solution;
 impl Solution {
     pub fn calculate_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-        if let Some(root_rc) = root {
-            let left = root_rc.borrow_mut().left.take();
-            let right = root_rc.borrow_mut().right.take();
-            let left = Self::calculate_depth(left);
-            let right = Self::calculate_depth(right);
-            return max(left, right) + 1;
+        match root {
+            Some(rc) => {
+                let left = rc.borrow_mut().left.take();
+                let right = rc.borrow_mut().right.take();
+                let left = Self::calculate_depth(left);
+                let right = Self::calculate_depth(right);
+                max(left, right) + 1
+            }
+            None => 0,
         }
-        0
     }
 }
 
