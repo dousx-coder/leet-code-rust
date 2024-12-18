@@ -34,9 +34,8 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-    use crate::common::linked_list::vec_to_linked_list;
     use super::*;
-
+    use crate::common::linked_list::vec_to_linked_list;
 
     #[test]
     fn t1() {

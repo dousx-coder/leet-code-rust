@@ -29,8 +29,8 @@ impl Solution {
 
             while low <= high {
                 let mid = (low + high) / 2;
-                let broken = Solution::dp(k - 1, mid - 1, memo);
-                let not_broken = Solution::dp(k, n - mid, memo);
+                let broken = Self::dp(k - 1, mid - 1, memo);
+                let not_broken = Self::dp(k, n - mid, memo);
 
                 if broken > not_broken {
                     high = mid - 1;

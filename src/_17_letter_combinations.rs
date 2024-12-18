@@ -23,7 +23,7 @@ impl Solution {
         map.insert('8', vec!["t", "u", "v"]);
         map.insert('9', vec!["w", "x", "y", "z"]);
         let mut r: Vec<String> = vec![];
-        Solution::append(0, &digits, &map, "", &mut r);
+        Self::append(0, &digits, &map, "", &mut r);
         r
     }
     fn append(
@@ -45,7 +45,7 @@ impl Solution {
                 ref_str_vec.iter().for_each(|&it| {
                     let s = pre.to_string() + it;
                     let sp = &s;
-                    Solution::append(index + 1, digits, map, sp, result)
+                    Self::append(index + 1, digits, map, sp, result)
                 });
             }
             None => {}

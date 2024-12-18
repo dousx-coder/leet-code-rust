@@ -13,7 +13,7 @@ impl Solution {
         }
         let mut result: Vec<Vec<String>> = Vec::new();
         let mut chessboard: Vec<Vec<i32>> = vec![vec![0; n as usize]; n as usize];
-        Solution::recursion(n, &mut result, 0, &mut chessboard);
+        Self::recursion(n, &mut result, 0, &mut chessboard);
         result
     }
 
@@ -37,9 +37,9 @@ impl Solution {
         }
 
         for col in 0..queen_num {
-            if Solution::is_safe(chessboard, row, col, queen_num) {
+            if Self::is_safe(chessboard, row, col, queen_num) {
                 chessboard[row as usize][col as usize] = 1;
-                Solution::recursion(queen_num, result, row + 1, chessboard);
+                Self::recursion(queen_num, result, row + 1, chessboard);
                 chessboard[row as usize][col as usize] = 0;
             }
         }

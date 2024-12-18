@@ -7,7 +7,7 @@ impl Solution {
         let mut set = HashSet::new();
         let mut ins = n;
         loop {
-            let v = Solution::split_bits(ins);
+            let v = Self::split_bits(ins);
             if v == 1 {
                 return true;
             }

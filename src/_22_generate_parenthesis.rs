@@ -14,12 +14,12 @@ impl Solution {
         }
         if right < n && right + 1 <= left {
             let s = &format!("{append})");
-            Solution::dfs(n, left, right + 1, s, result);
+            Self::dfs(n, left, right + 1, s, result);
         }
     }
     pub fn generate_parenthesis(n: i32) -> Vec<String> {
         let mut result = Vec::new();
-        Solution::dfs(n, 0, 0, "", &mut result);
+        Self::dfs(n, 0, 0, "", &mut result);
         result
     }
 }

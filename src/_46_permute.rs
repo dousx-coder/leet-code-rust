@@ -10,7 +10,7 @@ impl Solution {
     pub fn permute(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut result: Vec<Vec<i32>> = Vec::new();
         let mut nc = nums.clone();
-        Solution::recursion(&mut result, &mut nc, 0, nums.len() - 1);
+        Self::recursion(&mut result, &mut nc, 0, nums.len() - 1);
         result
     }
     fn recursion(result: &mut Vec<Vec<i32>>, nums: &mut Vec<i32>, start: usize, end: usize) {
@@ -20,7 +20,7 @@ impl Solution {
         }
         for i in start..=end {
             nums.swap(start, i);
-            Solution::recursion(result, nums, start + 1, end);
+            Self::recursion(result, nums, start + 1, end);
             nums.swap(start, i);
         }
     }

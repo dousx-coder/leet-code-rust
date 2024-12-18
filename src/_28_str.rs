@@ -54,7 +54,7 @@ impl Solution {
         let pattern = needle.as_bytes().to_vec();
         let m = haystack.len();
         let n = needle.len();
-        let prefix_table = Solution::prefix_table(&pattern);
+        let prefix_table = Self::prefix_table(&pattern);
         let mut i = 0;
         let mut j = 0;
         // 说明(KMP核心思想是在遇到不匹配的字符串时,最大化的利用已经匹配过的字符串)

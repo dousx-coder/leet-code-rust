@@ -13,7 +13,7 @@ impl Solution {
         candidates_copy.sort();
         let mut list: Vec<i32> = Vec::new();
         let mut result_set: BTreeSet<Vec<i32>> = BTreeSet::new();
-        Solution::backtracking(&candidates_copy, target, &mut list, &mut result_set, target);
+        Self::backtracking(&candidates_copy, target, &mut list, &mut result_set, target);
         result_set.into_iter().collect()
     }
     fn backtracking(
@@ -39,13 +39,8 @@ impl Solution {
                 if sub >= 0 {
                     current_list.push(ca.clone());
                     let mut copy = current_list.clone();
-                    if !Solution::backtracking(
-                        candidates,
-                        sub,
-                        &mut copy,
-                        mutable_set,
-                        original_target,
-                    ) {
+                    if !Self::backtracking(candidates, sub, &mut copy, mutable_set, original_target)
+                    {
                         current_list.pop();
                     }
                 }

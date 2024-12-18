@@ -31,10 +31,10 @@ impl Solution {
         l2: Option<Box<ListNode>>,
     ) -> Option<Box<ListNode>> {
         if l1.is_none() {
-            return Solution::special_dispose(l2);
+            return Self::special_dispose(l2);
         }
         if l2.is_none() {
-            return Solution::special_dispose(l1);
+            return Self::special_dispose(l1);
         }
         let mut l1_unwrap = l1?;
         let l2_unwrap = l2?;
@@ -44,7 +44,7 @@ impl Solution {
         if sum < 10 {
             //  提前判断下 如果不提前判断 leetcode上 内存占用会高一点
             let mut new_node = ListNode::new(sum);
-            new_node.next = Solution::add_two_numbers(l1_unwrap.next, l2_unwrap.next);
+            new_node.next = Self::add_two_numbers(l1_unwrap.next, l2_unwrap.next);
             return Some(Box::new(new_node));
         };
         let carry = sum / 10;
@@ -56,7 +56,7 @@ impl Solution {
             l1_unwrap.next.as_mut()?.val += carry;
         };
         let mut new_node = ListNode::new(val);
-        new_node.next = Solution::add_two_numbers(l1_unwrap.next, l2_unwrap.next);
+        new_node.next = Self::add_two_numbers(l1_unwrap.next, l2_unwrap.next);
         Some(Box::new(new_node))
     }
 }

@@ -3,14 +3,14 @@
 // Definition for a binary tree node.
 
 struct Solution;
+use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
-use crate::common::binary_tree::TreeNode;
 
 impl Solution {
     pub fn build_tree(preorder: Vec<i32>, inorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
         let n = preorder.len();
-        Solution::build(&preorder, &inorder, 0, n - 1, 0, n - 1)
+        Self::build(&preorder, &inorder, 0, n - 1, 0, n - 1)
     }
     fn build(
         preorder: &Vec<i32>,
@@ -33,7 +33,7 @@ impl Solution {
         }
         // 根据根结点在中序数组中的下标 和 当前中序数组的左边界 => 得到 左子树长度
         let mut sub_left_len = in_root_idx - in_left;
-        node.right = Solution::build(
+        node.right = Self::build(
             preorder,
             inorder,
             pre_left + sub_left_len + 1,
@@ -43,7 +43,7 @@ impl Solution {
         );
         node.left = if in_root_idx >= 1 {
             // in_root_idx - 1 usize 可能溢出(负数)
-            Solution::build(
+            Self::build(
                 preorder,
                 inorder,
                 pre_left + 1,

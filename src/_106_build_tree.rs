@@ -2,14 +2,14 @@
 /// https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/?envType=problem-list-v2&envId=hash-table
 // Definition for a binary tree node.
 struct Solution;
+use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
-use crate::common::binary_tree::TreeNode;
 
 impl Solution {
     pub fn build_tree(inorder: Vec<i32>, postorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
         let n = inorder.len();
-        Solution::build(&inorder, &postorder, 0, n, 0, n)
+        Self::build(&inorder, &postorder, 0, n, 0, n)
     }
     ///
     /// 第一步：如果数组大小为零的话，说明是空节点了。
@@ -66,7 +66,7 @@ impl Solution {
         let right_post_begin = post_begin + (delimiter_index - in_begin);
         // 排除最后一个元素，已经作为节点了
         let right_post_end = post_end - 1;
-        root_node.left = Solution::build(
+        root_node.left = Self::build(
             inorder,
             postorder,
             left_post_begin,
@@ -74,7 +74,7 @@ impl Solution {
             left_in_begin,
             left_in_end,
         );
-        root_node.right = Solution::build(
+        root_node.right = Self::build(
             inorder,
             postorder,
             right_post_begin,

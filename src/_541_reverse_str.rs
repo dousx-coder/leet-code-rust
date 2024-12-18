@@ -17,7 +17,7 @@ impl Solution {
             if i + _2k <= vec.len() {
                 let right = i + k;
                 let mut x = &mut vec[i..right];
-                Solution::swap(&mut x);
+                Self::swap(&mut x);
                 continue;
             }
             if i + k > vec.len() {
@@ -25,14 +25,14 @@ impl Solution {
                 let left = i;
                 let right = s.len();
                 let mut x = &mut vec[left..];
-                Solution::swap(&mut x);
+                Self::swap(&mut x);
                 continue;
             }
             // 剩余部分超过K 不足2K
             let left = i;
             let right = i + k;
             let mut x = &mut vec[left..right];
-            Solution::swap(&mut x);
+            Self::swap(&mut x);
             break;
         }
         String::from_iter(vec.iter())

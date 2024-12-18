@@ -49,7 +49,7 @@ impl Solution {
     }
 
     pub fn repeated_substring_pattern(s: String) -> bool {
-        Solution::splice_solution(s)
+        Self::splice_solution(s)
     }
 }
 #[cfg(test)]

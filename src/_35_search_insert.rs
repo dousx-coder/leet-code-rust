@@ -7,7 +7,7 @@ struct Solution {}
 
 impl Solution {
     pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
-        Solution::dichotomy(0, nums.len() - 1, &nums, target)
+        Self::dichotomy(0, nums.len() - 1, &nums, target)
     }
     fn dichotomy(left: usize, right: usize, nums: &Vec<i32>, target: i32) -> i32 {
         if left == right {
@@ -19,9 +19,9 @@ impl Solution {
         if middle_value == target {
             middle_index as i32
         } else if middle_value > target {
-            Solution::dichotomy(left, middle_index, nums, target)
+            Self::dichotomy(left, middle_index, nums, target)
         } else {
-            Solution::dichotomy(middle_index + 1, right, nums, target)
+            Self::dichotomy(middle_index + 1, right, nums, target)
         }
     }
 }
