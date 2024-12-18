@@ -33,27 +33,24 @@ impl Solution {
 
 #[cfg(test)]
 mod test {
-    use crate::common::linked_list::vec_to_linked_list;
     use super::*;
+    use crate::common::linked_list::{linked_list_to_vec, vec_to_linked_list};
 
     #[test]
     fn t1() {
-        let mut head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
-        println!("before");
-        let mut hr = head.as_ref();
-        while let Some(node) = hr {
-            print!("{} ", node.val);
-            hr = node.next.as_ref();
-        }
-        println!("");
+        let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
+        let before = linked_list_to_vec(&head);
+        let after = Solution::remove_nth_from_end(head, 2);
+        let after = linked_list_to_vec(&after);
+        assert_eq!(after, vec![1, 2, 3, 5]);
+    }
 
-        let result = Solution::remove_nth_from_end(head, 2);
-        // Print the result
-        println!("result");
-        let mut node = &result;
-        while let Some(n) = node {
-            print!("{} ", n.val);
-            node = &n.next;
-        }
+    #[test]
+    fn t2() {
+        let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
+        let before = linked_list_to_vec(&head);
+        let after = Solution::remove_nth_from_end(head, 1);
+        let after = linked_list_to_vec(&after);
+        assert_eq!(after, vec![1, 2, 3, 4]);
     }
 }
