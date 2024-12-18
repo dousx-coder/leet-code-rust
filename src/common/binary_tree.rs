@@ -32,14 +32,14 @@ impl TreeNode {
     ///
     /// # 示例
     /// ```
-    ///  //   3
-    ///  //  / \
-    ///  // 9  20
+    ///  //     3
     ///  //    / \
-    ///  //   15  7
+    ///  //   9   20
+    ///  //  /    / \
+    ///  // 6    15  7
     ///  use leet_code_rust::common::binary_tree::TreeNode;
-    ///  let preorder = vec![3, 9, 20, 15, 7];
-    ///  let inorder = vec![9, 3, 15, 20, 7];
+    ///  let preorder = vec![3, 9, 6, 20, 15, 7];
+    ///  let inorder = vec![6, 9, 3, 15, 20, 7];
     ///  let root = TreeNode::build_binary_tree(&preorder, &inorder);
     /// ```
     pub fn build_binary_tree(
@@ -233,15 +233,18 @@ mod tests {
 
     #[test]
     fn t1() {
-        let preorder = vec![3, 9, 20, 15, 7];
-        let inorder = vec![9, 3, 15, 20, 7];
+        let preorder = vec![3, 9, 6, 20, 15, 7];
+        let inorder = vec![6, 9, 3, 15, 20, 7];
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
         assert_eq!(TreeNode::preorder_recursive(&root), preorder);
         assert_eq!(TreeNode::inorder_recursive(&root), inorder);
-        assert_eq!(TreeNode::postorder_recursive(&root), vec![9, 15, 7, 20, 3]);
+        assert_eq!(
+            TreeNode::postorder_recursive(&root),
+            vec![6, 9, 15, 7, 20, 3]
+        );
         assert_eq!(
             TreeNode::hierarchical_traversal(&root),
-            vec![3, 9, 20, 15, 7]
+            vec![3, 9, 20, 6, 15, 7]
         );
     }
 
