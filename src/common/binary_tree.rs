@@ -173,6 +173,9 @@ impl TreeNode {
     /// 前序遍历二叉树(非递归)
     pub fn preorder(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut preorder = vec![];
+        // 非递归和递归思路一样都是利用栈实现
+        // rust语言提供的递归是利用栈实现的，直接使用递归函数，节省了开发者的编码且易于理解。
+        // 非递归是用队列自定义栈，模拟rust语言的递归遍历过程
         let mut deque = VecDeque::new();
         deque.push_back(root);
         while !deque.is_empty() {
