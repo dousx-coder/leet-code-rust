@@ -99,20 +99,20 @@ impl TreeNode {
         match root {
             None => vec![],
             Some(root) => {
-                let mut vec = vec![root.borrow().val];
+                let mut preorder = vec![root.borrow().val];
                 let left = Self::preorder_recursive(&root.borrow().left);
                 if !left.is_empty() {
                     for x in left {
-                        vec.push(x);
+                        preorder.push(x);
                     }
                 }
                 let right = Self::preorder_recursive(&root.borrow().right);
                 if !right.is_empty() {
                     for x in right {
-                        vec.push(x);
+                        preorder.push(x);
                     }
                 }
-                vec
+                preorder
             }
         }
     }
@@ -121,21 +121,21 @@ impl TreeNode {
         match root {
             None => vec![],
             Some(root) => {
-                let mut vec = vec![];
+                let mut inorder = vec![];
                 let left = Self::inorder_recursive(&root.borrow().left);
                 if !left.is_empty() {
                     for x in left {
-                        vec.push(x);
+                        inorder.push(x);
                     }
                 }
-                vec.push(root.borrow().val);
+                inorder.push(root.borrow().val);
                 let right = Self::inorder_recursive(&root.borrow().right);
                 if !right.is_empty() {
                     for x in right {
-                        vec.push(x);
+                        inorder.push(x);
                     }
                 }
-                vec
+                inorder
             }
         }
     }
@@ -145,21 +145,21 @@ impl TreeNode {
         match root {
             None => vec![],
             Some(root) => {
-                let mut vec = vec![];
+                let mut postorder = vec![];
                 let left = Self::postorder_recursive(&root.borrow().left);
                 if !left.is_empty() {
                     for x in left {
-                        vec.push(x);
+                        postorder.push(x);
                     }
                 }
                 let right = Self::postorder_recursive(&root.borrow().right);
                 if !right.is_empty() {
                     for x in right {
-                        vec.push(x);
+                        postorder.push(x);
                     }
                 }
-                vec.push(root.borrow().val);
-                vec
+                postorder.push(root.borrow().val);
+                postorder
             }
         }
     }
