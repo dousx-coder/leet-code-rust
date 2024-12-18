@@ -1,4 +1,5 @@
 use std::cell::RefCell;
+use std::collections::VecDeque;
 use std::rc::Rc;
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
@@ -163,6 +164,29 @@ impl TreeNode {
             }
         }
     }
+
+    /// 前序遍历二叉树(非递归)
+    pub fn preorder(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        let mut preorder = vec![];
+        let mut deque = VecDeque::new();
+        deque.push_back(root);
+        while !deque.is_empty() {
+            match deque.pop_back() {
+                None => {}
+                Some(node) => match node {
+                    None => {}
+                    Some(rc) => {
+                        preorder.push(rc.borrow().val);
+                        let right = rc.borrow().right.clone();
+                        deque.push_back(right);
+                        let left = rc.borrow().left.clone();
+                        deque.push_back(left);
+                    }
+                },
+            }
+        }
+        preorder
+    }
 }
 
 #[cfg(test)]
@@ -176,5 +200,13 @@ mod tests {
         assert_eq!(TreeNode::preorder_recursive(&root), preorder);
         assert_eq!(TreeNode::inorder_recursive(&root), inorder);
         assert_eq!(TreeNode::postorder_recursive(&root), vec![9, 15, 7, 20, 3]);
+    }
+
+    #[test]
+    fn t2() {
+        let preorder = vec![3, 9, 20, 15, 7];
+        let inorder = vec![9, 3, 15, 20, 7];
+        let root = TreeNode::build_binary_tree(&preorder, &inorder);
+        assert_eq!(TreeNode::preorder(root.clone()), preorder);
     }
 }
