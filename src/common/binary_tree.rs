@@ -169,6 +169,36 @@ impl TreeNode {
             }
         }
     }
+    ///  层次遍历(迭代)
+    pub fn hierarchical_traversal(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        let mut hierarchical_traversal = vec![];
+        let mut deque_child = VecDeque::new();
+        let mut deque = VecDeque::new();
+        deque.push_back(root.clone());
+        loop {
+            match deque.pop_front() {
+                Some(node) => match node {
+                    Some(rc) => {
+                        hierarchical_traversal.push(rc.borrow().val);
+                        deque_child.push_back(rc.borrow().left.clone());
+                        deque_child.push_back(rc.borrow().right.clone());
+                    }
+                    None => {}
+                },
+                None => {}
+            }
+            if deque.is_empty() && !deque_child.is_empty() {
+                while let Some(rc) = deque_child.pop_front() {
+                    deque.push_back(rc);
+                }
+                continue;
+            }
+            if deque.is_empty() && deque_child.is_empty() {
+                break;
+            }
+        }
+        hierarchical_traversal
+    }
 
     /// 前序遍历二叉树(非递归) 迭代
     pub fn preorder_iter(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
@@ -209,6 +239,10 @@ mod tests {
         assert_eq!(TreeNode::preorder_recursive(&root), preorder);
         assert_eq!(TreeNode::inorder_recursive(&root), inorder);
         assert_eq!(TreeNode::postorder_recursive(&root), vec![9, 15, 7, 20, 3]);
+        assert_eq!(
+            TreeNode::hierarchical_traversal(&root),
+            vec![3, 9, 20, 15, 7]
+        );
     }
 
     #[test]
