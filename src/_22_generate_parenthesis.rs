@@ -30,13 +30,11 @@ mod tests {
     #[test]
     fn t1() {
         let result = Solution::generate_parenthesis(1);
-        println!("{:?}", result);
         assert_eq!(result, vec!["()".to_string()]);
     }
     #[test]
     fn t2() {
         let result = Solution::generate_parenthesis(3);
-        println!("{:?}", result);
         assert_eq!(
             result,
             vec![

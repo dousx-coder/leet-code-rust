@@ -37,10 +37,22 @@ impl Solution {
 
 #[cfg(test)]
 mod test {
+    use maplit::hashset;
     use super::*;
     #[test]
     fn t1() {
         let result = Solution::majority_element(vec![3, 2, 3]);
-        println!("{:?}", result)
+        assert_eq!(result, vec![3]);
+    }
+    #[test]
+    fn t2() {
+        let result = Solution::majority_element(vec![1]);
+        assert_eq!(result, vec![1]);
+    }
+    #[test]
+    fn t3() {
+        let ans = Solution::majority_element(vec![1, 2]);
+        let ans: HashSet<_> = ans.into_iter().collect();
+        assert_eq!(ans, hashset! {1, 2});
     }
 }

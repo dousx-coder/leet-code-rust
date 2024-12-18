@@ -62,7 +62,6 @@ mod tests {
         // 8 9 4
         // 7 6 5
         let r = Solution::generate_matrix(3);
-        println!("{:?}", r);
         assert_eq!(r, vec![vec![1, 2, 3], vec![8, 9, 4], vec![7, 6, 5]]);
     }
 
@@ -73,7 +72,6 @@ mod tests {
         // B J F 6
         // A 9 8 7
         let r = Solution::generate_matrix(4);
-        println!("{:?}", r);
         assert_eq!(
             r,
             vec![
@@ -87,13 +85,11 @@ mod tests {
     #[test]
     fn t3() {
         let r = Solution::generate_matrix(2);
-        println!("{:?}", r);
         assert_eq!(r, vec![vec![1, 2], vec![4, 3]]);
     }
     #[test]
     fn t4() {
         let r = Solution::generate_matrix(1);
-        println!("{:?}", r);
         assert_eq!(r, vec![vec![1]]);
     }
 }

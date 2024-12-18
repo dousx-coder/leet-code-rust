@@ -37,7 +37,6 @@ mod test {
         let expect = vec![3, 99, -1, -100];
         let mut nums = vec![-1, -100, 3, 99];
         Solution::rotate(&mut nums, 2);
-        println!("{:?}", nums);
         assert_eq!(expect, nums);
     }
 }

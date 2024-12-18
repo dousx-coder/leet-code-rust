@@ -88,7 +88,6 @@ mod tests {
             println!();
         }
         let len = vr.len();
-        println!("{}", len);
         assert_eq!(len, 92);
     }
 }

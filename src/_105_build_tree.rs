@@ -88,7 +88,6 @@ mod tests {
         let preorder = vec![3, 9, 20, 15, 7];
         let inorder = vec![9, 3, 15, 20, 7];
         let tree_root = Solution::build_tree(preorder.clone(), inorder.clone());
-        // println!("{:?}", option);
         {
             let mut pre_result = vec![];
             tree_to_vec(1, &mut pre_result, &tree_root);

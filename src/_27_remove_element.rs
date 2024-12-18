@@ -40,7 +40,6 @@ mod test {
         let mut p = vec![3, 2, 2, 3];
         let r = Solution::remove_element(&mut p, 3);
         assert_eq!(2, r);
-        println!("{:?}", p);
         assert_eq!(vec![2, 2], &p[0..2])
     }
     #[test]

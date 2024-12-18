@@ -80,7 +80,6 @@ mod tests {
     fn t1() {
         let vr = Solution::solve_n_queens(8);
         let len = vr.len();
-        println!("{}", len);
         assert_eq!(len, 92);
     }
 }
