@@ -170,8 +170,8 @@ impl TreeNode {
         }
     }
 
-    /// 前序遍历二叉树(非递归)
-    pub fn preorder(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    /// 前序遍历二叉树(非递归) 迭代
+    pub fn preorder_iter(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut preorder = vec![];
         // 非递归和递归思路一样都是利用栈实现
         // rust语言提供的递归是利用栈实现的，直接使用递归函数，节省了开发者的编码且易于理解。
@@ -216,6 +216,6 @@ mod tests {
         let preorder = vec![3, 9, 20, 15, 7];
         let inorder = vec![9, 3, 15, 20, 7];
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
-        assert_eq!(TreeNode::preorder(root.clone()), preorder);
+        assert_eq!(TreeNode::preorder_iter(root.clone()), preorder);
     }
 }
