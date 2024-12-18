@@ -180,9 +180,7 @@ impl TreeNode {
         deque.push_back(root);
         while !deque.is_empty() {
             match deque.pop_back() {
-                None => {}
                 Some(node) => match node {
-                    None => {}
                     Some(rc) => {
                         preorder.push(rc.borrow().val);
                         let right = rc.borrow().right.clone();
@@ -190,7 +188,9 @@ impl TreeNode {
                         let left = rc.borrow().left.clone();
                         deque.push_back(left);
                     }
+                    None => {}
                 },
+                None => {}
             }
         }
         preorder
