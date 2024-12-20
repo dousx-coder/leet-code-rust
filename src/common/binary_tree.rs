@@ -229,6 +229,32 @@ impl TreeNode {
         }
         preorder
     }
+
+    /// 后序遍历二叉树(非递归) 迭代
+    pub fn postorder_traversal_iter(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        let mut result = vec![];
+        let mut deque = VecDeque::new();
+        deque.push_back(root);
+        while !deque.is_empty() {
+            match deque.pop_back() {
+                Some(node) => match node {
+                    Some(rc) => {
+                        result.push(rc.borrow().val);
+                        // 前序遍历是根左右，后序遍历是左右根
+                        // 先将left入栈(和先序入栈顺序不一样),最终得到的数组再反转
+                        let left = rc.borrow().left.clone();
+                        deque.push_back(left);
+                        let right = rc.borrow().right.clone();
+                        deque.push_back(right);
+                    }
+                    None => {}
+                },
+                None => {}
+            }
+        }
+        result.reverse();
+        result
+    }
 }
 
 #[cfg(test)]
@@ -258,5 +284,16 @@ mod tests {
         let inorder = vec![9, 3, 15, 20, 7];
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
         assert_eq!(TreeNode::preorder_traversal_iter(root.clone()), preorder);
+    }
+
+    #[test]
+    fn t3() {
+        let preorder = vec![3, 9, 6, 20, 15, 1, 7];
+        let inorder = vec![6, 9, 3, 1, 15, 20, 7];
+        let root = TreeNode::build_binary_tree(&preorder, &inorder);
+        assert_eq!(
+            TreeNode::postorder_traversal_iter(root.clone()),
+            vec![6, 9, 1, 15, 7, 20, 3]
+        );
     }
 }
