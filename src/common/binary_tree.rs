@@ -103,18 +103,18 @@ impl TreeNode {
     }
 
     /// 前序遍历二叉树(递归)
-    pub fn preorder_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    pub fn preorder_traversal_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         match root {
             None => vec![],
             Some(root) => {
                 let mut preorder = vec![root.borrow().val];
-                let left = Self::preorder_recursive(&root.borrow().left);
+                let left = Self::preorder_traversal_recursive(&root.borrow().left);
                 if !left.is_empty() {
                     for x in left {
                         preorder.push(x);
                     }
                 }
-                let right = Self::preorder_recursive(&root.borrow().right);
+                let right = Self::preorder_traversal_recursive(&root.borrow().right);
                 if !right.is_empty() {
                     for x in right {
                         preorder.push(x);
@@ -125,19 +125,19 @@ impl TreeNode {
         }
     }
     /// 中序遍历二叉树(递归)
-    pub fn inorder_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    pub fn inorder_traversal_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         match root {
             None => vec![],
             Some(root) => {
                 let mut inorder = vec![];
-                let left = Self::inorder_recursive(&root.borrow().left);
+                let left = Self::inorder_traversal_recursive(&root.borrow().left);
                 if !left.is_empty() {
                     for x in left {
                         inorder.push(x);
                     }
                 }
                 inorder.push(root.borrow().val);
-                let right = Self::inorder_recursive(&root.borrow().right);
+                let right = Self::inorder_traversal_recursive(&root.borrow().right);
                 if !right.is_empty() {
                     for x in right {
                         inorder.push(x);
@@ -149,18 +149,18 @@ impl TreeNode {
     }
 
     /// 后序遍历二叉树(递归)
-    pub fn postorder_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    pub fn postorder_traversal_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         match root {
             None => vec![],
             Some(root) => {
                 let mut postorder = vec![];
-                let left = Self::postorder_recursive(&root.borrow().left);
+                let left = Self::postorder_traversal_recursive(&root.borrow().left);
                 if !left.is_empty() {
                     for x in left {
                         postorder.push(x);
                     }
                 }
-                let right = Self::postorder_recursive(&root.borrow().right);
+                let right = Self::postorder_traversal_recursive(&root.borrow().right);
                 if !right.is_empty() {
                     for x in right {
                         postorder.push(x);
@@ -172,7 +172,7 @@ impl TreeNode {
         }
     }
     ///  层次遍历(迭代)
-    pub fn hierarchical_traversal(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    pub fn hierarchical_traversal_iter(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut hierarchical_traversal = vec![];
         // 下一层
         let mut next_hierarchical = VecDeque::new();
@@ -205,7 +205,7 @@ impl TreeNode {
     }
 
     /// 前序遍历二叉树(非递归) 迭代
-    pub fn preorder_iter(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+    pub fn preorder_traversal_iter(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut preorder = vec![];
         // 非递归和递归思路一样都是利用栈实现
         // rust语言提供的递归是利用栈实现的，直接使用递归函数，节省了开发者的编码且易于理解。
@@ -240,14 +240,14 @@ mod tests {
         let preorder = vec![3, 9, 6, 20, 15, 1, 7];
         let inorder = vec![6, 9, 3, 1, 15, 20, 7];
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
-        assert_eq!(TreeNode::preorder_recursive(&root), preorder);
-        assert_eq!(TreeNode::inorder_recursive(&root), inorder);
+        assert_eq!(TreeNode::preorder_traversal_recursive(&root), preorder);
+        assert_eq!(TreeNode::inorder_traversal_recursive(&root), inorder);
         assert_eq!(
-            TreeNode::postorder_recursive(&root),
+            TreeNode::postorder_traversal_recursive(&root),
             vec![6, 9, 1, 15, 7, 20, 3]
         );
         assert_eq!(
-            TreeNode::hierarchical_traversal(&root),
+            TreeNode::hierarchical_traversal_iter(&root),
             vec![3, 9, 20, 6, 15, 7, 1]
         );
     }
@@ -257,6 +257,6 @@ mod tests {
         let preorder = vec![3, 9, 20, 15, 7];
         let inorder = vec![9, 3, 15, 20, 7];
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
-        assert_eq!(TreeNode::preorder_iter(root.clone()), preorder);
+        assert_eq!(TreeNode::preorder_traversal_iter(root.clone()), preorder);
     }
 }
