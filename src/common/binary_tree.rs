@@ -316,39 +316,25 @@ impl TreeNode {
 
     /// 中序遍历二叉树(非递归) 迭代
     pub fn inorder_traversal_iter(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
-        match root {
-            None => {
-                vec![]
+        let mut inorder = vec![];
+        // ec 替代 VecDeque,Vec 更适合后进先出的需求
+        let mut stack = Vec::new();
+        let mut current = root;
+
+        while current.is_some() || !stack.is_empty() {
+            // 尽可能往左走，并把路径上的节点压入栈中
+            while let Some(node_rc) = current {
+                stack.push(node_rc.clone());
+                current = node_rc.borrow().left.clone();
             }
-            Some(node_rc) => {
-                let mut result = vec![];
-                let mut deque = VecDeque::new();
-                deque.push_back(Some(node_rc.clone()));
-                let mut left = node_rc.borrow().left.clone();
-                while left.is_some() {
-                    deque.push_back(left.clone());
-                    left = left.unwrap().borrow().left.clone();
-                }
-                while let Some(pop_rc) = deque.pop_back() {
-                    match pop_rc {
-                        None => {}
-                        Some(pop_node_rc) => {
-                            result.push(pop_node_rc.borrow().val);
-                            let right = pop_node_rc.borrow().right.clone();
-                            if right.is_some() {
-                                deque.push_back(right.clone());
-                                let mut left = right.unwrap().borrow().left.clone();
-                                while let Some(left_rc) = left {
-                                    deque.push_back(Some(left_rc.clone()));
-                                    left = left_rc.borrow().left.clone();
-                                }
-                            }
-                        }
-                    }
-                }
-                result
+            // 弹出栈顶节点，访问它并转向右子树
+            if let Some(node_rc) = stack.pop() {
+                inorder.push(node_rc.borrow().val);
+                current = node_rc.borrow().right.clone();
             }
         }
+
+        inorder
     }
 }
 
