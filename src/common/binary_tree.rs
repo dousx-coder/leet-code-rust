@@ -325,9 +325,9 @@ impl TreeNode {
                 let mut deque = VecDeque::new();
                 deque.push_back(Some(node_rc.clone()));
                 let mut left = node_rc.borrow().left.clone();
-                while let Some(left_rc) = left {
-                    deque.push_back(Some(left_rc.clone()));
-                    left = left_rc.borrow().left.clone();
+                while left.is_some() {
+                    deque.push_back(left.clone());
+                    left = left.unwrap().borrow().left.clone();
                 }
                 while let Some(pop_rc) = deque.pop_back() {
                     match pop_rc {
@@ -335,15 +335,12 @@ impl TreeNode {
                         Some(pop_node_rc) => {
                             result.push(pop_node_rc.borrow().val);
                             let right = pop_node_rc.borrow().right.clone();
-                            match right {
-                                None => {}
-                                Some(right_rc) => {
-                                    deque.push_back(Some(right_rc.clone()));
-                                    let mut left = right_rc.borrow().left.clone();
-                                    while let Some(left_rc) = left {
-                                        deque.push_back(Some(left_rc.clone()));
-                                        left = left_rc.borrow().left.clone();
-                                    }
+                            if right.is_some() {
+                                deque.push_back(right.clone());
+                                let mut left = right.unwrap().borrow().left.clone();
+                                while let Some(left_rc) = left {
+                                    deque.push_back(Some(left_rc.clone()));
+                                    left = left_rc.borrow().left.clone();
                                 }
                             }
                         }
