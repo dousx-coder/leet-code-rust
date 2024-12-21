@@ -316,35 +316,42 @@ impl TreeNode {
 
     /// 中序遍历二叉树(非递归) 迭代
     pub fn inorder_traversal_iter(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
-        if root.is_none() {
-            return vec![];
-        }
-        let mut result = vec![];
-        let mut deque = VecDeque::new();
-        deque.push_back(root.clone());
-        let mut left = root.unwrap().borrow().left.clone();
-        while left.is_some() {
-            deque.push_back(left.clone());
-            left = left.unwrap().borrow().left.clone();
-        }
-        while let Some(rc) = deque.pop_back() {
-            match rc {
-                None => {}
-                Some(node) => {
-                    result.push(node.borrow().val);
-                    let right = node.clone().borrow().right.clone();
-                    if right.is_some() {
-                        deque.push_back(right.clone());
-                        let mut left = right.unwrap().borrow().left.clone();
-                        while left.is_some() {
-                            deque.push_back(left.clone());
-                            left = left.unwrap().borrow().left.clone();
+        match root {
+            None => {
+                vec![]
+            }
+            Some(node_rc) => {
+                let mut result = vec![];
+                let mut deque = VecDeque::new();
+                deque.push_back(Some(node_rc.clone()));
+                let mut left = node_rc.borrow().left.clone();
+                while let Some(left_rc) = left {
+                    deque.push_back(Some(left_rc.clone()));
+                    left = left_rc.borrow().left.clone();
+                }
+                while let Some(pop_rc) = deque.pop_back() {
+                    match pop_rc {
+                        None => {}
+                        Some(pop_node_rc) => {
+                            result.push(pop_node_rc.borrow().val);
+                            let right = pop_node_rc.borrow().right.clone();
+                            match right {
+                                None => {}
+                                Some(right_rc) => {
+                                    deque.push_back(Some(right_rc.clone()));
+                                    let mut left = right_rc.borrow().left.clone();
+                                    while let Some(left_rc) = left {
+                                        deque.push_back(Some(left_rc.clone()));
+                                        left = left_rc.borrow().left.clone();
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+                result
             }
         }
-        result
     }
 }
 
