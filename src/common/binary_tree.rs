@@ -313,6 +313,39 @@ impl TreeNode {
         result.reverse();
         result
     }
+
+    /// 中序遍历二叉树(非递归) 迭代
+    pub fn inorder_traversal_iter(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
+        if root.is_none() {
+            return vec![];
+        }
+        let mut result = vec![];
+        let mut deque = VecDeque::new();
+        deque.push_back(root.clone());
+        let mut left = root.unwrap().borrow().left.clone();
+        while left.is_some() {
+            deque.push_back(left.clone());
+            left = left.unwrap().borrow().left.clone();
+        }
+        while let Some(rc) = deque.pop_back() {
+            match rc {
+                None => {}
+                Some(node) => {
+                    result.push(node.borrow().val);
+                    let right = node.clone().borrow().right.clone();
+                    if right.is_some() {
+                        deque.push_back(right.clone());
+                        let mut left = right.unwrap().borrow().left.clone();
+                        while left.is_some() {
+                            deque.push_back(left.clone());
+                            left = left.unwrap().borrow().left.clone();
+                        }
+                    }
+                }
+            }
+        }
+        result
+    }
 }
 
 #[cfg(test)]
@@ -360,9 +393,21 @@ mod tests {
         let sequential = vec![
             None,
             Some(3),
-            Some(9), Some(20),
-            Some(6), None, Some(15), Some(7),
-            None, None, None, None, Some(1), None, None, None, None,
+            Some(9),
+            Some(20),
+            Some(6),
+            None,
+            Some(15),
+            Some(7),
+            None,
+            None,
+            None,
+            None,
+            Some(1),
+            None,
+            None,
+            None,
+            None,
         ];
         let root = TreeNode::build_by_sequential_storage(&sequential);
         assert_eq!(
@@ -371,28 +416,59 @@ mod tests {
         );
     }
 
-
     #[test]
     fn t5() {
         let sequential = vec![
             i32::MIN,
             3,
-            9, 20,
-            6, i32::MIN, 15, 7,
-            i32::MIN, i32::MIN, i32::MIN, i32::MIN, 1, i32::MIN, i32::MIN, i32::MIN, i32::MIN,
+            9,
+            20,
+            6,
+            i32::MIN,
+            15,
+            7,
+            i32::MIN,
+            i32::MIN,
+            i32::MIN,
+            i32::MIN,
+            1,
+            i32::MIN,
+            i32::MIN,
+            i32::MIN,
+            i32::MIN,
         ];
-        let sequential = sequential.iter()
-            .map(|x| {
-                if *x == i32::MIN {
-                    None
-                } else {
-                    Some(*x)
-                }
-            }).collect::<Vec<Option<i32>>>();
+        let sequential = sequential
+            .iter()
+            .map(|x| if *x == i32::MIN { None } else { Some(*x) })
+            .collect::<Vec<Option<i32>>>();
         let root = TreeNode::build_by_sequential_storage(&sequential);
         assert_eq!(
             TreeNode::postorder_traversal_iter(root.clone()),
             vec![6, 9, 1, 15, 7, 20, 3]
         );
+    }
+
+    #[test]
+    fn t6() {
+        let preorder = vec![3, 9, 6, 20, 15, 1, 7];
+        let inorder = vec![6, 9, 3, 1, 15, 20, 7];
+        let root = TreeNode::build_binary_tree(&preorder, &inorder);
+        assert_eq!(TreeNode::inorder_traversal_iter(root.clone()), inorder);
+    }
+
+    #[test]
+    fn t7() {
+        let preorder = vec![3, 9, 20, 15, 7];
+        let inorder = vec![9, 3, 15, 20, 7];
+        let root = TreeNode::build_binary_tree(&preorder, &inorder);
+        assert_eq!(TreeNode::inorder_traversal_iter(root.clone()), inorder);
+    }
+
+    #[test]
+    fn t8() {
+        let preorder = vec![5, 4, 1, 2, 6];
+        let inorder = vec![1, 4, 2, 5, 6];
+        let root = TreeNode::build_binary_tree(&preorder, &inorder);
+        assert_eq!(TreeNode::inorder_traversal_iter(root.clone()), inorder);
     }
 }
