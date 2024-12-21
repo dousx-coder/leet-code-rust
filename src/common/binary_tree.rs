@@ -102,6 +102,64 @@ impl TreeNode {
         Some(Rc::new(RefCell::new(node)))
     }
 
+    /// 根据 顺序储存 构建
+    ///
+    /// 最后一层的叶子节点的孩子可不写
+    /// # 参数
+    /// - [`sequential`]: 下标从1开始
+    ///
+    /// # 返回值
+    ///
+    /// [`TreeNode`]根节点
+    ///
+    /// # 示例
+    /// ```
+    ///  //     3
+    ///  //    / \
+    ///  //   9   20
+    ///  //  /    / \
+    ///  // 6    15  7
+    ///  //     /
+    ///  //    1
+    ///  use leet_code_rust::common::binary_tree::TreeNode;
+    ///  let sequential = vec![
+    ///            None,
+    ///            Some(3),
+    ///            Some(9), Some(20),
+    ///            Some(6), None, Some(15), Some(7),
+    ///            None, None, None, None, Some(1), None, None, None, None,
+    ///        ];
+    ///        let root = TreeNode::build_by_sequential_storage(&sequential);
+    ///        assert_eq!(
+    ///           TreeNode::postorder_traversal_iter(root.clone()),
+    ///           vec![6, 9, 1, 15, 7, 20, 3]
+    ///       );
+    ///
+    /// ```
+    pub fn build_by_sequential_storage(
+        sequential: &Vec<Option<i32>>,
+    ) -> Option<Rc<RefCell<TreeNode>>> {
+        Self::build_by_sequential_storage_recursive(sequential, 1)
+    }
+    fn build_by_sequential_storage_recursive(
+        sequential: &Vec<Option<i32>>,
+        index: usize,
+    ) -> Option<Rc<RefCell<TreeNode>>> {
+        if index >= sequential.len() {
+            return None;
+        }
+        // 当前节点的node
+        match sequential[index] {
+            None => None,
+            Some(val) => {
+                let mut node = TreeNode::new(val);
+                node.left = Self::build_by_sequential_storage_recursive(sequential, 2 * index);
+                node.right = Self::build_by_sequential_storage_recursive(sequential, 2 * index + 1);
+                Some(Rc::new(RefCell::new(node)))
+            }
+        }
+    }
+
     /// 前序遍历二叉树(递归)
     pub fn preorder_traversal_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         match root {
@@ -291,6 +349,47 @@ mod tests {
         let preorder = vec![3, 9, 6, 20, 15, 1, 7];
         let inorder = vec![6, 9, 3, 1, 15, 20, 7];
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
+        assert_eq!(
+            TreeNode::postorder_traversal_iter(root.clone()),
+            vec![6, 9, 1, 15, 7, 20, 3]
+        );
+    }
+
+    #[test]
+    fn t4() {
+        let sequential = vec![
+            None,
+            Some(3),
+            Some(9), Some(20),
+            Some(6), None, Some(15), Some(7),
+            None, None, None, None, Some(1), None, None, None, None,
+        ];
+        let root = TreeNode::build_by_sequential_storage(&sequential);
+        assert_eq!(
+            TreeNode::postorder_traversal_iter(root.clone()),
+            vec![6, 9, 1, 15, 7, 20, 3]
+        );
+    }
+
+
+    #[test]
+    fn t5() {
+        let sequential = vec![
+            i32::MIN,
+            3,
+            9, 20,
+            6, i32::MIN, 15, 7,
+            i32::MIN, i32::MIN, i32::MIN, i32::MIN, 1, i32::MIN, i32::MIN, i32::MIN, i32::MIN,
+        ];
+        let sequential = sequential.iter()
+            .map(|x| {
+                if *x == i32::MIN {
+                    None
+                } else {
+                    Some(*x)
+                }
+            }).collect::<Vec<Option<i32>>>();
+        let root = TreeNode::build_by_sequential_storage(&sequential);
         assert_eq!(
             TreeNode::postorder_traversal_iter(root.clone()),
             vec![6, 9, 1, 15, 7, 20, 3]
