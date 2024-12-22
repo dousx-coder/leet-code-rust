@@ -1,4 +1,5 @@
 use crate::common::linked_list::ListNode;
+use std::ops::Index;
 
 #[derive(PartialEq, Eq, Clone, Debug)]
 struct MyLinkedList {
@@ -69,10 +70,11 @@ impl MyLinkedList {
         }
         self.len -= 1;
     }
-    fn print(&self) {
+    fn to_vec(&self) -> Vec<i32> {
         if self.len <= 0 {
-            return;
+            return vec![];
         }
+        let mut result = vec![];
         let mut current = if let Some(node) = self.dummy.as_ref() {
             &node.next
         } else {
@@ -82,31 +84,35 @@ impl MyLinkedList {
         while current.is_some() {
             let option = current.as_ref();
             if let Some(x) = option {
-                print!("{} ", x.val);
+                result.push(x.val);
                 current = &x.next
             }
         }
-        println!();
+        result
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::common::linked_list::linked_list_to_vec;
     #[test]
     fn t1() {
         let mut list = MyLinkedList::new();
         let value: i32 = list.get(0);
         let value: i32 = list.get(1);
         list.add_at_head(1);
-        list.print();
+        assert_eq!(list.to_vec(), vec![1]);
+
         list.add_at_tail(3);
-        list.print();
+        assert_eq!(list.to_vec(), vec![1, 3]);
+
         let ret_1: i32 = list.get(2);
         let ret_1: i32 = list.get(3);
         list.add_at_index(1, 2);
-        list.print();
+        assert_eq!(list.to_vec(), vec![1, 2, 3]);
+
         list.delete_at_index(1);
-        list.print();
+        assert_eq!(list.to_vec(), vec![1, 3]);
     }
 }

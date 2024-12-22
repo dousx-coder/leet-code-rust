@@ -35,16 +35,14 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::common::linked_list::vec_to_linked_list;
+    use crate::common::linked_list::{linked_list_to_vec, vec_to_linked_list};
 
     #[test]
     fn t1() {
         let dummy = vec_to_linked_list(&vec![1, 2, 3, 4, 5], true);
         let mut head = dummy.unwrap().next;
         let mut result = Solution::swap_pairs(head);
-        while let Some(mut node) = result {
-            print!("{:?}  ", node.val);
-            result = node.next;
-        }
+        let ans = linked_list_to_vec(&mut result);
+        assert_eq!(ans, vec![2, 1, 4, 3, 5]);
     }
 }

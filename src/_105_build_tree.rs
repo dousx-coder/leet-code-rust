@@ -91,20 +91,18 @@ mod tests {
         {
             let mut pre_result = vec![];
             tree_to_vec(1, &mut pre_result, &tree_root);
-            println!("{:?}", pre_result);
             assert_eq!(pre_result, preorder);
         }
 
         {
             let mut in_result = vec![];
             tree_to_vec(2, &mut in_result, &tree_root);
-            println!("{:?}", in_result);
             assert_eq!(in_result, inorder);
         }
         {
             let mut post_result = vec![];
             tree_to_vec(3, &mut post_result, &tree_root);
-            println!("{:?}", post_result);
+            assert_eq!(post_result, vec![9, 15, 7, 20, 3]);
         }
     }
 }

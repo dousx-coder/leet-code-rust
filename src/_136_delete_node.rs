@@ -27,7 +27,6 @@ mod tests {
         let head = dummy.unwrap().next;
         let mut result = Solution::delete_node(head, 2);
         let vec = linked_list_to_vec(&mut result);
-        println!("{:?}", vec);
         assert_eq!(vec, vec![1, 3, 4, 5]);
     }
 }

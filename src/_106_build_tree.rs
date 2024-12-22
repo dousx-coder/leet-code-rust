@@ -88,7 +88,6 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::path::Prefix;
     fn tree_push_vec(
         ergodic_type: usize,
         node: &Option<Rc<RefCell<TreeNode>>>,
@@ -123,19 +122,17 @@ mod tests {
         {
             let mut pre_result = vec![];
             tree_push_vec(1, &tree_root, &mut pre_result);
-            println!("{:?}", pre_result);
+            assert_eq!(pre_result, vec![3, 9, 20, 15, 7]);
         }
         {
             let mut in_result = vec![];
             tree_push_vec(2, &tree_root, &mut in_result);
-            println!("{:?}", in_result);
             assert_eq!(in_result, inorder);
         }
         {
             let mut post_result = vec![];
             tree_push_vec(3, &tree_root, &mut post_result);
             assert_eq!(post_result, postorder);
-            println!("{:?}", post_result);
         }
     }
 }

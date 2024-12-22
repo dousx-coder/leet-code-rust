@@ -40,7 +40,6 @@ mod tests {
         let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut ans = Solution::remove_nth_from_end(head, 2);
         let vec = linked_list_to_vec(&mut ans);
-        println!("{:?}", vec);
         assert_eq!(vec, vec![1, 2, 3, 5]);
     }
     #[test]
@@ -48,7 +47,6 @@ mod tests {
         let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut ans = Solution::remove_nth_from_end(head, 0);
         let vec = linked_list_to_vec(&mut ans);
-        println!("{:?}", vec);
         assert_eq!(vec, vec![1, 2, 3, 4, 5]);
     }
     #[test]
@@ -56,7 +54,6 @@ mod tests {
         let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut ans = Solution::remove_nth_from_end(head, 1);
         let vec = linked_list_to_vec(&mut ans);
-        println!("{:?}", vec);
         assert_eq!(vec, vec![1, 2, 3, 4]);
     }
 
@@ -65,7 +62,6 @@ mod tests {
         let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut ans = Solution::remove_nth_from_end(head, 5);
         let vec = linked_list_to_vec(&mut ans);
-        println!("{:?}", vec);
         assert_eq!(vec, vec![2, 3, 4, 5]);
     }
 
@@ -74,7 +70,6 @@ mod tests {
         let head = vec_to_linked_list(&vec![1, 2, 3, 4, 5], false);
         let mut ans = Solution::remove_nth_from_end(head, 6);
         let vec = linked_list_to_vec(&mut ans);
-        println!("{:?}", vec);
         assert_eq!(vec, vec![1, 2, 3, 4, 5]);
     }
 }
