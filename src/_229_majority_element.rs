@@ -37,8 +37,8 @@ impl Solution {
 
 #[cfg(test)]
 mod test {
-    use maplit::hashset;
     use super::*;
+    use maplit::hashset;
     #[test]
     fn t1() {
         let result = Solution::majority_element(vec![3, 2, 3]);
