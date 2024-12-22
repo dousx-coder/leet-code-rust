@@ -6,7 +6,7 @@ use crate::common::linked_list::ListNode;
 /// https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/
 ///
 
-struct Solution {}
+struct Solution;
 
 impl Solution {
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {

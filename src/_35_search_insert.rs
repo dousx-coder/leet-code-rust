@@ -3,7 +3,7 @@
 ///
 /// https://leetcode.cn/problems/search-insert-position/description/
 
-struct Solution {}
+struct Solution;
 
 impl Solution {
     pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {

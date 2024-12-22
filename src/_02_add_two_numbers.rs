@@ -1,6 +1,6 @@
 use crate::common::linked_list::*;
 
-struct Solution {}
+struct Solution;
 
 impl Solution {
     pub fn special_dispose(list_node: Option<Box<ListNode>>) -> Option<Box<ListNode>> {

@@ -1,6 +1,6 @@
 /// https://leetcode.cn/problems/merge-k-sorted-lists/
 
-struct Solution {}
+struct Solution;
 
 use crate::common::linked_list::*;
 use std::cmp::Ordering;

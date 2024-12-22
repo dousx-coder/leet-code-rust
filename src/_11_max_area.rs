@@ -1,4 +1,4 @@
-struct Solution {}
+struct Solution;
 
 ///
 /// 11. 盛最多水的容器

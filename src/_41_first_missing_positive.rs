@@ -4,7 +4,7 @@ use std::collections::HashSet;
  * https://leetcode.cn/problems/first-missing-positive/
  */
 
-struct Solution {}
+struct Solution;
 
 impl Solution {
     pub fn first_missing_positive(nums: Vec<i32>) -> i32 {

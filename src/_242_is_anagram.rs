@@ -1,6 +1,6 @@
 ///
 /// https://leetcode.cn/problems/valid-anagram/
-struct Solution {}
+struct Solution;
 impl Solution {
     pub fn is_anagram(s: String, t: String) -> bool {
         if s.len() != t.len() {

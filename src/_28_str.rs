@@ -2,7 +2,7 @@
 /// https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/description/
 ///
 /// KMP算法实现
-struct Solution {}
+struct Solution;
 
 impl Solution {
     fn prefix_table(pattern: &Vec<u8>) -> Vec<i32> {

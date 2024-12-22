@@ -6,7 +6,7 @@ use std::collections::HashMap;
 /// https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
 ///
 
-struct Solution {}
+struct Solution;
 
 impl Solution {
     pub fn letter_combinations(digits: String) -> Vec<String> {

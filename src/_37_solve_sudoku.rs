@@ -5,7 +5,7 @@ struct Msg {
     ok: bool,
 }
 
-struct Solution {}
+struct Solution;
 
 impl Msg {
     fn new() -> Self {
