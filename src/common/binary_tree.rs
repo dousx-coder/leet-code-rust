@@ -159,6 +159,17 @@ impl TreeNode {
             }
         }
     }
+    ///
+    /// 构建完全二叉树
+    ///
+    /// 下标从1开始
+    pub fn build_complete_tree(sequential: &Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
+        let sequential = sequential
+            .iter()
+            .map(|x| Some(x.clone()))
+            .collect::<Vec<Option<i32>>>();
+        Self::build_by_sequential_storage(&sequential)
+    }
 
     /// 前序遍历二叉树(递归)
     pub fn preorder_traversal_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
