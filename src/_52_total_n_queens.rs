@@ -78,8 +78,14 @@ mod tests {
 
     #[test]
     fn t1() {
-        let vr = Solution::solve_n_queens(8);
+        let vr = Solution::solve_n_queens(4);
         let len = vr.len();
-        assert_eq!(len, 92);
+        assert_eq!(len, 2);
+    }
+    #[test]
+    fn t2() {
+        let vr = Solution::solve_n_queens(1);
+        let len = vr.len();
+        assert_eq!(len, 1);
     }
 }
