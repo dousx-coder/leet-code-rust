@@ -27,7 +27,7 @@ mod _19_remove_nth_from_end;
 mod _202_is_happy;
 mod _209_min_sub_array_len;
 mod _20_is_valid;
-mod _21_remove_nth_from_end;
+mod lcr_21_remove_nth_from_end;
 mod _224_calculate;
 mod _229_majority_element;
 mod _22_generate_parenthesis;
