@@ -49,4 +49,11 @@ mod tests {
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
         assert_eq!(Solution::min_depth(root), 5);
     }
+
+    #[test]
+    fn t3() {
+        let sequential = vec![i32::MIN, 3, 9, 20, i32::MIN, i32::MIN, 15, 7];
+        let root = TreeNode::build_tree_by_sequential_storage(&sequential, true);
+        assert_eq!(Solution::min_depth(root), 2);
+    }
 }

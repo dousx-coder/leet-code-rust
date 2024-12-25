@@ -171,6 +171,33 @@ impl TreeNode {
         Self::build_by_sequential_storage(&sequential)
     }
 
+    ///
+    /// 构建二叉树
+    ///
+    /// [`i32::MIN`]当成空节点
+    ///
+    /// 下标从1开始
+    pub fn build_tree_by_sequential_storage(
+        sequential: &Vec<i32>,
+        min_as_empty: bool,
+    ) -> Option<Rc<RefCell<TreeNode>>> {
+        let sequential = sequential
+            .iter()
+            .map(|x| {
+                let v = x.clone();
+                if !min_as_empty {
+                    return Some(v);
+                }
+                if v == i32::MIN {
+                    None
+                } else {
+                    Some(v)
+                }
+            })
+            .collect::<Vec<Option<i32>>>();
+        Self::build_by_sequential_storage(&sequential)
+    }
+
     /// 前序遍历二叉树(递归)
     pub fn preorder_traversal_recursive(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         match root {
