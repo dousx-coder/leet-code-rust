@@ -79,3 +79,4 @@ mod _47_permute_unique;
 mod _222_count_nodes;
 mod _965_is_unival_tree;
 mod _958_is_complete_tree;
+mod _110_is_balanced;
