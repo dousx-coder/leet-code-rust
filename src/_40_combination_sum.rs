@@ -31,9 +31,11 @@ impl Solution {
             let value = candidates[index];
             let sub = target - value;
             if sub < 0 {
-                break;
+                // 剪枝
+                return;
             };
             if index > begin && value == candidates[index - 1] {
+                // 剪枝
                 continue;
             }
             path.push(value);
