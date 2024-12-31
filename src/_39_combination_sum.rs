@@ -9,11 +9,11 @@ struct Solution;
 
 impl Solution {
     pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
-        let mut candidates_copy = candidates.clone();
-        candidates_copy.sort();
+        let mut candidates = candidates;
+        candidates.sort();
         let mut list: Vec<i32> = Vec::new();
         let mut result_set: BTreeSet<Vec<i32>> = BTreeSet::new();
-        Self::backtracking(&candidates_copy, target, &mut list, &mut result_set, target);
+        Self::backtracking(&candidates, target, &mut list, &mut result_set, target);
         result_set.into_iter().collect()
     }
     fn backtracking(
