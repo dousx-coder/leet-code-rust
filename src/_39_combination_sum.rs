@@ -12,41 +12,28 @@ impl Solution {
         let mut candidates = candidates;
         candidates.sort();
         let mut list: Vec<i32> = Vec::new();
-        let mut result_set: BTreeSet<Vec<i32>> = BTreeSet::new();
-        Self::backtracking(&candidates, target, &mut list, &mut result_set, target);
-        result_set.into_iter().collect()
+        let mut ans: BTreeSet<Vec<i32>> = BTreeSet::new();
+        Self::dfs(&candidates, target, &mut list, &mut ans);
+        ans.into_iter().collect()
     }
-    fn backtracking(
-        candidates: &Vec<i32>,
-        target: i32,
-        current_list: &mut Vec<i32>,
-        mutable_set: &mut BTreeSet<Vec<i32>>,
-        original_target: i32,
-    ) -> bool {
+    fn dfs(candidates: &Vec<i32>, target: i32, curr: &mut Vec<i32>, ans: &mut BTreeSet<Vec<i32>>) {
         if target < 0 {
-            return false;
+            return;
         }
         if target == 0 {
-            if !current_list.is_empty() && current_list.iter().sum::<i32>() == original_target {
-                current_list.sort();
-                let vec = current_list.clone();
-                mutable_set.insert(vec);
-            }
-            true
-        } else {
-            candidates.iter().for_each(|ca| {
-                let sub = target - ca;
-                if sub >= 0 {
-                    current_list.push(ca.clone());
-                    let mut copy = current_list.clone();
-                    if !Self::backtracking(candidates, sub, &mut copy, mutable_set, original_target)
-                    {
-                        current_list.pop();
-                    }
-                }
-            });
-            false
+            let mut vec = curr.clone();
+            vec.sort();
+            ans.insert(vec);
+            return;
         }
+        candidates.iter().for_each(|value| {
+            let sub = target - value;
+            if sub >= 0 {
+                curr.push(value.clone());
+                Self::dfs(candidates, sub, curr, ans);
+                curr.pop();
+            }
+        });
     }
 }
 
