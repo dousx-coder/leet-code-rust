@@ -1,5 +1,3 @@
-use std::collections::HashSet;
-
 ///
 /// 40 组合总和Ⅱ
 ///
@@ -14,7 +12,7 @@ impl Solution {
         let mut candidates = candidates;
         candidates.sort();
         let mut current: Vec<i32> = Vec::new();
-        let mut ans: HashSet<Vec<i32>> = HashSet::new();
+        let mut ans = Vec::new();
         Self::dfs(&candidates, target, &mut current, &mut ans, 0);
         ans.into_iter().collect()
     }
@@ -22,11 +20,11 @@ impl Solution {
         candidates: &Vec<i32>,
         target: i32,
         path: &mut Vec<i32>,
-        ans: &mut HashSet<Vec<i32>>,
+        ans: &mut Vec<Vec<i32>>,
         begin: usize,
     ) {
         if target == 0 {
-            ans.insert(path.clone());
+            ans.push(path.clone());
         }
         let len = candidates.len();
         for index in begin..len {
@@ -85,6 +83,12 @@ mod test {
         ];
         let sum = vec.iter().sum::<i32>();
         let ans = Solution::combination_sum2(vec, 30);
-        assert!(ans.is_empty())
+        assert_eq!(
+            vec![vec![
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1
+            ]],
+            ans
+        );
     }
 }
