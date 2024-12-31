@@ -83,3 +83,4 @@ mod _110_is_balanced;
 mod _257_binary_tree_paths;
 mod _404_sum_of_left_leaves;
 mod _563_find_tilt;
+mod _06_convert;
