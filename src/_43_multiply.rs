@@ -32,6 +32,10 @@ impl Solution {
         if num1 == "0" || num2 == "0" {
             return "0".to_string();
         }
+        if num1.parse::<i32>().unwrap() < 0 || num2.parse::<i32>().unwrap() < 0 {
+            // 不支持负数
+            panic!("Illegal Argument: negative")
+        };
         let num1 = num1
             .chars()
             .map(|c| c.to_string().parse::<usize>().unwrap())
