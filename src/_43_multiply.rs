@@ -73,12 +73,10 @@ impl Solution {
         }
         loop {
             for i in 1..sum_vec.len() {
-                let value1 = sum_vec[i - 1];
-                let value2 = sum_vec[i];
-                // 余数
-                if value1 / 10 > 0 {
-                    sum_vec[i - 1] = value1 % 10;
-                    sum_vec[i] += value1 / 10;
+                let prev_val = sum_vec[i - 1];
+                if prev_val / 10 > 0 {
+                    sum_vec[i - 1] = prev_val % 10;
+                    sum_vec[i] += prev_val / 10;
                 }
                 if i == sum_vec.len() - 1 {
                     let last = sum_vec[i];
