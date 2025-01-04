@@ -268,36 +268,46 @@ impl TreeNode {
         }
     }
     ///  层次遍历(迭代)
-    pub fn hierarchical_traversal_iter(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
-        let mut hierarchical_traversal = vec![];
+    ///
+    /// 按层返回，这里提高层序遍历代码可读性
+    pub fn level_order_traversal_iter(root: &Option<Rc<RefCell<TreeNode>>>) -> Vec<Vec<i32>> {
+        let mut level_order_traversal = vec![];
         // 下一层
-        let mut next_hierarchical = VecDeque::new();
+        let mut next_level_node = VecDeque::new();
         // 当前层
-        let mut curr_hierarchical = VecDeque::new();
-        curr_hierarchical.push_back(root.clone());
+        let mut curr_level_node = VecDeque::new();
+        curr_level_node.push_back(root.clone());
+        let mut curr_level_traversal = vec![];
         loop {
-            match curr_hierarchical.pop_front() {
+            match curr_level_node.pop_front() {
                 Some(node) => match node {
                     Some(rc) => {
-                        hierarchical_traversal.push(rc.borrow().val);
-                        next_hierarchical.push_back(rc.borrow().left.clone());
-                        next_hierarchical.push_back(rc.borrow().right.clone());
+                        curr_level_traversal.push(rc.borrow().val);
+                        next_level_node.push_back(rc.borrow().left.clone());
+                        next_level_node.push_back(rc.borrow().right.clone());
                     }
                     None => {}
                 },
                 None => {}
             }
-            if curr_hierarchical.is_empty() && !next_hierarchical.is_empty() {
-                while let Some(rc) = next_hierarchical.pop_front() {
-                    curr_hierarchical.push_back(rc);
+            if curr_level_node.is_empty() && !next_level_node.is_empty() {
+                while let Some(rc) = next_level_node.pop_front() {
+                    curr_level_node.push_back(rc);
                 }
+                if !curr_level_traversal.is_empty() {
+                    level_order_traversal.push(curr_level_traversal);
+                    curr_level_traversal = vec![];
+                }
+
                 continue;
             }
-            if curr_hierarchical.is_empty() && next_hierarchical.is_empty() {
-                break;
+            if curr_level_node.is_empty() && next_level_node.is_empty() {
+                if !curr_level_traversal.is_empty() {
+                    level_order_traversal.push(curr_level_traversal);
+                }
+                return level_order_traversal;
             }
         }
-        hierarchical_traversal
     }
 
     /// 前序遍历二叉树(非递归) 迭代
@@ -398,8 +408,8 @@ mod tests {
             vec![6, 9, 1, 15, 7, 20, 3]
         );
         assert_eq!(
-            TreeNode::hierarchical_traversal_iter(&root),
-            vec![3, 9, 20, 6, 15, 7, 1]
+            TreeNode::level_order_traversal_iter(&root),
+            vec![vec![3], vec![9, 20], vec![6, 15, 7], vec![1]],
         );
     }
 
