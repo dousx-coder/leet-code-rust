@@ -7,9 +7,6 @@ use std::rc::Rc;
 struct Solution;
 impl Solution {
     pub fn has_path_sum(root: Option<Rc<RefCell<TreeNode>>>, target_sum: i32) -> bool {
-        Self::dfs(root, target_sum)
-    }
-    fn dfs(root: Option<Rc<RefCell<TreeNode>>>, target_sum: i32) -> bool {
         match root {
             None => false,
             Some(rc) => {
@@ -20,7 +17,8 @@ impl Solution {
                     return true;
                 }
                 let next_target_num = target_sum - borrow.val;
-                Self::dfs(left, next_target_num) || Self::dfs(right, next_target_num)
+                Self::has_path_sum(left, next_target_num)
+                    || Self::has_path_sum(right, next_target_num)
             }
         }
     }
