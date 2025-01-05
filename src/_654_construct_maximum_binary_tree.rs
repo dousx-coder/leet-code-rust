@@ -17,7 +17,7 @@ impl Solution {
             return None;
         }
         let mut max_val = i32::MIN;
-        let mut max_index = 0;
+        let mut max_index = begin;
         for i in begin..end {
             if nums[i] > max_val {
                 max_val = nums[i];
