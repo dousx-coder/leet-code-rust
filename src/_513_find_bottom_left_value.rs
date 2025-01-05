@@ -54,9 +54,9 @@ impl Solution {
     fn recursive_solution(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         Self::dfs(root.clone(), 1).1
     }
-    fn dfs(root: Option<Rc<RefCell<TreeNode>>>, dept: usize) -> (usize, i32) {
+    fn dfs(root: Option<Rc<RefCell<TreeNode>>>, dept: i32) -> (i32, i32) {
         match root {
-            None => (0, 0),
+            None => (i32::MIN, i32::MIN),
             Some(rc) => {
                 let borrow = rc.borrow();
                 let left = borrow.left.clone();
@@ -64,28 +64,17 @@ impl Solution {
                 if left.is_none() && right.is_none() {
                     return (dept + 1, borrow.val);
                 }
-                if left.is_some() && right.is_some() {
-                    let left_dfs = Self::dfs(left, dept + 1);
-                    let right_dfs = Self::dfs(right, dept + 1);
-                    let left_dept = left_dfs.0;
-                    let right_dept = right_dfs.0;
-                    let left_val = left_dfs.1;
-                    let right_val = right_dfs.1;
-                    if left_dept >= right_dept {
-                        return (left_dept + 1, left_val);
-                    }
-                    return (right_dept + 1, right_val);
-                }
-                if left.is_some() {
-                    let left_dfs = Self::dfs(left, dept + 1);
-                    let left_dept = left_dfs.0;
-                    let left_val = left_dfs.1;
-                    return (left_dept + 1, left_val);
-                }
+                let left_dfs = Self::dfs(left, dept + 1);
                 let right_dfs = Self::dfs(right, dept + 1);
+                let left_dept = left_dfs.0;
                 let right_dept = right_dfs.0;
+                let left_val = left_dfs.1;
                 let right_val = right_dfs.1;
-                (right_dept + 1, right_val)
+                if left_dept >= right_dept {
+                    (left_dept + 1, left_val)
+                } else {
+                    (right_dept + 1, right_val)
+                }
             }
         }
     }
