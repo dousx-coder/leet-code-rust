@@ -1,6 +1,6 @@
 ///
 /// 105 根据前序和中序遍历构建二叉树
-/// 
+///
 /// https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/?envType=problem-list-v2&envId=hash-table
 ///
 struct Solution;
@@ -61,28 +61,6 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::path::Prefix;
-    fn tree_to_vec(ergodic_type: usize, vec: &mut Vec<i32>, node: &Option<Rc<RefCell<TreeNode>>>) {
-        match node {
-            Some(node) => {
-                if ergodic_type == 1 {
-                    vec.push(node.borrow().val);
-                    tree_to_vec(ergodic_type, vec, &node.borrow().left);
-                    tree_to_vec(ergodic_type, vec, &node.borrow().right);
-                } else if ergodic_type == 2 {
-                    tree_to_vec(ergodic_type, vec, &node.borrow().left);
-                    vec.push(node.borrow().val);
-
-                    tree_to_vec(ergodic_type, vec, &node.borrow().right);
-                } else {
-                    tree_to_vec(ergodic_type, vec, &node.borrow().left);
-                    tree_to_vec(ergodic_type, vec, &node.borrow().right);
-                    vec.push(node.borrow().val);
-                }
-            }
-            None => {}
-        }
-    }
 
     #[test]
     fn t1() {
@@ -90,19 +68,16 @@ mod tests {
         let inorder = vec![9, 3, 15, 20, 7];
         let tree_root = Solution::build_tree(preorder.clone(), inorder.clone());
         {
-            let mut pre_result = vec![];
-            tree_to_vec(1, &mut pre_result, &tree_root);
+            let pre_result = TreeNode::preorder_traversal_recursive(&tree_root);
             assert_eq!(pre_result, preorder);
         }
 
         {
-            let mut in_result = vec![];
-            tree_to_vec(2, &mut in_result, &tree_root);
+            let in_result = TreeNode::inorder_traversal_recursive(&tree_root);
             assert_eq!(in_result, inorder);
         }
         {
-            let mut post_result = vec![];
-            tree_to_vec(3, &mut post_result, &tree_root);
+            let post_result = TreeNode::postorder_traversal_iter(tree_root.clone());
             assert_eq!(post_result, vec![9, 15, 7, 20, 3]);
         }
     }

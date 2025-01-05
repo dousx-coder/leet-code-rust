@@ -1,6 +1,6 @@
 ///
 /// 106 根据中序和后序遍历构建二叉树
-/// 
+///
 /// https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/?envType=problem-list-v2&envId=hash-table
 struct Solution;
 use crate::common::binary_tree::TreeNode;
@@ -89,31 +89,6 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    fn tree_push_vec(
-        ergodic_type: usize,
-        node: &Option<Rc<RefCell<TreeNode>>>,
-        vec: &mut Vec<i32>,
-    ) {
-        match node {
-            Some(node) => {
-                if ergodic_type == 1 {
-                    vec.push(node.borrow().val);
-                    tree_push_vec(ergodic_type, &node.borrow().left, vec);
-                    tree_push_vec(ergodic_type, &node.borrow().right, vec);
-                } else if ergodic_type == 2 {
-                    tree_push_vec(ergodic_type, &node.borrow().left, vec);
-                    vec.push(node.borrow().val);
-
-                    tree_push_vec(ergodic_type, &node.borrow().right, vec);
-                } else {
-                    tree_push_vec(ergodic_type, &node.borrow().left, vec);
-                    tree_push_vec(ergodic_type, &node.borrow().right, vec);
-                    vec.push(node.borrow().val);
-                }
-            }
-            None => {}
-        }
-    }
 
     #[test]
     fn t1() {
@@ -121,18 +96,15 @@ mod tests {
         let postorder = vec![9, 15, 7, 20, 3];
         let tree_root = Solution::build_tree(inorder.clone(), postorder.clone());
         {
-            let mut pre_result = vec![];
-            tree_push_vec(1, &tree_root, &mut pre_result);
+            let pre_result = TreeNode::preorder_traversal_recursive(&tree_root);
             assert_eq!(pre_result, vec![3, 9, 20, 15, 7]);
         }
         {
-            let mut in_result = vec![];
-            tree_push_vec(2, &tree_root, &mut in_result);
+            let in_result = TreeNode::inorder_traversal_recursive(&tree_root);
             assert_eq!(in_result, inorder);
         }
         {
-            let mut post_result = vec![];
-            tree_push_vec(3, &tree_root, &mut post_result);
+            let post_result = TreeNode::postorder_traversal_iter(tree_root.clone());
             assert_eq!(post_result, postorder);
         }
     }
