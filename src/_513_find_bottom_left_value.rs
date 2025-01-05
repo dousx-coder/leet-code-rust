@@ -9,6 +9,11 @@ use std::rc::Rc;
 struct Solution;
 impl Solution {
     pub fn find_bottom_left_value(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        Self::recursive_solution(root)
+    }
+
+    ///层序遍历解法
+    fn level_order_solution(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         // 下一层
         let mut next_level_node = VecDeque::new();
         // 当前层节点的值列表
@@ -44,6 +49,46 @@ impl Solution {
             }
         }
     }
+
+    /// 递归解法
+    fn recursive_solution(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        Self::dfs(root.clone(), 1).1
+    }
+    fn dfs(root: Option<Rc<RefCell<TreeNode>>>, dept: usize) -> (usize, i32) {
+        match root {
+            None => (0, 0),
+            Some(rc) => {
+                let borrow = rc.borrow();
+                let left = borrow.left.clone();
+                let right = borrow.right.clone();
+                if left.is_none() && right.is_none() {
+                    return (dept + 1, borrow.val);
+                }
+                if left.is_some() && right.is_some() {
+                    let left_dfs = Self::dfs(left, dept + 1);
+                    let right_dfs = Self::dfs(right, dept + 1);
+                    let left_dept = left_dfs.0;
+                    let right_dept = right_dfs.0;
+                    let left_val = left_dfs.1;
+                    let right_val = right_dfs.1;
+                    if left_dept >= right_dept {
+                        return (left_dept + 1, left_val);
+                    }
+                    return (right_dept + 1, right_val);
+                }
+                if left.is_some() {
+                    let left_dfs = Self::dfs(left, dept + 1);
+                    let left_dept = left_dfs.0;
+                    let left_val = left_dfs.1;
+                    return (left_dept + 1, left_val);
+                }
+                let right_dfs = Self::dfs(right, dept + 1);
+                let right_dept = right_dfs.0;
+                let right_val = right_dfs.1;
+                (right_dept + 1, right_val)
+            }
+        }
+    }
 }
 #[cfg(test)]
 mod tests {
@@ -60,5 +105,25 @@ mod tests {
         let inorder = vec![4, 2, 1, 7, 5, 3, 6];
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
         assert_eq!(Solution::find_bottom_left_value(root), 7);
+    }
+    #[test]
+    fn t3() {
+        let preorder = vec![1, 2, 4, 3, 5, 7, 6];
+        let inorder = vec![4, 2, 1, 7, 5, 3, 6];
+        let root = TreeNode::build_binary_tree(&preorder, &inorder);
+        assert_eq!(Solution::level_order_solution(root), 7);
+    }
+    #[test]
+    fn t4() {
+        let preorder = vec![1, 2, 4, 3, 5, 7, 6];
+        let inorder = vec![4, 2, 1, 7, 5, 3, 6];
+        let root = TreeNode::build_binary_tree(&preorder, &inorder);
+        assert_eq!(Solution::recursive_solution(root), 7);
+    }
+    #[test]
+    fn t5() {
+        let sequential = vec![-1, 2, 1, 3];
+        let root = TreeNode::build_tree_by_sequential_storage(&sequential, true);
+        assert_eq!(Solution::recursive_solution(root), 1);
     }
 }
