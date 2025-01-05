@@ -9,6 +9,9 @@ use std::rc::Rc;
 
 impl Solution {
     pub fn build_tree(inorder: Vec<i32>, postorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
+        if inorder.len() != postorder.len() {
+            panic!()
+        }
         let n = inorder.len();
         Self::build(&inorder, &postorder, 0, n, 0, n)
     }
