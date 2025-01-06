@@ -27,9 +27,22 @@ impl Solution {
             return Some(Rc::new(RefCell::new(node)));
         }
         if root1.is_some() {
-            return root1.clone();
+            let rc1 = root1.unwrap();
+            let borrow1 = rc1.borrow();
+            // 创建一个新的节点
+            let mut node = TreeNode::new(borrow1.val);
+            node.left = Self::merge_trees(borrow1.left.clone(), None);
+            node.right = Self::merge_trees(borrow1.right.clone(), None);
+            Some(Rc::new(RefCell::new(node)))
+        } else {
+            let rc2 = root2.unwrap();
+            let borrow2 = rc2.borrow();
+            // 创建一个新的节点
+            let mut node = TreeNode::new(borrow2.val);
+            node.left = Self::merge_trees(None, borrow2.left.clone());
+            node.right = Self::merge_trees(None, borrow2.right.clone());
+            Some(Rc::new(RefCell::new(node)))
         }
-        root2.clone()
     }
 }
 #[cfg(test)]
