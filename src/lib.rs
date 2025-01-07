@@ -93,3 +93,4 @@ mod _112_has_path_sum;
 mod _654_construct_maximum_binary_tree;
 mod _998_insert_into_max_tree;
 mod _617_merge_trees;
+mod _700_search_bst;
