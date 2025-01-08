@@ -77,7 +77,9 @@ mod tests {
         let preorder1 = vec![4, 2, 1, 3, 7];
         let inorder1 = vec![1, 2, 3, 4, 7];
         let tree = TreeNode::build_binary_tree(&preorder1, &inorder1);
-        let option = Solution::search_bst(tree, 5);
+        let option = Solution::recursion_solution(tree.clone(), 5);
+        assert!(option.is_none());
+        let option = Solution::iter_solution(tree, 5);
         assert!(option.is_none());
     }
 }
