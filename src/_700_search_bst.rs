@@ -11,6 +11,13 @@ impl Solution {
         root: Option<Rc<RefCell<TreeNode>>>,
         val: i32,
     ) -> Option<Rc<RefCell<TreeNode>>> {
+        Self::iter_solution(root, val)
+    }
+    /// 递归解法
+    fn recursion_solution(
+        root: Option<Rc<RefCell<TreeNode>>>,
+        val: i32,
+    ) -> Option<Rc<RefCell<TreeNode>>> {
         match root {
             None => None,
             Some(rc) => {
@@ -22,11 +29,30 @@ impl Solution {
                     return None;
                 }
                 if val < borrow.val {
-                    return Self::search_bst(borrow.left.clone(), val);
+                    return Self::recursion_solution(borrow.left.clone(), val);
                 }
-                Self::search_bst(borrow.right.clone(), val)
+                Self::recursion_solution(borrow.right.clone(), val)
             }
         }
+    }
+    /// 迭代解法
+    fn iter_solution(
+        root: Option<Rc<RefCell<TreeNode>>>,
+        val: i32,
+    ) -> Option<Rc<RefCell<TreeNode>>> {
+        let mut node = root;
+        while let Some(rc) = node {
+            let borrow = rc.borrow();
+            if borrow.val == val {
+                return Some(rc.clone());
+            }
+            if val < borrow.val {
+                node = borrow.left.clone();
+                continue;
+            }
+            node = borrow.right.clone();
+        }
+        None
     }
 }
 #[cfg(test)]
