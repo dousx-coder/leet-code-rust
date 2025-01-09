@@ -95,3 +95,4 @@ mod _998_insert_into_max_tree;
 mod _617_merge_trees;
 mod _700_search_bst;
 mod _113_path_sum;
+mod _114_flatten;
