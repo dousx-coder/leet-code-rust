@@ -19,7 +19,7 @@ impl Solution {
         }
         // 使用栈先序遍历
         let mut stack: Vec<Rc<RefCell<TreeNode>>> = Vec::new();
-        stack.push(root.clone().unwrap());
+        stack.push(rc);
         let mut dummy = TreeNode::new(-1);
         let mut pre_node = None;
         while let Some(node) = stack.pop() {
@@ -46,7 +46,7 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
     #[test]
     fn t1() {
         let preorder = vec![1, 2, 3, 4, 5, 6];
