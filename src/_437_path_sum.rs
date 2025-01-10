@@ -11,7 +11,7 @@ impl Solution {
         if root.is_none() {
             return 0;
         }
-        let mut ans = Self::node_sum(root.clone(), target_sum);
+        let mut ans = Self::node_sum(root.clone(), target_sum as i64);
         let rc = root.unwrap();
         let borrow = rc.borrow();
         let left = borrow.left.clone();
@@ -20,12 +20,12 @@ impl Solution {
         ans += Self::path_sum(right.clone(), target_sum);
         ans
     }
-    fn node_sum(root: Option<Rc<RefCell<TreeNode>>>, target_sum: i32) -> i32 {
+    fn node_sum(root: Option<Rc<RefCell<TreeNode>>>, target_sum: i64) -> i32 {
         match root {
             None => 0,
             Some(rc) => {
                 let borrow = rc.borrow();
-                let next_target = target_sum - borrow.val;
+                let next_target = target_sum - borrow.val as i64;
                 let mut ans = if next_target == 0 { 1 } else { 0 };
                 let left = borrow.left.clone();
                 let right = borrow.right.clone();
@@ -39,6 +39,7 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::ptr::null;
     #[test]
     fn t1() {
         let preorder = vec![10, 5, 3, 3, -2, 2, 1, -3, 11];
@@ -46,5 +47,24 @@ mod tests {
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
         let ans = Solution::path_sum(root, 8);
         assert_eq!(ans, 3);
+    }
+    #[test]
+    fn t2() {
+        let sequential = vec![
+            -1,
+            1000000000,
+            1000000000,
+            i32::MIN,
+            294967296,
+            i32::MIN,
+            1000000000,
+            i32::MIN,
+            1000000000,
+            i32::MIN,
+            1000000000,
+        ];
+        let root = TreeNode::build_tree_by_sequential_storage(&sequential, true);
+        let ans = Solution::path_sum(root, 0);
+        assert_eq!(ans, 0);
     }
 }
