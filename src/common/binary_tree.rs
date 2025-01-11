@@ -390,6 +390,35 @@ impl TreeNode {
 
         inorder
     }
+    /// 构建二叉搜索树
+    ///
+    /// ```
+    /// use leet_code_rust::common::binary_tree::TreeNode;
+    /// let nums = vec![-10, -3, 0, 5, 9];
+    /// let tree = TreeNode::build_bst(&nums);
+    /// let preorder = TreeNode::preorder_traversal_recursive(&tree);
+    /// let inorder = TreeNode::inorder_traversal_recursive(&tree);
+    /// assert_eq!(preorder, vec![0, -3, -10, 5, 9]);
+    /// assert_eq!(inorder, vec![-10, -3, 0, 5, 9]);
+    /// ```
+    ///
+    pub fn build_bst(nums: &Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
+        Self::build_bst_dfs(nums, 0, nums.len() - 1)
+    }
+    fn build_bst_dfs(nums: &Vec<i32>, start: usize, end: usize) -> Option<Rc<RefCell<TreeNode>>> {
+        if start == end {
+            if end != nums.len() - 1 {
+                return None;
+            }
+            return Some(Rc::new(RefCell::new(TreeNode::new(nums[start]))));
+        }
+        let middle = (start + end) / 2;
+        let mut root = Some(Rc::new(RefCell::new(TreeNode::new(nums[middle]))));
+        let rc_mut = root.as_mut().unwrap();
+        rc_mut.borrow_mut().left = Self::build_bst_dfs(nums, start, middle);
+        rc_mut.borrow_mut().right = Self::build_bst_dfs(nums, middle + 1, end);
+        root
+    }
 }
 
 #[cfg(test)]
@@ -514,5 +543,15 @@ mod tests {
         let inorder = vec![1, 4, 2, 5, 6];
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
         assert_eq!(TreeNode::inorder_traversal_iter(root.clone()), inorder);
+    }
+
+    #[test]
+    fn t9() {
+        let nums = vec![-10, -3, 0, 5, 9];
+        let tree = TreeNode::build_bst(&nums);
+        let preorder = TreeNode::preorder_traversal_recursive(&tree);
+        let inorder = TreeNode::inorder_traversal_recursive(&tree);
+        assert_eq!(preorder, vec![0, -3, -10, 5, 9]);
+        assert_eq!(inorder, vec![-10, -3, 0, 5, 9]);
     }
 }
