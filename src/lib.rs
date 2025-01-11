@@ -99,3 +99,4 @@ mod _114_flatten;
 mod _108_sorted_array_to_bst;
 mod _109_sorted_list_to_bst;
 mod _437_path_sum;
+mod _96_num_trees;
