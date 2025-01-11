@@ -371,7 +371,7 @@ impl TreeNode {
     /// 中序遍历二叉树(非递归) 迭代
     pub fn inorder_traversal_iter(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut inorder = vec![];
-        // ec 替代 VecDeque,Vec 更适合后进先出的需求
+        // vec 替代 VecDeque,Vec 更适合后进先出的需求
         let mut stack = Vec::new();
         let mut current = root;
 
