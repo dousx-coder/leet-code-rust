@@ -103,3 +103,4 @@ mod _96_num_trees;
 mod _226_invert_tree;
 mod _530_get_minimum_difference;
 mod _501_find_mode;
+mod _99_recover_tree;
