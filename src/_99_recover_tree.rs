@@ -8,7 +8,7 @@ use std::rc::Rc;
 /// https://leetcode.cn/problems/recover-binary-search-tree/description/?envType=problem-list-v2&envId=binary-tree
 impl Solution {
     pub fn recover_tree(root: &mut Option<Rc<RefCell<TreeNode>>>) {
-        Self::o1(root);
+        Self::oh(root);
     }
     /// 暴力解法
     fn violence(root: &mut Option<Rc<RefCell<TreeNode>>>) {
@@ -45,8 +45,8 @@ impl Solution {
             }
         }
     }
-    /// 空间复杂度O(1)
-    fn o1(root: &mut Option<Rc<RefCell<TreeNode>>>) {
+    /// 空间复杂度O(h) h指的是树的高度
+    fn oh(root: &mut Option<Rc<RefCell<TreeNode>>>) {
         let mut x = None;
         let mut y = None;
         let mut pred: Option<Rc<RefCell<TreeNode>>> = None;
@@ -94,7 +94,7 @@ mod tests {
         let preorder = vec![3, 1, 4, 2];
         let inorder = vec![1, 3, 2, 4];
         let mut root = TreeNode::build_binary_tree(&preorder, &inorder);
-        Solution::o1(&mut root);
+        Solution::oh(&mut root);
         let inorder = TreeNode::inorder_traversal_recursive(&mut root);
         assert_eq!(inorder, vec![1, 2, 3, 4]);
     }
