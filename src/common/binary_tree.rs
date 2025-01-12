@@ -373,21 +373,19 @@ impl TreeNode {
         let mut inorder = vec![];
         // vec 替代 VecDeque,Vec 更适合后进先出的需求
         let mut stack = Vec::new();
-        let mut current = root;
-
-        while current.is_some() || !stack.is_empty() {
+        let mut curr = root;
+        while curr.is_some() || !stack.is_empty() {
             // 尽可能往左走，并把路径上的节点压入栈中
-            while let Some(node_rc) = current {
-                stack.push(node_rc.clone());
-                current = node_rc.borrow().left.clone();
+            while let Some(curr_rc) = curr {
+                stack.push(curr_rc.clone());
+                curr = curr_rc.borrow().left.clone();
             }
             // 弹出栈顶节点，访问它并转向右子树
-            if let Some(node_rc) = stack.pop() {
-                inorder.push(node_rc.borrow().val);
-                current = node_rc.borrow().right.clone();
+            if let Some(stack_pop) = stack.pop() {
+                inorder.push(stack_pop.borrow().val);
+                curr = stack_pop.borrow().right.clone();
             }
         }
-
         inorder
     }
     /// 构建二叉搜索树

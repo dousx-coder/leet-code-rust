@@ -51,23 +51,23 @@ impl Solution {
         let mut y = None;
         let mut pred: Option<Rc<RefCell<TreeNode>>> = None;
         let mut stack = Vec::new();
-        let mut current = root.clone();
-        while current.is_some() || !stack.is_empty() {
-            while let Some(node_rc) = current {
-                stack.push(node_rc.clone());
-                current = node_rc.borrow().left.clone();
+        let mut curr = root.clone();
+        while curr.is_some() || !stack.is_empty() {
+            while let Some(curr_node) = curr {
+                stack.push(curr_node.clone());
+                curr = curr_node.borrow().left.clone();
             }
-            if let Some(node_rc) = stack.pop() {
+            if let Some(stack_pop) = stack.pop() {
                 if let Some(pre_rc) = pred {
-                    if node_rc.borrow().val < pre_rc.borrow().val {
-                        y = Some(node_rc.clone());
+                    if stack_pop.borrow().val < pre_rc.borrow().val {
+                        y = Some(stack_pop.clone());
                         if x.is_none() {
                             x = Some(pre_rc.clone());
                         }
                     }
                 }
-                pred = Some(node_rc.clone());
-                current = node_rc.borrow().right.clone();
+                pred = Some(stack_pop.clone());
+                curr = stack_pop.borrow().right.clone();
             }
         }
         if let Some(nx) = x {
