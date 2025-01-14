@@ -417,6 +417,29 @@ impl TreeNode {
         rc_mut.borrow_mut().right = Self::build_bst_dfs(nums, middle + 1, end);
         root
     }
+    /// 深度遍历寻找值和参数相同的节点，返回第一个()
+    pub fn find_first_val(
+        root: Option<Rc<RefCell<TreeNode>>>,
+        val: i32,
+    ) -> Option<Rc<RefCell<TreeNode>>> {
+        match root {
+            None => {
+                return None;
+            }
+            Some(rc) => {
+                let borrow = rc.borrow();
+                if borrow.val == val {
+                    return Some(rc.clone());
+                }
+
+                let left = Self::find_first_val(borrow.left.clone(), val);
+                if left.is_some() {
+                    return left;
+                }
+                Self::find_first_val(borrow.right.clone(), val)
+            }
+        }
+    }
 }
 
 #[cfg(test)]
@@ -551,5 +574,13 @@ mod tests {
         let inorder = TreeNode::inorder_traversal_recursive(&tree);
         assert_eq!(preorder, vec![0, -3, -10, 5, 9]);
         assert_eq!(inorder, vec![-10, -3, 0, 5, 9]);
+    }
+    #[test]
+    fn t10() {
+        let preorder = vec![3, 9, 6, 20, 15, 1, 7];
+        let inorder = vec![6, 9, 3, 1, 15, 20, 7];
+        let root = TreeNode::build_binary_tree(&preorder, &inorder);
+        let option = TreeNode::find_first_val(root.clone(), 9);
+        assert_eq!(option.unwrap().borrow().val, 9);
     }
 }
