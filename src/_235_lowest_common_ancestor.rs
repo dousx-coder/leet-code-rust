@@ -33,24 +33,20 @@ impl Solution {
         if val == min || val == max {
             return root;
         }
+        let root_ref = root.as_ref()?;
         // 当前根节点，比最大值大，说明max应该在左子树
         let left = if val > max {
-            Self::find(root.as_ref()?.borrow().left.clone(), min, max)
+            Self::find(root_ref.borrow().left.clone(), min, max)
         } else {
-            Self::find(root.as_ref()?.borrow().right.clone(), min, max)
+            Self::find(root_ref.borrow().right.clone(), min, max)
         };
         let right = if val < min {
-            Self::find(root.as_ref()?.borrow().right.clone(), min, max)
+            Self::find(root_ref.borrow().right.clone(), min, max)
         } else {
-            Self::find(root.as_ref()?.borrow().left.clone(), min, max)
+            Self::find(root_ref.borrow().left.clone(), min, max)
         };
-        //let left = Self::find(root.as_ref()?.borrow().left.clone(), min,max);
-        //let right = Self::find(root.as_ref()?.borrow().right.clone(), min, max);
         if left.is_some() && right.is_some() {
-            if left == right {
-                return left;
-            }
-            return root;
+            return if left == right { left } else { root };
         }
         if left.is_some() {
             left
