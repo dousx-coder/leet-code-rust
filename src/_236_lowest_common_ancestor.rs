@@ -12,61 +12,33 @@ impl Solution {
         p: Option<Rc<RefCell<TreeNode>>>,
         q: Option<Rc<RefCell<TreeNode>>>,
     ) -> Option<Rc<RefCell<TreeNode>>> {
-        Self::postorder(root, p?.borrow().val, q?.borrow().val)
-    }
-    fn postorder(
-        root: Option<Rc<RefCell<TreeNode>>>,
-        p: i32,
-        q: i32,
-    ) -> Option<Rc<RefCell<TreeNode>>> {
-        match root {
-            None => None,
-            Some(rc) => {
-                let borrow = rc.borrow();
-                let left = Self::postorder(borrow.left.clone(), p, q);
-                let right = Self::postorder(borrow.right.clone(), p, q);
-                let val = borrow.val;
-                if left.is_some() && right.is_some() {
-                    let left = left.unwrap();
-                    let right = right.unwrap();
-                    let left_val = left.borrow().val;
-                    let right_val = right.borrow().val;
-                    if left_val == p && right_val == q {
-                        return Some(rc.clone());
-                    }
-                    if left_val == q || right_val == p {
-                        return Some(rc.clone());
-                    }
-                    return None;
-                };
-                if left.is_some() {
-                    let l = left?;
-                    let left_val = l.borrow().val;
-                    if left_val == p && val == q {
-                        return Some(rc.clone());
-                    }
-                    if left_val == q && val == p {
-                        return Some(rc.clone());
-                    }
-                    return Some(l);
-                };
-                if right.is_some() {
-                    let r = right?;
-                    let right_val = r.borrow().val;
-                    if right_val == p && val == q {
-                        return Some(rc.clone());
-                    }
-                    if right_val == q && val == p {
-                        return Some(rc.clone());
-                    }
-                    return Some(r);
-                };
+        /*
+        if root.is_none() || root == p || root == q {
+            // 这里如果直接用PartialEq比较 root和p ，则需要保证输入参数是树中的节点，而不能新创建一个TreeNode节点
+            // 这种效率更高
+            return root;
+        }
+        */
+        if root.is_none() {
+            return root;
+        }
+        let root_val = root.clone()?.borrow().val;
+        let p_val = p.clone()?.borrow().val;
+        let q_val = q.clone()?.borrow().val;
+        if root_val == p_val || root_val == q_val {
+            return root;
+        }
 
-                if val == p || val == q {
-                    return Some(rc.clone());
-                }
-                None
-            }
+        let x = root.as_ref()?;
+        let left = Self::lowest_common_ancestor(x.borrow().left.clone(), p.clone(), q.clone());
+        let right = Self::lowest_common_ancestor(x.borrow().right.clone(), p, q);
+        if left.is_some() && right.is_some() {
+            return root;
+        };
+        if left.is_some() {
+            left
+        } else {
+            right
         }
     }
 }
@@ -89,7 +61,29 @@ mod tests {
         let preorder = vec![1, 2];
         let inorder = vec![2, 1];
         let root = TreeNode::build_binary_tree(&preorder, &inorder);
-        let ans = Solution::postorder(root.clone(), 1, 2);
+        let p = root.clone();
+        let q = root.as_ref().unwrap().borrow().left.clone();
+        let ans = Solution::lowest_common_ancestor(root.clone(), p, q);
         assert_eq!(ans.unwrap().as_ref().borrow().val, 1);
+    }
+    #[test]
+    fn t3() {
+        let preorder = vec![3, 9, 6, 20, 15, 1, 7];
+        let inorder = vec![6, 9, 3, 1, 15, 20, 7];
+        let root = TreeNode::build_binary_tree(&preorder, &inorder);
+        let p = Some(Rc::new(RefCell::new(TreeNode::new(1))));
+        let q = Some(Rc::new(RefCell::new(TreeNode::new(7))));
+        let ans = Solution::lowest_common_ancestor(root.clone(), p, q);
+        assert_eq!(ans.unwrap().as_ref().borrow().val, 20);
+
+        let p = Some(Rc::new(RefCell::new(TreeNode::new(15))));
+        let q = Some(Rc::new(RefCell::new(TreeNode::new(7))));
+        let ans = Solution::lowest_common_ancestor(root.clone(), p, q);
+        assert_eq!(ans.unwrap().as_ref().borrow().val, 20);
+
+        let p = Some(Rc::new(RefCell::new(TreeNode::new(3))));
+        let q = Some(Rc::new(RefCell::new(TreeNode::new(9))));
+        let ans = Solution::lowest_common_ancestor(root.clone(), p, q);
+        assert_eq!(ans.unwrap().as_ref().borrow().val, 3);
     }
 }
