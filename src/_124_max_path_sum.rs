@@ -36,12 +36,12 @@ impl Solution {
                 let right = Self::dfs(borrow.right.clone(), max_sum);
                 let left_sum = left + val;
                 let right_sum = right + val;
-                let curr_sum = left + val + right;
-                let curr_sum = max(max(val, left_sum), max(left + val + right, right_sum));
+                let child_max = max(left_sum, right_sum);
+                let curr_sum = max(child_max, max(left + val + right, val));
                 if curr_sum > *max_sum {
                     *max_sum = curr_sum;
                 };
-                max(max(val, left_sum), max(val, right_sum))
+                max(child_max, val)
             }
         }
     }
