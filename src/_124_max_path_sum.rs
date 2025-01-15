@@ -139,7 +139,7 @@ mod tests {
             i32::MIN,
             i32::MIN,
             i32::MIN,
-            -12,// 这里本来是-6 然后挂了一个左孩子也是-6 这里将两个节点合并一下，避免过多i32::MIN
+            -12, // 这里本来是-6 然后挂了一个左孩子也是-6 这里将两个节点合并一下，避免过多i32::MIN
             -6,
         ];
         //    9
@@ -154,6 +154,36 @@ mod tests {
         //     /
         //    -6
         let root = TreeNode::build_tree_by_sequential_storage(&sequential, true);
+        let ans = Solution::max_path_sum(root);
+        assert_eq!(ans, 16);
+    }
+
+    #[test]
+    fn t9() {
+        // 坑点，这里有两个2 不能用前序和后序构建树，
+        let m = i32::MIN;
+        let sequential = vec![
+            vec![9],
+            vec![6, -3],
+            vec![m, m, -6, 2],
+            vec![m, m, m, m, m, m, 2, m],
+            vec![m, m, m, m, m, m, m, m, m, m, m, m, -6, -6],
+            vec![
+                m, m, m, m, m, m, m, m, m, m, m, m, m, m, m, m, m, m, m, m, m, m, m, m, -6,
+            ],
+        ];
+        //    9
+        //   /  \
+        //  6    -3
+        //      /   \
+        //    -6     2
+        //          /
+        //         2
+        //       /   \
+        //      -6    -6
+        //     /
+        //    -6
+        let root = TreeNode::build_tree_by_two_sequential(sequential, true);
         let ans = Solution::max_path_sum(root);
         assert_eq!(ans, 16);
     }
