@@ -1,7 +1,7 @@
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::cmp::max;
-use std::collections::VecDeque;
+use std::collections::{HashMap, VecDeque};
 use std::rc::Rc;
 struct Solution;
 /// 337 打家劫舍Ⅲ
@@ -9,10 +9,14 @@ struct Solution;
 /// https://leetcode.cn/problems/house-robber-iii/?envType=problem-list-v2&envId=binary-tree
 impl Solution {
     pub fn rob(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-        Self::post_dfs(root)
+        let mut cache: HashMap<*const RefCell<TreeNode>, i32> = HashMap::new();
+        Self::post_dfs(root, &mut cache)
     }
     /// 后续遍历
-    fn post_dfs(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+    fn post_dfs(
+        root: Option<Rc<RefCell<TreeNode>>>,
+        cache: &mut HashMap<*const RefCell<TreeNode>, i32>,
+    ) -> i32 {
         match root {
             None => 0,
             Some(rc) => {
@@ -23,25 +27,32 @@ impl Solution {
                 if left.is_none() && right.is_none() {
                     return val;
                 }
+                if let Some(value) = cache.get(&Rc::as_ptr(&rc)) {
+                    return *value;
+                }
                 // 偷父节点
                 let mut sum1 = val;
                 match left.clone() {
                     None => {}
                     Some(rc) => {
                         let x = rc.borrow();
-                        sum1 += Self::post_dfs(x.left.clone()) + Self::post_dfs(x.right.clone());
+                        sum1 += Self::post_dfs(x.left.clone(), cache)
+                            + Self::post_dfs(x.right.clone(), cache);
                     }
                 }
                 match right.clone() {
                     None => {}
                     Some(rc) => {
                         let x = rc.borrow();
-                        sum1 += Self::post_dfs(x.left.clone()) + Self::post_dfs(x.right.clone());
+                        sum1 += Self::post_dfs(x.left.clone(), cache)
+                            + Self::post_dfs(x.right.clone(), cache);
                     }
                 }
                 // 不偷父节点
-                let mut sum2 = Self::post_dfs(left) + Self::post_dfs(right);
-                max(sum1, sum2)
+                let mut sum2 = Self::post_dfs(left, cache) + Self::post_dfs(right, cache);
+                let ans = max(sum1, sum2);
+                cache.insert(Rc::as_ptr(&rc), ans);
+                ans
             }
         }
     }
