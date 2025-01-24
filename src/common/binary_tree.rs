@@ -1,5 +1,5 @@
 use std::cell::RefCell;
-use std::collections::VecDeque;
+use std::collections::{HashSet, VecDeque};
 use std::rc::Rc;
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
@@ -23,8 +23,8 @@ impl TreeNode {
     /// 根据前缀和中缀构建二叉树
     ///
     /// # 参数
-    /// - `preorder`: 前缀
-    /// - `inorder`: 中缀
+    /// - `preorder`: 前缀,数组中不可出现重复元素
+    /// - `inorder`: 中缀,数组中不可出现重复元素
     ///
     /// # 返回值
     ///
@@ -51,12 +51,35 @@ impl TreeNode {
         if preorder.is_empty() || inorder.is_empty() {
             return None;
         }
-        if preorder.len() != inorder.len() {
-            panic!()
-        }
+        Self::build_verify(preorder, inorder);
         let n = preorder.len();
         Self::build_by_preorder_inorder(preorder, inorder, 0, n - 1, 0, n - 1)
     }
+
+    fn build_verify(preorder: &Vec<i32>, inorder: &Vec<i32>) {
+        if preorder.len() != inorder.len() {
+            panic!()
+        }
+        Self::verify_duplicate(preorder);
+        Self::verify_duplicate(inorder);
+        let preorder: HashSet<i32> = HashSet::from_iter(preorder.iter().cloned());
+        let inorder: HashSet<i32> = HashSet::from_iter(inorder.iter().cloned());
+        if preorder != inorder {
+            // 元素要相同
+            panic!()
+        }
+    }
+
+    /// 校验数组中是否出现重复的元素
+    fn verify_duplicate(vec: &Vec<i32>) {
+        let mut set = HashSet::new();
+        for x in vec {
+            if !set.insert(x) {
+                panic!("duplicate：{}", x);
+            }
+        }
+    }
+
     fn build_by_preorder_inorder(
         preorder: &Vec<i32>,
         inorder: &Vec<i32>,

@@ -27,22 +27,16 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    #[test]
-    fn t1() {
-        let preorder = vec![5, 4, 11, 7, 2, 8, 13, 4, 1];
-        let inorder = vec![7, 11, 2, 4, 5, 13, 8, 4, 1];
-        let root = TreeNode::build_binary_tree(&preorder, &inorder);
-        assert!(Solution::has_path_sum(root, 22));
-    }
 
     #[test]
-    fn t2() {
+    fn t1() {
         let sequential = vec![-1, 1, 2, 3];
         let root = TreeNode::build_tree_by_sequential_storage(&sequential, true);
         assert_eq!(Solution::has_path_sum(root, 5), false);
     }
+    
     #[test]
-    fn t3() {
+    fn t2() {
         assert_eq!(Solution::has_path_sum(None, 0), false);
     }
 }

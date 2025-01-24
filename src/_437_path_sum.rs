@@ -40,16 +40,9 @@ impl Solution {
 mod tests {
     use super::*;
     use std::ptr::null;
+   
     #[test]
     fn t1() {
-        let preorder = vec![10, 5, 3, 3, -2, 2, 1, -3, 11];
-        let inorder = vec![3, -2, 3, 1, 2, 5, 11, -3, 10];
-        let root = TreeNode::build_binary_tree(&preorder, &inorder);
-        let ans = Solution::path_sum(root, 8);
-        assert_eq!(ans, 3);
-    }
-    #[test]
-    fn t2() {
         let sequential = vec![
             -1,
             1000000000,
