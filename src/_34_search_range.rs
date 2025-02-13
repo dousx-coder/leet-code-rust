@@ -9,55 +9,42 @@ impl Solution {
         if len == 0 {
             return vec![-1, -1];
         }
-
-        let first = Self::find_first(&nums, target);
-        if first == -1 {
-            return vec![-1, -1];
-        }
-        let last = Self::find_last(&nums, target);
-
-        vec![first, last]
-    }
-
-    fn find_first(nums: &Vec<i32>, target: i32) -> i32 {
         let mut left = 0;
-        let mut right = nums.len() as i32 - 1;
+        let mut right = len - 1;
+        let mut last = -1;
+        let mut first = -1;
         while left <= right {
-            let mid = left + (right - left) / 2;
-            if nums[mid as usize] < target {
+            let mid = (left + right) / 2;
+            if nums[mid] < target {
+                // 中间值
                 left = mid + 1;
-            } else if nums[mid as usize] > target {
-                right = mid - 1;
-            } else {
-                if mid == 0 || nums[mid as usize - 1] != target {
-                    return mid;
+                continue;
+            }
+            if nums[mid] > target {
+                if mid < 1 {
+                    // 类型越界
+                    return vec![-1, -1];
                 }
                 right = mid - 1;
+                continue;
             }
-        }
-        -1
-    }
-
-    fn find_last(nums: &Vec<i32>, target: i32) -> i32 {
-        let mut left = 0;
-        let mut right = nums.len() as i32 - 1;
-        while left <= right {
-            let mid = left + (right - left) / 2;
-            if nums[mid as usize] < target {
-                left = mid + 1;
-            } else if nums[mid as usize] > target {
-                right = mid - 1;
-            } else {
-                if mid == nums.len() as i32 - 1 || nums[mid as usize + 1] != target {
-                    return mid;
+            if nums[mid] == target {
+                for i in mid..=right {
+                    if nums[i] == target {
+                        last = i as i32;
+                    }
                 }
-                left = mid + 1;
+                for i in (left..=mid).rev() {
+                    if nums[i] == target {
+                        first = i as i32;
+                    }
+                }
+                return vec![first, last];
             }
         }
-        -1
+        vec![-1, -1]
     }
 }
-
 #[cfg(test)]
 mod tests {
     use super::*;
