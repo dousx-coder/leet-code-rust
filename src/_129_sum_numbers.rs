@@ -9,7 +9,7 @@ use std::rc::Rc;
 impl Solution {
     pub fn sum_numbers(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         let mut nums: Vec<i32> = vec![];
-        Self::dfs(root.clone(), &mut vec![], &mut nums);
+        Self::dfs(root, &mut vec![], &mut nums);
         if nums.is_empty() {
             0
         } else {
@@ -20,11 +20,11 @@ impl Solution {
         match root {
             None => {}
             Some(rc) => {
-                let borrow = rc.borrow();
+                let mut borrow = rc.borrow_mut();
                 let val = borrow.val;
                 curr_path.push(val);
-                let left = borrow.left.clone();
-                let right = borrow.right.clone();
+                let mut left = borrow.left.take();
+                let mut right = borrow.right.take();
                 if left.is_none() && right.is_none() {
                     let num = curr_path
                         .iter()
@@ -37,10 +37,10 @@ impl Solution {
                     return;
                 }
                 if left.is_some() {
-                    Self::dfs(left.clone(), curr_path, nums);
+                    Self::dfs(left, curr_path, nums);
                 }
                 if right.is_some() {
-                    Self::dfs(right.clone(), curr_path, nums);
+                    Self::dfs(right, curr_path, nums);
                 }
                 curr_path.pop();
             }
