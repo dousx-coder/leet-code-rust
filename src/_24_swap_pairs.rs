@@ -11,7 +11,7 @@ impl Solution {
         let mut dummy = Some(Box::new(ListNode { val: 0, next: head }));
         let mut curr = &mut dummy;
 
-        while let Some(ref mut node) = curr {
+        while let Some(node) = curr {
             // 检查是否有两个节点可以交换 take_if检查是否有second存在
             if let Some(mut first) = node.next.take_if(|v| v.next.is_some()) {
                 if let Some(mut second) = first.next.take() {
