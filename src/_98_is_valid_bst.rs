@@ -58,8 +58,8 @@ mod tests {
 
     #[test]
     fn t4() {
-        let sequential = vec![-1,1, 1];
-        let root = TreeNode::build_tree_by_sequential_storage(&sequential,true);
+        let sequential = vec![-1, 1, 1];
+        let root = TreeNode::build_tree_by_sequential_storage(&sequential, true);
         assert_eq!(Solution::is_valid_bst(root), false);
     }
 

@@ -211,11 +211,7 @@ impl TreeNode {
                 if !min_as_empty {
                     return Some(v);
                 }
-                if v == i32::MIN {
-                    None
-                } else {
-                    Some(v)
-                }
+                if v == i32::MIN { None } else { Some(v) }
             })
             .collect::<Vec<Option<i32>>>();
         Self::build_by_sequential_storage(&sequential)

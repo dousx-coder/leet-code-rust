@@ -34,11 +34,7 @@ impl Solution {
         if left.is_some() && right.is_some() {
             return root;
         };
-        if left.is_some() {
-            left
-        } else {
-            right
-        }
+        if left.is_some() { left } else { right }
     }
 }
 

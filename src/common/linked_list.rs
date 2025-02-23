@@ -38,9 +38,5 @@ pub fn vec_to_linked_list(vec: &Vec<i32>, dummy_head: bool) -> Option<Box<ListNo
         curr.next = Some(Box::new(ListNode::new(value)));
         curr = curr.next.as_mut().unwrap();
     }
-    if dummy_head {
-        Some(dummy)
-    } else {
-        dummy.next
-    }
+    if dummy_head { Some(dummy) } else { dummy.next }
 }

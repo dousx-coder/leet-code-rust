@@ -34,7 +34,7 @@ mod tests {
         let root = TreeNode::build_tree_by_sequential_storage(&sequential, true);
         assert_eq!(Solution::has_path_sum(root, 5), false);
     }
-    
+
     #[test]
     fn t2() {
         assert_eq!(Solution::has_path_sum(None, 0), false);

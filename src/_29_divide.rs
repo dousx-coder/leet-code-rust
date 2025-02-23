@@ -24,11 +24,7 @@ impl Solution {
             res += num;
             dividend -= dsor;
         }
-        if flag {
-            res
-        } else {
-            -res
-        }
+        if flag { res } else { -res }
     }
 }
 #[cfg(test)]
