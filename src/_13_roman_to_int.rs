@@ -23,22 +23,15 @@ impl Solution {
         sum
     }
     fn char_to_i32(ch: char) -> i32 {
-        if ch == 'I' {
-            1
-        } else if ch == 'V' {
-            5
-        } else if ch == 'X' {
-            10
-        } else if ch == 'L' {
-            50
-        } else if ch == 'C' {
-            100
-        } else if ch == 'D' {
-            500
-        } else if ch == 'M' {
-            1000
-        } else {
-            0
+        match ch {
+            'I' => 1,
+            'V' => 5,
+            'X' => 10,
+            'L' => 50,
+            'C' => 100,
+            'D' => 500,
+            'M' => 1000,
+            _ => 0,
         }
     }
 }
