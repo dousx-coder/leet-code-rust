@@ -1,4 +1,4 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::HashSet;
 ///
 /// https://leetcode.cn/problems/4sum/description/
 ///

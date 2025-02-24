@@ -95,7 +95,6 @@ impl MyLinkedList {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::common::linked_list::linked_list_to_vec;
     #[test]
     fn t1() {
         let mut list = MyLinkedList::new();

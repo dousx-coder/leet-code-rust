@@ -35,7 +35,7 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use maplit::{hashmap, hashset};
+    use maplit::hashset;
     #[test]
     fn t1() {
         let ans = Solution::permute_unique(vec![1, 1, 2]);

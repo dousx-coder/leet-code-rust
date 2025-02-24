@@ -1,6 +1,5 @@
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
-use std::collections::VecDeque;
 use std::rc::Rc;
 ///
 /// `98 验证二叉搜索树`

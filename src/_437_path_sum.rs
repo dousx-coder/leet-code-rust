@@ -39,7 +39,6 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::ptr::null;
 
     #[test]
     fn t1() {

@@ -20,7 +20,7 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use maplit::{hashmap, hashset};
+    use maplit::hashset;
     #[test]
     fn t1() {
         let ans = Solution::intersection(vec![1, 2, 2, 1], vec![2, 2]);

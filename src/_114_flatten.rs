@@ -1,7 +1,6 @@
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
-use std::thread::current;
 
 struct Solution;
 ///
