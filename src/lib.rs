@@ -114,3 +114,4 @@ mod lcr_144_flip_tree;
 mod lcr_175_calculate_depth;
 mod lcr_21_remove_nth_from_end;
 mod _993_is_cousins;
+mod _543_diameter_of_binary_tree;
