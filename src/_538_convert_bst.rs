@@ -9,21 +9,21 @@ use std::rc::Rc;
 
 impl Solution {
     pub fn convert_bst(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
-        let mut num = 0;
-        Self::convert(&root, &mut num)
+        let mut curr_sum = 0;
+        Self::convert(&root, &mut curr_sum)
     }
     pub fn convert(
         root: &Option<Rc<RefCell<TreeNode>>>,
-        num: &mut i32,
+        curr_sum: &mut i32,
     ) -> Option<Rc<RefCell<TreeNode>>> {
         match root {
             None => None,
             Some(rc) => {
                 let borrow = rc.borrow();
-                let right = Self::convert(&borrow.right, num);
-                let new_val = borrow.val + *num;
-                *num = new_val;
-                let left = Self::convert(&borrow.left, num);
+                let right = Self::convert(&borrow.right, curr_sum);
+                let new_val = borrow.val + *curr_sum;
+                *curr_sum = new_val;
+                let left = Self::convert(&borrow.left, curr_sum);
                 let mut new_node = TreeNode::new(new_val);
                 new_node.left = left;
                 new_node.right = right;
