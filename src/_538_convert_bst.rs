@@ -10,23 +10,26 @@ use std::rc::Rc;
 impl Solution {
     pub fn convert_bst(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
         let mut num = 0;
-        Self::convert(root, &mut num)
+        Self::convert(&root, &mut num)
     }
     pub fn convert(
-        root: Option<Rc<RefCell<TreeNode>>>,
+        root: &Option<Rc<RefCell<TreeNode>>>,
         num: &mut i32,
     ) -> Option<Rc<RefCell<TreeNode>>> {
-        if root.is_none() {
-            return root;
+        match root {
+            None => None,
+            Some(rc) => {
+                let borrow = rc.borrow();
+                let right = Self::convert(&borrow.right, num);
+                let new_val = borrow.val + *num;
+                *num = new_val;
+                let left = Self::convert(&borrow.left, num);
+                let mut new_node = TreeNode::new(new_val);
+                new_node.left = left;
+                new_node.right = right;
+                Some(Rc::new(RefCell::new(new_node)))
+            }
         }
-        let clone = root.clone();
-        let rc = clone.unwrap();
-        let mut borrow = rc.borrow_mut();
-        Self::convert(borrow.right.clone(), num);
-        borrow.val += *num;
-        *num = borrow.val;
-        Self::convert(borrow.left.clone(), num);
-        root
     }
 }
 #[cfg(test)]
