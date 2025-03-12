@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 ///
 /// 17. 电话号码的字母组合
 ///
@@ -7,52 +5,39 @@ use std::collections::HashMap;
 ///
 
 struct Solution;
-
 impl Solution {
     pub fn letter_combinations(digits: String) -> Vec<String> {
-        if "" == digits {
+        if digits.is_empty() {
             return vec![];
         }
-        let mut map = HashMap::new();
-        map.insert('2', vec!["a", "b", "c"]);
-        map.insert('3', vec!["d", "e", "f"]);
-        map.insert('4', vec!["g", "h", "i"]);
-        map.insert('5', vec!["j", "k", "l"]);
-        map.insert('6', vec!["m", "n", "o"]);
-        map.insert('7', vec!["p", "q", "r", "s"]);
-        map.insert('8', vec!["t", "u", "v"]);
-        map.insert('9', vec!["w", "x", "y", "z"]);
-        let mut r: Vec<String> = vec![];
-        Self::append(0, &digits, &map, "", &mut r);
-        r
+        let map = [
+            "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz",
+        ];
+        let mut result = Vec::new();
+        Self::append(
+            0,
+            &digits,
+            &map,
+            String::with_capacity(digits.len()),
+            &mut result,
+        );
+        result
     }
-    fn append(
-        index: usize,
-        digits: &str,
-        map: &HashMap<char, Vec<&str>>,
-        pre: &str,
-        result: &mut Vec<String>,
-    ) {
+    fn append(index: usize, digits: &str, map: &[&str], mut pre: String, result: &mut Vec<String>) {
         if index == digits.len() {
-            result.push(String::from(pre));
+            result.push(pre);
             return;
         }
-        let mut char_indices = digits.char_indices();
-        match char_indices.nth(index).map(|(_, c)| c) {
-            Some(c) => {
-                let option_v = map.get(&c);
-                let ref_str_vec = option_v.unwrap();
-                ref_str_vec.iter().for_each(|&it| {
-                    let s = pre.to_string() + it;
-                    let sp = &s;
-                    Self::append(index + 1, digits, map, sp, result)
-                });
+        let c = digits.chars().nth(index).unwrap();
+        if let Some(&letters) = map.get(c.to_digit(10).unwrap() as usize) {
+            for letter in letters.chars() {
+                pre.push(letter);
+                Self::append(index + 1, digits, map, pre.clone(), result);
+                pre.pop();
             }
-            None => {}
         }
     }
 }
-
 #[cfg(test)]
 mod test {
     use super::*;
