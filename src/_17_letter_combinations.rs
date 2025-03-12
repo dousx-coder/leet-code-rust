@@ -29,7 +29,9 @@ impl Solution {
             return;
         }
         let c = digits.chars().nth(index).unwrap();
-        if let Some(&letters) = map.get(c.to_digit(10).unwrap() as usize) {
+        // char 转10进制 再转usize得到map对应的下标
+        let i = c.to_digit(10).unwrap() as usize;
+        if let Some(&letters) = map.get(i) {
             for letter in letters.chars() {
                 pre.push(letter);
                 Self::append(index + 1, digits, map, pre.clone(), result);
