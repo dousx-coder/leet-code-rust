@@ -5,7 +5,6 @@ struct Solution;
 impl Solution {
     pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut result = vec![];
-        result.push(vec![]);
         Self::backtracking(0, &nums, &mut result, &mut vec![]);
         result
     }
@@ -15,16 +14,16 @@ impl Solution {
         result: &mut Vec<Vec<i32>>,
         subset: &mut Vec<i32>,
     ) {
-        let len = nums.len();
-        if pos >= len {
+        if pos == nums.len() {
+            result.push(subset.clone());
             return;
         }
-        for i in pos..len {
-            subset.push(nums[i]);
-            result.push(subset.clone());
-            Self::backtracking(i + 1, nums, result, subset);
-            subset.pop();
-        }
+        // 不包含 nums[pos] 的情况
+        Self::backtracking(pos + 1, nums, result, subset);
+        // 包含 nums[pos] 的情况
+        subset.push(nums[pos]);
+        Self::backtracking(pos + 1, nums, result, subset);
+        subset.pop();
     }
 }
 #[cfg(test)]
