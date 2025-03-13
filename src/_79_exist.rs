@@ -41,11 +41,16 @@ impl Solution {
         }
         used[i][j] = true;
         // 尝试上下左右四个方向各走一次
-        if Self::backtracking(i + 1, j, index + 1, m, n, used, board, word)
-            || Self::backtracking(i, j + 1, index + 1, m, n, used, board, word)
-            || (i > 0 && Self::backtracking(i - 1, j, index + 1, m, n, used, board, word))
-            || (j > 0 && Self::backtracking(i, j - 1, index + 1, m, n, used, board, word))
-        {
+        if Self::backtracking(i + 1, j, index + 1, m, n, used, board, word) {
+            return true;
+        }
+        if Self::backtracking(i, j + 1, index + 1, m, n, used, board, word) {
+            return true;
+        }
+        if i > 0 && Self::backtracking(i - 1, j, index + 1, m, n, used, board, word) {
+            return true;
+        }
+        if j > 0 && Self::backtracking(i, j - 1, index + 1, m, n, used, board, word) {
             return true;
         }
         used[i][j] = false;
