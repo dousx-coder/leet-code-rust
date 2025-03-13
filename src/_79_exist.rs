@@ -8,25 +8,14 @@ impl Solution {
         if board.is_empty() {
             return false;
         }
-        let mut board = board;
         let m = board.len();
         let n = board[0].len();
-
         let word = word.chars().collect::<Vec<char>>();
-        let mut curr = vec![];
-        // init use_flag
-        let mut use_flag = vec![];
-        for i in 0..m {
-            let mut vec = vec![];
-            for j in 0..n {
-                vec.push(0);
-            }
-            use_flag.push(vec);
-        }
+        let mut used = vec![vec![false; n]; m];
         for i in 0..m {
             for j in 0..n {
                 if board[i][j] == word[0] {
-                    if Self::backtracking(i, j, &mut curr, m, n, &mut use_flag, &board, &word) {
+                    if Self::backtracking(i, j, 0, m, n, &mut used, &board, &word) {
                         return true;
                     }
                 }
@@ -37,49 +26,29 @@ impl Solution {
     fn backtracking(
         i: usize,
         j: usize,
-        curr: &mut Vec<char>,
+        index: usize,
         m: usize,
         n: usize,
-        used: &mut Vec<Vec<usize>>,
+        used: &mut Vec<Vec<bool>>,
         board: &Vec<Vec<char>>,
         word: &Vec<char>,
     ) -> bool {
-        if i >= m || j >= n || used[i][j] == 1 || curr.len() > word.len() {
+        if i >= m || j >= n || used[i][j] || index >= word.len() || board[i][j] != word[index] {
             return false;
         }
-        // 单词必须按照字母顺序，通过相邻的单元格内的字母构成，
-        // 其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。
-        // 同一个单元格内的字母不允许被重复使用。
-        let x = board[i][j];
-        let next_index = curr.len();
-        if next_index >= word.len() {
-            return false;
+        if index == word.len() - 1 {
+            return true;
         }
-        let w = word[next_index];
-        if x == w {
-            curr.push(x);
-            used[i][j] = 1;
-            if curr.len() == word.len() {
-                if curr == word {
-                    return true;
-                }
-            }
-            // 尝试上下左右四个方向各走一次
-            if Self::backtracking(i + 1, j, curr, m, n, used, board, word) {
-                return true;
-            }
-            if Self::backtracking(i, j + 1, curr, m, n, used, board, word) {
-                return true;
-            }
-            if i >= 1 && Self::backtracking(i - 1, j, curr, m, n, used, board, word) {
-                return true;
-            }
-            if j >= 1 && Self::backtracking(i, j - 1, curr, m, n, used, board, word) {
-                return true;
-            }
-            curr.pop();
-            used[i][j] = 0;
+        used[i][j] = true;
+        // 尝试上下左右四个方向各走一次
+        if Self::backtracking(i + 1, j, index + 1, m, n, used, board, word)
+            || Self::backtracking(i, j + 1, index + 1, m, n, used, board, word)
+            || (i > 0 && Self::backtracking(i - 1, j, index + 1, m, n, used, board, word))
+            || (j > 0 && Self::backtracking(i, j - 1, index + 1, m, n, used, board, word))
+        {
+            return true;
         }
+        used[i][j] = false;
         false
     }
 }
