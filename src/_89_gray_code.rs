@@ -47,11 +47,9 @@ impl Solution {
     }
 
     fn init(used: &mut Vec<bool>, binary: &mut Vec<bool>, result: &mut Vec<i32>) {
-        if result.is_empty() {
-            let ans = Self::binary_to_decimal(binary);
-            result.push(ans as i32);
-            used[ans as usize] = true;
-        }
+        let ans = Self::binary_to_decimal(binary);
+        result.push(ans as i32);
+        used[ans as usize] = true;
     }
 
     /// 二进制转十进制
