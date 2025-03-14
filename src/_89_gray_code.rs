@@ -29,18 +29,19 @@ impl Solution {
                 let bit = binary[j];
                 binary[j] = !bit;
                 let ans = Self::binary_to_decimal(binary);
-                // 回溯
+                // binary回溯
                 binary[j] = bit;
-                if !used[ans as usize] {
-                    result.push(ans as i32);
-                    used[ans as usize] = true;
-                    if Self::backtracking(used, binary, result) {
-                        return true;
-                    }
-                    // 回溯
-                    used[ans as usize] = false;
-                    result.pop();
+                if used[ans as usize] {
+                    continue;
                 }
+                result.push(ans as i32);
+                used[ans as usize] = true;
+                if Self::backtracking(used, binary, result) {
+                    return true;
+                }
+                // used回溯
+                used[ans as usize] = false;
+                result.pop();
             }
         }
         false
