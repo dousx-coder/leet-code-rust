@@ -10,6 +10,8 @@ impl Solution {
         let mut result = vec![];
         let len = 2u64.pow(n as u32) as usize;
         let mut used = vec![false; len];
+        // 减少初始判断
+        Self::init(&mut used, &mut binary, &mut result);
         Self::backtracking(&mut used, &mut binary, &mut result);
         result
     }
@@ -18,37 +20,40 @@ impl Solution {
             return true;
         }
         for i in result.len()..used.len() {
-            if result.is_empty() {
-                let ans = Self::binary_to_decimal(&binary) as i32;
-                result.push(ans);
-                used[ans as usize] = true;
-            } else {
-                let last = result.last().unwrap();
-                let mut last = Self::decimal_to_binary(result.last().unwrap());
-                for j in 0..last.len() {
-                    binary[j] = last[j];
-                }
-                for j in 0..binary.len() {
-                    let bit = binary[j];
-                    binary[j] = !bit;
-                    let ans = Self::binary_to_decimal(&binary) as i32;
-                    // 回溯
-                    binary[j] = bit;
-                    if !used[ans as usize] {
-                        result.push(ans);
-                        used[ans as usize] = true;
-                        if Self::backtracking(used, binary, result) {
-                            return true;
-                        }
-                        // 回溯
-                        used[ans as usize] = false;
-                        result.pop();
+            let last = result.last().unwrap();
+            let mut last = Self::decimal_to_binary(result.last().unwrap());
+            for j in 0..last.len() {
+                binary[j] = last[j];
+            }
+            for j in 0..binary.len() {
+                let bit = binary[j];
+                binary[j] = !bit;
+                let ans = Self::binary_to_decimal(binary);
+                // 回溯
+                binary[j] = bit;
+                if !used[ans as usize] {
+                    result.push(ans as i32);
+                    used[ans as usize] = true;
+                    if Self::backtracking(used, binary, result) {
+                        return true;
                     }
+                    // 回溯
+                    used[ans as usize] = false;
+                    result.pop();
                 }
             }
         }
         false
     }
+
+    fn init(used: &mut Vec<bool>, binary: &mut Vec<bool>, result: &mut Vec<i32>) {
+        if result.is_empty() {
+            let ans = Self::binary_to_decimal(binary);
+            result.push(ans as i32);
+            used[ans as usize] = true;
+        }
+    }
+
     /// 二进制转十进制
     ///
     /// (下标为0表示最低位)
