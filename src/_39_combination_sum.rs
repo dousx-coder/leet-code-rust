@@ -3,8 +3,6 @@
 ///
 /// https://leetcode.cn/problems/combination-sum/description/
 ///
-use std::collections::BTreeSet;
-
 
 struct Solution;
 
@@ -12,29 +10,36 @@ impl Solution {
     pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
         let mut candidates = candidates;
         candidates.sort();
-        let mut list: Vec<i32> = Vec::new();
-        let mut ans: BTreeSet<Vec<i32>> = BTreeSet::new();
-        Self::dfs(&candidates, target, &mut list, &mut ans);
-        ans.into_iter().collect()
+        let mut ans = vec![];
+        Self::backtracking(0, &candidates, target, &mut vec![], &mut ans);
+        ans
     }
-    fn dfs(candidates: &Vec<i32>, target: i32, curr: &mut Vec<i32>, ans: &mut BTreeSet<Vec<i32>>) {
-        if target < 0 {
+    fn backtracking(
+        index: usize,
+        candidates: &Vec<i32>,
+        target: i32,
+        curr: &mut Vec<i32>,
+        ans: &mut Vec<Vec<i32>>,
+    ) {
+        if target < 0 || index >= candidates.len() {
             return;
         }
         if target == 0 {
             let mut vec = curr.clone();
-            vec.sort();
-            ans.insert(vec);
+            //vec.sort();
+            ans.push(vec);
             return;
         }
-        candidates.iter().for_each(|value| {
-            let sub = target - value;
-            if sub >= 0 {
-                curr.push(value.clone());
-                Self::dfs(candidates, sub, curr, ans);
-                curr.pop();
+        for i in index..candidates.len() {
+            let it = candidates[i];
+            if target < it {
+                return;
             }
-        });
+            curr.push(it);
+            // 数字可以重复使用，所以下一层传递的也是i，而不是i+1
+            Self::backtracking(i, candidates, target - it, curr, ans);
+            curr.pop();
+        }
     }
 }
 
