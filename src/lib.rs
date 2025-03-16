@@ -123,3 +123,4 @@ mod _78_subsets;
 mod _79_exist;
 mod _89_gray_code;
 mod _90_subsets_with_dup;
+mod _306_is_additive_number;
