@@ -57,25 +57,30 @@ impl Solution {
                         parse.pop();
                     }
                     continue;
-                }
-                let check = Self::eq(num, parse);
-                if check < 0 {
-                    // 剪枝
-                    parse.pop();
-                    break;
-                }
-                if check > 0 {
-                    parse.pop();
-                    continue;
-                }
-                if check == 0 {
-                    if i == len - 1 {
-                        return true;
-                    };
-                    if Self::backtracking(i + 1, parse, num) {
-                        return true;
-                    } else {
-                        parse.pop();
+                } else {
+                    match Self::eq(num, parse) {
+                        -1 => {
+                            // 剪枝
+                            parse.pop();
+                            break;
+                        }
+                        1 => {
+                            parse.pop();
+                            continue;
+                        }
+                        0 => {
+                            if i == len - 1 {
+                                return true;
+                            };
+                            if Self::backtracking(i + 1, parse, num) {
+                                return true;
+                            } else {
+                                parse.pop();
+                            }
+                        }
+                        _ => {
+                            panic!()
+                        }
                     }
                 }
             }
