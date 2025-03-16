@@ -27,7 +27,6 @@ impl Solution {
                 i
             };
             for end in i..=j {
-                let c = (start, end);
                 parse.push((start, end));
                 if parse.len() < 3 {
                     if Self::backtracking(end + 1, num, parse) {
