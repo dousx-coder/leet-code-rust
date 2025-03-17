@@ -4,8 +4,7 @@
 struct Solution;
 impl Solution {
     pub fn partition(s: String) -> Vec<Vec<String>> {
-        let mut s = s;
-        let mut chars = s.chars().collect::<Vec<char>>();
+        let chars = s.chars().collect::<Vec<char>>();
         let mut ans = vec![];
         Self::backtracking(0, &chars, &mut ans, &mut vec![]);
         ans
@@ -39,8 +38,8 @@ impl Solution {
 
     /// true 回文
     fn palindromic(path: &[char]) -> bool {
-        if path.is_empty() {
-            return false;
+        if path.len() == 1 {
+            return true;
         }
         for i in 0..path.len() / 2 {
             if path[i] != path[path.len() - 1 - i] {
