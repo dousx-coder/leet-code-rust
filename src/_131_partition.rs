@@ -31,7 +31,8 @@ impl Solution {
                 Self::backtracking(end + 1, chars, ans, path);
                 path.pop();
             } else {
-                break;
+                // 这里不能break，start..=end 不是回文数，start..=end+1 可能就是回文数
+                // break;
             }
         }
     }
