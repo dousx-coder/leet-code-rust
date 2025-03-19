@@ -90,7 +90,6 @@ mod test {
     fn t3() {
         //0 ~ 7
         let ans = Solution::gray_code(3);
-        println!("{:?}", ans);
         assert_eq!(ans, vec![0, 1, 3, 2, 6, 7, 5, 4]);
     }
 }
