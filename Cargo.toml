@@ -8,3 +8,5 @@ edition = "2024"
 [dependencies]
 # maplit 提供了 hashset! 和 btreeset! 宏，方便快速创建集合
 maplit = "1.0"
+# itertools 扩展了标准库中提供的迭代器功能
+itertools = "0.10"
