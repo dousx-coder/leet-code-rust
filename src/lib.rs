@@ -126,3 +126,4 @@ mod _90_subsets_with_dup;
 mod _306_is_additive_number;
 mod _842_split_into_fibonacci;
 mod _131_partition;
+mod _357_count_numbers_with_unique_digits;
