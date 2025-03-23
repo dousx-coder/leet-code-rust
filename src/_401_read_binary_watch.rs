@@ -13,10 +13,10 @@ impl Solution {
         let v2 = vec![1, 2, 4, 8, 16, 32];
         let mut ans = vec![];
         for i in 0..4 {
+            // 上面最多同时亮3个，如果4个全亮，则是15不符合逻辑,所以i的取值是[0,4)
             let mut hours = vec![];
             Solution::backtracking(0, 11, i, &mut vec![], &mut hours, &v1);
             let hours: Vec<i32> = hours.iter().map(|x| x.iter().sum::<i32>()).collect();
-            // 上面最多同时亮3个，如果4个全亮，则是15不符合逻辑
             let j = turned_on - (i as i32);
             if j >= 6 || j < 0 {
                 continue;
