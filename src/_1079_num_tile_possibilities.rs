@@ -1,5 +1,5 @@
 ///
-/// 1079 活字印刷
+/// 1079 活字印刷 (排序+子集+去重)
 ///
 /// https://leetcode.cn/problems/letter-tile-possibilities/?envType=problem-list-v2&envId=backtracking
 struct Solution;
