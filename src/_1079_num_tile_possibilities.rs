@@ -7,24 +7,24 @@ impl Solution {
     pub fn num_tile_possibilities(tiles: String) -> i32 {
         let mut chars = tiles.chars().collect::<Vec<char>>();
         chars.sort();
-        let ans = &mut vec![];
+        let mut ans = 0;
         Self::backtracking(
             0,
-            ans,
+            &mut ans,
             &mut String::new(),
             &mut vec![false; chars.len()],
             &chars,
         );
-        ans.len() as i32
+        ans
     }
     fn backtracking(
-        size: usize,
-        ans: &mut Vec<String>,
+        pos: usize,
+        ans: &mut i32,
         path: &mut String,
         used: &mut Vec<bool>,
         chars: &Vec<char>,
     ) {
-        if size == chars.len() {
+        if pos == chars.len() {
             return;
         }
         for i in 0..chars.len() {
@@ -36,8 +36,8 @@ impl Solution {
             }
             used[i] = true;
             path.push(chars[i]);
-            ans.push(path.clone());
-            Self::backtracking(size + 1, ans, path, used, chars);
+            *ans += 1;
+            Self::backtracking(pos + 1, ans, path, used, chars);
             path.pop();
             used[i] = false;
         }
