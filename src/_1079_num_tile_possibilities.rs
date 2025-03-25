@@ -1,6 +1,8 @@
 ///
 /// 1079 活字印刷 (排序+子集+去重)
 ///
+/// 排列([a,b]和[b,a])是2种解
+///
 /// https://leetcode.cn/problems/letter-tile-possibilities/?envType=problem-list-v2&envId=backtracking
 struct Solution;
 impl Solution {

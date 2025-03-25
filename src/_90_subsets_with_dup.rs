@@ -1,6 +1,8 @@
 ///
 ///  90 子集 II (排序+子集+去重)
 ///
+///  组合([1,2]和[2,1])是同一种解
+///
 /// https://leetcode.cn/problems/subsets-ii/description/?envType=problem-list-v2&envId=backtracking
 struct Solution;
 impl Solution {
