@@ -1,5 +1,4 @@
 use std::collections::HashSet;
-
 /// 491 非递减子序列
 ///
 /// https://leetcode.cn/problems/non-decreasing-subsequences/?envType=problem-list-v2&envId=backtracking
@@ -17,18 +16,17 @@ impl Solution {
         if start >= nums.len() {
             return;
         }
-        // 数值范围[-100, 100]
         // 同一个父节点下，当前层不能出现相同的元素
-        let mut used = vec![false; 201];
+        let mut used = HashSet::new();
         for i in start..nums.len() {
-            let j = (nums[i] + 100) as usize;
-            if used[j] {
-                continue;
-            }
             if !path.is_empty() && nums[i] < *path.last().unwrap() {
                 continue;
             }
-            used[j] = true;
+            if used.contains(&nums[i]) {
+                // 使用set标记当前层已用过的元素
+                continue;
+            }
+            used.insert(nums[i]);
             path.push(nums[i]);
             if path.len() >= 2 {
                 ans.push(path.clone());
