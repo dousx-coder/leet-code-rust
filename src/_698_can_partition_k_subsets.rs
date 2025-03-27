@@ -10,11 +10,6 @@ impl Solution {
         }
         // 平均数
         let avg = x / k;
-        if *nums.iter().max().unwrap() > avg {
-            // 题干明确 0 < nums[i] < 10000
-            // 既然都是正数，如果出现最大值大于平均数，则不可能分割
-            return false;
-        }
         let mut nums = nums;
         // 倒序排序
         nums.sort_by(|a, b| b.cmp(a));
