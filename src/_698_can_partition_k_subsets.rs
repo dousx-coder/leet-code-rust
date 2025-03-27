@@ -26,6 +26,10 @@ impl Solution {
             if nums[index] > buckets[j] {
                 continue;
             }
+            if j > 0 && buckets[j] == buckets[j - 1] {
+                // 剪枝
+                continue;
+            }
             // 桶中减去当前数字
             // 减去nums[index]之后，buckets[j]最小也只能是0(上面有判断)，
             // 如果刚好是0(题意中的nums取值均大于0，所以下次循环该桶会被跳过)
