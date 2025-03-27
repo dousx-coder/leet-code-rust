@@ -32,6 +32,8 @@ impl Solution {
                 continue;
             }
             // 桶中减去当前数字
+            // 减去nums[index]之后，buckets[j]最小也只能是0(上面有判断)，
+            // 如果刚好是0(题意中的nums取值均大于0，所以下次循环该桶会被跳过)
             buckets[j] -= nums[index];
             if Self::backtracking(index + 1, buckets, nums) {
                 return true;
@@ -84,6 +86,16 @@ mod tests {
         assert_eq!(
             Solution::can_partition_k_subsets(vec![2, 2, 2, 2, 3, 4, 5], 4),
             false
+        )
+    }
+    #[test]
+    fn t6() {
+        assert_eq!(
+            Solution::can_partition_k_subsets(
+                vec![9, 10, 14, 8, 15, 7, 15, 12, 15, 13, 10, 14, 9, 11, 9, 14],
+                5
+            ),
+            true
         )
     }
 }
