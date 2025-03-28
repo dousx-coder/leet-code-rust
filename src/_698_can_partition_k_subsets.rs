@@ -13,6 +13,7 @@ impl Solution {
         let mut nums = nums;
         // 倒序排序
         nums.sort_by(|a, b| b.cmp(a));
+        // 每个桶的空间大小是avg
         let buckets = &mut vec![avg; k as usize];
         Self::backtracking(0, buckets, &nums)
     }
@@ -30,7 +31,7 @@ impl Solution {
                 // 剪枝
                 continue;
             }
-            // 桶中减去当前数字
+            // 桶中减去当前数字(将数字放入桶中，占用了nums[index]的空间大小，所以这里是减去)
             // 减去nums[index]之后，buckets[j]最小也只能是0(上面有判断)，
             // 如果刚好是0(题意中的nums取值均大于0，所以下次循环该桶会被跳过)
             buckets[j] -= nums[index];
