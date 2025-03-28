@@ -28,7 +28,7 @@ impl Solution {
                 continue;
             }
             if j > 0 && buckets[j] == buckets[j - 1] {
-                // 剪枝
+                // 剪枝 (如果当前桶剩余空间和前一个相同，说明nums[index]没有放入前一个桶中，同样的也不适合放在当前桶中)
                 continue;
             }
             // 桶中减去当前数字(将数字放入桶中，占用了nums[index]的空间大小，所以这里是减去)
