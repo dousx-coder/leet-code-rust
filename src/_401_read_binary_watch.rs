@@ -3,6 +3,7 @@
 ///
 /// https://leetcode.cn/problems/binary-watch/description/?envType=problem-list-v2&envId=backtracking
 use std::collections::HashSet;
+
 struct Solution;
 impl Solution {
     pub fn read_binary_watch(turned_on: i32) -> Vec<String> {
@@ -77,9 +78,9 @@ mod test {
         }
         let map = combination
             .into_iter()
-            .group_by(|vec| vec.len()) // 根据向量长度分组
+            .into_group_map_by(|vec| vec.len()) // 根据向量长度分组
             .into_iter()
-            .map(|(len, group)| (len, group.collect::<Vec<Vec<i32>>>())) // 将每个组收集到Vec中
+            .map(|(len, group)| (len, group.into_iter().collect::<Vec<Vec<i32>>>())) // 将每个组收集到Vec中
             .collect::<HashMap<usize, Vec<Vec<i32>>>>();
         for i in 0..=max as usize {
             if let Some(x) = map.get(&i) {
