@@ -10,8 +10,7 @@ impl Solution {
     }
     fn backtracking(n: i32, k: i32, curr: &mut Vec<i32>, ans: &mut Vec<i32>) {
         if curr.len() == n as usize {
-            let s = curr.iter().map(|x| x.to_string()).collect::<String>();
-            let num = s.parse::<i32>().unwrap();
+            let num = curr.iter().fold(0, |acc, &x| acc * 10 + x);
             ans.push(num);
             return;
         }
