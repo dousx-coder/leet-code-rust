@@ -134,3 +134,4 @@ mod _526_count_arrangement;
 mod _784_letter_case_permutation;
 mod _1079_num_tile_possibilities;
 mod _698_can_partition_k_subsets;
+mod _967_nums_same_consec_diff;
