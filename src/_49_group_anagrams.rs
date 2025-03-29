@@ -1,30 +1,24 @@
 use std::collections::HashMap;
+
 /// 49 字母异位词分组
 ///
 /// https://leetcode.cn/problems/group-anagrams/description/
 struct Solution;
+
 impl Solution {
     pub fn group_anagrams(strs: Vec<String>) -> Vec<Vec<String>> {
-        let mut map: HashMap<String, Vec<String>> = HashMap::new();
+        let mut map: HashMap<[u8; 26], Vec<String>> = HashMap::new();
         for str in strs {
-            let mut chs = str.chars().collect::<Vec<char>>();
-            chs.sort();
-            let key = chs.iter().collect::<String>();
-            let option = map.get_mut(&key);
-            match option {
-                Some(v) => v.push(str),
-                None => {
-                    let mut v = vec![];
-                    v.push(str);
-                    map.insert(key, v);
-                }
+            let mut count = [0; 26];
+            for c in str.chars() {
+                count[c as usize - 'a' as usize] += 1;
             }
+            map.entry(count).or_insert_with(Vec::new).push(str);
         }
-        map.values()
-            .map(|v| v.to_vec())
-            .collect::<Vec<Vec<String>>>()
+        map.into_values().collect()
     }
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
