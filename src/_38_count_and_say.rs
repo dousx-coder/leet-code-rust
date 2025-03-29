@@ -5,33 +5,27 @@
 struct Solution;
 impl Solution {
     pub fn count_and_say(n: i32) -> String {
-        if n <= 0 {
-            panic!("n<=0")
-        }
         if n == 1 {
             return "1".to_string();
         }
-        let s = Self::count_and_say(n - 1);
-        let chs = s.chars().collect::<Vec<char>>();
-        let mut ans = vec![];
-        let mut last_ch_count = 0;
-        let mut last_ch = ' ';
-        for i in 0..chs.len() {
+        let chs = Self::count_and_say(n - 1).chars().collect::<Vec<char>>();
+        let mut ans = String::new();
+        let mut last_ch_count = 1;
+        let mut last_ch = chs[0];
+        for i in 1..chs.len() {
             if chs[i] == last_ch {
                 last_ch_count += 1;
             } else {
-                if last_ch_count != 0 {
-                    ans.push(last_ch_count.to_string());
-                    ans.push(last_ch.to_string());
-                }
+                ans.push_str(&last_ch_count.to_string());
+                ans.push(last_ch);
                 last_ch_count = 1;
             }
             last_ch = chs[i];
         }
-        ans.push(last_ch_count.to_string());
-        ans.push(last_ch.to_string());
+        ans.push_str(&last_ch_count.to_string());
+        ans.push(last_ch);
 
-        ans.iter().map(|s| s.to_string()).collect()
+        ans
     }
 }
 #[cfg(test)]
@@ -52,13 +46,11 @@ mod tests {
     }
     #[test]
     fn t4() {
-        let expected = "12-11".replace("-", "");
-        assert_eq!(Solution::count_and_say(4), expected);
+        assert_eq!(Solution::count_and_say(4), "1211");
     }
 
     #[test]
     fn t5() {
-        let expected = "11-12-21".replace("-", "");
-        assert_eq!(Solution::count_and_say(5), expected);
+        assert_eq!(Solution::count_and_say(5), "111221");
     }
 }
