@@ -9,6 +9,14 @@ impl Solution {
         Self::backtracking(0, 0, 0, target as i64, &mut vec![], &mut ans, &mut chs);
         ans
     }
+    /// [`index`] chs索引
+    ///
+    /// [`res`] 当前表达式的计算结果
+    ///
+    /// [`mul`] 表达式最后一个连乘串的计算结果
+    ///
+    /// [`expr`] 当前构建出的表达式
+    ///
     fn backtracking(
         index: usize,
         res: i64,
@@ -34,10 +42,12 @@ impl Solution {
         let mut j = index;
         while j < len && (j == index || chs[index] != '0') {
             val = val * 10 + chs[j].to_digit(10).unwrap() as i64;
+            // 循环内不回溯(需要尝试将多个数字连成一个)
             expr.push(chs[j]);
             if index == 0 {
-                Self::backtracking(j + 1, res + val, val, target, expr, ans, chs);
+                Self::backtracking(j + 1, val, val, target, expr, ans, chs);
             } else {
+                // 枚举加减乘
                 expr[expr_len] = '+';
                 Self::backtracking(j + 1, res + val, val, target, expr, ans, chs);
 
@@ -54,10 +64,10 @@ impl Solution {
                     ans,
                     chs,
                 );
-                expr.pop();
             }
             j += 1;
         }
+        // 回溯
         while expr.len() > expr_len {
             expr.pop();
         }
