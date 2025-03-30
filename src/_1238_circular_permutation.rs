@@ -1,59 +1,40 @@
 use itertools::Itertools;
 
 ///
-/// 1238 循环码排列
+/// 1238 循环码排列 (89 格雷编码)
 ///
 /// https://leetcode.cn/problems/circular-permutation-in-binary-representation/description/
 struct Solution;
 impl Solution {
+    ///
+    /// 关键是搞清楚格雷编码的生成过程, G(i) = i ^ (i/2);
+    ///        如 n = 3:
+    ///
+    ///        G(0) = 000,
+    ///
+    ///        G(1) = 1 ^ 0 = 001 ^ 000 = 001
+    ///
+    ///        G(2) = 2 ^ 1 = 010 ^ 001 = 011
+    ///
+    ///        G(3) = 3 ^ 1 = 011 ^ 001 = 010
+    ///
+    ///        G(4) = 4 ^ 2 = 100 ^ 010 = 110
+    ///
+    ///        G(5) = 5 ^ 2 = 101 ^ 010 = 111
+    ///
+    ///        G(6) = 6 ^ 3 = 110 ^ 011 = 101
+    ///
+    ///        G(7) = 7 ^ 3 = 111 ^ 011 = 100
     pub fn circular_permutation(n: i32, start: i32) -> Vec<i32> {
-        let mut bs = format!("{:b}", start);
-        while bs.len() < n as usize {
-            bs.insert(0, '0');
-        }
-        let mut binary = bs.chars().map(|c| c == '1').collect_vec();
-        let used_len = 2u64.pow(n as u32) as usize;
-        let used = &mut vec![false; used_len];
-        used[start as usize] = true;
-        let mut ans = vec![start];
-        Self::backtracking(&mut binary, &mut ans, used);
-        ans
-    }
-
-    ///
-    /// [`binary`] true表示1，false表示0
-    ///
-    fn backtracking(binary: &mut Vec<bool>, ans: &mut Vec<i32>, used: &mut Vec<bool>) -> bool {
-        if ans.len() == used.len() {
-            return Self::verify(ans);
-        }
-        for _ in ans.len()..used.len() {
-            for i in 0..binary.len() {
-                let bit = binary[i];
-                binary[i] = !bit;
-                let mut bs = binary
-                    .iter()
-                    .map(|b| if *b { '1' } else { '0' })
-                    .collect::<String>();
-                // 转换为十进制
-                let num = i32::from_str_radix(bs.as_str(), 2).unwrap();
-                let ui = num as usize;
-                if used[ui] {
-                    continue;
-                }
-                used[ui] = true;
-                ans.push(num);
-                if Self::backtracking(binary, ans, used) {
-                    return true;
-                }
-                // binary回溯
-                binary[i] = bit;
-                // used回溯
-                used[ui] = false;
-                ans.pop();
+        let mut ret = vec![start];
+        for i in 1..=n {
+            let len = ret.len();
+            for j in (0..=len - 1).rev() {
+                let num = ((ret[j] ^ start) | (1 << (i - 1))) ^ start;
+                ret.push(num);
             }
         }
-        false
+        ret
     }
 
     fn verify(ans: &Vec<i32>) -> bool {
