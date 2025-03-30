@@ -7,6 +7,7 @@ use itertools::Itertools;
 struct Solution;
 impl Solution {
     ///
+    ///  ```txt
     /// 关键是搞清楚格雷编码的生成过程, G(i) = i ^ (i/2);
     ///        如 n = 3:
     ///
@@ -25,6 +26,7 @@ impl Solution {
     ///        G(6) = 6 ^ 3 = 110 ^ 011 = 101
     ///
     ///        G(7) = 7 ^ 3 = 111 ^ 011 = 100
+    /// ```
     pub fn circular_permutation(n: i32, start: i32) -> Vec<i32> {
         let mut ret = vec![start];
         for i in 1..=n {

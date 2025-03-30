@@ -9,6 +9,8 @@ impl Solution {
         //Self::solution1(n)
     }
     ///
+    /// ```txt
+    ///
     /// 关键是搞清楚格雷编码的生成过程, G(i) = i ^ (i/2);
     ///        如 n = 3:
     ///
@@ -27,6 +29,7 @@ impl Solution {
     ///        G(6) = 6 ^ 3 = 110 ^ 011 = 101
     ///
     ///        G(7) = 7 ^ 3 = 111 ^ 011 = 100
+    /// ```
     fn solution2(n: i32) -> Vec<i32> {
         let mut gray = vec![];
         for i in 0..1 << n {
