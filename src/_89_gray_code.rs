@@ -5,6 +5,37 @@
 struct Solution;
 impl Solution {
     pub fn gray_code(n: i32) -> Vec<i32> {
+        Self::solution2(n)
+        //Self::solution1(n)
+    }
+    ///
+    /// 关键是搞清楚格雷编码的生成过程, G(i) = i ^ (i/2);
+    ///        如 n = 3:
+    ///
+    ///        G(0) = 000,
+    ///
+    ///        G(1) = 1 ^ 0 = 001 ^ 000 = 001
+    ///
+    ///        G(2) = 2 ^ 1 = 010 ^ 001 = 011
+    ///
+    ///        G(3) = 3 ^ 1 = 011 ^ 001 = 010
+    ///
+    ///        G(4) = 4 ^ 2 = 100 ^ 010 = 110
+    ///
+    ///        G(5) = 5 ^ 2 = 101 ^ 010 = 111
+    ///
+    ///        G(6) = 6 ^ 3 = 110 ^ 011 = 101
+    ///
+    ///        G(7) = 7 ^ 3 = 111 ^ 011 = 100
+    fn solution2(n: i32) -> Vec<i32> {
+        let mut gray = vec![];
+        for i in 0..1 << n {
+            gray.push(i ^ i >> 1);
+        }
+        gray
+    }
+
+    fn solution1(n: i32) -> Vec<i32> {
         // 用来表示二进制位，下标0表示最低位 false 表示0
         let mut binary = vec![false; n as usize];
         let mut result = vec![];
@@ -15,6 +46,7 @@ impl Solution {
         Self::backtracking(&mut used, &mut binary, &mut result);
         result
     }
+
     fn backtracking(used: &mut Vec<bool>, binary: &mut Vec<bool>, result: &mut Vec<i32>) -> bool {
         if result.len() == used.len() {
             return true;
