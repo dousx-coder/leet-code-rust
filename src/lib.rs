@@ -140,3 +140,4 @@ mod _38_count_and_say;
 mod _49_group_anagrams;
 mod lcr_083_permute;
 mod _1238_circular_permutation;
+mod _33_search;
