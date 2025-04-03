@@ -5,17 +5,17 @@ struct Solution;
 impl Solution {
     pub fn jump(nums: Vec<i32>) -> i32 {
         // 贪心
-        // 从最后一个元素开始，每次都找到能跳到当前元素之中下标最小的那个元素即可
-        let mut i = nums.len() - 1;
+        // 从前往后遍历：每次在当前能跳到的范围内，选择能跳得最远的位置作为下一步的起点。
         let mut step = 0;
-        while i > 0 {
-            for j in 0..i {
-                // j从前往后判断，遇到能跳到当前元素的即是下标最小的
-                if nums[j] >= (i - j) as i32 {
-                    step += 1;
-                    i = j;
-                    break;
-                }
+        // 当前能跳到的最远位置。
+        let mut max_pos = 0;
+        // 当前跳跃的边界，当遍历到边界时，更新步数并设置新的边界。
+        let mut end = 0;
+        for i in 0..nums.len() - 1 {
+            max_pos = max_pos.max(i + nums[i] as usize);
+            if i == end {
+                step += 1;
+                end = max_pos;
             }
         }
         step
