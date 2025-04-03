@@ -142,3 +142,4 @@ mod lcr_083_permute;
 mod _1238_circular_permutation;
 mod _33_search;
 mod _50_my_pow;
+mod _45_jump;
