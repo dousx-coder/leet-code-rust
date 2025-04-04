@@ -48,18 +48,16 @@ impl Solution {
             }
             if chs[i] == '(' && lr > 0 {
                 // 删除当前字符
-                let c = chs[i];
                 chs.remove(i);
                 // 下一个start传递的仍然是i,因为chs[i]被删除了
                 Solution::backtracking(ans, chs, lr - 1, rr, i);
-                chs.insert(i, c);
+                chs.insert(i, '(');
             }
             if chs[i] == ')' && rr > 0 {
                 // 删除当前字符
-                let c = chs[i];
                 chs.remove(i);
                 Solution::backtracking(ans, chs, lr, rr - 1, i);
-                chs.insert(i, c);
+                chs.insert(i, ')');
             }
         }
     }
