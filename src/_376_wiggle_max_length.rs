@@ -10,9 +10,10 @@ impl Solution {
             return len as i32;
         }
         let mut pre_diff = 0;
+        // 将nums[0] 当成摆动子序列的开头
         let mut count = 1;
-        for i in 0..len - 1 {
-            let mut cur_diff = nums[i + 1] - nums[i];
+        for i in 1..len {
+            let mut cur_diff = nums[i] - nums[i - 1];
             if cur_diff > 0 && pre_diff <= 0 || cur_diff < 0 && pre_diff >= 0 {
                 count += 1;
                 pre_diff = cur_diff;
