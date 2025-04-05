@@ -145,3 +145,4 @@ mod _50_my_pow;
 mod _45_jump;
 mod _301_remove_invalid_parentheses;
 mod _455_find_content_children;
+mod _376_wiggle_max_length;
