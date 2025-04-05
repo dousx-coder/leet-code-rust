@@ -56,9 +56,9 @@ mod tests {
         let vec = vec![
             "10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+",
         ]
-            .iter()
-            .map(|s| s.to_string())
-            .collect::<Vec<String>>();
+        .iter()
+        .map(|s| s.to_string())
+        .collect::<Vec<String>>();
         let ans = Solution::eval_rpn(vec);
         assert_eq!(ans, 22)
     }

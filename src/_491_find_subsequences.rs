@@ -69,7 +69,6 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-
     use super::*;
     use maplit::hashset;
     use std::collections::HashSet;
