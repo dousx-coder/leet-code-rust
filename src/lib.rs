@@ -110,6 +110,7 @@ mod _526_count_arrangement;
 mod _52_total_n_queens;
 mod _530_get_minimum_difference;
 mod _538_convert_bst;
+mod _53_max_sub_array;
 mod _541_reverse_str;
 mod _543_diameter_of_binary_tree;
 mod _54_spiral_order;
