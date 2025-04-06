@@ -129,6 +129,7 @@ mod _784_letter_case_permutation;
 mod _78_subsets;
 mod _79_exist;
 mod _842_split_into_fibonacci;
+mod _860_lemonade_change;
 mod _887_super_egg_drop;
 mod _89_gray_code;
 mod _90_subsets_with_dup;
