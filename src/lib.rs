@@ -11,6 +11,7 @@ mod _04_find_median_sorted_arrays;
 mod _05_longest_palindrome;
 mod _06_convert;
 mod _09_is_palindrome;
+mod _1005_largest_sum_after_k_negations;
 mod _100_is_same_tree;
 mod _101_is_symmetric;
 mod _102_level_order;
