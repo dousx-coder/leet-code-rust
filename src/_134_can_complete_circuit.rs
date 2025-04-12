@@ -31,7 +31,6 @@ impl Solution {
         // 从后向前，看哪个节点能把这个负数填平，能把这个负数填平的节点就是出发节点
         for i in (0..len).rev() {
             min_sum += gas[i] - cost[i];
-            total_sum += gas[i] - cost[i];
             if min_sum >= 0 {
                 return i as i32;
             }
