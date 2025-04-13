@@ -36,6 +36,7 @@ mod _124_max_path_sum;
 mod _129_sum_numbers;
 mod _131_partition;
 mod _134_can_complete_circuit;
+mod _135_candy;
 mod _136_delete_node;
 mod _13_roman_to_int;
 mod _144_preorder_traversal;
