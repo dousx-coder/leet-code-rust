@@ -93,6 +93,7 @@ mod _38_count_and_say;
 mod _39_combination_sum;
 mod _401_read_binary_watch;
 mod _404_sum_of_left_leaves;
+mod _406_reconstruct_queue;
 mod _40_combination_sum;
 mod _41_first_missing_positive;
 mod _42_trap;
