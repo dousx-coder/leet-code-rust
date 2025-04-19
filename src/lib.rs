@@ -99,6 +99,7 @@ mod _41_first_missing_positive;
 mod _42_trap;
 mod _437_path_sum;
 mod _43_multiply;
+mod _452_find_min_arrow_shots;
 mod _454_four_sum_count;
 mod _455_find_content_children;
 mod _459_repeated_substring_pattern;
