@@ -20,7 +20,10 @@ impl Solution {
             let interval = &intervals[i];
             if interval[0] < right {
                 erase += 1;
-                // 更新right为当前区间的右边界
+                // 比较interval的right和当前right,将较小的设置为新的right
+                // 假设上一个区间是[1,20],right=20.下面有两种情况
+                // 1.interval = [2,10] 这种情况移除的区间是[1,20]
+                // 2.interval = [2,30] 这种情况移除的区间是[2,30]
                 right = right.min(interval[1]);
             } else {
                 // 更新right
