@@ -132,6 +132,7 @@ mod _698_can_partition_k_subsets;
 mod _700_search_bst;
 mod _707_design_linked_list;
 mod _75_sort_colors;
+mod _763_partition_labels;
 mod _77_combine;
 mod _784_letter_case_permutation;
 mod _78_subsets;
