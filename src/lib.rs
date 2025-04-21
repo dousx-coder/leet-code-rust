@@ -125,6 +125,7 @@ mod _54_spiral_order;
 mod _55_can_jump;
 mod _561_array_pair_sum;
 mod _563_find_tilt;
+mod _56_merge;
 mod _59_generate_matrix;
 mod _617_merge_trees;
 mod _654_construct_maximum_binary_tree;
