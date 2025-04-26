@@ -149,6 +149,7 @@ mod _958_is_complete_tree;
 mod _95_generate_trees;
 mod _965_is_unival_tree;
 mod _967_nums_same_consec_diff;
+mod _968_min_camera_cover;
 mod _96_num_trees;
 mod _977_sorted_squares;
 mod _98_is_valid_bst;
