@@ -128,6 +128,7 @@ mod _563_find_tilt;
 mod _56_merge;
 mod _581_find_unsorted_subarray;
 mod _59_generate_matrix;
+mod _605_can_place_flowers;
 mod _617_merge_trees;
 mod _654_construct_maximum_binary_tree;
 mod _698_can_partition_k_subsets;
