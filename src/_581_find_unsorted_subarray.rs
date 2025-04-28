@@ -4,31 +4,35 @@
 struct Solution;
 impl Solution {
     pub fn find_unsorted_subarray(nums: Vec<i32>) -> i32 {
+        let len = nums.len();
+        if len <= 1 {
+            return 0;
+        }
+
         let mut left = 0;
         let mut right = 0;
-        let mut max = i32::MIN;
-        let mut min = i32::MAX;
+        let mut max = nums[0];
+        let mut min = nums[len - 1];
 
-        let len = nums.len();
-        for i in 0..len {
-            if nums[i] > max {
-                max = nums[i];
-            } else if nums[i] < max {
-                //  敲定右边界
+        // 从左到右确定右边界
+        for i in 1..len {
+            if nums[i] < max {
                 right = i;
+            } else {
+                max = nums[i];
             }
         }
 
-        for i in (0..len).rev() {
-            if nums[i] < min {
-                min = nums[i];
-            } else if nums[i] > min {
-                //  敲定左边界
+        // 从右到左确定左边界
+        for i in (0..len - 1).rev() {
+            if nums[i] > min {
                 left = i;
+            } else {
+                min = nums[i];
             }
         }
+
         if left == right {
-            // 原数组是升序
             0
         } else {
             (right - left + 1) as i32
