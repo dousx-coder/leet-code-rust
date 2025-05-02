@@ -108,6 +108,7 @@ mod _455_find_content_children;
 mod _459_repeated_substring_pattern;
 mod _45_jump;
 mod _46_permute;
+mod _473_makesquare;
 mod _47_permute_unique;
 mod _491_find_subsequences;
 mod _494_find_target_sum_ways;
