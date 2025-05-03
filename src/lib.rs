@@ -134,6 +134,7 @@ mod _59_generate_matrix;
 mod _605_can_place_flowers;
 mod _617_merge_trees;
 mod _654_construct_maximum_binary_tree;
+mod _692_top_k_frequent;
 mod _698_can_partition_k_subsets;
 mod _700_search_bst;
 mod _707_design_linked_list;
