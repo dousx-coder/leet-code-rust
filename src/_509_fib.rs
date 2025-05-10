@@ -4,12 +4,22 @@
 struct Solution;
 impl Solution {
     pub fn fib(n: i32) -> i32 {
-        let n = n as usize;
-        let mut dp = vec![0, 1];
-        for i in 2..=n {
-            dp.push(dp[i - 1] + dp[i - 2]);
+        if n == 0 {
+            return 0;
         }
-        dp[n]
+        if n == 1 {
+            return 1;
+        }
+        let n = n as usize;
+        let mut a = 0;
+        let mut b = 1;
+        let mut c = -1;
+        for i in 2..=n {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+        c
     }
 }
 #[cfg(test)]
