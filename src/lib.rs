@@ -114,6 +114,7 @@ mod _491_find_subsequences;
 mod _494_find_target_sum_ways;
 mod _49_group_anagrams;
 mod _501_find_mode;
+mod _509_fib;
 mod _50_my_pow;
 mod _513_find_bottom_left_value;
 mod _51_solve_n_queens;
