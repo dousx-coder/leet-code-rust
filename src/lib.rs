@@ -139,6 +139,7 @@ mod _692_top_k_frequent;
 mod _698_can_partition_k_subsets;
 mod _700_search_bst;
 mod _707_design_linked_list;
+mod _70_climb_stairs;
 mod _738_monotone_increasing_digits;
 mod _74_search_matrix;
 mod _75_sort_colors;
