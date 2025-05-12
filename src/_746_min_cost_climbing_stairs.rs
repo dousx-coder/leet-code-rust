@@ -7,7 +7,7 @@ impl Solution {
         // dp[i] 表示到达第i个台阶的最小花费
         let len = cost.len();
 
-        let mut dp = vec![0; len + 1];
+        let mut dp = vec![0; 2];
         // 可以选择从下标为 0 或下标为 1 的台阶开始爬楼梯，即dp[0]和dp[1] 都可以设置为0;
         // dp[1]设置为0，则表示从下标1开始爬
         for i in 2..=len {
@@ -16,7 +16,7 @@ impl Solution {
             let a = cost[i - 1] + dp[i - 1];
             // 从i-2台阶跳过来
             let b = cost[i - 2] + dp[i - 2];
-            dp[i] = a.min(b);
+            dp.push(a.min(b));
         }
         dp[len]
     }
