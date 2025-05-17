@@ -9,6 +9,10 @@ impl Solution {
         let mut dp = vec![0; n + 1];
         dp[0] = 1;
         for i in 1..=n {
+            // dp[i]是所有[1,i]的情况总数和
+
+            // 以j为根节点的情况：
+            // 左子树[1,j-1]的个数 * 右子树[j+1,i]的个数(笛卡尔积)
             for j in 1..=i {
                 dp[i] += dp[j - 1] * dp[i - j];
             }
