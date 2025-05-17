@@ -83,6 +83,7 @@ mod _31_next_permutation;
 mod _32_longest_valid_parentheses;
 mod _337_rob;
 mod _33_search;
+mod _343_integer_break;
 mod _344_reverse_string;
 mod _347_top_k_frequent;
 mod _349_intersection;
