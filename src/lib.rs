@@ -170,6 +170,7 @@ mod _993_is_cousins;
 mod _998_insert_into_max_tree;
 mod _99_recover_tree;
 pub mod common;
+mod dp_01bag;
 mod lcr_024_reverse_list;
 mod lcr_083_permute;
 mod lcr_144_flip_tree;
