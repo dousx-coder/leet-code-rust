@@ -35,13 +35,6 @@ impl Solution {
                 }
             }
         }
-        for x in &dp {
-            
-            for x in x {
-                print!("{:<4}", x);
-            }
-            println!();
-        }
         dp[goods_num - 1][capacity]
     }
 }
