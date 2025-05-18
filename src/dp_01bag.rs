@@ -37,6 +37,19 @@ impl Solution {
         }
         dp[goods_num - 1][capacity]
     }
+    pub fn max_price_optimize(capacity: usize, goods: Vec<(usize, usize)>) -> usize {
+        let goods_num = goods.len();
+        let mut dp = vec![0; capacity + 1];
+
+        for i in 0..goods_num {
+            let (value, weight) = goods[i];
+            for j in (weight..=capacity).rev() {
+                // 逆序遍历容量
+                dp[j] = dp[j].max(dp[j - weight] + value);
+            }
+        }
+        dp[capacity]
+    }
 }
 #[cfg(test)]
 mod tests {
@@ -45,21 +58,31 @@ mod tests {
     fn t1() {
         //             背包容量j
         //        0   1   2    3  4
-        // 物品[0] 0   15  15  15  0   
-        // 物品[1] 0   15  15  20  35  
-        // 物品[2] 0   15  15  20  35  
+        // 物品[0] 0   15  15  15  0
+        // 物品[1] 0   15  15  20  35
+        // 物品[2] 0   15  15  20  35
         let ans = Solution::max_price(4, vec![(15, 1), (20, 3), (30, 4)]);
         assert_eq!(ans, 35);
     }
 
     #[test]
     fn t2() {
-        // 0   0   6   6   6   6   6   6   6   6   0   
-        // 0   0   6   6   6   6   6   9   9   9   9   
-        // 0   0   6   6   6   6   11  11  11  11  11  
-        // 0   0   6   6   10  10  11  11  15  15  15  
-        // 0   0   6   6   10  12  12  16  16  17  17  
+        // 0   0   6   6   6   6   6   6   6   6   0
+        // 0   0   6   6   6   6   6   9   9   9   9
+        // 0   0   6   6   6   6   11  11  11  11  11
+        // 0   0   6   6   10  10  11  11  15  15  15
+        // 0   0   6   6   10  12  12  16  16  17  17
         let ans = Solution::max_price(10, vec![(6, 2), (3, 5), (5, 4), (4, 2), (6, 3)]);
+        assert_eq!(ans, 17);
+    }
+    #[test]
+    fn t3() {
+        // 0   0   6   6   6   6   6   6   6   6   0
+        // 0   0   6   6   6   6   6   9   9   9   9
+        // 0   0   6   6   6   6   11  11  11  11  11
+        // 0   0   6   6   10  10  11  11  15  15  15
+        // 0   0   6   6   10  12  12  16  16  17  17
+        let ans = Solution::max_price_optimize(10, vec![(6, 2), (3, 5), (5, 4), (4, 2), (6, 3)]);
         assert_eq!(ans, 17);
     }
 }
