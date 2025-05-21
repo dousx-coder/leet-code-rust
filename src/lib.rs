@@ -98,6 +98,7 @@ mod _401_read_binary_watch;
 mod _404_sum_of_left_leaves;
 mod _406_reconstruct_queue;
 mod _40_combination_sum;
+mod _416_can_partition;
 mod _41_first_missing_positive;
 mod _42_trap;
 mod _435_erase_overlap_intervals;
