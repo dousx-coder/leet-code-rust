@@ -16,6 +16,7 @@ mod _100_is_same_tree;
 mod _101_is_symmetric;
 mod _102_level_order;
 mod _1047_remove_duplicates;
+mod _1049_last_stone_weight_ii;
 mod _104_max_depth;
 mod _105_build_tree;
 mod _106_build_tree;
