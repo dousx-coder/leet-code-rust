@@ -33,7 +33,9 @@ impl Solution {
     /// 求nums中任取多少个数字达到left共有多少种方式
     fn dp(nums: Vec<i32>, target: i32) -> i32 {
         let sum: i32 = nums.iter().sum();
-        // 用sum+target，leetcode会过不去?
+        // nums=[1000],target=-1000,这种情况是把唯一的数字变成负数即可，有1种方式
+        // 如果用加法，得到的数字和为sum+target，即left=0,然nums中只有一个1000,则会得到错误的解
+        // 如果是减法，则得到right=(1000-(-1000))/2=1000,可以得到一种解法
         if sum < target || (sum - target) % 2 != 0 {
             return 0;
         }
