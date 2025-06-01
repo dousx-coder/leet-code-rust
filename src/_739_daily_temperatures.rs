@@ -10,10 +10,14 @@ impl Solution {
         let mut ans = vec![0; len];
         stack.push(0);
         for i in 1..len {
-            while !stack.is_empty() && temperatures[i] > temperatures[*stack.last().unwrap()] {
+            while !stack.is_empty() {
                 let last_index = *stack.last().unwrap();
-                ans[last_index] = (i - last_index) as i32;
-                stack.pop();
+                if temperatures[i] > temperatures[last_index] {
+                    ans[last_index] = (i - last_index) as i32;
+                    stack.pop();
+                } else {
+                    break;
+                }
             }
             stack.push(i);
         }
