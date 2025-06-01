@@ -147,6 +147,7 @@ mod _700_search_bst;
 mod _707_design_linked_list;
 mod _70_climb_stairs;
 mod _738_monotone_increasing_digits;
+mod _739_daily_temperatures;
 mod _746_min_cost_climbing_stairs;
 mod _74_search_matrix;
 mod _75_sort_colors;
