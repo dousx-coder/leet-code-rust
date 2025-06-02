@@ -132,6 +132,7 @@ mod _53_max_sub_array;
 mod _541_reverse_str;
 mod _543_diameter_of_binary_tree;
 mod _54_spiral_order;
+mod _556_next_greater_element;
 mod _55_can_jump;
 mod _561_array_pair_sum;
 mod _563_find_tilt;
