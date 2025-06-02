@@ -7,22 +7,22 @@ use std::collections::HashMap;
 struct Solution;
 impl Solution {
     pub fn next_greater_element(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {
-        // stack单调栈
-        let mut stack = vec![0];
+        // 单调栈
+        let mut monotonic_stack = vec![0];
         // 记录下一个更大元素的下标，-1表示不存在,
         // next_greater_num2_index[j]=k,表示nums2[j]的下一个更大元素是nums2[k]
         let mut next_greater_num2_index = vec![-1; nums2.len()];
         for i in 1..nums2.len() {
-            while !stack.is_empty() {
-                let last_index = *stack.last().unwrap();
+            while !monotonic_stack.is_empty() {
+                let last_index = *monotonic_stack.last().unwrap();
                 if nums2[i] > nums2[last_index] {
                     next_greater_num2_index[last_index] = i as i32;
-                    stack.pop();
+                    monotonic_stack.pop();
                 } else {
                     break;
                 }
             }
-            stack.push(i);
+            monotonic_stack.push(i);
         }
         let mut map = HashMap::new();
         for i in 0..next_greater_num2_index.len() {
