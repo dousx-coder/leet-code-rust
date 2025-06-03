@@ -4,18 +4,25 @@
 struct Solution;
 impl Solution {
     pub fn next_greater_elements(nums: Vec<i32>) -> Vec<i32> {
-        let mut stack = vec![0];
         let len = nums.len();
         let mut ans = vec![-1; len];
+        let mut stack = Vec::with_capacity(len);
 
-        for i in 1..2 * len {
-            let i = i % len;
-            while !stack.is_empty() && nums[stack[stack.len() - 1]] < nums[i] {
-                let j = stack.pop().unwrap();
-                ans[j] = nums[i];
+        for i in 0..(2 * len) {
+            let idx = i % len;
+
+            while let Some(&top) = stack.last() {
+                if nums[top] < nums[idx] {
+                    ans[stack.pop().unwrap()] = nums[idx];
+                } else {
+                    break;
+                }
             }
-            stack.push(i);
+            if i < len {
+                stack.push(idx);
+            }
         }
+
         ans
     }
 }
