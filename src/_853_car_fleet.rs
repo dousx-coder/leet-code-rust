@@ -15,10 +15,10 @@ impl Solution {
             let surplus = (target - position[i]) as f32;
             elapsed_time.push((position[i], surplus / speed[i] as f32));
         }
-        // 按照离终点距离由近到远进行排序，离得近，所需时间长，和离的远，所需时间短的车辆是一个车队的
+        // 按照离终点距离由近到远进行排序
         elapsed_time.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap());
-
         let mut car_fleet_num = 1;
+        // [离得近所需时间长]和[离的远所需时间短]的车辆是一个车队的
         let mut elapsed = (&elapsed_time[0]).1;
         for i in 0..elapsed_time.len() {
             let x = &elapsed_time[i];
