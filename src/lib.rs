@@ -108,6 +108,7 @@ mod _43_multiply;
 mod _452_find_min_arrow_shots;
 mod _454_four_sum_count;
 mod _455_find_content_children;
+mod _456_find132pattern;
 mod _459_repeated_substring_pattern;
 mod _45_jump;
 mod _46_permute;
