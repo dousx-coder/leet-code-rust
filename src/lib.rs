@@ -160,6 +160,7 @@ mod _784_letter_case_permutation;
 mod _78_subsets;
 mod _79_exist;
 mod _842_split_into_fibonacci;
+mod _84_largest_rectangle_area;
 mod _853_car_fleet;
 mod _860_lemonade_change;
 mod _887_super_egg_drop;
