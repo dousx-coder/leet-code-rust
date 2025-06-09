@@ -2,8 +2,11 @@
 ///
 /// https://leetcode.cn/problems/remove-duplicate-letters/?envType=problem-list-v2&envId=stack
 use std::collections::HashSet;
+use std::hash::Hash;
+
 struct Solution;
 impl Solution {
+    /// 单调栈
     pub fn remove_duplicate_letters(s: String) -> String {
         // 统计字符出现次数
         let mut count = [0; 26];
@@ -36,6 +39,31 @@ impl Solution {
         }
         stack.iter().collect()
     }
+
+    /// 递归解法
+    fn recursive(s: String) -> String {
+        if s.is_empty() {
+            return String::new();
+        }
+        let mut unique_chars: Vec<char> = s.chars().collect();
+        unique_chars.sort_unstable();
+        //dedup 删除 vector 中的连续重复元素
+        unique_chars.dedup();
+
+        for &ch in &unique_chars {
+            if let Some(idx) = s.find(ch) {
+                let tmp = &s[idx..];
+                // Check if all unique characters are present in `tmp`
+                let tmp_unique = tmp.chars().collect::<HashSet<char>>();
+                let s_unique = s.chars().collect::<HashSet<char>>();
+                if tmp_unique == s_unique {
+                    let remaining = tmp.replace(ch, "");
+                    return ch.to_string() + &Self::recursive(remaining);
+                }
+            }
+        }
+        String::new()
+    }
 }
 
 #[cfg(test)]
@@ -54,5 +82,9 @@ mod tests {
             Solution::remove_duplicate_letters("cbacdcbc".to_string()),
             "acdb"
         );
+    }
+    #[test]
+    fn t3() {
+        assert_eq!(Solution::recursive("cbacdcbc".to_string()), "acdb");
     }
 }
