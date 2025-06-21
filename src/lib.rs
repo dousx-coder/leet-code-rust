@@ -146,6 +146,7 @@ mod _617_merge_trees;
 mod _62_unique_paths;
 mod _63_unique_paths_with_obstacles;
 mod _654_construct_maximum_binary_tree;
+mod _679_judge_point24;
 mod _692_top_k_frequent;
 mod _698_can_partition_k_subsets;
 mod _700_search_bst;
