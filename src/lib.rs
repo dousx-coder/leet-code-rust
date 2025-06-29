@@ -77,6 +77,7 @@ mod _25_reverse_k_group;
 mod _26_remove_duplicates;
 mod _27_remove_element;
 mod _282_add_operators;
+mod _287_find_duplicate;
 mod _28_str;
 mod _29_divide;
 mod _301_remove_invalid_parentheses;
