@@ -41,4 +41,22 @@ mod tests {
     fn t3() {
         assert_eq!(Solution::find_duplicate(vec![3, 3, 3, 3, 3]), 3);
     }
+
+    #[test]
+    fn t4() {
+        //  1-->2-->3-->4-->5-->6-->7
+        //                          7-->4
+        //                              4-->5-->6-->7 (4,5,6,7是环)
+        // tortoise: 1, hare: 1
+        // tortoise: 2, hare: 3
+        // tortoise: 3, hare: 5
+        // tortoise: 4, hare: 7
+        // tortoise: 5, hare: 5相遇
+        //
+        // ptr1: 1, ptr2: 5
+        // ptr1: 2, ptr2: 6
+        // ptr1: 3, ptr2: 7
+        // ptr1: 4, ptr2: 4
+        assert_eq!(Solution::find_duplicate(vec![1, 2, 3, 4, 5, 6, 7, 4]), 4);
+    }
 }
