@@ -151,6 +151,7 @@ mod _654_construct_maximum_binary_tree;
 mod _679_judge_point24;
 mod _692_top_k_frequent;
 mod _698_can_partition_k_subsets;
+mod _69_my_sqrt;
 mod _700_search_bst;
 mod _707_design_linked_list;
 mod _70_climb_stairs;
