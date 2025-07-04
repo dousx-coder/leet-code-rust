@@ -45,6 +45,7 @@ mod _144_preorder_traversal;
 mod _145_postorder_traversal;
 mod _14_longest_common_prefix;
 mod _150_eval_rpn;
+mod _153_find_min;
 mod _15_three_sum;
 mod _162_find_peak_element;
 mod _164_maximum_gap;
