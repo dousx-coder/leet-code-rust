@@ -31,7 +31,7 @@ impl Solution {
         let mut stack = Vec::with_capacity(len);
         let mut result = 0;
         // 纵坐标单位是10
-        // (40)-        
+        // (40)-
         // (30)-       -
         // (20)- - -   -
         // (10)- - - - -
