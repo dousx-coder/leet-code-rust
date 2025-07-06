@@ -166,6 +166,7 @@ mod _77_combine;
 mod _784_letter_case_permutation;
 mod _78_subsets;
 mod _79_exist;
+mod _81_search;
 mod _842_split_into_fibonacci;
 mod _84_largest_rectangle_area;
 mod _853_car_fleet;
