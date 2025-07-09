@@ -70,6 +70,7 @@ mod _235_lowest_common_ancestor;
 mod _236_lowest_common_ancestor;
 mod _239_max_sliding_window;
 mod _23_merge_k_lists;
+mod _240_search_matrix;
 mod _2413_smallest_even_multiple;
 mod _242_is_anagram;
 mod _24_swap_pairs;
