@@ -22,14 +22,16 @@ impl Solution {
         visited[row][col] = true;
         if matrix[row][col] > target {
             // 向左上方查找
-            (match row.checked_sub(1) {
-                Some(r) => Self::search(matrix, visited, target, r, col, m, n),
-                None => false,
-            }) || (match col.checked_sub(1) {
-                None => false,
-                Some(c) => Self::search(matrix, visited, target, row, c, m, n),
+            // if 比checked_sub更高效
+            (if row > 0 {
+                Self::search(matrix, visited, target, row - 1, col, m, n)
+            } else {
+                false
+            }) || (if col > 0 {
+                Self::search(matrix, visited, target, row, col - 1, m, n)
+            } else {
+                false
             })
-
         } else {
             // 向右下方查找
             Self::search(matrix, visited, target, row + 1, col, m, n)
