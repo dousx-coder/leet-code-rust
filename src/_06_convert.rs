@@ -1,7 +1,5 @@
 ///
-/// 6 Z字形变换
-///
-/// https://leetcode.cn/problems/zigzag-conversion/description/
+/// [6 Z字形变换](https://leetcode.cn/problems/zigzag-conversion/description/)
 ///
 struct Solution;
 impl Solution {

@@ -1,6 +1,6 @@
-/// 300 最长递增子序列
 ///
-/// https://leetcode.cn/problems/longest-increasing-subsequence/?envType=problem-list-v2&envId=binary-search
+/// [300 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/?envType=problem-list-v2&envId=binary-search)
+///
 struct Solution;
 impl Solution {
     /// ### 1. 维护一个数组 sub，其中 `sub[i]` 表示长度为 i+1 的 LIS 的最小可能尾部值。
