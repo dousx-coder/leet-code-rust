@@ -82,6 +82,7 @@ mod _282_add_operators;
 mod _287_find_duplicate;
 mod _28_str;
 mod _29_divide;
+mod _300_length_of_lis;
 mod _301_remove_invalid_parentheses;
 mod _306_is_additive_number;
 mod _316_remove_duplicate_letters;
