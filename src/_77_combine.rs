@@ -1,6 +1,5 @@
-/// 77 组合
 ///
-/// https://leetcode.cn/problems/combinations/description/
+/// [77. 组合](https://leetcode.cn/problems/combinations/description/)
 ///
 struct Solution;
 impl Solution {

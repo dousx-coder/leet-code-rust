@@ -1,11 +1,8 @@
 use crate::common::linked_list::ListNode;
 ///
-/// `24 两两交换其中相邻的节点`
-///
-/// https://leetcode.cn/problems/swap-nodes-in-pairs/description/
+/// [24. 两两交换其中相邻的节点](https://leetcode.cn/problems/swap-nodes-in-pairs/description/)
 ///
 struct Solution;
-
 impl Solution {
     pub fn swap_pairs(mut head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
         let mut dummy = Some(Box::new(ListNode { val: 0, next: head }));

@@ -1,10 +1,7 @@
 ///
-/// 35.搜索插入位置
+/// [35.搜索插入位置](https://leetcode.cn/problems/search-insert-position/description/)
 ///
-/// https://leetcode.cn/problems/search-insert-position/description/
-
 struct Solution;
-
 impl Solution {
     pub fn search_insert(nums: Vec<i32>, target: i32) -> i32 {
         Self::dichotomy(0, nums.len() - 1, &nums, target)

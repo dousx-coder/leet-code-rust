@@ -1,11 +1,7 @@
 ///
-/// N皇后
+/// [51.N皇后](https://leetcode.cn/problems/n-queens/description/)
 ///
-///  https://leetcode.cn/problems/n-queens/description/
-///
-
 struct Solution;
-
 impl Solution {
     pub fn solve_n_queens(n: i32) -> Vec<Vec<String>> {
         if n == 1 {

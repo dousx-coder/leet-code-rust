@@ -1,6 +1,5 @@
-/// 89 格雷编码
 ///
-/// https://leetcode.cn/problems/gray-code/description/?envType=problem-list-v2&envId=backtracking
+/// [89. 格雷编码](https://leetcode.cn/problems/gray-code/description/?envType=problem-list-v2&envId=backtracking)
 ///
 struct Solution;
 impl Solution {

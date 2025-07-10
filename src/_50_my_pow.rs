@@ -1,6 +1,6 @@
-/// 50 Pow(x, n)
 ///
-/// https://leetcode.cn/problems/powx-n/description/
+/// [50. Pow(x, n)](https://leetcode.cn/problems/powx-n/description/)
+///
 struct Solution;
 impl Solution {
     pub fn my_pow(x: f64, n: i32) -> f64 {

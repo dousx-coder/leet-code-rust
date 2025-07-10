@@ -1,7 +1,6 @@
 ///
-/// 38 外观数列
+/// [38. 外观数列](https://leetcode.cn/problems/count-and-say/)
 ///
-/// https://leetcode.cn/problems/count-and-say/
 struct Solution;
 impl Solution {
     pub fn count_and_say(n: i32) -> String {

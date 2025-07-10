@@ -1,9 +1,8 @@
 use std::collections::HashSet;
 
-/**
- * https://leetcode.cn/problems/first-missing-positive/
- */
-
+///
+/// [41. 缺失的第一个正数](https://leetcode.cn/problems/first-missing-positive/)
+///
 struct Solution;
 
 impl Solution {

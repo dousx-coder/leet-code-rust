@@ -1,7 +1,5 @@
 ///
-/// 43 字符串相乘
-///
-/// https://leetcode.cn/problems/multiply-strings/description/
+/// [43. 字符串相乘](https://leetcode.cn/problems/multiply-strings/description/)
 ///
 struct Solution;
 impl Solution {

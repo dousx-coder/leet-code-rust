@@ -1,11 +1,7 @@
+///
+/// [11. 盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/description/)
+///
 struct Solution;
-
-///
-/// 11. 盛最多水的容器
-///
-/// https://leetcode.cn/problems/container-with-most-water/description/
-///
-
 impl Solution {
     pub fn max_area(height: Vec<i32>) -> i32 {
         let mut left = 0;

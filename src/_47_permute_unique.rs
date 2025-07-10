@@ -1,12 +1,9 @@
 use std::collections::HashSet;
 
 ///
-/// 47. 全排列Ⅱ
-///
-/// https://leetcode.cn/problems/permutations-ii/
+/// [47. 全排列Ⅱ](https://leetcode.cn/problems/permutations-ii/)
 ///
 struct Solution;
-
 impl Solution {
     pub fn permute_unique(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut result: HashSet<Vec<i32>> = HashSet::new();

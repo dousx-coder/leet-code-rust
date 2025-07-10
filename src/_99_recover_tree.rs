@@ -1,11 +1,11 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::mem::swap;
 use std::rc::Rc;
-/// 99 恢复二叉搜索树
 ///
-/// https://leetcode.cn/problems/recover-binary-search-tree/description/?envType=problem-list-v2&envId=binary-tree
+/// [99. 恢复二叉搜索树](https://leetcode.cn/problems/recover-binary-search-tree/description/?envType=problem-list-v2&envId=binary-tree)
+///
+struct Solution;
 impl Solution {
     pub fn recover_tree(root: &mut Option<Rc<RefCell<TreeNode>>>) {
         Self::oh(root);

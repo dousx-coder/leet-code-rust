@@ -1,11 +1,8 @@
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
-
 ///
-/// `94 二叉树的中序遍历`
-///
-/// https://leetcode.cn/problems/binary-tree-inorder-traversal/
+/// [94. 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
 ///
 struct Solution;
 impl Solution {

@@ -1,13 +1,9 @@
 use crate::common::linked_list::ListNode;
 
 ///
-/// 18 remove_nth_from_end
+/// [19. 删除链表的倒数第N个节点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/)
 ///
-/// https://leetcode.cn/problems/remove-nth-node-from-end-of-list/description/
-///
-
 struct Solution;
-
 impl Solution {
     pub fn remove_nth_from_end(head: Option<Box<ListNode>>, n: i32) -> Option<Box<ListNode>> {
         let mut dummy = Box::new(ListNode { val: 0, next: head });

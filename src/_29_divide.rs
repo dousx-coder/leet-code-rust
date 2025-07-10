@@ -1,8 +1,7 @@
+///
+/// [29. 两数相除](https://leetcode.cn/problems/divide-two-integers/description/)
+///
 struct Solution;
-///
-/// 29 两数相除
-/// https://leetcode.cn/problems/divide-two-integers/description/
-///
 impl Solution {
     pub fn divide(dividend: i32, divisor: i32) -> i32 {
         if dividend == i32::MIN && divisor == -1 {

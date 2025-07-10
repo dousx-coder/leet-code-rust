@@ -1,6 +1,6 @@
-/// 70 爬楼梯
 ///
-/// https://leetcode.cn/problems/climbing-stairs/
+/// [70. 爬楼梯](https://leetcode.cn/problems/climbing-stairs/)
+///
 struct Solution;
 impl Solution {
     pub fn climb_stairs(n: i32) -> i32 {

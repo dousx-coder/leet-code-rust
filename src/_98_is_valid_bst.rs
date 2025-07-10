@@ -2,10 +2,7 @@ use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// `98 验证二叉搜索树`
-///
-/// https://leetcode.cn/problems/validate-binary-search-tree/
-///
+///[98. 验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/)
 ///
 struct Solution;
 impl Solution {

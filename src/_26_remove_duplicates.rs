@@ -1,5 +1,6 @@
 ///
-/// https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/
+/// [26.删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/)
+///
 struct Solution;
 impl Solution {
     pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {

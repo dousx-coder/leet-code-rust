@@ -1,7 +1,6 @@
 ///
-/// 79 单词搜索
+/// [79. 单词搜索](https://leetcode.cn/problems/word-search/description/?envType=problem-list-v2&envId=backtracking)
 ///
-/// https://leetcode.cn/problems/word-search/description/?envType=problem-list-v2&envId=backtracking
 struct Solution;
 impl Solution {
     pub fn exist(board: Vec<Vec<char>>, word: String) -> bool {

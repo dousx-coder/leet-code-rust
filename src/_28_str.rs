@@ -1,10 +1,9 @@
 ///
-/// https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/description/
+/// [28. 找出字符串中第一个匹配项的下标](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/description/)
 ///
-/// KMP算法实现
 struct Solution;
-
 impl Solution {
+    /// KMP算法实现
     fn prefix_table(pattern: &Vec<u8>) -> Vec<i32> {
         // 最长相等前后缀(单字符不存在最长相等前后缀)
         // aab

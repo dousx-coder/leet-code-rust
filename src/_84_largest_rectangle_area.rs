@@ -1,6 +1,6 @@
-/// 84 柱状图中最大的矩形
 ///
-/// https://leetcode.cn/problems/largest-rectangle-in-histogram/
+/// [84. 柱状图中最大的矩形](https://leetcode.cn/problems/largest-rectangle-in-histogram/)
+///
 struct Solution;
 impl Solution {
     pub fn largest_rectangle_area(heights: Vec<i32>) -> i32 {

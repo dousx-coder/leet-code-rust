@@ -1,8 +1,7 @@
+///
+/// [96. 不同的二叉搜索树](https://leetcode.cn/problems/unique-binary-search-trees/description/?envType=problem-list-v2&envId=binary-tree)
+///
 struct Solution;
-///
-/// 96 不同的二叉搜索树
-///
-/// https://leetcode.cn/problems/unique-binary-search-trees/description/?envType=problem-list-v2&envId=binary-tree
 impl Solution {
     pub fn num_trees(n: i32) -> i32 {
         let n = n as usize;

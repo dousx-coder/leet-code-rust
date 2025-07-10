@@ -1,11 +1,7 @@
 ///
-/// 27.remove_element
+/// [27.移除元素](https://leetcode.cn/problems/remove-element/)
 ///
-/// https://leetcode.cn/problems/remove-element/
-///
-
 struct Solution;
-
 impl Solution {
     pub fn remove_element(nums: &mut Vec<i32>, val: i32) -> i32 {
         if nums.len() == 0 {

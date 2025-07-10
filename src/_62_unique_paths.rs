@@ -1,6 +1,6 @@
-/// 62 不同路径
 ///
-/// https://leetcode.cn/problems/unique-paths/
+/// [62. 不同路径](https://leetcode.cn/problems/unique-paths/)
+///
 struct Solution;
 impl Solution {
     pub fn unique_paths(m: i32, n: i32) -> i32 {

@@ -1,11 +1,7 @@
 ///
-/// 39. 组合总和
+/// [39. 组合总和](https://leetcode.cn/problems/combination-sum/description/)
 ///
-/// https://leetcode.cn/problems/combination-sum/description/
-///
-
 struct Solution;
-
 impl Solution {
     pub fn combination_sum(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
         let mut candidates = candidates;

@@ -1,8 +1,7 @@
+///
+/// [34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
+///
 struct Solution;
-///
-/// 34 在排序数组中查找元素的第一个和最后一个位置
-///
-/// https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/
 impl Solution {
     pub fn search_range(nums: Vec<i32>, target: i32) -> Vec<i32> {
         let len = nums.len();

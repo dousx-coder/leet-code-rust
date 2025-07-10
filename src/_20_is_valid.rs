@@ -1,7 +1,7 @@
+///
+/// [20.有效的括号](https://leetcode.cn/problems/valid-parentheses/description/)
+///
 struct Solution;
-///
-///
-/// https://leetcode.cn/problems/valid-parentheses/description/
 impl Solution {
     pub fn is_valid(s: String) -> bool {
         let pairs = vec![('(', ')'), ('{', '}'), ('[', ']')];

@@ -1,24 +1,10 @@
-/// https://leetcode.cn/problems/merge-k-sorted-lists/
-
-struct Solution;
-
 use crate::common::linked_list::*;
 use std::cmp::Ordering;
 use std::collections::BinaryHeap;
-
-impl Ord for ListNode {
-    fn cmp(&self, other: &Self) -> Ordering {
-        // 反转比较顺序，使小值具有更高优先级
-        other.val.cmp(&self.val)
-    }
-}
-
-impl PartialOrd for ListNode {
-    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        // 使用 `Ord` 中定义的 `cmp` 方法
-        Some(self.cmp(other))
-    }
-}
+///
+/// [23.合并K个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists/)
+///
+struct Solution;
 impl Solution {
     ///
     /// 借助小顶堆 [`BinaryHeap`]实现链表合并
@@ -54,6 +40,20 @@ impl Solution {
             tail = tail.next.as_mut()?;
         }
         dummy.next
+    }
+}
+
+impl Ord for ListNode {
+    fn cmp(&self, other: &Self) -> Ordering {
+        // 反转比较顺序，使小值具有更高优先级
+        other.val.cmp(&self.val)
+    }
+}
+
+impl PartialOrd for ListNode {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        // 使用 `Ord` 中定义的 `cmp` 方法
+        Some(self.cmp(other))
     }
 }
 

@@ -1,6 +1,6 @@
-/// 78 子集
 ///
-/// https://leetcode.cn/problems/subsets/description/?envType=problem-list-v2&envId=backtracking
+/// [78. 子集](https://leetcode.cn/problems/subsets/description/?envType=problem-list-v2&envId=backtracking)
+///
 struct Solution;
 impl Solution {
     pub fn subsets(nums: Vec<i32>) -> Vec<Vec<i32>> {

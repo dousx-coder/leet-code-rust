@@ -1,8 +1,7 @@
-/// 128 最长连续序列
-///
-/// https://leetcode.cn/problems/longest-consecutive-sequence/?envType=study-plan-v2&envId=top-100-liked
 use std::collections::HashMap;
-
+///
+/// [128. 最长连续序列](https://leetcode.cn/problems/longest-consecutive-sequence/?envType=study-plan-v2&envId=top-100-liked)
+///
 struct Solution;
 impl Solution {
     pub fn longest_consecutive(nums: Vec<i32>) -> i32 {

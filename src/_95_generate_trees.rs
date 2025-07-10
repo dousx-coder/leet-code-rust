@@ -1,9 +1,9 @@
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
-/// 95 不同的二叉搜索树Ⅱ
 ///
-/// https://leetcode.cn/problems/unique-binary-search-trees-ii/?envType=problem-list-v2&envId=binary-tree
+///[95. 不同的二叉搜索树Ⅱ](https://leetcode.cn/problems/unique-binary-search-trees-ii/?envType=problem-list-v2&envId=binary-tree)
+///
 struct Solution;
 impl Solution {
     pub fn generate_trees(n: i32) -> Vec<Option<Rc<RefCell<TreeNode>>>> {

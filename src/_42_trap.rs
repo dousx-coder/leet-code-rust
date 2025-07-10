@@ -1,6 +1,6 @@
-/// 42 接雨水
 ///
-/// https://leetcode.cn/problems/trapping-rain-water/description/
+/// [42. 接雨水](https://leetcode.cn/problems/trapping-rain-water/description/)
+///
 struct Solution;
 impl Solution {
     pub fn trap(height: Vec<i32>) -> i32 {

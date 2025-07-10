@@ -1,11 +1,7 @@
 ///
-///46. 全排列
+///[46. 全排列](https://leetcode.cn/problems/permutations/description/)
 ///
-/// https://leetcode.cn/problems/permutations/description/
-///
-
 struct Solution;
-
 impl Solution {
     pub fn permute(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut result: Vec<Vec<i32>> = Vec::new();

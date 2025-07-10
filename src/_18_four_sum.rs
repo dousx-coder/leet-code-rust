@@ -1,9 +1,8 @@
 use std::collections::HashSet;
 ///
-/// https://leetcode.cn/problems/4sum/description/
+/// [18. 四数之和](https://leetcode.cn/problems/4sum/description/)
 ///
 struct Solution;
-
 impl Solution {
     /// 循环解法
     fn loop_solution(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {

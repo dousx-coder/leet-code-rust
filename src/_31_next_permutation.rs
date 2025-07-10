@@ -1,7 +1,6 @@
 ///
-/// 31 下一个排列
+/// [31. 下一个排列](https://leetcode.cn/problems/next-permutation/description/)
 ///
-/// https://leetcode.cn/problems/next-permutation/description/
 struct Solution;
 impl Solution {
     pub fn next_permutation(nums: &mut Vec<i32>) {

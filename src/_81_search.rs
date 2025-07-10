@@ -1,6 +1,6 @@
-/// 81  搜索旋转排序数组 II
 ///
-/// https://leetcode.cn/problems/search-in-rotated-sorted-array-ii/?envType=problem-list-v2&envId=binary-search
+///[81.  搜索旋转排序数组 II](https://leetcode.cn/problems/search-in-rotated-sorted-array-ii/?envType=problem-list-v2&envId=binary-search)
+///
 struct Solution;
 impl Solution {
     pub fn search(nums: Vec<i32>, target: i32) -> bool {

@@ -1,6 +1,6 @@
-/// 69 x的平方根
 ///
-/// https://leetcode.cn/problems/sqrtx/?envType=problem-list-v2&envId=binary-search
+/// [69. x的平方根](https://leetcode.cn/problems/sqrtx/?envType=problem-list-v2&envId=binary-search)
+///
 struct Solution;
 impl Solution {
     pub fn my_sqrt(x: i32) -> i32 {

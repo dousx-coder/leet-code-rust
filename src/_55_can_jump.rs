@@ -1,6 +1,6 @@
-/// 55 跳跃游戏
 ///
-/// https://leetcode.cn/problems/jump-game/description/
+/// [55. 跳跃游戏](https://leetcode.cn/problems/jump-game/description/)
+///
 struct Solution;
 impl Solution {
     pub fn can_jump(nums: Vec<i32>) -> bool {

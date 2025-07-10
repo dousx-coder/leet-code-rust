@@ -1,7 +1,5 @@
 ///
-/// 40 组合总和Ⅱ
-///
-/// https://leetcode.cn/problems/combination-sum-ii/description/
+/// [40. 组合总和Ⅱ](https://leetcode.cn/problems/combination-sum-ii/description/)
 ///
 struct Solution;
 impl Solution {

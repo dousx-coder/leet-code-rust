@@ -1,9 +1,5 @@
 ///
-/// `75. 颜色分类`
-///
-/// https://leetcode.cn/problems/sort-colors/
-///
-///
+/// [75. 颜色分类](https://leetcode.cn/problems/sort-colors/)
 ///
 struct Solution;
 impl Solution {

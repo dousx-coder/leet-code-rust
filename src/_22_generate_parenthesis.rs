@@ -1,7 +1,7 @@
-struct Solution;
-
 ///
-/// https://leetcode.cn/problems/generate-parentheses/description/
+/// [22. 括号生成](https://leetcode.cn/problems/generate-parentheses/description/)
+///
+struct Solution;
 impl Solution {
     fn dfs(n: i32, left: i32, right: i32, append: &str, result: &mut Vec<String>) {
         if left == right && left == n {

@@ -1,9 +1,6 @@
 ///
-/// 17. 电话号码的字母组合
+/// [17. 电话号码的字母组合](https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/)
 ///
-/// https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/
-///
-
 struct Solution;
 impl Solution {
     pub fn letter_combinations(digits: String) -> Vec<String> {

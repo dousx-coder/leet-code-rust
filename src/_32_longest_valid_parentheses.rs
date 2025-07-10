@@ -1,7 +1,8 @@
 use std::cmp::max;
 
 ///
-/// https://leetcode.cn/problems/longest-valid-parentheses/description/
+/// [32. 最长有效括号](https://leetcode.cn/problems/longest-valid-parentheses/description/)
+///
 struct Solution;
 impl Solution {
     pub fn longest_valid_parentheses(s: String) -> i32 {
