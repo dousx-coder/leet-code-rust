@@ -1,6 +1,6 @@
-/// 162 寻找峰值
 ///
-/// https://leetcode.cn/problems/find-peak-element/description/?envType=problem-list-v2&envId=binary-search
+/// [162. 寻找峰值](https://leetcode.cn/problems/find-peak-element/description/?envType=problem-list-v2&envId=binary-search)
+///
 struct Solution;
 impl Solution {
     pub fn find_peak_element(nums: Vec<i32>) -> i32 {

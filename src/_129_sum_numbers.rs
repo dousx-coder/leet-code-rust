@@ -1,11 +1,10 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// 129 求根节点到叶节点数字之和
+/// [129. 求根节点到叶节点数字之和](https://leetcode.cn/problems/sum-root-to-leaf-numbers/?envType=problem-list-v2&envId=binary-tree)
 ///
-/// https://leetcode.cn/problems/sum-root-to-leaf-numbers/?envType=problem-list-v2&envId=binary-tree
+struct Solution;
 impl Solution {
     pub fn sum_numbers(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         let mut nums: Vec<i32> = vec![];

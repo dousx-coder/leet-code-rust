@@ -3,9 +3,8 @@ use std::cell::RefCell;
 use std::cmp::max;
 use std::rc::Rc;
 ///
-/// `104 二叉树的 最大深度 `
+/// [104. 二叉树的 最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/)
 ///
-/// https://leetcode.cn/problems/maximum-depth-of-binary-tree/description/
 struct Solution;
 impl Solution {
     pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {

@@ -1,8 +1,8 @@
 use crate::common::linked_list::*;
 ///
-/// https://leetcode.cn/problems/shan-chu-lian-biao-de-jie-dian-lcof/description/
+/// [LCR 136. 删除链表的节点](https://leetcode.cn/problems/shan-chu-lian-biao-de-jie-dian-lcof/description/)
+///
 struct Solution;
-
 impl Solution {
     pub fn delete_node(head: Option<Box<ListNode>>, val: i32) -> Option<Box<ListNode>> {
         let mut dummy = Some(Box::new(ListNode { val, next: head }));

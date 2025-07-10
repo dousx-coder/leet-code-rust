@@ -2,11 +2,10 @@ use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 
+///
+/// [114. 二叉树展开为链表](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/?envType=problem-list-v2&envId=binary-tree)
+///
 struct Solution;
-///
-/// 114 二叉树展开为链表
-///
-/// https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/?envType=problem-list-v2&envId=binary-tree
 impl Solution {
     pub fn flatten(root: &mut Option<Rc<RefCell<TreeNode>>>) {
         if root.is_none() {

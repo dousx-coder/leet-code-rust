@@ -4,9 +4,8 @@ use crate::common::linked_list::ListNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// 109 有序链表转二叉搜索树
+/// [109. 有序链表转二叉搜索树](https://leetcode.cn/problems/convert-sorted-list-to-binary-search-tree/description/?envType=problem-list-v2&envId=binary-tree)
 ///
-/// https://leetcode.cn/problems/convert-sorted-list-to-binary-search-tree/description/?envType=problem-list-v2&envId=binary-tree
 struct Solution;
 impl Solution {
     pub fn sorted_list_to_bst(head: Option<Box<ListNode>>) -> Option<Rc<RefCell<TreeNode>>> {

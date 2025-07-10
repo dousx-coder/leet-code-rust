@@ -3,9 +3,8 @@ use std::cell::RefCell;
 use std::cmp::min;
 use std::rc::Rc;
 ///
-/// `111 二叉树的最小深度`
+/// [111. 二叉树的最小深度](https://leetcode.cn/problems/minimum-depth-of-binary-tree/)
 ///
-/// https://leetcode.cn/problems/minimum-depth-of-binary-tree/
 struct Solution;
 impl Solution {
     pub fn min_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {

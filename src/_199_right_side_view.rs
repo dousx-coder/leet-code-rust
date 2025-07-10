@@ -1,12 +1,11 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::collections::VecDeque;
 use std::rc::Rc;
 ///
-/// 199 二叉树的右视图
+/// [199. 二叉树的右视图](https://leetcode.cn/problems/binary-tree-right-side-view/?envType=problem-list-v2&envId=binary-tree)
 ///
-/// https://leetcode.cn/problems/binary-tree-right-side-view/?envType=problem-list-v2&envId=binary-tree
+struct Solution;
 impl Solution {
     /// 层序遍历保留每一层最后一个
     pub fn right_side_view(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {

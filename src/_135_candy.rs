@@ -1,6 +1,6 @@
-/// 135 分发糖果
 ///
-/// https://leetcode.cn/problems/candy/
+/// [135. 分发糖果](https://leetcode.cn/problems/candy/)
+///
 struct Solution;
 impl Solution {
     pub fn candy(ratings: Vec<i32>) -> i32 {

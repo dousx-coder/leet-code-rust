@@ -1,4 +1,4 @@
-/// 122 买卖股票的最佳时机 II
+/// [122. 买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)
 ///
 /// 给你一个整数数组 prices ，其中 `prices[i] `表示某支股票第 i 天的价格。
 ///
@@ -6,7 +6,6 @@
 ///
 /// 返回 你能获得的 最大 利润 。
 ///
-/// https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/
 struct Solution;
 impl Solution {
     pub fn max_profit(prices: Vec<i32>) -> i32 {

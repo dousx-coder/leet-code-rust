@@ -1,6 +1,6 @@
-/// 153 寻找旋转数组中的最小值
 ///
-/// https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/?envType=problem-list-v2&envId=binary-search
+/// [153. 寻找旋转数组中的最小值](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/?envType=problem-list-v2&envId=binary-search)
+///
 struct Solution;
 impl Solution {
     pub fn find_min(nums: Vec<i32>) -> i32 {

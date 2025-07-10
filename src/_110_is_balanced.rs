@@ -1,14 +1,11 @@
-///
-/// 110 判断平衡二叉树
-///
-/// https://leetcode.cn/problems/balanced-binary-tree/
-///
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::cmp::max;
 use std::rc::Rc;
-
+///
+/// [110. 判断平衡二叉树](https://leetcode.cn/problems/balanced-binary-tree/)
+///
+struct Solution;
 impl Solution {
     pub fn is_balanced(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
         match root {

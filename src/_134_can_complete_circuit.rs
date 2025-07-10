@@ -1,6 +1,6 @@
-/// 134 加油站
 ///
-/// https://leetcode.cn/problems/gas-station/
+/// [134. 加油站](https://leetcode.cn/problems/gas-station/)
+///
 struct Solution;
 impl Solution {
     /// gas 加油站

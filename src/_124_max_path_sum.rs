@@ -1,11 +1,9 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::cmp::max;
 use std::rc::Rc;
-
 ///
-/// 124 二叉树中最大路径总和
+/// [124. 二叉树中最大路径总和](https://leetcode.cn/problems/binary-tree-maximum-path-sum/?envType=problem-list-v2&envId=binary-tree)
 ///
 /// 二叉树中的 路径 被定义为一条节点序列，序列中每对相邻节点之间都存在一条边。
 ///
@@ -13,7 +11,8 @@ use std::rc::Rc;
 ///
 /// 路径和 是路径中各节点值的总和。
 ///
-/// https://leetcode.cn/problems/binary-tree-maximum-path-sum/?envType=problem-list-v2&envId=binary-tree
+///
+struct Solution;
 impl Solution {
     pub fn max_path_sum(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         let mut max_sum = i32::MIN;

@@ -2,10 +2,7 @@ use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// `144 二叉树前序遍历`
-///
-///
-/// https://leetcode.cn/problems/binary-tree-preorder-traversal/description/
+/// [144. 二叉树前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/description/)
 ///
 struct Solution;
 impl Solution {

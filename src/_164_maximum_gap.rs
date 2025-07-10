@@ -1,6 +1,6 @@
-/// 164 最大间距
 ///
-/// https://leetcode.cn/problems/maximum-gap/?envType=problem-list-v2&envId=sorting
+/// [164. 最大间距](https://leetcode.cn/problems/maximum-gap/?envType=problem-list-v2&envId=sorting)
+///
 struct Solution;
 impl Solution {
     pub fn maximum_gap(nums: Vec<i32>) -> i32 {

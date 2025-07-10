@@ -1,6 +1,6 @@
-/// 179 最大的数
 ///
-/// https://leetcode.cn/problems/largest-number/?envType=problem-list-v2&envId=greedy
+/// [179. 最大的数](https://leetcode.cn/problems/largest-number/?envType=problem-list-v2&envId=greedy)
+///
 struct Solution;
 impl Solution {
     pub fn largest_number(nums: Vec<i32>) -> String {

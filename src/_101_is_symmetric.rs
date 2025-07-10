@@ -2,9 +2,7 @@ use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// `101 对称二叉树`
-///
-/// https://leetcode.cn/problems/symmetric-tree/
+/// [101. 对称二叉树](https://leetcode.cn/problems/symmetric-tree/)
 ///
 struct Solution;
 impl Solution {

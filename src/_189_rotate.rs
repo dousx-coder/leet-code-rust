@@ -1,11 +1,7 @@
 ///
-/// 189. 轮转数组
+/// [189. 轮转数组](https://leetcode.cn/problems/rotate-array/description/)
 ///
-/// https://leetcode.cn/problems/rotate-array/description/
-///
-
 struct Solution;
-
 impl Solution {
     pub fn rotate(nums: &mut Vec<i32>, k: i32) {
         let len = nums.len() as i32;

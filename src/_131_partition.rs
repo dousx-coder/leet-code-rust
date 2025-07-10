@@ -1,6 +1,6 @@
-/// 131 切割回文串
 ///
-/// https://leetcode.cn/problems/palindrome-partitioning/?envType=problem-list-v2&envId=backtracking
+/// [131. 切割回文串](https://leetcode.cn/problems/palindrome-partitioning/?envType=problem-list-v2&envId=backtracking)
+///
 struct Solution;
 impl Solution {
     pub fn partition(s: String) -> Vec<Vec<String>> {
