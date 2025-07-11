@@ -1,13 +1,10 @@
 use crate::common::binary_tree::TreeNode;
-///
-/// 222. 完全二叉树的节点个数
-///
-/// https://leetcode.cn/problems/count-complete-tree-nodes/
-///
-///
-struct Solution;
 use std::cell::RefCell;
 use std::rc::Rc;
+///
+/// [222. 完全二叉树的节点个数](https://leetcode.cn/problems/count-complete-tree-nodes/)
+///
+struct Solution;
 impl Solution {
     pub fn count_nodes(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         match root {

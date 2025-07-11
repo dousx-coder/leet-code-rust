@@ -1,15 +1,9 @@
 ///
-/// `224. 基本计算器`
+/// [224. 基本计算器](https://leetcode.cn/problems/basic-calculator/)
 ///
-/// https://leetcode.cn/problems/basic-calculator/
-///
-/// `227. 基本计算器 II`
-///
-/// https://leetcode.cn/problems/basic-calculator-ii/description/
-///
+/// [227. 基本计算器 II](https://leetcode.cn/problems/basic-calculator-ii/description/)
 ///
 struct Solution;
-
 impl Solution {
     ///
     /// 求逆波兰式的值

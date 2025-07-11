@@ -1,11 +1,10 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// 226 翻转二叉树
+/// [226 翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/?envType=problem-list-v2&envId=binary-tree)
 ///
-/// https://leetcode.cn/problems/invert-binary-tree/?envType=problem-list-v2&envId=binary-tree
+struct Solution;
 impl Solution {
     pub fn invert_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
         if root.is_none() {

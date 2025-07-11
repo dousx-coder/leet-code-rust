@@ -1,6 +1,6 @@
-/// 306 累加数
 ///
-/// https://leetcode.cn/problems/additive-number/description/?envType=problem-list-v2&envId=backtracking
+/// [306. 累加数](https://leetcode.cn/problems/additive-number/description/?envType=problem-list-v2&envId=backtracking)
+///
 struct Solution;
 impl Solution {
     pub fn is_additive_number(num: String) -> bool {

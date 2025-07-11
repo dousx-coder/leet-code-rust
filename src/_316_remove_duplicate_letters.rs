@@ -1,10 +1,8 @@
-/// 316 去除重复字母
-///
-/// https://leetcode.cn/problems/remove-duplicate-letters/?envType=problem-list-v2&envId=stack
 use std::collections::HashSet;
 use std::hash::Hash;
-
-
+///
+///[316. 去除重复字母](https://leetcode.cn/problems/remove-duplicate-letters/?envType=problem-list-v2&envId=stack)
+///
 struct Solution;
 impl Solution {
     /// 单调栈

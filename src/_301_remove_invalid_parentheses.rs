@@ -1,6 +1,6 @@
-/// 301 删除无效的括号
 ///
-/// https://leetcode.cn/problems/remove-invalid-parentheses/description/
+/// [301. 删除无效的括号](https://leetcode.cn/problems/remove-invalid-parentheses/description/)
+///
 struct Solution;
 impl Solution {
     pub fn remove_invalid_parentheses(s: String) -> Vec<String> {

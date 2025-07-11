@@ -3,10 +3,11 @@ use std::cell::RefCell;
 use std::cmp::max;
 use std::collections::{HashMap, VecDeque};
 use std::rc::Rc;
-struct Solution;
-/// 337 打家劫舍Ⅲ
+
 ///
-/// https://leetcode.cn/problems/house-robber-iii/?envType=problem-list-v2&envId=binary-tree
+/// [337. 打家劫舍Ⅲ](https://leetcode.cn/problems/house-robber-iii/?envType=problem-list-v2&envId=binary-tree)
+///
+struct Solution;
 impl Solution {
     pub fn rob(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         let mut cache: HashMap<*const RefCell<TreeNode>, i32> = HashMap::new();

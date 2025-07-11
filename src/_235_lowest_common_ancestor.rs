@@ -1,12 +1,11 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::cmp::{max, min};
 use std::rc::Rc;
 ///
-/// 235 二叉搜索树的最近公共祖先
+/// [235. 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/description/)
 ///
-/// https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/description/
+struct Solution;
 impl Solution {
     pub fn lowest_common_ancestor(
         root: Option<Rc<RefCell<TreeNode>>>,

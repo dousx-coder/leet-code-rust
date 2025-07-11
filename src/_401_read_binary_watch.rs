@@ -1,10 +1,7 @@
-///
-/// 401 二进制手表
-///
-/// https://leetcode.cn/problems/binary-watch/description/?envType=problem-list-v2&envId=backtracking
 use std::collections::HashSet;
-
-
+///
+/// [401. 二进制手表](https://leetcode.cn/problems/binary-watch/description/?envType=problem-list-v2&envId=backtracking)
+///
 struct Solution;
 impl Solution {
     pub fn read_binary_watch(turned_on: i32) -> Vec<String> {

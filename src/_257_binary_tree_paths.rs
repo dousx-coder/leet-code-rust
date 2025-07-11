@@ -1,13 +1,10 @@
-///
-/// 257  二叉树的所有路径
-///
-/// https://leetcode.cn/problems/binary-tree-paths/
-///
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
-
+///
+/// [257. 二叉树的所有路径](https://leetcode.cn/problems/binary-tree-paths/)
+///
+struct Solution;
 impl Solution {
     pub fn binary_tree_paths(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<String> {
         let mut result = vec![];

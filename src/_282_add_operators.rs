@@ -1,6 +1,6 @@
-/// 282 给表达式添加运算符
 ///
-/// https://leetcode.cn/problems/expression-add-operators/description/
+/// [282. 给表达式添加运算符](https://leetcode.cn/problems/expression-add-operators/description/)
+///
 struct Solution;
 impl Solution {
     pub fn add_operators(num: String, target: i32) -> Vec<String> {

@@ -1,14 +1,8 @@
-///
-///
-/// 239. 滑动窗口最大值
-///
-/// https://leetcode.cn/problems/sliding-window-maximum/description/
-///
-///
-///
 use std::collections::VecDeque;
 
-
+///
+/// [239. 滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/description/)
+///
 struct Solution;
 ///
 /// 单调队列

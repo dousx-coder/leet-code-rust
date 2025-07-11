@@ -1,6 +1,6 @@
-/// 240 搜索二维矩阵Ⅱ
 ///
-/// https://leetcode.cn/problems/search-a-2d-matrix-ii/?envType=problem-list-v2&envId=binary-search
+///[240. 搜索二维矩阵Ⅱ](https://leetcode.cn/problems/search-a-2d-matrix-ii/?envType=problem-list-v2&envId=binary-search)
+///
 struct Solution;
 impl Solution {
     fn search(

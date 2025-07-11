@@ -1,9 +1,8 @@
 use std::cmp::min;
 ///
-///https://leetcode.cn/problems/minimum-size-subarray-sum/
+///[209. 长度最小的子数组](https://leetcode.cn/problems/minimum-size-subarray-sum/)
 ///
 struct Solution;
-
 impl Solution {
     pub fn min_sub_array_len(target: i32, nums: Vec<i32>) -> i32 {
         let mut sum = 0;

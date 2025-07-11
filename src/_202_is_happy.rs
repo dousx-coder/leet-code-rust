@@ -1,7 +1,8 @@
 use std::collections::HashSet;
-
+///
+/// [202. 快乐数](https://leetcode.cn/problems/happy-number/description/)
+///
 struct Solution;
-
 impl Solution {
     pub fn is_happy(n: i32) -> bool {
         let mut set = HashSet::new();

@@ -1,7 +1,6 @@
-/// 343 整数拆分
 ///
+/// [343. 整数拆分](https://leetcode.cn/problems/integer-break/)
 ///
-/// https://leetcode.cn/problems/integer-break/
 struct Solution;
 impl Solution {
     pub fn integer_break(n: i32) -> i32 {

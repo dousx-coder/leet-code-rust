@@ -1,5 +1,5 @@
 ///
-/// [300 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/?envType=problem-list-v2&envId=binary-search)
+/// [300. 最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/?envType=problem-list-v2&envId=binary-search)
 ///
 struct Solution;
 impl Solution {

@@ -2,7 +2,7 @@ use std::collections::HashSet;
 use std::hash::Hash;
 
 ///
-/// https://leetcode.cn/problems/intersection-of-two-arrays/
+/// [349. 两个数组的交集](https://leetcode.cn/problems/intersection-of-two-arrays/)
 ///
 struct Solution;
 impl Solution {

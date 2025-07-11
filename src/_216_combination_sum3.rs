@@ -1,9 +1,7 @@
 ///
-/// 216 组合数字 Ⅲ
+/// [216. 组合数字 Ⅲ](https://leetcode.cn/problems/combination-sum-iii/)
 ///
-/// https://leetcode.cn/problems/combination-sum-iii/
 struct Solution;
-
 impl Solution {
     pub fn combination_sum3(k: i32, n: i32) -> Vec<Vec<i32>> {
         let mut result = vec![];

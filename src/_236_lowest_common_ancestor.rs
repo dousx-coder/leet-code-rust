@@ -1,11 +1,10 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// 236 二叉树的最近公共祖先
+/// [236. 二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/)
 ///
-/// https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/
+struct Solution;
 impl Solution {
     pub fn lowest_common_ancestor(
         root: Option<Rc<RefCell<TreeNode>>>,

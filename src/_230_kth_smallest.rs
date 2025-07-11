@@ -1,10 +1,10 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
-/// 230 二叉搜索树中第K小的元素
 ///
-/// https://leetcode.cn/problems/kth-smallest-element-in-a-bst/?envType=problem-list-v2&envId=binary-tree
+///  [230. 二叉搜索树中第K小的元素](https://leetcode.cn/problems/kth-smallest-element-in-a-bst/?envType=problem-list-v2&envId=binary-tree)
+///
+struct Solution;
 impl Solution {
     pub fn kth_smallest(root: Option<Rc<RefCell<TreeNode>>>, k: i32) -> i32 {
         // 中序 迭代法

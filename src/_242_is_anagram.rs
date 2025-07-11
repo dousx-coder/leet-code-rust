@@ -1,5 +1,6 @@
 ///
-/// https://leetcode.cn/problems/valid-anagram/
+/// [242. 有效的字母异位词](https://leetcode.cn/problems/valid-anagram/)
+///
 struct Solution;
 impl Solution {
     pub fn is_anagram(s: String, t: String) -> bool {

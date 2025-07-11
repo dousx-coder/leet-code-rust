@@ -1,9 +1,8 @@
-struct Solution;
-
 use std::collections::{HashMap, HashSet};
 ///
-/// https://leetcode.cn/problems/majority-element-ii/description/
+/// [229. 多数元素Ⅱ](https://leetcode.cn/problems/majority-element-ii/description/)
 ///
+struct Solution;
 impl Solution {
     pub fn majority_element(nums: Vec<i32>) -> Vec<i32> {
         if nums.len() == 0 {

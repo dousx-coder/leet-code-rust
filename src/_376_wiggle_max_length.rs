@@ -1,7 +1,6 @@
 ///
-///  379 摆动序列
+/// [379. 摆动序列](https://leetcode.cn/problems/wiggle-subsequence/)
 ///
-/// https://leetcode.cn/problems/wiggle-subsequence/
 struct Solution;
 impl Solution {
     pub fn wiggle_max_length(nums: Vec<i32>) -> i32 {

@@ -1,6 +1,6 @@
-/// 287 寻找重复数
 ///
-/// https://leetcode.cn/problems/find-the-duplicate-number/description/?envType=problem-list-v2&envId=binary-search
+///[287. 寻找重复数](https://leetcode.cn/problems/find-the-duplicate-number/description/?envType=problem-list-v2&envId=binary-search)
+///
 struct Solution;
 impl Solution {
     pub fn find_duplicate(nums: Vec<i32>) -> i32 {

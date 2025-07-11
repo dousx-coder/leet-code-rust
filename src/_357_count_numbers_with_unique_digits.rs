@@ -1,6 +1,6 @@
-/// 357 统计各位数字都不同的数字个数
 ///
-/// https://leetcode.cn/problems/count-numbers-with-unique-digits/description/?envType=problem-list-v2&envId=backtracking
+/// [357. 统计各位数字都不同的数字个数](https://leetcode.cn/problems/count-numbers-with-unique-digits/description/?envType=problem-list-v2&envId=backtracking)
+///
 struct Solution;
 impl Solution {
     pub fn count_numbers_with_unique_digits(n: i32) -> i32 {

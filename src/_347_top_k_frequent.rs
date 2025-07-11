@@ -1,9 +1,7 @@
 use std::cmp::{Ordering, Reverse};
 use std::collections::{BinaryHeap, HashMap};
 ///
-/// `347. 前 K 个高频元素`
-///
-/// https://leetcode.cn/problems/top-k-frequent-elements/description/
+/// [347. 前 K 个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/description/)
 ///
 struct Solution;
 impl Solution {
