@@ -1,6 +1,6 @@
-/// 526 优美的排列
 ///
-/// https://leetcode.cn/problems/beautiful-arrangement/?envType=problem-list-v2&envId=backtracking
+/// [526. 优美的排列](https://leetcode.cn/problems/beautiful-arrangement/?envType=problem-list-v2&envId=backtracking)
+///
 struct Solution;
 impl Solution {
     pub fn count_arrangement(n: i32) -> i32 {

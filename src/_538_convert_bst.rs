@@ -1,12 +1,10 @@
-///
-/// 538 把二叉搜索树转换为累加数
-///
-/// https://leetcode.cn/problems/convert-bst-to-greater-tree/
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
-
+///
+/// [538. 把二叉搜索树转换为累加数](https://leetcode.cn/problems/convert-bst-to-greater-tree/)
+///
+struct Solution;
 impl Solution {
     pub fn convert_bst(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
         let mut curr_sum = 0;

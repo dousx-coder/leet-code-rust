@@ -1,8 +1,7 @@
 use itertools::Itertools;
-
-///  556 下一个更大元素 III
 ///
-/// https://leetcode.cn/problems/next-greater-element-iii/
+/// [556. 下一个更大元素 III](https://leetcode.cn/problems/next-greater-element-iii/)
+///
 struct Solution;
 impl Solution {
     pub fn next_greater_element(n: i32) -> i32 {

@@ -3,9 +3,8 @@ use std::cell::RefCell;
 use std::rc::Rc;
 
 ///
-/// 654 最大二叉树
+/// [654. 最大二叉树](https://leetcode.cn/problems/maximum-binary-tree/)
 ///
-/// https://leetcode.cn/problems/maximum-binary-tree/
 struct Solution;
 impl Solution {
     pub fn construct_maximum_binary_tree(nums: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {

@@ -1,9 +1,8 @@
-/// 692 前K个高频单词
-///
-/// https://leetcode.cn/problems/top-k-frequent-words/?envType=problem-list-v2&envId=counting
-struct Solution;
 use std::collections::HashMap;
-
+///
+///[692. 前K个高频单词](https://leetcode.cn/problems/top-k-frequent-words/?envType=problem-list-v2&envId=counting)
+///
+struct Solution;
 impl Solution {
     pub fn top_k_frequent(words: Vec<String>, k: i32) -> Vec<String> {
         // 统计每个单词的出现次数

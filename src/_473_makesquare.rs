@@ -1,6 +1,6 @@
-/// 473  火柴拼正方形
 ///
-/// https://leetcode.cn/problems/matchsticks-to-square/?envType=problem-list-v2&envId=backtracking
+///  [473. 火柴拼正方形](https://leetcode.cn/problems/matchsticks-to-square/?envType=problem-list-v2&envId=backtracking)
+///
 struct Solution;
 impl Solution {
     pub fn makesquare(matchsticks: Vec<i32>) -> bool {

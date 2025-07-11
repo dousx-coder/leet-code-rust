@@ -1,11 +1,10 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// 530 二叉搜索树的最小绝对差值
+/// [530. 二叉搜索树的最小绝对差值](https://leetcode.cn/problems/minimum-absolute-difference-in-bst/)
 ///
-/// https://leetcode.cn/problems/minimum-absolute-difference-in-bst/
+struct Solution;
 impl Solution {
     pub fn get_minimum_difference(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         let mut stack = Vec::new();

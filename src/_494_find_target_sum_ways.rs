@@ -1,8 +1,7 @@
 use itertools::Itertools;
-
-/// 494 目标和
 ///
-/// https://leetcode.cn/problems/target-sum/?envType=problem-list-v2&envId=backtracking
+///[494. 目标和](https://leetcode.cn/problems/target-sum/?envType=problem-list-v2&envId=backtracking)
+///
 struct Solution;
 impl Solution {
     pub fn find_target_sum_ways(nums: Vec<i32>, target: i32) -> i32 {

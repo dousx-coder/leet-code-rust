@@ -1,12 +1,10 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// 404 左叶子之和
+/// [404. 左叶子之和](https://leetcode.cn/problems/sum-of-left-leaves/)
 ///
-/// https://leetcode.cn/problems/sum-of-left-leaves/
-///
+struct Solution;
 impl Solution {
     pub fn sum_of_left_leaves(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         Self::left_leaves_sum(root, false)

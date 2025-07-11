@@ -1,6 +1,6 @@
-/// 406 根据身高重构队列
 ///
-/// https://leetcode.cn/problems/queue-reconstruction-by-height/
+///[406. 根据身高重构队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)
+///
 struct Solution;
 impl Solution {
     pub fn reconstruct_queue(people: Vec<Vec<i32>>) -> Vec<Vec<i32>> {

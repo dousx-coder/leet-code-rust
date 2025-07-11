@@ -1,6 +1,6 @@
-/// 132模式
 ///
-/// https://leetcode.cn/problems/132-pattern/?envType=problem-list-v2&envId=monotonic-stack
+///[456. 132模式](https://leetcode.cn/problems/132-pattern/?envType=problem-list-v2&envId=monotonic-stack)
+///
 struct Solution;
 impl Solution {
     pub fn find132pattern(nums: Vec<i32>) -> bool {

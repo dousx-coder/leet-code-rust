@@ -2,9 +2,7 @@ use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// 563 二叉树的坡度
-///
-/// https://leetcode.cn/problems/binary-tree-tilt/
+/// [563. 二叉树的坡度](https://leetcode.cn/problems/binary-tree-tilt/)
 ///
 struct Solution;
 impl Solution {

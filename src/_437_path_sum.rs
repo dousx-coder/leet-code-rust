@@ -1,11 +1,10 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// 437 路径总和Ⅲ
+/// [437. 路径总和Ⅲ](https://leetcode.cn/problems/path-sum-iii/?envType=problem-list-v2&envId=binary-tree)
 ///
-/// https://leetcode.cn/problems/path-sum-iii/?envType=problem-list-v2&envId=binary-tree
+struct Solution;
 impl Solution {
     pub fn path_sum(root: Option<Rc<RefCell<TreeNode>>>, target_sum: i32) -> i32 {
         if root.is_none() {

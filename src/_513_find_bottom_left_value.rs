@@ -3,9 +3,8 @@ use std::cell::RefCell;
 use std::collections::VecDeque;
 use std::rc::Rc;
 ///
-/// 513 找树左下角的值
+/// [513. 找树左下角的值](https://leetcode.cn/problems/find-bottom-left-tree-value/)
 ///
-/// https://leetcode.cn/problems/find-bottom-left-tree-value/
 struct Solution;
 impl Solution {
     pub fn find_bottom_left_value(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {

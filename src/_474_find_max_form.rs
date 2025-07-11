@@ -1,6 +1,6 @@
-/// 474 一和零
 ///
-/// https://leetcode.cn/problems/ones-and-zeroes/
+/// [474. 一和零](https://leetcode.cn/problems/ones-and-zeroes/)
+///
 struct Solution;
 impl Solution {
     pub fn find_max_form(strs: Vec<String>, m: i32, n: i32) -> i32 {

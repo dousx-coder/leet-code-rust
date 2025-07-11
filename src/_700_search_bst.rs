@@ -2,9 +2,8 @@ use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// 700 二叉搜索树中的搜索
+/// [700. 二叉搜索树中的搜索](https://leetcode.cn/problems/search-in-a-binary-search-tree/description/)
 ///
-/// https://leetcode.cn/problems/search-in-a-binary-search-tree/description/
 struct Solution;
 impl Solution {
     pub fn search_bst(

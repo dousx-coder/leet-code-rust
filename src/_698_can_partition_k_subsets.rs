@@ -1,6 +1,6 @@
-/// 698 划分为K个相等的子集
 ///
-/// https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/
+///[698. 划分为K个相等的子集](https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/)
+///
 struct Solution;
 impl Solution {
     pub fn can_partition_k_subsets(nums: Vec<i32>, k: i32) -> bool {

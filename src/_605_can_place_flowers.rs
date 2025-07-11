@@ -1,6 +1,6 @@
-/// 605 种花问题
 ///
-/// https://leetcode.cn/problems/can-place-flowers/?envType=problem-list-v2&envId=greedy
+///[605. 种花问题](https://leetcode.cn/problems/can-place-flowers/?envType=problem-list-v2&envId=greedy)
+///
 struct Solution;
 impl Solution {
     pub fn can_place_flowers(flowerbed: Vec<i32>, n: i32) -> bool {

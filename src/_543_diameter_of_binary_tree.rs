@@ -1,10 +1,10 @@
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
-/// 543 二叉树的直径
 ///
-/// https://leetcode.cn/problems/diameter-of-binary-tree/
+/// [543. 二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree/)
+///
+struct Solution;
 impl Solution {
     pub fn diameter_of_binary_tree(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         let mut max = 0;

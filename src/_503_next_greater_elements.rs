@@ -1,6 +1,6 @@
-/// 503 下一个更大元素 II
-///     
-/// https://leetcode.cn/problems/next-greater-element-ii/
+///
+/// [503. 下一个更大元素 II](https://leetcode.cn/problems/next-greater-element-ii/)    
+///
 struct Solution;
 impl Solution {
     pub fn next_greater_elements(nums: Vec<i32>) -> Vec<i32> {

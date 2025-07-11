@@ -1,6 +1,6 @@
-/// 581 最短无序子序列
 ///
-/// https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/?envType=problem-list-v2&envId=greedy
+///  [581. 最短无序子序列](https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/?envType=problem-list-v2&envId=greedy)
+///
 struct Solution;
 impl Solution {
     pub fn find_unsorted_subarray(nums: Vec<i32>) -> i32 {

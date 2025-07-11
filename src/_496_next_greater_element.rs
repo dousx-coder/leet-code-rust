@@ -1,9 +1,8 @@
 use itertools::Itertools;
 use std::collections::HashMap;
-
-/// 496 下一个更大的元素Ⅰ
-///
-/// https://leetcode.cn/problems/next-greater-element-i/
+/// 
+/// [496. 下一个更大的元素Ⅰ](https://leetcode.cn/problems/next-greater-element-i/)
+/// 
 struct Solution;
 impl Solution {
     pub fn next_greater_element(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {

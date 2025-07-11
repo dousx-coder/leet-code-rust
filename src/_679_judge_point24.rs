@@ -1,7 +1,6 @@
 ///
-/// 679 24点
+/// [679. 24点](https://leetcode.cn/problems/24-game/description/?envType=problem-list-v2&envId=backtracking)
 ///
-/// https://leetcode.cn/problems/24-game/description/?envType=problem-list-v2&envId=backtracking
 struct Solution;
 impl Solution {
     pub fn judge_point24(cards: Vec<i32>) -> bool {

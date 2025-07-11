@@ -1,7 +1,7 @@
 use std::collections::HashSet;
-/// 491 非递减子序列
 ///
-/// https://leetcode.cn/problems/non-decreasing-subsequences/?envType=problem-list-v2&envId=backtracking
+/// [491. 非递减子序列](https://leetcode.cn/problems/non-decreasing-subsequences/?envType=problem-list-v2&envId=backtracking)
+///
 struct Solution;
 impl Solution {
     pub fn find_subsequences(nums: Vec<i32>) -> Vec<Vec<i32>> {

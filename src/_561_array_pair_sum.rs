@@ -1,6 +1,6 @@
-/// 561 数组拆分
 ///
-/// https://leetcode.cn/problems/array-partition/description/
+/// [561. 数组拆分](https://leetcode.cn/problems/array-partition/description/)
+///
 struct Solution;
 impl Solution {
     pub fn array_pair_sum(nums: Vec<i32>) -> i32 {

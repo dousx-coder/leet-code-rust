@@ -2,11 +2,10 @@ use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::cmp::max;
 use std::rc::Rc;
+///
+/// [501. 二叉搜索树中的众数](https://leetcode.cn/problems/find-mode-in-binary-search-tree/description/)
+///
 struct Solution;
-///
-/// 501 二叉搜索树中的众数
-///
-/// https://leetcode.cn/problems/find-mode-in-binary-search-tree/description/
 impl Solution {
     pub fn find_mode(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
         let mut ans = vec![];
