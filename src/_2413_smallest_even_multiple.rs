@@ -1,6 +1,5 @@
-/// `2413. 最小偶倍数`
 ///
-/// https://leetcode.cn/problems/smallest-even-multiple/
+/// [2413. 最小偶倍数](https://leetcode.cn/problems/smallest-even-multiple/)
 ///
 struct Solution;
 impl Solution {

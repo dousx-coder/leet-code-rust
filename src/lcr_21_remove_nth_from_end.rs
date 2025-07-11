@@ -1,7 +1,6 @@
 use crate::common::linked_list::*;
-
 ///
-/// https://leetcode.cn/problems/SLwz0R/
+/// [LCR021. 删除链表的倒数第N个结点](https://leetcode.cn/problems/SLwz0R/)
 ///
 struct Solution;
 impl Solution {

@@ -1,14 +1,9 @@
 use std::collections::HashMap;
 
 ///
-/// 887. 鸡蛋掉落
+/// [887. 鸡蛋掉落](https://leetcode.cn/problems/super-egg-drop/description/)
 ///
-/// https://leetcode.cn/problems/super-egg-drop/description/
-///
-///
-
 struct Solution;
-
 impl Solution {
     pub fn super_egg_drop(k: i32, n: i32) -> i32 {
         let mut memo = HashMap::new();

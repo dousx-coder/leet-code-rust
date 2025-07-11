@@ -2,9 +2,7 @@ use crate::common::linked_list::*;
 use std::cmp::{max, min};
 use std::mem::replace;
 ///
-/// `1721 交换链表中的节点`
-///
-/// https://leetcode.cn/problems/swapping-nodes-in-a-linked-list/
+/// [1721. 交换链表中的节点](https://leetcode.cn/problems/swapping-nodes-in-a-linked-list/)
 ///
 struct Solution;
 impl Solution {

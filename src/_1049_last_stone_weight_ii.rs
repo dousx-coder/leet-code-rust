@@ -1,6 +1,6 @@
-/// 1049 最后一块石头的重量 II
 ///
-/// https://leetcode.cn/problems/last-stone-weight-ii/description/
+/// [1049. 最后一块石头的重量 II](https://leetcode.cn/problems/last-stone-weight-ii/description/)
+///
 struct Solution;
 impl Solution {
     pub fn last_stone_weight_ii(stones: Vec<i32>) -> i32 {

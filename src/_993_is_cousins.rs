@@ -2,10 +2,10 @@ use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::collections::VecDeque;
 use std::rc::Rc;
-struct Solution;
-/// 993 二叉树的堂兄弟节点
 ///
-/// https://leetcode.cn/problems/cousins-in-binary-tree/description/?envType=problem-list-v2&envId=binary-tree
+///[993. 二叉树的堂兄弟节点](https://leetcode.cn/problems/cousins-in-binary-tree/description/?envType=problem-list-v2&envId=binary-tree)
+///
+struct Solution;
 impl Solution {
     pub fn is_cousins(root: Option<Rc<RefCell<TreeNode>>>, x: i32, y: i32) -> bool {
         // 下一层

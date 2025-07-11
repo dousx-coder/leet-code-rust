@@ -3,9 +3,7 @@ use std::cell::RefCell;
 use std::collections::VecDeque;
 use std::rc::Rc;
 ///
-/// 965 单值二叉树
-///
-/// https://leetcode.cn/problems/univalued-binary-tree/description/
+/// [965. 单值二叉树](https://leetcode.cn/problems/univalued-binary-tree/description/)
 ///
 struct Solution;
 impl Solution {

@@ -1,7 +1,6 @@
 ///
-/// 793 划分字母区间
+/// [793. 划分字母区间](https://leetcode.cn/problems/partition-labels/)
 ///
-/// https://leetcode.cn/problems/partition-labels/
 struct Solution;
 impl Solution {
     pub fn partition_labels(s: String) -> Vec<i32> {

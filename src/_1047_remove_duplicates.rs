@@ -1,9 +1,7 @@
 ///
-/// `1047. 删除字符串中的所有相邻重复项`
+/// [1047. 删除字符串中的所有相邻重复项](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/)
 ///
-/// https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/
 struct Solution;
-
 impl Solution {
     pub fn remove_duplicates(s: String) -> String {
         if s.is_empty() {

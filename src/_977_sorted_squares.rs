@@ -1,8 +1,7 @@
 ///
-/// https://leetcode.cn/problems/squares-of-a-sorted-array/description/
+/// [977. 有序数组的平方](https://leetcode.cn/problems/squares-of-a-sorted-array/description/)
 ///
 struct Solution;
-
 impl Solution {
     pub fn sorted_squares(nums: Vec<i32>) -> Vec<i32> {
         let len = nums.len();

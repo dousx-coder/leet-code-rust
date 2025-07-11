@@ -3,9 +3,7 @@ use std::cell::RefCell;
 use std::cmp::max;
 use std::rc::Rc;
 ///
-/// `计算二叉树的深度`
-///
-/// https://leetcode.cn/problems/er-cha-shu-de-shen-du-lcof/description/
+/// [LCR 175计算二叉树的深度](https://leetcode.cn/problems/er-cha-shu-de-shen-du-lcof/description/)
 ///
 struct Solution;
 impl Solution {

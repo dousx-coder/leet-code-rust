@@ -1,6 +1,6 @@
-/// 746 最小花费爬楼梯
 ///
-/// https://leetcode.cn/problems/min-cost-climbing-stairs/
+/// [746. 最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/)
+///
 struct Solution;
 impl Solution {
     pub fn min_cost_climbing_stairs(cost: Vec<i32>) -> i32 {

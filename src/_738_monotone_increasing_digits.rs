@@ -1,6 +1,6 @@
-/// 738 单调递增的数字
-///
-/// https://leetcode.cn/problems/monotone-increasing-digits/
+/// 
+///[738. 单调递增的数字](https://leetcode.cn/problems/monotone-increasing-digits/)
+/// 
 struct Solution;
 impl Solution {
     pub fn monotone_increasing_digits(n: i32) -> i32 {

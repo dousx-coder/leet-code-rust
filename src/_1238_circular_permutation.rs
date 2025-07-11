@@ -1,9 +1,9 @@
 use itertools::Itertools;
-
 ///
-/// 1238 循环码排列 (89 格雷编码)
+/// [1238. 循环码排列 (89 格雷编码)](https://leetcode.cn/problems/circular-permutation-in-binary-representation/description/)
 ///
-/// https://leetcode.cn/problems/circular-permutation-in-binary-representation/description/
+/// [89. 格雷编码](https://leetcode.cn/problems/gray-code/)
+///
 struct Solution;
 impl Solution {
     ///

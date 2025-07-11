@@ -1,9 +1,9 @@
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
-/// 998 最大二叉树Ⅱ
 ///
-/// https://leetcode.cn/problems/maximum-binary-tree-ii/
+///[998. 最大二叉树Ⅱ](https://leetcode.cn/problems/maximum-binary-tree-ii/)
+///
 struct Solution;
 impl Solution {
     pub fn insert_into_max_tree(

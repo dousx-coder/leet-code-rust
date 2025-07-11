@@ -1,6 +1,6 @@
-/// 784 字母大小写全排列
 ///
-/// https://leetcode.cn/problems/letter-case-permutation/?envType=problem-list-v2&envId=backtracking
+///[784. 字母大小写全排列](https://leetcode.cn/problems/letter-case-permutation/?envType=problem-list-v2&envId=backtracking)
+///
 struct Solution;
 impl Solution {
     pub fn letter_case_permutation(s: String) -> Vec<String> {

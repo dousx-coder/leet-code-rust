@@ -1,6 +1,6 @@
-/// 860 柠檬水找零
 ///
-/// https://leetcode.cn/problems/lemonade-change/description/
+///[860. 柠檬水找零](https://leetcode.cn/problems/lemonade-change/description/)
+///
 struct Solution;
 impl Solution {
     pub fn lemonade_change(bills: Vec<i32>) -> bool {

@@ -1,6 +1,6 @@
-/// 1005 K 次取反后最大化的数组和
 ///
-/// https://leetcode.cn/problems/maximize-sum-of-array-after-k-negations/description/
+///[1005. K 次取反后最大化的数组和](https://leetcode.cn/problems/maximize-sum-of-array-after-k-negations/description/)
+///
 struct Solution;
 impl Solution {
     pub fn largest_sum_after_k_negations(nums: Vec<i32>, k: i32) -> i32 {

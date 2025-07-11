@@ -1,6 +1,6 @@
 use crate::common::linked_list::*;
 ///
-/// https://leetcode.cn/problems/UHnkqh/description/
+/// [LCR 024. 反转链表](https://leetcode.cn/problems/UHnkqh/description/)
 ///
 struct Solution;
 

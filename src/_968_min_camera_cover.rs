@@ -1,11 +1,10 @@
-/// 968 监控摄像头
-///
-/// https://leetcode.cn/problems/binary-tree-cameras/
-struct Solution;
 use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
-
+///
+///[968. 监控摄像头](https://leetcode.cn/problems/binary-tree-cameras/)
+///
+struct Solution;
 impl Solution {
     pub fn min_camera_cover(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         let mut ans = 0;

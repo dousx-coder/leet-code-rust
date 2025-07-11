@@ -1,7 +1,6 @@
-/// LCR 083 全排列
 ///
-///  https://leetcode.cn/problems/VvJkup/description/
-///
+///[LCR 083. 全排列](https://leetcode.cn/problems/VvJkup/description/)
+///  
 struct Solution;
 impl Solution {
     pub fn permute(nums: Vec<i32>) -> Vec<Vec<i32>> {

@@ -3,9 +3,8 @@ use std::cell::RefCell;
 use std::rc::Rc;
 
 ///
-/// 958 二叉树的完全性检验
+/// [958. 二叉树的完全性检验](https://leetcode.cn/problems/check-completeness-of-a-binary-tree/)
 ///
-/// https://leetcode.cn/problems/check-completeness-of-a-binary-tree/
 struct Solution;
 impl Solution {
     pub fn is_complete_tree(root: Option<Rc<RefCell<TreeNode>>>) -> bool {

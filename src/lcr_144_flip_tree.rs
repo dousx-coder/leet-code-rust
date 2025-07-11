@@ -2,9 +2,7 @@ use crate::common::binary_tree::TreeNode;
 use std::cell::RefCell;
 use std::rc::Rc;
 ///
-/// 翻转二叉树
-///
-/// https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/
+/// [LCR 144. 翻转二叉树](https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/)
 ///
 struct Solution;
 impl Solution {

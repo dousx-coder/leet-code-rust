@@ -1,6 +1,6 @@
-/// 739  每日温度
 ///
-/// https://leetcode.cn/problems/daily-temperatures/description/
+///[739. 每日温度](https://leetcode.cn/problems/daily-temperatures/description/)
+///
 struct Solution;
 impl Solution {
     pub fn daily_temperatures(temperatures: Vec<i32>) -> Vec<i32> {

@@ -1,6 +1,6 @@
-/// 842 将数组拆分成斐波那契序列
 ///
-/// https://leetcode.cn/problems/split-array-into-fibonacci-sequence/
+///[842. 将数组拆分成斐波那契序列](https://leetcode.cn/problems/split-array-into-fibonacci-sequence/)
+///
 struct Solution;
 impl Solution {
     pub fn split_into_fibonacci(num: String) -> Vec<i32> {
