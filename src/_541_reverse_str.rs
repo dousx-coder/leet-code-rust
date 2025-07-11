@@ -1,6 +1,6 @@
 ///
 /// [541. 反转字符串Ⅱ](https://leetcode.cn/problems/reverse-string-ii/description/)
-/// 
+///
 struct Solution;
 impl Solution {
     fn swap(x: &mut [char]) {

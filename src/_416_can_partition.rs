@@ -1,8 +1,8 @@
 use itertools::Itertools;
 
-/// 
+///
 ///[416. 分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/)
-/// 
+///
 struct Solution;
 impl Solution {
     pub fn can_partition(nums: Vec<i32>) -> bool {

@@ -2,7 +2,7 @@ use crate::common::linked_list::ListNode;
 use std::ops::Index;
 ///
 /// [707.设计链表](https://leetcode.cn/problems/design-linked-list/description/)
-/// 
+///
 #[derive(PartialEq, Eq, Clone, Debug)]
 struct MyLinkedList {
     dummy: Option<Box<ListNode>>,
