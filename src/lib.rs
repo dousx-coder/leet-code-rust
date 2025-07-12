@@ -77,6 +77,7 @@ mod _242_is_anagram;
 mod _24_swap_pairs;
 mod _257_binary_tree_paths;
 mod _25_reverse_k_group;
+mod _263_missing_number;
 mod _26_remove_duplicates;
 mod _27_remove_element;
 mod _282_add_operators;
