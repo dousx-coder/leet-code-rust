@@ -80,6 +80,7 @@ mod _25_reverse_k_group;
 mod _263_missing_number;
 mod _26_remove_duplicates;
 mod _274_h_index;
+mod _275_h_index;
 mod _27_remove_element;
 mod _282_add_operators;
 mod _287_find_duplicate;
