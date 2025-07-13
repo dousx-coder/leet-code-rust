@@ -91,6 +91,7 @@ mod _301_remove_invalid_parentheses;
 mod _306_is_additive_number;
 mod _316_remove_duplicate_letters;
 mod _31_next_permutation;
+mod _327_count_range_sum;
 mod _32_longest_valid_parentheses;
 mod _337_rob;
 mod _33_search;
