@@ -103,6 +103,7 @@ mod _34_search_range;
 mod _357_count_numbers_with_unique_digits;
 mod _35_search_insert;
 mod _376_wiggle_max_length;
+mod _378_kth_smallest;
 mod _37_solve_sudoku;
 mod _38_count_and_say;
 mod _39_combination_sum;
