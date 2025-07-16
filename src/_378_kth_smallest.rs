@@ -4,6 +4,34 @@
 struct Solution;
 impl Solution {
     pub fn kth_smallest(matrix: Vec<Vec<i32>>, k: i32) -> i32 {
+        Self::binary_search(matrix, k)
+    }
+
+    /// 二分查找
+    fn binary_search(matrix: Vec<Vec<i32>>, k: i32) -> i32 {
+        let n = matrix.len();
+        let mut left = matrix[0][0];
+        let mut right = matrix[n - 1][n - 1];
+        while left < right {
+            let mid = left + ((right - left) >> 1);
+            let mut count = 0;
+            for i in (0..n).rev() {
+                for j in 0..n {
+                    if matrix[i][j] <= mid {
+                        count += 1;
+                    }
+                }
+            }
+            if count < k {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        left
+    }
+    /// 暴力搜索
+    fn brute_force(matrix: Vec<Vec<i32>>, k: i32) -> i32 {
         let mut ans = 0;
         let mut x = 0;
         let mut y = 0;
@@ -46,10 +74,15 @@ mod tests {
             Solution::kth_smallest(vec![vec![1, 5, 9], vec![10, 11, 13], vec![12, 13, 15]], 8),
             13
         );
+        assert_eq!(
+            Solution::brute_force(vec![vec![1, 5, 9], vec![10, 11, 13], vec![12, 13, 15]], 8),
+            13
+        );
     }
 
     #[test]
     fn t2() {
-        assert_eq!(Solution::kth_smallest(vec![vec![-5]], 1), -5);
+        assert_eq!(Solution::brute_force(vec![vec![-5]], 1), -5);
+        assert_eq!(Solution::binary_search(vec![vec![-5]], 1), -5);
     }
 }
