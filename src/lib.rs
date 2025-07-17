@@ -89,6 +89,7 @@ mod _29_divide;
 mod _300_length_of_lis;
 mod _301_remove_invalid_parentheses;
 mod _306_is_additive_number;
+mod _315_count_smaller;
 mod _316_remove_duplicate_letters;
 mod _31_next_permutation;
 mod _327_count_range_sum;
