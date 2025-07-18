@@ -5,7 +5,8 @@
 /target
 **/*.rs.bk
 /.idea/
-.vscode
+.vscode/*
+!.vscode/launch.json
 .DS_Store
 
 .VSCodeCounter
