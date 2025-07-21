@@ -7,7 +7,7 @@ impl Solution {
         // 按照对角线翻转，然后按行逆序
         let n = matrix.len();
         for i in 0..n {
-            for j in 0..=i {
+            for j in 0..i {
                 let mut a = matrix[i][j];
                 let mut b = matrix[j][i];
                 matrix[i][j] = b;
