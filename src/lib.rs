@@ -152,6 +152,7 @@ mod _55_can_jump;
 mod _561_array_pair_sum;
 mod _563_find_tilt;
 mod _56_merge;
+mod _57_insert;
 mod _581_find_unsorted_subarray;
 mod _59_generate_matrix;
 mod _605_can_place_flowers;
