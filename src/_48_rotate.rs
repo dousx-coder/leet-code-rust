@@ -8,10 +8,12 @@ impl Solution {
         let n = matrix.len();
         for i in 0..n {
             for j in 0..i {
-                let mut a = matrix[i][j];
-                let mut b = matrix[j][i];
-                matrix[i][j] = b;
-                matrix[j][i] = a;
+                unsafe {
+                    let ptr_a = matrix[i].as_mut_ptr().add(j);
+                    let ptr_b = matrix[j].as_mut_ptr().add(i);
+                    // 直接交换两个指针指向的内存值
+                    std::ptr::swap(ptr_a, ptr_b);
+                }
             }
         }
         for i in 0..n {
