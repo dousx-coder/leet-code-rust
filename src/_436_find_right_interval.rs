@@ -6,39 +6,39 @@ impl Solution {
     pub fn find_right_interval(intervals: Vec<Vec<i32>>) -> Vec<i32> {
         let len = intervals.len();
         let mut ans = vec![-1; len];
-        let mut intervals_sort = vec![];
-        intervals.iter().enumerate().for_each(|(i, v)| {
-            intervals_sort.push((v[0], v[1], i));
-        });
-        intervals_sort.sort_by(|a, b| a.0.cmp(&b.0));
 
-        for i in 0..len {
-            let (start1, end1, index1) = intervals_sort[i];
-            if start1 > end1 {
-                continue;
-            }
-            let mut last_idx = -1;
-            let mut last_sub = -1;
-            for j in i..len {
-                let (start2, end2, index2) = intervals_sort[j];
-                if end1 > start2 {
-                    continue;
+        // 创建包含起始点和原始索引的向量，并按起始点排序
+        let mut intervals_with_index: Vec<_> = intervals
+            .iter()
+            .enumerate()
+            .map(|(i, interval)| (interval[0], i))
+            .collect();
+
+        intervals_with_index.sort_by_key(|&(start, _)| start);
+
+        // 对每个区间，在排序后的数组中二分查找最右边的区间
+        for (i, interval) in intervals.iter().enumerate() {
+            let end = interval[1];
+
+            // 使用二分查找找到第一个起始点 >= end 的区间
+            match intervals_with_index.binary_search_by_key(&end, |&(start, _)| start) {
+                Ok(pos) => {
+                    // 找到精确匹配，直接使用该索引
+                    ans[i] = intervals_with_index[pos].1 as i32;
                 }
-                // start <= end
-                // 本区间的end <= 下一个区间的start
-                if last_idx == -1 {
-                    last_sub = start2 - end1;
-                    last_idx = index2 as i32;
-                } else if last_sub > start2 - end1 {
-                    last_sub = start2 - end1;
-                    last_idx = index2 as i32
+                Err(pos) => {
+                    // 没有精确匹配，pos 是第一个大于 end 的位置
+                    if pos < intervals_with_index.len() {
+                        ans[i] = intervals_with_index[pos].1 as i32;
+                    }
                 }
             }
-            ans[index1] = last_idx;
         }
+
         ans
     }
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
