@@ -117,6 +117,7 @@ mod _416_can_partition;
 mod _41_first_missing_positive;
 mod _42_trap;
 mod _435_erase_overlap_intervals;
+mod _436_find_right_interval;
 mod _437_path_sum;
 mod _43_multiply;
 mod _452_find_min_arrow_shots;
