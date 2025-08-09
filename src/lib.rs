@@ -129,6 +129,7 @@ mod _45_jump;
 mod _46_permute;
 mod _473_makesquare;
 mod _474_find_max_form;
+mod _475_find_radius;
 mod _47_permute_unique;
 mod _48_rotate;
 mod _491_find_subsequences;
