@@ -61,4 +61,8 @@ mod tests {
     fn t4() {
         assert_eq!(Solution::find_radius(vec![1, 5], vec![10]), 9);
     }
+    #[test]
+    fn t5() {
+        assert_eq!(Solution::find_radius(vec![1, 2, 3], vec![1]), 2);
+    }
 }
