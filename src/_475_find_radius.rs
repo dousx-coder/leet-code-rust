@@ -26,7 +26,12 @@ impl Solution {
         houses.sort();
         // 题目给的范围是1 <= houses[i], heaters[i] <= 10^9
         let mut left = 0;
-        let mut right = 10_i32.pow(9);
+        let mut right = houses
+            .iter()
+            .max()
+            .unwrap()
+            .max(heaters.iter().max().unwrap())
+            + 1;
         while left < right {
             let r = left + ((right - left) >> 1);
             if Self::is_full_coverage(&houses, &heaters, r) {
