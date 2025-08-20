@@ -10,15 +10,13 @@ impl Solution {
             return count;
         }
         let mut map = HashMap::new();
-        for num in nums {
-            let v = match map.get(&num) {
-                None => 0,
-                Some(v) => *v,
-            } + 1;
-            map.insert(num, v);
-        }
+        // 统计数组中每个数字出现的次数
+        nums.into_iter().for_each(|num| {
+            *map.entry(num).or_insert(0) += 1;
+        });
         for i in map.keys() {
             if k == 0 {
+                // k==0,找相同数字
                 if *map.get(i).unwrap() > 1 {
                     count += 1;
                 }
