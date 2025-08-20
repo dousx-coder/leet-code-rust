@@ -146,6 +146,7 @@ mod _51_solve_n_queens;
 mod _526_count_arrangement;
 mod _52_total_n_queens;
 mod _530_get_minimum_difference;
+mod _532_find_pairs;
 mod _538_convert_bst;
 mod _53_max_sub_array;
 mod _540_single_non_duplicate;
