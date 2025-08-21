@@ -11,7 +11,7 @@ impl Solution {
         }
         let mut map = HashMap::new();
         // 统计数组中每个数字出现的次数
-        nums.into_iter().for_each(|num| {
+        nums.iter().for_each(|num| {
             *map.entry(num).or_insert(0) += 1;
         });
         for i in map.keys() {
@@ -21,7 +21,7 @@ impl Solution {
                     count += 1;
                 }
             } else {
-                if map.contains_key(&(i + k)) {
+                if map.contains_key(&(*i + k)) {
                     count += 1;
                 }
             }
