@@ -12,16 +12,22 @@ impl Solution {
         let mut map = HashMap::new();
         // 统计数组中每个数字出现的次数
         nums.iter().for_each(|num| {
-            *map.entry(num).or_insert(0) += 1;
+            let c = match map.get(num) {
+                Some(v) => *v,
+                None => 0,
+            } + 1;
+            map.insert(num, c);
+            // match匹配比entry更快
+            // *map.entry(num).or_insert(0) += 1;
         });
-        for i in map.keys() {
+        for num in map.keys() {
             if k == 0 {
                 // k==0,找相同数字
-                if *map.get(i).unwrap() > 1 {
+                if *map.get(num).unwrap() > 1 {
                     count += 1;
                 }
             } else {
-                if map.contains_key(&(*i + k)) {
+                if map.contains_key(&(*num + k)) {
                     count += 1;
                 }
             }
