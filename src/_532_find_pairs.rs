@@ -5,9 +5,15 @@ use std::collections::HashMap;
 struct Solution;
 impl Solution {
     pub fn find_pairs(nums: Vec<i32>, k: i32) -> i32 {
+        // Self::hash(nums, k)
+        Self::binary_search(nums, k)
+    }
+
+    /// 哈希表解法
+    fn hash(nums: Vec<i32>, k: i32) -> i32 {
         let mut count = 0;
         if k < 0 {
-            return count;
+            return 0;
         }
         let mut map = HashMap::new();
         // 统计数组中每个数字出现的次数
@@ -34,6 +40,35 @@ impl Solution {
         }
         count
     }
+
+    /// 二分
+    fn binary_search(nums: Vec<i32>, k: i32) -> i32 {
+        let mut nums = nums;
+        nums.sort();
+        let mut count = 0;
+        let len = nums.len();
+        let mut i = 0;
+        while i < len - 1 {
+            let t = nums[i] + k;
+            let mut left = i + 1;
+            let mut right = len - 1;
+            while left < right {
+                let mid = left + right + 1 >> 1;
+                if nums[mid] <= t {
+                    left = mid;
+                } else {
+                    right = mid - 1;
+                }
+            }
+            count += if nums[left] == t { 1 } else { 0 };
+            let mut j = i + 1;
+            while j < len && nums[j] == nums[i] {
+                j += 1;
+            }
+            i = j;
+        }
+        count
+    }
 }
 #[cfg(test)]
 mod tests {
@@ -53,8 +88,13 @@ mod tests {
 
     #[test]
     fn t4() {
+        assert_eq!(Solution::hash(vec![1, 2, 4, 4, 3, 3, 0, 9, 2, 3], 3), 2);
+    }
+
+    #[test]
+    fn t5() {
         assert_eq!(
-            Solution::find_pairs(vec![1, 2, 4, 4, 3, 3, 0, 9, 2, 3], 3),
+            Solution::binary_search(vec![1, 2, 4, 4, 3, 3, 0, 9, 2, 3], 3),
             2
         );
     }
