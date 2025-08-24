@@ -4,14 +4,11 @@
 struct Solution;
 impl Solution {
     pub fn num_islands(grid: Vec<Vec<char>>) -> i32 {
-        let mut fire: Vec<Vec<bool>> = vec![];
         //  m行n列
         let m = grid.len();
         // 二维数组长度一样，这里取第0个即可
         let n = grid[0].len();
-        for i in 0..grid.len() {
-            fire.push(vec![false; grid[i].len()]);
-        }
+        let mut fire: Vec<Vec<bool>> = vec![vec![false; n]; m];
         let mut count = 0;
         for i in 0..m {
             for j in 0..n {
