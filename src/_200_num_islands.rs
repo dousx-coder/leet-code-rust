@@ -45,12 +45,12 @@ impl Solution {
             fire[i][j] = true;
             Solution::fire(i + 1, j, m, n, fire, grid);
             Solution::fire(i, j + 1, m, n, fire, grid);
-            if i >= 1 {
-                Solution::fire(i - 1, j, m, n, fire, grid);
+            if let Some(sub) = i.checked_sub(1) {
+                Solution::fire(sub, j, m, n, fire, grid);
             }
-            if j >= 1 {
-                Solution::fire(i, j - 1, m, n, fire, grid);
-            }
+            if let Some(sub) = j.checked_sub(1) {
+                Solution::fire(i, sub, m, n, fire, grid);
+            };
         } else {
             return;
         }
