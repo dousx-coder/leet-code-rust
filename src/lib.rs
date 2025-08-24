@@ -58,6 +58,7 @@ mod _189_rotate;
 mod _18_four_sum;
 mod _199_right_side_view;
 mod _19_remove_nth_from_end;
+mod _200_num_islands;
 mod _202_is_happy;
 mod _209_min_sub_array_len;
 mod _20_is_valid;
