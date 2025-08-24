@@ -28,28 +28,28 @@ impl Solution {
         count
     }
     fn fire(
-        i: usize,
-        j: usize,
+        row: usize,
+        col: usize,
         m: usize,
         n: usize,
         fire: &mut Vec<Vec<bool>>,
         grid: &Vec<Vec<char>>,
     ) {
-        if i >= m || j >= n {
+        if row >= m || col >= n {
             return;
         }
-        if fire[i][j] {
+        if fire[row][col] {
             return;
         }
-        if Solution::is_land(&grid[i][j]) {
-            fire[i][j] = true;
-            Solution::fire(i + 1, j, m, n, fire, grid);
-            Solution::fire(i, j + 1, m, n, fire, grid);
-            if let Some(sub) = i.checked_sub(1) {
-                Solution::fire(sub, j, m, n, fire, grid);
+        if Solution::is_land(&grid[row][col]) {
+            fire[row][col] = true;
+            Solution::fire(row + 1, col, m, n, fire, grid);
+            Solution::fire(row, col + 1, m, n, fire, grid);
+            if let Some(sub) = row.checked_sub(1) {
+                Solution::fire(sub, col, m, n, fire, grid);
             }
-            if let Some(sub) = j.checked_sub(1) {
-                Solution::fire(i, sub, m, n, fire, grid);
+            if let Some(sub) = col.checked_sub(1) {
+                Solution::fire(row, sub, m, n, fire, grid);
             };
         } else {
             return;
