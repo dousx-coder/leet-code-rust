@@ -37,6 +37,7 @@ mod _1238_circular_permutation;
 mod _124_max_path_sum;
 mod _128_longest_consecutive;
 mod _129_sum_numbers;
+mod _130_solve;
 mod _131_partition;
 mod _134_can_complete_circuit;
 mod _135_candy;
