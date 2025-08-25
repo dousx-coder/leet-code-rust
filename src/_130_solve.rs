@@ -3,7 +3,7 @@
 ///
 struct Solution;
 impl Solution {
-    /// 从边缘的 O开始遍历，遇到相连的的O改成F,
+    /// 从边缘的 O开始遍历，遇到相连的的O改成F(fire)
     ///
     /// 最后剩下的O都是被围绕的区域，再将O改成X，将A改成O
     pub fn solve(board: &mut Vec<Vec<char>>) {
