@@ -7,7 +7,7 @@ struct Solution;
 impl Solution {
     pub fn super_egg_drop(k: i32, n: i32) -> i32 {
         let mut memo = HashMap::new();
-        Solution::dp(k, n, &mut memo)
+        Self::dp(k, n, &mut memo)
     }
     fn dp(k: i32, n: i32, memo: &mut HashMap<(i32, i32), i32>) -> i32 {
         if let Some(&res) = memo.get(&(k, n)) {
