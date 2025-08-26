@@ -8,7 +8,7 @@ struct Solution;
 impl Solution {
     pub fn min_camera_cover(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         let mut ans = 0;
-        if Solution::postorder_traversal(&mut ans, root) == 0 {
+        if Self::postorder_traversal(&mut ans, root) == 0 {
             ans += 1;
         }
         ans
@@ -22,8 +22,8 @@ impl Solution {
             Some(node) => {
                 // 后序遍历
                 let mut bm = node.borrow_mut();
-                let left = Solution::postorder_traversal(ans, bm.left.clone());
-                let right = Solution::postorder_traversal(ans, bm.right.clone());
+                let left = Self::postorder_traversal(ans, bm.left.clone());
+                let right = Self::postorder_traversal(ans, bm.right.clone());
                 if left == 2 && right == 2 {
                     // 左右孩子均被覆盖，当前节点无需加装摄像头
                     return 0;

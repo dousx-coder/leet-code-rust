@@ -18,7 +18,7 @@ impl Solution {
         for i in start..10 {
             if curr.is_empty() || (*curr.last().unwrap() - i).abs() == k {
                 curr.push(i);
-                Solution::backtracking(n, k, curr, ans);
+                Self::backtracking(n, k, curr, ans);
                 curr.pop();
             }
         }

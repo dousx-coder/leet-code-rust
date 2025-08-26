@@ -15,9 +15,9 @@ impl Solution {
                 if fire[i][j] {
                     continue;
                 }
-                if Solution::is_land(&grid[i][j]) {
+                if Self::is_land(&grid[i][j]) {
                     //开始放火
-                    Solution::fire(i, j, m, n, &mut fire, &grid);
+                    Self::fire(i, j, m, n, &mut fire, &grid);
                     count += 1;
                 }
             }
@@ -38,15 +38,15 @@ impl Solution {
         if fire[row][col] {
             return;
         }
-        if Solution::is_land(&grid[row][col]) {
+        if Self::is_land(&grid[row][col]) {
             fire[row][col] = true;
-            Solution::fire(row + 1, col, m, n, fire, grid);
-            Solution::fire(row, col + 1, m, n, fire, grid);
+            Self::fire(row + 1, col, m, n, fire, grid);
+            Self::fire(row, col + 1, m, n, fire, grid);
             if let Some(sub) = row.checked_sub(1) {
-                Solution::fire(sub, col, m, n, fire, grid);
+                Self::fire(sub, col, m, n, fire, grid);
             }
             if let Some(sub) = col.checked_sub(1) {
-                Solution::fire(row, sub, m, n, fire, grid);
+                Self::fire(row, sub, m, n, fire, grid);
             };
         } else {
             return;
