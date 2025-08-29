@@ -11,8 +11,7 @@ impl Solution {
         queue: &mut VecDeque<(i32, i32)>,
         added: &mut HashSet<(i32, i32)>,
     ) {
-        if !added.contains(&tuple) {
-            added.insert(tuple);
+        if added.insert(tuple) {
             queue.push_back(tuple);
         }
     }
