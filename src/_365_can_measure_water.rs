@@ -16,14 +16,14 @@ impl Solution {
         }
     }
 
-    pub fn can_measure_water(x: i32, y: i32, target: i32) -> bool {
+    pub fn can_measure_water(bucket_x: i32, bucket_y: i32, target: i32) -> bool {
         if target == 0 {
             return true;
         }
-        if x + y < target {
+        if bucket_x + bucket_y < target {
             return false;
         }
-        if x == target || y == target || x + y == target {
+        if bucket_x == target || bucket_y == target || bucket_x + bucket_y == target {
             return true;
         }
         // bfs
@@ -40,39 +40,32 @@ impl Solution {
             }
             if curr_x == 0 {
                 // 填满第1个桶
-                Self::push_queue((x, curr_y), target, &mut queue, &mut added);
+                Self::push_queue((bucket_x, curr_y), target, &mut queue, &mut added);
             }
             if curr_y == 0 {
                 // 填满第2个桶
-                Self::push_queue((curr_x, y), target, &mut queue, &mut added);
+                Self::push_queue((curr_x, bucket_y), target, &mut queue, &mut added);
             }
-            if curr_y < y {
+            if curr_y < bucket_y {
                 // 第1个桶倒空
                 Self::push_queue((0, curr_y), target, &mut queue, &mut added);
             }
-            if curr_x < x {
+            if curr_x < bucket_x {
                 // 第2个桶倒空
                 Self::push_queue((curr_x, 0), target, &mut queue, &mut added);
             }
 
             // y - curr_y是第二个桶还可以再加的水的升数，但是最多只能加curr_x升水。
-            let min_move = curr_x.min(y - curr_y);
+            let min_move = curr_x.min(bucket_y - curr_y);
             // 把第1个桶里的水倒入第2个桶里
-            Self::push_queue(
-                (curr_x - min_move, curr_y + min_move),
-                target,
-                &mut queue,
-                &mut added,
-            );
+            let tuple = (curr_x - min_move, curr_y + min_move);
+            Self::push_queue(tuple, target, &mut queue, &mut added);
+
             // 反过来同理，x - curr_x是第一个桶还可以再加的升数，但是最多只能加curr_y升水。
-            let min_move = curr_y.min(x - curr_x);
+            let min_move = curr_y.min(bucket_x - curr_x);
             // 把第2个桶里的水倒入第1个桶里
-            Self::push_queue(
-                (curr_x + min_move, curr_y - min_move),
-                target,
-                &mut queue,
-                &mut added,
-            );
+            let tuple = (curr_x + min_move, curr_y - min_move);
+            Self::push_queue(tuple, target, &mut queue, &mut added);
         }
 
         false
