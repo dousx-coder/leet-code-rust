@@ -5,6 +5,40 @@ struct Solution;
 impl Solution {
     /// `grid[i][j] = 1` 表示陆地， `grid[i][j]` = 0 表示水域
     pub fn island_perimeter(grid: Vec<Vec<i32>>) -> i32 {
+        Self::calculate(grid)
+    }
+
+    /// 迭代解法
+    fn calculate(grid: Vec<Vec<i32>>) -> i32 {
+        let row = grid.len();
+        let col = grid[0].len();
+        let mut perimeter = 0;
+
+        // 直接遍历网格
+        for i in 0..row {
+            for j in 0..col {
+                if grid[i][j] == 1 {
+                    // 每个陆地格子初始贡献4条边
+                    perimeter += 4;
+
+                    // 如果上方有陆地，减少2条边（上下相邻各自减少1条边）
+                    if i > 0 && grid[i - 1][j] == 1 {
+                        perimeter -= 2;
+                    }
+
+                    // 如果左方有陆地，减少2条边（左右相邻各自减少1条边）
+                    if j > 0 && grid[i][j - 1] == 1 {
+                        perimeter -= 2;
+                    }
+                }
+            }
+        }
+
+        perimeter
+    }
+    /// 递归解法
+    ///  `grid[i][j] = 1` 表示陆地， `grid[i][j]` = 0 表示水域
+    pub fn recursive(grid: Vec<Vec<i32>>) -> i32 {
         // row x col
         let row = grid.len();
         let col = grid[0].len();
@@ -84,7 +118,8 @@ mod tests {
 
     #[test]
     fn t2() {
-        assert_eq!(Solution::island_perimeter(vec![vec![1]]), 4);
+        assert_eq!(Solution::calculate(vec![vec![1]]), 4);
+        assert_eq!(Solution::recursive(vec![vec![1]]), 4);
     }
     #[test]
     fn t3() {
