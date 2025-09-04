@@ -37,7 +37,6 @@ impl Solution {
         perimeter
     }
     /// 递归解法
-    ///  `grid[i][j] = 1` 表示陆地， `grid[i][j]` = 0 表示水域
     pub fn recursive(grid: Vec<Vec<i32>>) -> i32 {
         // row x col
         let row = grid.len();
