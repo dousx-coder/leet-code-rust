@@ -8,11 +8,11 @@ impl Solution {
     fn push_queue(
         tuple: (i32, i32),
         target: i32,
-        queue: &mut VecDeque<(i32, i32)>,
-        added: &mut HashSet<(i32, i32)>,
+        bucket_stats_queue: &mut VecDeque<(i32, i32)>,
+        inserted: &mut HashSet<(i32, i32)>,
     ) {
-        if added.insert(tuple) {
-            queue.push_back(tuple);
+        if inserted.insert(tuple) {
+            bucket_stats_queue.push_back(tuple);
         }
     }
 
@@ -27,45 +27,66 @@ impl Solution {
             return true;
         }
         // bfs
-        let mut added = HashSet::new();
-        let mut queue = VecDeque::new();
+        let mut inserted = HashSet::new();
+        let mut bucket_stats_queue = VecDeque::new();
         let start = (0, 0);
-        queue.push_back(start);
-        while !queue.is_empty() {
-            let pop = queue.pop_front().unwrap();
+        bucket_stats_queue.push_back(start);
+        while !bucket_stats_queue.is_empty() {
+            let pop = bucket_stats_queue.pop_front().unwrap();
+            // 队列表示两个水壶的组合状态,如果出现其中任意1个水壶的水量满足题意,则有解
             let curr_x = pop.0;
             let curr_y = pop.1;
             if curr_x == target || curr_y == target || curr_x + curr_y == target {
                 return true;
             }
+            // 在当前水壶状态下，可以进行以下操作3类(6种)操作,并将状态记录到队列
             if curr_x == 0 {
                 // 填满第1个桶
-                Self::push_queue((bucket_x, curr_y), target, &mut queue, &mut added);
+                Self::push_queue(
+                    (bucket_x, curr_y),
+                    target,
+                    &mut bucket_stats_queue,
+                    &mut inserted,
+                );
             }
             if curr_y == 0 {
                 // 填满第2个桶
-                Self::push_queue((curr_x, bucket_y), target, &mut queue, &mut added);
+                Self::push_queue(
+                    (curr_x, bucket_y),
+                    target,
+                    &mut bucket_stats_queue,
+                    &mut inserted,
+                );
             }
+
             if curr_y < bucket_y {
                 // 第1个桶倒空
-                Self::push_queue((0, curr_y), target, &mut queue, &mut added);
+                Self::push_queue((0, curr_y), target, &mut bucket_stats_queue, &mut inserted);
             }
             if curr_x < bucket_x {
                 // 第2个桶倒空
-                Self::push_queue((curr_x, 0), target, &mut queue, &mut added);
+                Self::push_queue((curr_x, 0), target, &mut bucket_stats_queue, &mut inserted);
             }
 
             // y - curr_y是第二个桶还可以再加的水的升数，但是最多只能加curr_x升水。
             let min_move = curr_x.min(bucket_y - curr_y);
             // 把第1个桶里的水倒入第2个桶里
-            let tuple = (curr_x - min_move, curr_y + min_move);
-            Self::push_queue(tuple, target, &mut queue, &mut added);
+            Self::push_queue(
+                (curr_x - min_move, curr_y + min_move),
+                target,
+                &mut bucket_stats_queue,
+                &mut inserted,
+            );
 
             // 反过来同理，x - curr_x是第一个桶还可以再加的升数，但是最多只能加curr_y升水。
             let min_move = curr_y.min(bucket_x - curr_x);
             // 把第2个桶里的水倒入第1个桶里
-            let tuple = (curr_x + min_move, curr_y - min_move);
-            Self::push_queue(tuple, target, &mut queue, &mut added);
+            Self::push_queue(
+                (curr_x + min_move, curr_y - min_move),
+                target,
+                &mut bucket_stats_queue,
+                &mut inserted,
+            );
         }
 
         false
