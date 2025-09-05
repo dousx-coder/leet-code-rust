@@ -23,7 +23,7 @@ impl Solution {
                         .iter_mut()
                         .find(|set| set.contains(&i) || set.contains(&j))
                     {
-                        // 这样判断感觉有问题，
+                        // 这样判断最后需要合并集合
                         // 如果集合a和b相连 b和c相连，如果先遇到a和c，那会把a和c当成新的集合
                         c.insert(i);
                         c.insert(j);
