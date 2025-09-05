@@ -11,6 +11,10 @@ impl Solution {
     ///
     /// 而 `isConnected[i][j] = 0` 表示二者不直接相连
     pub fn find_circle_num(is_connected: Vec<Vec<i32>>) -> i32 {
+        Self::recursion(is_connected)
+    }
+    /// 集合判断解法
+    pub fn set(is_connected: Vec<Vec<i32>>) -> i32 {
         // 数组是左下和右上是对称的i与j相连，则isConnected[i][j]==isConnected[j][i]
         // 所以只需要遍历一半
         let n = is_connected.len();
@@ -87,6 +91,31 @@ impl Solution {
         }
         result
     }
+
+    /// 递归解法
+    fn recursion(is_connected: Vec<Vec<i32>>) -> i32 {
+        let n = is_connected.len();
+        let mut visited = vec![false; n];
+        let mut count = 0;
+
+        fn dfs(is_connected: &Vec<Vec<i32>>, visited: &mut Vec<bool>, i: usize) {
+            visited[i] = true;
+            for j in 0..is_connected.len() {
+                if is_connected[i][j] == 1 && !visited[j] {
+                    dfs(is_connected, visited, j);
+                }
+            }
+        }
+
+        for i in 0..n {
+            if !visited[i] {
+                dfs(&is_connected, &mut visited, i);
+                count += 1;
+            }
+        }
+
+        count
+    }
 }
 #[cfg(test)]
 mod tests {
@@ -95,7 +124,7 @@ mod tests {
     #[test]
     fn t1() {
         assert_eq!(
-            Solution::find_circle_num(vec![vec![1, 1, 0], vec![1, 1, 0], vec![0, 0, 1]]),
+            Solution::set(vec![vec![1, 1, 0], vec![1, 1, 0], vec![0, 0, 1]]),
             2
         );
     }
@@ -103,7 +132,7 @@ mod tests {
     #[test]
     fn t2() {
         assert_eq!(
-            Solution::find_circle_num(vec![vec![1, 0, 0], vec![0, 1, 0], vec![0, 0, 1]]),
+            Solution::recursion(vec![vec![1, 0, 0], vec![0, 1, 0], vec![0, 0, 1]]),
             3
         );
     }
