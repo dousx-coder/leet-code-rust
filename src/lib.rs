@@ -157,6 +157,7 @@ mod _53_max_sub_array;
 mod _540_single_non_duplicate;
 mod _541_reverse_str;
 mod _543_diameter_of_binary_tree;
+mod _547_find_circle_num;
 mod _54_spiral_order;
 mod _556_next_greater_element;
 mod _55_can_jump;
