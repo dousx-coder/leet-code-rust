@@ -163,6 +163,7 @@ mod _556_next_greater_element;
 mod _55_can_jump;
 mod _561_array_pair_sum;
 mod _563_find_tilt;
+mod _565_array_nesting;
 mod _56_merge;
 mod _57_insert;
 mod _581_find_unsorted_subarray;
