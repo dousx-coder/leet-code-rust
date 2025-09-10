@@ -176,6 +176,7 @@ mod _62_unique_paths;
 mod _63_unique_paths_with_obstacles;
 mod _64_min_path_sum;
 mod _654_construct_maximum_binary_tree;
+mod _672_flip_lights;
 mod _679_judge_point24;
 mod _692_top_k_frequent;
 mod _698_can_partition_k_subsets;
