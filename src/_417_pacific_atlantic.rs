@@ -16,49 +16,44 @@ impl Solution {
         let (m, n) = (heights.len(), heights[0].len());
 
         // 元组：下标0表示能到达左上，1表示能到达右下
-        let mut visited = vec![vec![(false, false); n]; m];
+        let mut connect = vec![vec![(false, false); n]; m];
         // 初始化四条边
         for i in 0..m {
             // 左边界可以到达太平洋
-            visited[i][0].0 = true;
+            connect[i][0].0 = true;
             // 右边界可以到达大西洋
-            visited[i][n - 1].1 = true;
+            connect[i][n - 1].1 = true;
         }
         for j in 0..n {
             // 上边界可以到达太平洋
-            visited[0][j].0 = true;
+            connect[0][j].0 = true;
             // 下边界可以到达大西洋
-            visited[m - 1][j].1 = true;
+            connect[m - 1][j].1 = true;
         }
-        for i in 1..m {
-            Self::dfs(&heights, &mut visited, i, 1, (m, n));
-            Self::dfs(&heights, &mut visited, i, n - 1, (m, n));
+        for i in 0..m {
+            for j in 0..n {
+                Self::dfs(&heights, &mut connect, i, j, (m, n));
+            }
         }
-        for j in 1..n {
-            Self::dfs(&heights, &mut visited, 1, j, (m, n));
-            Self::dfs(&heights, &mut visited, m - 1, j, (m, n));
-        }
-
         //  遍历visited值均为true的下标，加入到result中
         let mut result = vec![];
         for i in 0..m {
             for j in 0..n {
-                if visited[i][j] == (true, true) {
+                if connect[i][j] == (true, true) {
                     result.push(vec![i as i32, j as i32]);
                 }
             }
         }
-        println!("{:?}", result);
         result
     }
     fn dfs(
         heights: &Vec<Vec<i32>>,
-        visited: &mut Vec<Vec<(bool, bool)>>,
+        connect: &mut Vec<Vec<(bool, bool)>>,
         row: usize,
         col: usize,
         (m, n): (usize, usize),
     ) {
-        if row + 1 < m && !visited[row][col].1 && heights[row][col] >= heights[row + 1][col] {
+        if row + 1 < m && !connect[row][col].1 && heights[row][col] >= heights[row + 1][col] {
             //  如果下一个节点是false，则判断后续节点是否都比当前节点大
             let mut flag = true;
             for i in row + 1..m {
@@ -68,15 +63,15 @@ impl Solution {
                 }
             }
             if flag {
-                visited[row][col].1 = true;
+                connect[row][col].1 = true;
             } else {
-                if !visited[row + 1][col].1 {
-                    Self::dfs(heights, visited, row + 1, col, (m, n));
+                if !connect[row + 1][col].1 {
+                    Self::dfs(heights, connect, row + 1, col, (m, n));
                 }
-                visited[row][col].1 = visited[row + 1][col].1;
+                connect[row][col].1 = connect[row + 1][col].1;
             }
         }
-        if col + 1 < n && !visited[row][col].1 && heights[row][col] >= heights[row][col + 1] {
+        if col + 1 < n && !connect[row][col].1 && heights[row][col] >= heights[row][col + 1] {
             let mut flag = true;
             for j in col + 1..n {
                 if heights[row][col] < heights[row][j] {
@@ -85,67 +80,67 @@ impl Solution {
                 }
             }
             if flag {
-                visited[row][col].1 = true;
+                connect[row][col].1 = true;
             } else {
-                if !visited[row][col + 1].1 {
+                if !connect[row][col + 1].1 {
                     // 当前节点的高度大于等于下一列的高度，能不能继续向右走就看下一个节点
-                    Self::dfs(heights, visited, row, col + 1, (m, n));
+                    Self::dfs(heights, connect, row, col + 1, (m, n));
                 }
                 // 向右走
-                visited[row][col].1 = visited[row][col + 1].1;
+                connect[row][col].1 = connect[row][col + 1].1;
             }
         }
-        if !visited[row][col].0 {
+        if !connect[row][col].0 {
             let mut flag = true;
             for i in (0..row).rev() {
-                if heights[row][col] < heights[i][col] {
+                if heights[row][col] <= heights[i][col] {
                     flag = false;
                     break;
                 }
             }
             if flag {
-                visited[row][col].0 = true;
+                connect[row][col].0 = true;
             } else {
                 match row.checked_sub(1) {
                     Some(up) => {
                         if heights[row][col] >= heights[up][col] {
-                            if !visited[up][col].0 {
+                            if !connect[up][col].0 {
                                 // 当前节点的高度大于等于上一行的高度，能不能继续向上走就看上一个节点
-                                Self::dfs(heights, visited, up, col, (m, n));
+                                Self::dfs(heights, connect, up, col, (m, n));
                             }
                             // 向上走
-                            visited[row][col].0 = visited[up][col].0;
+                            connect[row][col].0 = connect[up][col].0;
                         } else {
                             // 不能向上走
-                            visited[row][col].0 = false;
+                            connect[row][col].0 = false;
                         }
                     }
                     None => {}
                 }
             }
         }
-        if !visited[row][col].0 {
+        if !connect[row][col].0 {
             let mut flag = true;
             for j in (0..col).rev() {
-                if heights[row][col] < heights[row][j] {
+                if heights[row][col] <= heights[row][j] {
                     flag = false;
                     break;
                 }
             }
             if flag {
-                visited[row][col].0 = true;
+                connect[row][col].0 = true;
             } else {
                 match col.checked_sub(1) {
                     Some(left) => {
                         if heights[row][col] >= heights[row][left] {
-                            if !visited[row][left].0 {
+                            if !connect[row][left].0 {
                                 // 当前节点的高度大于等于上一列的高度，能不能继续向左走就看上一个节点
-                                Self::dfs(heights, visited, row, left, (m, n));
+                                Self::dfs(heights, connect, row, left, (m, n));
                             }
-                            visited[row][col].0 = visited[row][left].0;
+                            connect[row][col].0 = connect[row][left].0;
                         } else {
                             // 不能向左走
-                            visited[row][col].0 = false;
+                            connect[row][col].0 = false;
                         }
                     }
                     None => {}
@@ -186,6 +181,21 @@ mod tests {
         assert_eq!(
             Solution::pacific_atlantic(vec![vec![2, 1], vec![1, 2],]),
             vec![vec![0, 0], vec![0, 1], vec![1, 0], vec![1, 1]]
+        );
+    }
+    #[test]
+    fn t3() {
+        assert_eq!(
+            Solution::pacific_atlantic(vec![vec![1, 2, 3], vec![8, 9, 4], vec![7, 6, 5]]),
+            vec![
+                vec![0, 2],
+                vec![1, 0],
+                vec![1, 1],
+                vec![1, 2],
+                vec![2, 0],
+                vec![2, 1],
+                vec![2, 2]
+            ]
         );
     }
 }
