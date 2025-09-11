@@ -2,8 +2,9 @@
 /// [417. 太平洋与大西洋水流问题](https://leetcode.cn/problems/pacific-atlantic-water-flow/?envType=problem-list-v2&envId=breadth-first-search)
 ///
 struct Solution;
+
 impl Solution {
-    /// 有一个 `m × n` 的矩形岛屿，与 太平洋 和 大西洋 相邻。 “太平洋” 处于大陆的左边界和上边界，而 “大西洋” 处于大陆的右边界和下边界。
+    /// 有一个 `m × n` 的矩形岛屿，与 太平洋 和 大西洋 相邻。 "太平洋" 处于大陆的左边界和上边界，而 "大西洋" 处于大陆的右边界和下边界。
     ///
     /// 这个岛被分割成一个由若干方形单元格组成的网格。给定一个 `m x n` 的整数矩阵 `heights` ， `heights[r][c]` 表示坐标 `(r, c)` 上单元格 高于海平面的高度 。
     ///
@@ -13,138 +14,78 @@ impl Solution {
     ///
     /// 返回网格坐标 `result` 的 2D 列表 ，其中 `result[i] = [ri, ci]` 表示雨水从单元格 `(ri, ci)` 流动 既可流向太平洋也可流向大西洋 。
     pub fn pacific_atlantic(heights: Vec<Vec<i32>>) -> Vec<Vec<i32>> {
-        let (m, n) = (heights.len(), heights[0].len());
+        if heights.is_empty() || heights[0].is_empty() {
+            return vec![];
+        }
 
-        // 元组：下标0表示能到达左上，1表示能到达右下
-        let mut connect = vec![vec![(false, false); n]; m];
-        // 初始化四条边
+        let (m, n) = (heights.len(), heights[0].len());
+        // 创建两个二维数组，分别表示是否可以流向太平洋和大西洋
+        let mut pacific = vec![vec![false; n]; m];
+        let mut atlantic = vec![vec![false; n]; m];
+        let directions = [(0, 1), (1, 0), (0, -1), (-1, 0)];
+
+        // 从太平洋边界开始DFS
         for i in 0..m {
-            // 左边界可以到达太平洋
-            connect[i][0].0 = true;
-            // 右边界可以到达大西洋
-            connect[i][n - 1].1 = true;
+            Self::dfs(&heights, &mut pacific, &directions, i, 0, m, n);
         }
         for j in 0..n {
-            // 上边界可以到达太平洋
-            connect[0][j].0 = true;
-            // 下边界可以到达大西洋
-            connect[m - 1][j].1 = true;
+            Self::dfs(&heights, &mut pacific, &directions, 0, j, m, n);
         }
+
+        // 从大西洋边界开始DFS
         for i in 0..m {
-            for j in 0..n {
-                Self::dfs(&heights, &mut connect, i, j, (m, n));
-            }
+            Self::dfs(&heights, &mut atlantic, &directions, i, n - 1, m, n);
         }
-        //  遍历visited值均为true的下标，加入到result中
+        for j in 0..n {
+            Self::dfs(&heights, &mut atlantic, &directions, m - 1, j, m, n);
+        }
+
         let mut result = vec![];
         for i in 0..m {
             for j in 0..n {
-                if connect[i][j] == (true, true) {
+                if pacific[i][j] && atlantic[i][j] {
                     result.push(vec![i as i32, j as i32]);
                 }
             }
         }
         result
     }
+
     fn dfs(
         heights: &Vec<Vec<i32>>,
-        connect: &mut Vec<Vec<(bool, bool)>>,
+        visited: &mut Vec<Vec<bool>>,
+        directions: &[(i32, i32); 4],
         row: usize,
         col: usize,
-        (m, n): (usize, usize),
+        m: usize,
+        n: usize,
     ) {
-        if row + 1 < m && !connect[row][col].1 && heights[row][col] >= heights[row + 1][col] {
-            //  如果下一个节点是false，则判断后续节点是否都比当前节点大
-            let mut flag = true;
-            for i in row + 1..m {
-                if heights[row][col] < heights[i][col] {
-                    flag = false;
-                    break;
-                }
-            }
-            if flag {
-                connect[row][col].1 = true;
-            } else {
-                if !connect[row + 1][col].1 {
-                    Self::dfs(heights, connect, row + 1, col, (m, n));
-                }
-                connect[row][col].1 = connect[row + 1][col].1;
-            }
+        if visited[row][col] {
+            return;
         }
-        if col + 1 < n && !connect[row][col].1 && heights[row][col] >= heights[row][col + 1] {
-            let mut flag = true;
-            for j in col + 1..n {
-                if heights[row][col] < heights[row][j] {
-                    flag = false;
-                    break;
-                }
-            }
-            if flag {
-                connect[row][col].1 = true;
-            } else {
-                if !connect[row][col + 1].1 {
-                    // 当前节点的高度大于等于下一列的高度，能不能继续向右走就看下一个节点
-                    Self::dfs(heights, connect, row, col + 1, (m, n));
-                }
-                // 向右走
-                connect[row][col].1 = connect[row][col + 1].1;
-            }
-        }
-        if !connect[row][col].0 {
-            let mut flag = true;
-            for i in (0..row).rev() {
-                if heights[row][col] <= heights[i][col] {
-                    flag = false;
-                    break;
-                }
-            }
-            if flag {
-                connect[row][col].0 = true;
-            } else {
-                match row.checked_sub(1) {
-                    Some(up) => {
-                        if heights[row][col] >= heights[up][col] {
-                            if !connect[up][col].0 {
-                                // 当前节点的高度大于等于上一行的高度，能不能继续向上走就看上一个节点
-                                Self::dfs(heights, connect, up, col, (m, n));
-                            }
-                            // 向上走
-                            connect[row][col].0 = connect[up][col].0;
-                        } else {
-                            // 不能向上走
-                            connect[row][col].0 = false;
-                        }
-                    }
-                    None => {}
-                }
-            }
-        }
-        if !connect[row][col].0 {
-            let mut flag = true;
-            for j in (0..col).rev() {
-                if heights[row][col] <= heights[row][j] {
-                    flag = false;
-                    break;
-                }
-            }
-            if flag {
-                connect[row][col].0 = true;
-            } else {
-                match col.checked_sub(1) {
-                    Some(left) => {
-                        if heights[row][col] >= heights[row][left] {
-                            if !connect[row][left].0 {
-                                // 当前节点的高度大于等于上一列的高度，能不能继续向左走就看上一个节点
-                                Self::dfs(heights, connect, row, left, (m, n));
-                            }
-                            connect[row][col].0 = connect[row][left].0;
-                        } else {
-                            // 不能向左走
-                            connect[row][col].0 = false;
-                        }
-                    }
-                    None => {}
-                }
+
+        visited[row][col] = true;
+
+        for &(dx, dy) in directions {
+            let next_row = row as i32 + dx;
+            let next_col = col as i32 + dy;
+
+            if next_row >= 0
+                && next_row < m as i32
+                && next_col >= 0
+                && next_col < n as i32
+                && !visited[next_row as usize][next_col as usize]
+                && heights[next_row as usize][next_col as usize] >= heights[row][col]
+            {
+                Self::dfs(
+                    heights,
+                    visited,
+                    directions,
+                    next_row as usize,
+                    next_col as usize,
+                    m,
+                    n,
+                );
             }
         }
     }
@@ -183,6 +124,7 @@ mod tests {
             vec![vec![0, 0], vec![0, 1], vec![1, 0], vec![1, 1]]
         );
     }
+
     #[test]
     fn t3() {
         assert_eq!(
