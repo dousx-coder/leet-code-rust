@@ -9,13 +9,16 @@ impl Solution {
     ///
     ///给你数组 `bombs` ，请你返回在引爆 一个 炸弹的前提下，最多 能引爆的炸弹数目。
     pub fn maximum_detonation(bombs: Vec<Vec<i32>>) -> i32 {
-        // dfs 从每个不同的炸弹开始引爆，求最大值
         let mut max = 0;
-        for (i, bomb) in bombs.iter().enumerate() {
-            let mut visited = vec![false; bombs.len()];
-            let bomb = Self::dfs(&bombs, &mut visited, i);
-            max = max.max(bomb);
+        let len = bombs.len();
+        // 遍历每个炸弹作为起始引爆点
+        for i in 0..len {
+            let mut visited = vec![false; len];
+            // 计算从第i个炸弹开始能引爆的炸弹数量
+            let count = Self::dfs(&bombs, &mut visited, i);
+            max = max.max(count);
         }
+
         max
     }
 
@@ -36,13 +39,16 @@ impl Solution {
         }
         count
     }
-    /// 判断两个炸弹的爆炸范围是否重叠
+
+    /// 判断 bomb2 是否在 bomb1 的爆炸范围内
     ///
     /// 取值范围： `1 <= xi, yi, ri <= 10^5`，这里转成`i64`避免`i32`溢出
     fn overlap(bomb1: &Vec<i32>, bomb2: &Vec<i32>) -> bool {
-        (bomb1[2] as i64 + bomb2[2] as i64).pow(2)
-            >= (bomb1[0] as i64 - bomb2[0] as i64).pow(2)
-                + (bomb1[1] as i64 - bomb2[1] as i64).pow(2)
+        let dx = bomb1[0] as i64 - bomb2[0] as i64;
+        let dy = bomb1[1] as i64 - bomb2[1] as i64;
+        let distance_squared = dx * dx + dy * dy;
+        let radius = bomb1[2] as i64;
+        distance_squared <= radius * radius
     }
 }
 #[cfg(test)]
