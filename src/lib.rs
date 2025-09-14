@@ -65,6 +65,7 @@ mod _207_can_finish;
 mod _209_min_sub_array_len;
 mod _20_is_valid;
 mod _2101_maximum_detonation;
+mod _210_find_order;
 mod _216_combination_sum3;
 mod _222_count_nodes;
 mod _224_calculate;
