@@ -199,6 +199,7 @@ mod _763_partition_labels;
 mod _77_combine;
 mod _784_letter_case_permutation;
 mod _78_subsets;
+mod _797_all_paths_source_target;
 mod _79_exist;
 mod _81_search;
 mod _842_split_into_fibonacci;
