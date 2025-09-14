@@ -177,6 +177,7 @@ mod _59_generate_matrix;
 mod _605_can_place_flowers;
 mod _617_merge_trees;
 mod _62_unique_paths;
+mod _630_schedule_course;
 mod _63_unique_paths_with_obstacles;
 mod _64_min_path_sum;
 mod _654_construct_maximum_binary_tree;
