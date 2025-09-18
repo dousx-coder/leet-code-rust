@@ -203,6 +203,7 @@ mod _78_subsets;
 mod _797_all_paths_source_target;
 mod _79_exist;
 mod _81_search;
+mod _841_can_visit_all_rooms;
 mod _842_split_into_fibonacci;
 mod _84_largest_rectangle_area;
 mod _853_car_fleet;
