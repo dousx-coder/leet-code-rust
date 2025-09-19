@@ -27,10 +27,12 @@ impl Solution {
         // 拓扑排序
         let mut safe = vec![false; n];
         while let Some(node) = queue.pop_front() {
+            // 标记为安全节点
             safe[node] = true;
             for &prev in &reverse_graph[node] {
                 in_degree[prev] -= 1;
                 if in_degree[prev] == 0 {
+                    // 如果入度为0，说明该节点的所有后继都是安全的
                     queue.push_back(prev);
                 }
             }
