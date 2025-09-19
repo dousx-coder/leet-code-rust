@@ -223,6 +223,7 @@ mod _977_sorted_squares;
 mod _98_is_valid_bst;
 mod _993_is_cousins;
 mod _994_oranges_rotting;
+mod _997_find_judge;
 mod _998_insert_into_max_tree;
 mod _99_recover_tree;
 pub mod common;
