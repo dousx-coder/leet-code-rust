@@ -4,82 +4,63 @@
 struct Solution;
 impl Solution {
     pub fn find_min_height_trees(n: i32, edges: Vec<Vec<i32>>) -> Vec<i32> {
-        if edges.is_empty() {
+        if n == 1 {
             return vec![0];
         }
+
         let n = n as usize;
-        // 临界表
+        // 构建邻接表和度数组
         let mut graph = vec![vec![]; n];
-        // 逐步删除入度为1的点
-        edges.iter().for_each(|edge| {
-            // 创建邻接表
+        let mut degree = vec![0; n];
+
+        // 初始化图和度数
+        for edge in edges {
             let (u, v) = (edge[0] as usize, edge[1] as usize);
             if !graph[u].contains(&v) {
-                // 测试参数中有重复的输入
                 graph[u].push(v);
+                degree[u] += 1;
             }
             if !graph[v].contains(&u) {
                 graph[v].push(u);
+                degree[v] += 1;
             }
-        });
-        while graph.iter().filter(|v| v.len() >= 1).count() >= 2 {
-            match Self::is_find(&graph, n) {
-                Some(res) => {
-                    return res;
-                }
-                None => {}
+        }
+
+        // 找到所有叶子节点（度为1的节点）
+        let mut leaves = Vec::new();
+        for i in 0..n {
+            if degree[i] == 1 {
+                leaves.push(i);
             }
-            let mut retain = vec![];
-            for i in 0..n {
-                if graph[i].len() == 1 {
-                    let u = graph[i][0];
-                    if !graph[u].is_empty() {
-                        // graph[u].retain(|&x| x != i);
+        }
+
+        let mut remaining_nodes = n;
+
+        // 从外向内逐层删除叶子节点
+        while remaining_nodes > 2 {
+            let leaves_count = leaves.len();
+            remaining_nodes -= leaves_count;
+
+            // 存储下一层的叶子节点
+            let mut new_leaves = Vec::new();
+
+            // 删除当前所有叶子节点
+            for leaf in leaves {
+                // 对于每个叶子节点，找到其相邻节点
+                for &neighbor in &graph[leaf] {
+                    degree[neighbor] -= 1;
+                    // 如果相邻节点变成叶子节点，加入下一轮处理
+                    if degree[neighbor] == 1 {
+                        new_leaves.push(neighbor);
                     }
-                    retain.push((u, i));
-                    graph[i].clear();
                 }
             }
 
-            match Self::is_find(&graph, n) {
-                Some(res) => {
-                    return res;
-                }
-                None => {}
-            }
-
-            retain.iter().for_each(|&(u, v)| {
-                graph[u].retain(|&x| x != v);
-            });
-
-            match Self::is_find(&graph, n) {
-                Some(res) => {
-                    return res;
-                }
-                None => {}
-            }
+            leaves = new_leaves;
         }
-        println!("{:?}", graph);
-        graph
-            .iter()
-            .enumerate()
-            .filter(|(_, v)| !v.is_empty())
-            .map(|(i, _)| i as i32)
-            .collect()
-    }
 
-    fn is_find(graph: &Vec<Vec<usize>>, n: usize) -> Option<Vec<i32>> {
-        let mut res = vec![];
-        for j in 0..n {
-            if !graph[j].is_empty() {
-                res.push(j);
-            }
-        }
-        if res.len() <= 2 {
-            Some(res.iter().map(|&x| x as i32).collect())
-        } else {
-            None
-        }
+        // 剩下的节点就是最小高度树的根节点
+        leaves.into_iter().map(|x| x as i32).collect()
     }
 }
 
