@@ -95,6 +95,7 @@ mod _29_divide;
 mod _300_length_of_lis;
 mod _301_remove_invalid_parentheses;
 mod _306_is_additive_number;
+mod _310_find_min_height_trees;
 mod _315_count_smaller;
 mod _316_remove_duplicate_letters;
 mod _319_bulb_switch;
