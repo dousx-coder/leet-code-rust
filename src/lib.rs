@@ -57,6 +57,7 @@ mod _179_largest_number;
 mod _17_letter_combinations;
 mod _189_rotate;
 mod _18_four_sum;
+mod _1905_count_sub_islands;
 mod _199_right_side_view;
 mod _19_remove_nth_from_end;
 mod _200_num_islands;
