@@ -27,6 +27,7 @@ mod _109_sorted_list_to_bst;
 mod _10_is_match;
 mod _110_is_balanced;
 mod _111_min_depth;
+mod _1129_shortest_alternating_paths;
 mod _112_has_path_sum;
 mod _113_path_sum;
 mod _114_flatten;
