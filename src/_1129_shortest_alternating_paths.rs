@@ -11,115 +11,70 @@ impl Solution {
         blue_edges: Vec<Vec<i32>>,
     ) -> Vec<i32> {
         let n = n as usize;
-        let mut answer = vec![-1; n];
-        // 特例
-        answer[0] = 0;
 
-        //  入度表
-        let mut in_degree_red = vec![vec![]; n];
-        let mut in_degree_blue = vec![vec![]; n];
+        // 构建邻接表
+        let mut graph_red = vec![vec![]; n];
+        let mut graph_blue = vec![vec![]; n];
+
         for edge in red_edges {
-            in_degree_red[edge[1] as usize].push(edge[0] as usize);
+            graph_red[edge[0] as usize].push(edge[1] as usize);
         }
 
         for edge in blue_edges {
-            in_degree_blue[edge[1] as usize].push(edge[0] as usize);
+            graph_blue[edge[0] as usize].push(edge[1] as usize);
         }
 
-        // 0到x的最短距离
-        for x in 1..n {
-            // 必须是红蓝交替的路径
-            // 分别以红、蓝两种颜色开始
+        // BFS搜索，获取从节点0开始到各节点的最短交替路径
+        let mut answer = vec![-1; n];
+        let mut queue = VecDeque::new();
 
-            // 先找x的入度
-            let read_x = &in_degree_red[x];
-            let blue_x: &Vec<usize> = &in_degree_blue[x];
-            if read_x.is_empty() && blue_x.is_empty() {
-                // x不可达
-                answer[x] = -1;
-                continue;
-            }
+        // (node, color) -> color: 0表示红边，1表示蓝边
+        queue.push_back((0, 0)); // 从节点0开始，下一条边是红边
+        queue.push_back((0, 1)); // 从节点0开始，下一条边是蓝边
 
-            let mut dist_red = vec![-1; n];
-            let mut dist_blue = vec![-1; n];
+        answer[0] = 0;
 
-            // 用dfs,red和blue交替取值
-            let a = Self::bfs(x, 0, &in_degree_red, &in_degree_blue);
-            let b = Self::bfs(x, 1, &in_degree_red, &in_degree_blue);
-            if a > 0 && b > 0 {
-                answer[x] = a.min(b);
-            } else if a > 0 && b < 0 {
-                answer[x] = a;
-            } else if a < 0 && b > 0 {
-                answer[x] = b;
-            } else {
-                answer[x] = -1;
+        // visited[node][color] 表示通过color颜色的边到达node节点是否已访问
+        let mut visited = vec![vec![false; 2]; n];
+        visited[0][0] = true;
+        visited[0][1] = true;
+
+        let mut dist = 0;
+
+        while !queue.is_empty() {
+            dist += 1;
+            let size = queue.len();
+
+            for _ in 0..size {
+                let (node, color) = queue.pop_front().unwrap();
+                // 切换颜色
+                let next_color = 1 - color;
+                // 根据下一条边的颜色选择对应的图
+                let graph = if next_color == 0 {
+                    &graph_red
+                } else {
+                    &graph_blue
+                };
+
+                // 遍历当前节点通过next_color颜色的边能到达的所有节点
+                for &next_node in &graph[node] {
+                    // 如果该节点通过next_color颜色的边未被访问过
+                    if !visited[next_node][next_color] {
+                        visited[next_node][next_color] = true;
+                        // 如果是第一次到达该节点，则记录距离
+                        if answer[next_node] == -1 {
+                            answer[next_node] = dist;
+                        }
+                        queue.push_back((next_node, next_color));
+                    }
+                }
             }
         }
 
         answer
     }
-
-    /// color: 0-red, 1-blue
-    fn bfs(
-        x: usize,
-        color: i32,
-        in_degree_red: &Vec<Vec<usize>>,
-        in_degree_blue: &Vec<Vec<usize>>,
-    ) -> i32 {
-        let mut visited = vec![false; in_degree_blue.len()];
-        visited[x] = true;
-        let mut color = color % 2;
-        let vec = if color == 0 {
-            // red
-            &in_degree_red[x]
-        } else {
-            // blue
-            &in_degree_blue[x]
-        };
-        let mut queue = VecDeque::new();
-        if vec.is_empty() {
-            return -1;
-        }
-        for &v in vec {
-            if v == 0 {
-                return 1;
-            }
-            queue.push_back(v);
-            visited[v] = true;
-        }
-
-        // 循环需要处理
-        let mut path = 1;
-
-        while !queue.is_empty() {
-            let size = queue.len();
-            for _ in 0..size {
-                color += 1;
-                color %= 2;
-                let node = queue.pop_front().unwrap();
-                let next_vec = if color == 0 {
-                    // red
-                    &in_degree_red[node]
-                } else {
-                    // blue
-                    &in_degree_blue[node]
-                };
-                for &v in next_vec {
-                    if v == 0 {
-                        return path + 1;
-                    }
-                    if !visited[v] {
-                        queue.push_back(v);
-                        visited[v] = true;
-                    }
-                }
-            }
-            path += 1;
-        }
-        -1
-    }
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
