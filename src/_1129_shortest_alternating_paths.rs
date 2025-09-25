@@ -61,7 +61,7 @@ impl Solution {
                     // 如果该节点通过next_color颜色的边未被访问过
                     if !visited[next_node][next_color] {
                         visited[next_node][next_color] = true;
-                        // 如果是第一次到达该节点，则记录距离
+                        // 如果是第一次到达该节点，则记录距离(dist是递增的，所以这里记录的就是最短距离)
                         if answer[next_node] == -1 {
                             answer[next_node] = dist;
                         }
