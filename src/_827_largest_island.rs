@@ -23,7 +23,7 @@ impl Solution {
                 }
             }
         }
-        let mut max = lands.values().cloned().max().unwrap_or(0);
+        let mut max = *lands.values().into_iter().max().unwrap_or(&0);
         for i in 0..m {
             for j in 0..n {
                 if grid[i][j] == 0 {
