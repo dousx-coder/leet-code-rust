@@ -10,7 +10,6 @@ impl Solution {
         let (m, n) = (grid.len(), grid[0].len());
         let mut visited = vec![vec![0; n]; m];
         let mut mark = 2;
-        // 0和1 下标不用
         let mut lands = HashMap::new();
         for i in 0..m {
             for j in 0..n {
