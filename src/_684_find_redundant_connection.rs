@@ -11,6 +11,10 @@ impl Solution {
     ///
     /// 请找出一条可以删去的边，删除后可使得剩余部分是一个有着 `n` 个节点的树。如果有多个答案，则返回数组 `edges` 中最后出现的那个。
     pub fn find_redundant_connection(edges: Vec<Vec<i32>>) -> Vec<i32> {
+        Self::union_find(edges)
+    }
+
+    fn topological_sort(edges: Vec<Vec<i32>>) -> Vec<i32> {
         let mut graph = vec![vec![]; edges.len() + 1];
 
         let mut degree = vec![0; edges.len() + 1];
@@ -48,6 +52,36 @@ impl Solution {
             .unwrap()
             .to_vec()
     }
+
+    /// 并查集解题
+    fn union_find(edges: Vec<Vec<i32>>) -> Vec<i32> {
+        let mut len = edges.len() + 1;
+        let mut father = vec![0; len];
+        for i in 0..len {
+            father[i] = i;
+        }
+        for (_, ele) in edges.iter().enumerate() {
+            let u = ele[0] as usize;
+            let v = ele[1] as usize;
+            if Self::find(&mut father, u) != Self::find(&mut father, v) {
+                Self::join(&mut father, u, v);
+            } else {
+                return ele.to_vec();
+            }
+        }
+        vec![]
+    }
+    fn join(father: &mut Vec<usize>, x: usize, y: usize) {
+        let (x, y) = (Self::find(father, x), Self::find(father, y));
+        father[x] = y;
+    }
+
+    fn find(father: &mut Vec<usize>, x: usize) -> usize {
+        if father[x] != x {
+            father[x] = Self::find(father, father[x]);
+        }
+        father[x]
+    }
 }
 
 #[cfg(test)]
@@ -69,7 +103,21 @@ mod tests {
         // |   |
         // 3 - 4
         assert_eq!(
-            Solution::find_redundant_connection(vec![
+            Solution::topological_sort(vec![
+                vec![1, 2],
+                vec![2, 3],
+                vec![3, 4],
+                vec![1, 4],
+                vec![1, 5]
+            ]),
+            vec![1, 4]
+        );
+    }
+
+    #[test]
+    fn t3() {
+        assert_eq!(
+            Solution::union_find(vec![
                 vec![1, 2],
                 vec![2, 3],
                 vec![3, 4],
