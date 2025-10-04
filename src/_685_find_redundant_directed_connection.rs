@@ -44,15 +44,18 @@ impl Solution {
             // 存在入度≥2的节点
             for edge in &edges {
                 if edge == &cand_b {
+                    // 1. cand_b不参与并查集的构建
                     continue;
                 }
 
                 let u = edge[0] as usize;
                 let v = edge[1] as usize;
                 if !Self::union(u, v, &mut parent) {
+                    // 2. 在cand_b不参与构建并查集的情况下如果存在环，则返回cand_a
                     return cand_a.iter().map(|&x| x as i32).collect::<Vec<i32>>();
                 }
             }
+            //3. for循环正常退出说明正常构建了并查集，即cand_b是冗余的边
             cand_b.iter().map(|&x| x as i32).collect::<Vec<i32>>()
         }
     }
