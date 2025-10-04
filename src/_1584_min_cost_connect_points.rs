@@ -1,60 +1,55 @@
-use std::collections::HashSet;
 ///
 /// [1584. 连接所有点的最小费用](https://leetcode.cn/problems/min-cost-to-connect-all-points/?envType=problem-list-v2&envId=minimum-spanning-tree)
 ///
 struct Solution;
 impl Solution {
+    /// Prim算法
     pub fn min_cost_connect_points(points: Vec<Vec<i32>>) -> i32 {
-        let mut len = points.len();
-        let mut distances = vec![vec![-1; len]; len];
-        // 计算任意两点之间的距离
-        for i in 0..len {
-            for j in 0..=i {
-                let val = (points[i][0] - points[j][0]).abs() + (points[i][1] - points[j][1]).abs();
-                distances[i][j] = val;
-                distances[j][i] = val;
-            }
+        let n = points.len();
+        if n <= 1 {
+            return 0;
         }
 
-        // 记录当前节点到树中所有节点的最短距离
-        let mut min_dis = vec![i32::MAX; len];
+        // 标记节点是否已在MST中
+        let mut in_mst = vec![false; n];
 
-        // 已加入的树节点
-        let mut tree = HashSet::new();
+        // 到MST的最小距离
+        let mut min_cost = vec![i32::MAX; n];
 
-        for i in 0..len {
-            if tree.is_empty() {
-                tree.insert(0);
-                for j in 0..len {
-                    let dis = distances[i][j];
-                    min_dis[j] = min_dis[j].min(dis);
+        min_cost[0] = 0;
+        let mut total_cost = 0;
+
+        for _ in 0..n {
+            // 找到距离MST最近的未访问节点
+            let mut u = 0;
+            let mut min_distance = i32::MAX;
+
+            for i in 0..n {
+                if !in_mst[i] && min_cost[i] < min_distance {
+                    // u 为距离MST最近的未访问节点
+                    min_distance = min_cost[i];
+                    u = i;
                 }
-            } else {
-                let mut min_v = i32::MAX;
-                let mut min_k = usize::MAX;
+            }
 
-                for k in 0..len {
-                    if tree.contains(&k) {
-                        continue;
-                    }
-                    if min_dis[k] <= min_v {
-                        min_v = min_dis[k];
-                        min_k = k;
-                    }
-                }
-                tree.insert(min_k);
-                for j in 0..len {
-                    if tree.contains(&j) {
-                        continue;
-                    }
-                    for node in &tree {
-                        let dis = distances[*node][j];
-                        min_dis[j] = min_dis[j].min(dis);
+            // 将节点u加入MST
+            in_mst[u] = true;
+            total_cost += min_distance;
+
+            // 更新其他节点到MST的距离
+            // 每次加入u时，更新下其他节点到MST的最小距离，得到的就是未加入MST的节点到MST所有节点中的最短距离
+            for v in 0..n {
+                if !in_mst[v] {
+                    let distance =
+                        (points[u][0] - points[v][0]).abs() + (points[u][1] - points[v][1]).abs();
+                    if distance < min_cost[v] {
+                        min_cost[v] = distance;
                     }
                 }
             }
         }
-        min_dis.iter().sum::<i32>()
+
+        total_cost
     }
 }
 #[cfg(test)]
