@@ -28,10 +28,7 @@ impl Solution {
         }
 
         // 初始化并查集路径
-        for i in 1..=n {
-            parent[i] = i;
-        }
-
+        let mut parent = (0..=n).collect::<Vec<_>>();
         if cand_b.is_empty() {
             // 如果没有任何节点的入度≥2，那就找出形成环路的那条边即可
             let mut parent = (0..=n).collect::<Vec<_>>();
@@ -45,7 +42,6 @@ impl Solution {
             panic!()
         } else {
             // 存在入度≥2的节点
-            let mut parent = (0..=n).collect::<Vec<_>>();
             for edge in &edges {
                 if edge == &cand_b {
                     continue;
