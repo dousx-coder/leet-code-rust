@@ -50,6 +50,7 @@ mod _14_longest_common_prefix;
 mod _150_eval_rpn;
 mod _153_find_min;
 mod _154_find_min;
+mod _1584_min_cost_connect_points;
 mod _15_three_sum;
 mod _162_find_peak_element;
 mod _164_maximum_gap;
