@@ -99,4 +99,31 @@ mod tests {
             vec![4, 1]
         );
     }
+
+    #[test]
+    fn t3() {
+        assert_eq!(
+            Solution::find_redundant_directed_connection(vec![
+                vec![1, 2],
+                vec![4, 1],
+                vec![2, 4],
+                vec![3, 2]
+            ]),
+            vec![1, 2]
+        );
+    }
+
+    #[test]
+    fn t4() {
+        assert_eq!(
+            Solution::find_redundant_directed_connection(vec![
+                vec![1, 2],
+                vec![1, 3],
+                vec![1, 4],
+                vec![2, 3],
+                vec![2, 5]
+            ]),
+            vec![2, 3]
+        );
+    }
 }
