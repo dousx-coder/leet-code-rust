@@ -218,6 +218,7 @@ mod _842_split_into_fibonacci;
 mod _84_largest_rectangle_area;
 mod _853_car_fleet;
 mod _860_lemonade_change;
+mod _886_possible_bipartition;
 mod _887_super_egg_drop;
 mod _89_gray_code;
 mod _90_subsets_with_dup;
