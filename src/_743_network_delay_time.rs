@@ -25,6 +25,8 @@ impl Solution {
 
         // 优先队列，存储(距离, 节点)
         let mut pq = BinaryHeap::new();
+        // Reverse小顶堆
+        // 元组按照元素顺序比较，如果第1个元素相等，则按照第2个元素排序，以此类推
         pq.push(Reverse((0, k)));
 
         while let Some(Reverse((d, u))) = pq.pop() {
