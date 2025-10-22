@@ -30,6 +30,7 @@ impl Solution {
         pq.push(Reverse((0, k)));
 
         while let Some(Reverse((d, u))) = pq.pop() {
+            // 使用小顶堆，确保每次弹出的元素都是距离最小的那个点
             if d > dist[u] {
                 continue;
             }
