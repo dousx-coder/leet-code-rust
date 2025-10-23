@@ -208,6 +208,7 @@ mod _75_sort_colors;
 mod _763_partition_labels;
 mod _77_combine;
 mod _784_letter_case_permutation;
+mod _787_find_cheapest_price;
 mod _78_subsets;
 mod _797_all_paths_source_target;
 mod _79_exist;
