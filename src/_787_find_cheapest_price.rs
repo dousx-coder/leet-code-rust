@@ -19,7 +19,7 @@ impl Solution {
         }
 
         // 使用 visited 数组记录到达每个城市的最小花费和中转次数
-        let mut visited = vec![(std::i32::MAX, 0); n];
+        let mut visited = vec![(i32::MAX, 0); n];
         let mut pq = BinaryHeap::new();
 
         // (花费, 中转次数, 城市)
