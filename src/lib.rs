@@ -53,6 +53,7 @@ mod _154_find_min;
 mod _1584_min_cost_connect_points;
 mod _15_three_sum;
 mod _162_find_peak_element;
+mod _1631_minimum_effort_path;
 mod _164_maximum_gap;
 mod _1721_swap_nodes;
 mod _179_largest_number;
