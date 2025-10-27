@@ -11,7 +11,7 @@ impl Solution {
         let src = src as usize;
         let n = n as usize;
         let mut graph = vec![vec![]; n];
-        for flight in flights {
+        for flight in &flights {
             let from = flight[0] as usize;
             let to = flight[1] as usize;
             let price = flight[2];
