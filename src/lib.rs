@@ -207,6 +207,7 @@ mod _746_min_cost_climbing_stairs;
 mod _74_search_matrix;
 mod _75_sort_colors;
 mod _763_partition_labels;
+mod _778_swim_in_water;
 mod _77_combine;
 mod _784_letter_case_permutation;
 mod _787_find_cheapest_price;
