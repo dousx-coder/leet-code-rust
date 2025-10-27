@@ -19,6 +19,7 @@ impl Solution {
             // 特殊情况：只有1个格子，那么耗费体力为0
             return 0;
         }
+        // 记录的是当前格子到(0,0)的最小体力消耗
         let mut dist = vec![vec![i32::MAX; n]; m];
         let mut heap = BinaryHeap::new();
         // (距离,row,col) 小顶堆
@@ -41,6 +42,8 @@ impl Solution {
 
                 if dist[nx][ny] > max_d {
                     dist[nx][ny] = max_d;
+                    // 同一(nx,ny)可能会push进去很多次(最多4次,四个方向)，
+                    // 但是最终优先取出来的是距离(d)最小的那一组
                     heap.push(Reverse((max_d, nx, ny)));
                 }
             }
