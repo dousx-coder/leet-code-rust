@@ -4,25 +4,25 @@
 struct Solution;
 impl Solution {
     pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
-        let mut i = 1;
-        let mut pre_count = 1;
-        let mut pre_num = nums[0];
-
-        while i < nums.len() {
-            if nums[i] == pre_num {
-                pre_count += 1;
-            } else {
-                pre_count = 1;
-                pre_num = nums[i];
-            }
-
-            if pre_count > 2 {
-                nums.remove(i);
-            } else {
-                i += 1;
-            }
+        let n = nums.len();
+        if n <= 2 {
+            return n as i32;
         }
-        nums.len() as i32
+
+        let mut slow = 2;
+        let mut fast = 2;
+
+        while fast < n {
+            // 只有当当前元素与前两个元素不同时才保留
+            if nums[fast] != nums[slow - 2] {
+                nums[slow] = nums[fast];
+                slow += 1;
+            }
+            fast += 1;
+        }
+
+        nums.truncate(slow);
+        slow as i32
     }
 }
 
