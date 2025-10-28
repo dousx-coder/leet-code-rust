@@ -180,6 +180,7 @@ mod _565_array_nesting;
 mod _56_merge;
 mod _57_insert;
 mod _581_find_unsorted_subarray;
+mod _58_length_of_last_word;
 mod _59_generate_matrix;
 mod _605_can_place_flowers;
 mod _617_merge_trees;
