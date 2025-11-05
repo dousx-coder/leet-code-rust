@@ -32,6 +32,6 @@ mod tests {
         let mut v1 = vec![1, 2, 3, 0, 0, 0];
         let mut v2 = vec![2, 5, 6];
         Solution::merge(&mut v1, 3, &mut v2, 3);
-        assert!(v1 == vec![1, 2, 2, 3, 5, 6])
+        assert_eq!(v1, vec![1, 2, 2, 3, 5, 6])
     }
 }
