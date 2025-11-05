@@ -226,6 +226,7 @@ mod _853_car_fleet;
 mod _860_lemonade_change;
 mod _886_possible_bipartition;
 mod _887_super_egg_drop;
+mod _88_merge;
 mod _89_gray_code;
 mod _90_subsets_with_dup;
 mod _94_inorder_traversal;
