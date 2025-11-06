@@ -1,3 +1,5 @@
+use std::i32;
+
 /// [1334. 阈值距离内邻居最少的城市](https://leetcode.cn/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/?envType=problem-list-v2&envId=shortest-path)
 struct Solution;
 impl Solution {
@@ -41,27 +43,19 @@ impl Solution {
                 }
             }
         }
-        for dt in &dist {
-            println!("{:?}", dt);
-        }
-
-        // (数量，下标)
-        let mut ans = (i32::MAX, 0);
-
-        for i in 0..n {
-            let mut dt = distance_threshold as usize;
-            let mut count = 0;
-
-            for j in 0..n {
-                if dist[i][j] <= dt {
-                    count += 1;
-                }
-            }
-            if ans.0 >= count {
-                ans = (count, i);
-            }
-        }
-        ans.1 as i32
+        let dt = distance_threshold as usize;
+        (0..n)
+            .map(|i| {
+                let count = dist[i].iter().filter(|&&num| num <= dt).count();
+                (count, i)
+            })
+            .fold(
+                (usize::MAX, 0),
+                |ans, x| {
+                    if ans.0 >= x.0 { (x.0, x.1) } else { ans }
+                },
+            )
+            .1 as i32
     }
 }
 
