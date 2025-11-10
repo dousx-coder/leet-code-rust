@@ -53,7 +53,7 @@ mod tests {
         let ans = linked_list_to_vec(&ans);
         assert_eq!(ans, vec![1, 2, 5]);
     }
-    
+
     #[test]
     fn t2() {
         let vec = vec![1, 1, 1, 2, 3];
