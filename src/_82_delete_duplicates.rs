@@ -16,24 +16,24 @@ impl Solution {
                 let mut count = 1;
 
                 // 统计相同值的节点数量
-                while let Some(next_node) = current.as_mut().unwrap().next.take() {
-                    if next_node.val == current.as_ref().unwrap().val {
+                while let Some(next_node) = current.as_mut()?.next.take() {
+                    if next_node.val == current.as_ref()?.val {
                         count += 1;
-                        current.as_mut().unwrap().next = next_node.next;
+                        current.as_mut()?.next = next_node.next;
                     } else {
-                        current.as_mut().unwrap().next = Some(next_node);
+                        current.as_mut()?.next = Some(next_node);
                         break;
                     }
                 }
 
                 if count == 1 {
                     // 当前节点值唯一，保留并递归处理后续节点
-                    let next = current.as_mut().unwrap().next.take();
-                    current.as_mut().unwrap().next = Self::next(next);
+                    let next = current.as_mut()?.next.take();
+                    current.as_mut()?.next = Self::next(next);
                     current
                 } else {
                     // 当前节点值重复，删除并递归处理后续节点
-                    let next = current.as_mut().unwrap().next.take();
+                    let next = current.as_mut()?.next.take();
                     Self::next(next)
                 }
             }
@@ -48,9 +48,17 @@ mod tests {
 
     #[test]
     fn t1() {
-        let option = vec_to_linked_list(&vec![1, 2, 3, 3, 4, 4, 5], false);
-        let ans = Solution::delete_duplicates(option);
+        let vec = vec![1, 2, 3, 3, 4, 4, 5];
+        let ans = Solution::delete_duplicates(vec_to_linked_list(&vec, false));
         let ans = linked_list_to_vec(&ans);
         assert_eq!(ans, vec![1, 2, 5]);
+    }
+    
+    #[test]
+    fn t2() {
+        let vec = vec![1, 1, 1, 2, 3];
+        let ans = Solution::delete_duplicates(vec_to_linked_list(&vec, false));
+        let ans = linked_list_to_vec(&ans);
+        assert_eq!(ans, vec![2, 3]);
     }
 }
