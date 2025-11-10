@@ -220,6 +220,7 @@ mod _802_eventual_safe_nodes;
 mod _80_remove_duplicates;
 mod _81_search;
 mod _827_largest_island;
+mod _82_delete_duplicates;
 mod _841_can_visit_all_rooms;
 mod _842_split_into_fibonacci;
 mod _84_largest_rectangle_area;
