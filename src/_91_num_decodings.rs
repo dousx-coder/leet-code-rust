@@ -4,20 +4,21 @@
 struct Solution;
 impl Solution {
     /// 爬楼梯复杂版本
-    ///
+    /// ```text
     /// 如果连续的两位数符合条件，就相当于一个上楼梯的题目，可以有两种选法：
     ///
     ///     1.一位数决定一个字母
     ///
     ///     2.两位数决定一个字母
     ///
-    /// 就相当于dp(i) = dp[i-1] + dp[i-2]
+    /// 就相当于dp[i] = dp[i-1] + dp[i-2]
     ///
     /// 不符合条件，又有两种情况
     ///
-    ///     1.当前数字是0： dp[i] = dp[i-2]
+    ///     1.当前数字是0,dp[i] = dp[i-2]
     ///
-    ///     2.当前数字不是0：dp[i] = dp[i-1]
+    ///     2.当前数字不是0,dp[i] = dp[i-1]
+    /// ```
     ///
     pub fn num_decodings(s: String) -> i32 {
         let chs = s.chars().collect::<Vec<char>>();
@@ -42,7 +43,6 @@ impl Solution {
 }
 #[cfg(test)]
 mod tests {
-
     use super::*;
 
     #[test]
