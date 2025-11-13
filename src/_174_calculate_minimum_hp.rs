@@ -4,105 +4,36 @@
 struct Solution;
 impl Solution {
     pub fn calculate_minimum_hp(dungeon: Vec<Vec<i32>>) -> i32 {
-        // 动态规划
         let (m, n) = (dungeon.len(), dungeon[0].len());
-        // dp(i,j)的含义，如果是到达(i,j)所需要的最少初始hp
+        // 采用动态规划（Dynamic Programming）逆向思考的方式解决。
+        // 定义 dp[i][j] 表示从位置 (i,j) 到终点所需最少初始健康点数
         let mut dp = vec![vec![0; n]; m];
-        // 记录到达(i,j)时，剩余的hp值
-        let mut hp = vec![vec![0; n]; m];
 
-        dp[0][0] = if dungeon[0][0] < 0 { -dungeon[0][0] } else { 0 } + 1;
-        // 达到初始位置，消耗hp之后最少要剩下1，否则就挂了
-        hp[0][0] = 1;
+        // 初始化右下角
+        dp[m - 1][n - 1] = 1.max(1 - dungeon[m - 1][n - 1]);
 
-        //  如果房间大于0，则是增加hp
-        for i in 1..m {
-            let c = dungeon[i][0];
-            if c >= 0 {
-                hp[i][0] = hp[i - 1][0] + c;
-                dp[i][0] = dp[i - 1][0];
-            } else {
-                let surplus = hp[i - 1][0] + c;
-                if surplus >= 1 {
-                    // 剩余的hp足够
-                    dp[i][0] = dp[i - 1][0];
-                    hp[i][0] = surplus;
-                } else {
-                    // -2 -5 10
-                    // 3   8
-                    //  1 + 5 + 1
-                    // 1- ( -2 + -5)
-                    dp[i][0] = dp[i - 1][0] + c.abs();
-                    hp[i][0] = 1;
-                }
+        // 填充最后一行
+        for j in (0..n - 1).rev() {
+            dp[m - 1][j] = 1.max(dp[m - 1][j + 1] - dungeon[m - 1][j]);
+        }
+
+        // 填充最后一列
+        for i in (0..m - 1).rev() {
+            dp[i][n - 1] = 1.max(dp[i + 1][n - 1] - dungeon[i][n - 1]);
+        }
+
+        // 填充其余部分
+        for i in (0..m - 1).rev() {
+            for j in (0..n - 1).rev() {
+                let min_health_from_next = dp[i + 1][j].min(dp[i][j + 1]);
+                dp[i][j] = 1.max(min_health_from_next - dungeon[i][j]);
             }
         }
-        for j in 1..n {
-            let c = dungeon[0][j];
-            if c >= 0 {
-                hp[0][j] = hp[0][j - 1] + c;
-                dp[0][j] = dp[0][j - 1];
-            } else {
-                let surplus = hp[0][j - 1] + c;
-                if surplus >= 1 {
-                    // 剩余的hp足够
-                    hp[0][j] = surplus;
-                    dp[0][j] = dp[0][j - 1];
-                } else {
-                    dp[0][j] = dp[0][j - 1] + c.abs();
-                    hp[0][j] = 1;
-                }
-            }
-        }
-        for i in 1..m {
-            for j in 1..n {
-                let c = dungeon[i][j];
-                // 有两条路可以走
-                // (i-1,j)
-                // (i,j-1)
 
-                let dp1 = 0;
-                let hp1 = 0;
-
-                if dp[i - 1][j] <= dp[i][j - 1] {
-                    if c >= 0 {
-                        // 剩余的hp足够
-                        hp[i][j] = hp[i - 1][j] + c;
-                        dp[i][j] = dp[i - 1][j];
-                    } else {
-                        let surplus = hp[i - 1][j] + c;
-                        if surplus >= 1 {
-                            // 剩余的hp足够
-                            hp[i][j] = surplus;
-                            dp[i][j] = hp[i - 1][j];
-                        } else {
-                            dp[i][j] = dp[i - 1][j] + surplus.abs() + 1;
-                            hp[i][j] = 1;
-                        }
-                    }
-                } else {
-                    if c >= 0 {
-                        // 剩余的hp足够
-                        hp[i][j] = hp[i][j - 1] + c;
-                        dp[i][j] = dp[i][j - 1];
-                    } else {
-                        let surplus = hp[i][j - 1] + c;
-                        if surplus >= 1 {
-                            // 剩余的hp足够
-                            hp[i][j] = surplus;
-                            dp[i][j] = dp[i][j - 1];
-                        } else {
-                            // 这里应该取hp?
-                            dp[i][j] = dp[i][j - 1] + surplus.abs() + 1;
-                            hp[i][j] = 1;
-                        }
-                    }
-                }
-            }
-        }
-        dp[m - 1][n - 1]
+        dp[0][0]
     }
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
