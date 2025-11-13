@@ -57,6 +57,7 @@ mod _162_find_peak_element;
 mod _1631_minimum_effort_path;
 mod _164_maximum_gap;
 mod _1721_swap_nodes;
+mod _174_calculate_minimum_hp;
 mod _179_largest_number;
 mod _17_letter_combinations;
 mod _189_rotate;
