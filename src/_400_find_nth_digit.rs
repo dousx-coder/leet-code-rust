@@ -59,4 +59,10 @@ mod tests {
     fn t3() {
         assert_eq!(Solution::find_nth_digit(1000000000), 1);
     }
+
+    #[test]
+    fn t4() {
+        // 123456789101112
+        assert_eq!(Solution::find_nth_digit(15), 2);
+    }
 }
