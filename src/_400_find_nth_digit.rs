@@ -14,6 +14,9 @@ impl Solution {
         let mut count = 9;
 
         // 找到目标所在的位数段
+        // 当n为15时，第15位数字是2，2属于数字12，12是两位数码段，所以digits为2
+        // 1 2 3 4 5 6 7 8 9 10 11 12
+        // 1 2 3 4 5 6 7 8 9 1 0 1 1 1 2(第15位所在的数字是12，2位)
         while n > digits * count {
             n -= digits * count;
             digits += 1;
@@ -62,7 +65,6 @@ mod tests {
 
     #[test]
     fn t4() {
-        // 123456789101112
         assert_eq!(Solution::find_nth_digit(15), 2);
     }
 }
