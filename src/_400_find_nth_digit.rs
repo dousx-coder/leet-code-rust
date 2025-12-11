@@ -52,7 +52,7 @@ mod tests {
     #[test]
     fn t2() {
         // 12345678910
-        assert_eq!(Solution::find_nth_digit(3), 3);
+        assert_eq!(Solution::find_nth_digit(11), 0);
     }
 
     #[test]
