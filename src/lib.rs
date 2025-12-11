@@ -129,6 +129,7 @@ mod _38_count_and_say;
 mod _390_last_remaining;
 mod _393_valid_utf8;
 mod _39_combination_sum;
+mod _400_find_nth_digit;
 mod _401_read_binary_watch;
 mod _404_sum_of_left_leaves;
 mod _406_reconstruct_queue;
