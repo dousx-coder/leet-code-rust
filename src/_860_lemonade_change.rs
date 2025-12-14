@@ -6,7 +6,6 @@ impl Solution {
     pub fn lemonade_change(bills: Vec<i32>) -> bool {
         let mut five = 0;
         let mut ten = 0;
-        let mut twenty = 0;
         for i in 0..bills.len() {
             let bill = bills[i];
             match bill {
@@ -25,10 +24,8 @@ impl Solution {
                     if ten > 0 && five > 0 {
                         ten -= 1;
                         five -= 1;
-                        twenty += 1;
                     } else if five >= 3 {
                         five -= 3;
-                        twenty += 1;
                     } else {
                         return false;
                     }
