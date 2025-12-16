@@ -188,6 +188,7 @@ mod _581_find_unsorted_subarray;
 mod _58_length_of_last_word;
 mod _59_generate_matrix;
 mod _605_can_place_flowers;
+mod _611_triangle_number;
 mod _617_merge_trees;
 mod _62_unique_paths;
 mod _630_schedule_course;
