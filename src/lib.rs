@@ -95,6 +95,7 @@ mod _257_binary_tree_paths;
 mod _25_reverse_k_group;
 mod _263_is_ugly;
 mod _263_missing_number;
+mod _264_nth_ugly_number;
 mod _26_remove_duplicates;
 mod _274_h_index;
 mod _275_h_index;
