@@ -32,6 +32,7 @@ mod _112_has_path_sum;
 mod _113_path_sum;
 mod _114_flatten;
 mod _11_max_area;
+mod _1201_nth_ugly_number;
 mod _120_minimum_total;
 mod _122_max_profit;
 mod _1238_circular_permutation;
