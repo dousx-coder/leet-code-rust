@@ -4,30 +4,24 @@
 struct Solution;
 impl Solution {
     pub fn wiggle_sort(nums: &mut Vec<i32>) {
-        nums.sort_unstable();
-        let n = nums.len();
-        let mut right = n - 1;
-        let mut left = right / 2;
-        let cn = nums.clone();
+        let mut sorted = nums.clone();
+        sorted.sort_unstable();
 
-        for i in 0..n {
-            if i % 2 == 0 {
-                nums[i] = cn[left];
-                match left.checked_sub(1) {
-                    Some(l) => {
-                        left = l;
-                    }
-                    None => {}
-                }
-            } else {
-                nums[i] = cn[right];
-                match right.checked_sub(1) {
-                    Some(r) => {
-                        right = r;
-                    }
-                    None => {}
-                }
-            }
+        let n = nums.len();
+        let mid = (n - 1) / 2;
+
+        let mut i = 0;
+        // 先填充奇数位置（从中间开始向前取）
+        for j in (0..=mid).rev() {
+            nums[i] = sorted[j];
+            i += 2;
+        }
+
+        // 再填充偶数位置（从末尾开始向前取）
+        i = 1;
+        for j in (mid + 1..n).rev() {
+            nums[i] = sorted[j];
+            i += 2;
         }
     }
 }
