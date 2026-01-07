@@ -115,6 +115,7 @@ mod _316_remove_duplicate_letters;
 mod _319_bulb_switch;
 mod _31_next_permutation;
 mod _322_coin_change;
+mod _324_wiggle_sort;
 mod _327_count_range_sum;
 mod _32_longest_valid_parentheses;
 mod _337_rob;
