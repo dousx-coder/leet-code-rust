@@ -12,26 +12,26 @@ impl Solution {
         let mut carry = 0;
         let mut res = vec![];
         for i in 0..max_len {
-            let a_val = if i < a_len {
-                // 要么是0要么是1，不用转十进制，直接if判断会快一点
-                if a[i] == '0' { 0 } else { 1 }
-            } else {
-                0
+            let a_val = match a.get(i) {
+                Some(v) => {
+                    // 0 or 1
+                    if *v == '0' { 0 } else { 1 }
+                }
+                None => 0,
             };
-            let b_val = if i < b_len {
-                if b[i] == '0' { 0 } else { 1 }
-            } else {
-                0
+            let b_val = match b.get(i) {
+                Some(v) => {
+                    // 0 or 1
+                    if *v == '0' { 0 } else { 1 }
+                }
+                None => 0,
             };
 
             let sum = a_val + b_val + carry;
 
             carry = sum / 2;
-            if sum % 2 == 1 {
-                res.insert(0, '1');
-            } else {
-                res.insert(0, '0');
-            }
+
+            res.insert(0, if sum % 2 == 1 { '1' } else { '0' });
         }
         if carry == 1 {
             res.insert(0, '1');
