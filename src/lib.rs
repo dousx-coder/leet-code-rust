@@ -203,6 +203,7 @@ mod _64_min_path_sum;
 mod _654_construct_maximum_binary_tree;
 mod _672_flip_lights;
 mod _679_judge_point24;
+mod _67_add_binary;
 mod _684_find_redundant_connection;
 mod _685_find_redundant_directed_connection;
 mod _692_top_k_frequent;
