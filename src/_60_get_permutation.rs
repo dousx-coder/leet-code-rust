@@ -5,7 +5,7 @@ use itertools::Itertools;
 ///
 struct Solution;
 impl Solution {
-    pub fn get_permutation(n: i32, k: i32) -> String {        
+    pub fn get_permutation(n: i32, k: i32) -> String {
         let n = n as usize;
 
         // 转换为0索引
@@ -20,9 +20,12 @@ impl Solution {
         let mut nums: Vec<usize> = (1..=n).collect();
         let mut result = String::new();
 
+        // n的阶乘共有n * (n-1)!种组合
+        // 以1-n开头的数字每一组有(n-1)!个数字 
+        // k/(n-1)! 找到第几组，第k个数字属于第几组
+
         // 从高位开始构建结果
         for i in (0..n).rev() {
-            
             // 确定当前位应该取nums中的哪个数
             let index = k / factorial[i];
             k %= factorial[i];
