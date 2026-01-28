@@ -1,5 +1,3 @@
-use itertools::Itertools;
-
 ///
 /// [60. 排列序列](https://leetcode.cn/problems/permutation-sequence/)
 ///
@@ -21,7 +19,7 @@ impl Solution {
         let mut result = String::new();
 
         // n的阶乘共有n * (n-1)!种组合
-        // 以1-n开头的数字每一组有(n-1)!个数字 
+        // 以1-n开头的数字每一组有(n-1)!个数字
         // k/(n-1)! 找到第几组，第k个数字属于第几组
 
         // 从高位开始构建结果
@@ -40,7 +38,6 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
-
     use super::*;
 
     #[test]
